@@ -4,6 +4,9 @@
  */
 package khademni;
 
+import java.sql.Connection;
+import khademni.utils.MyConnection;
+
 /**
  *
  * @author mikea
@@ -15,6 +18,8 @@ public class Khademni {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        Connection myconn =MyConnection.getInstance().getConnexion();
     }
     
 }
