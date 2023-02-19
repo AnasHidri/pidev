@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextField?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.ListeEvenementController">
+   <children>
+      <TableView fx:id="tab_ev_liste" layoutX="29.0" layoutY="76.0" prefHeight="248.0" prefWidth="511.0">
+        <columns>
+          <TableColumn fx:id="titre_list" prefWidth="131.0" text="Titre" />
+          <TableColumn fx:id="desc_list" prefWidth="112.0" text="Description" />
+            <TableColumn fx:id="nom_soc_list" prefWidth="112.0" text="Nom de la Societe" />
+            <TableColumn fx:id="lieu_list" prefWidth="116.0" text="Lieu" />
+        </columns>
+      </TableView>
+      <Button fx:id="btn_select_list" layoutX="41.0" layoutY="335.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" onAction="#SelectEV" text="Select" />
+      <Button fx:id="btn_parti_list" layoutX="437.0" layoutY="335.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="94.0" onAction="#ParticipeEV" text="Participer" />
+      <Button fx:id="aff_ev_list" layoutX="233.0" layoutY="335.0" mnemonicParsing="false" onAction="#ListEV" text="Afficher" />
+      <TextField fx:id="idevl" layoutX="62.0" layoutY="40.0" prefHeight="25.0" prefWidth="112.0" visible="false" />
+   </children>
+</AnchorPane>

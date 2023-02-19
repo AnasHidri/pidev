@@ -5,6 +5,10 @@
 package khademni;
 
 import java.sql.Connection;
+import khademni.entity.Evenement;
+import khademni.entity.Participation;
+import khademni.services.EvenementService;
+import khademni.services.ParticipationService;
 import khademni.utils.MyConnection;
 
 /**
@@ -20,6 +24,20 @@ public class Khademni {
         // TODO code application logic here
         
         Connection myconn =MyConnection.getInstance().getConnexion();
+        
+        EvenementService e=new EvenementService();
+        Evenement ev= new Evenement(1,"hhhh","event","aa","bb");
+//        e.ajouterEvenement(ev);
+         //e.supprimerEvenement(ev);
+        //e.modifierEvenement("recru","journee","marsa", ev);
+         //System.out.println(e.getAll());
+        
+        ParticipationService p=new ParticipationService();
+        Participation participation= new Participation(7,2,"bbb");
+         //p.ajouterParticipation(participation);
+       // p.supprimerParticipation(participation);
+       // p.modifierParticipation("achevée", participation);
+       //System.out.println(p.getAll());
     }
     
 }
