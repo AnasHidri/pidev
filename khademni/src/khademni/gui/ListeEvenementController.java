@@ -91,8 +91,19 @@ public class ListeEvenementController implements Initializable {
         System.out.println("tese1");
         ParticipationService ps= new ParticipationService();
         ps.ajouterParticipation(p);
-        System.out.println("tese1");
+        System.out.println("tese2");
         
+    }
+    
+    @FXML
+    private void AnnulerP(ActionEvent event){
+        Evenement selectedEV =  tab_ev_liste.getSelectionModel().getSelectedItem();
+        System.out.println("id_e::"+selectedEV.getId_evenement());
+        idevl.setText(String.valueOf(selectedEV.getId_evenement()));
+        System.out.println("tese1");
+         ParticipationService ps= new ParticipationService();
+         ps.supprimerParticipation(selectedEV);
+        System.out.println("tese2");
     }
     
 }

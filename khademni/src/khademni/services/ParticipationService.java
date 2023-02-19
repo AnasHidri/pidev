@@ -46,11 +46,11 @@ public class ParticipationService implements IParticipation<Participation> {
 
 
     @Override
-    public void supprimerParticipation(Participation p) {
-        String sql = "delete from participation where id_participation=?";
+    public void supprimerParticipation(Evenement e) {
+        String sql = "delete from participation where id_evenement=? and id_user="+2;
         try {
             PreparedStatement ste = cnx.prepareStatement(sql);
-            ste.setInt(1, p.getId_participation());
+            ste.setInt(1, e.getId_evenement());
             ste.executeUpdate();
             System.out.println("Participation supprimée");
         } catch (SQLException ex) {
@@ -91,6 +91,8 @@ public class ParticipationService implements IParticipation<Participation> {
         }
         return participations;
     }
+    
+    
     }
     
 
