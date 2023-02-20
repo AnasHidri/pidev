@@ -27,7 +27,7 @@ public class Khademni {
         
         PanierService p = new PanierService();
         Panier panier = new Panier(10,100);
-        /*p.ajouterPanier(panier);*/
+       p.ajouterPanier(panier);
       // p.modifierPanier(panier);
        Ligne_CommandeService cm= new Ligne_CommandeService();
        Ligne_commande commande= new Ligne_commande(1,1,500,"SQL",0);

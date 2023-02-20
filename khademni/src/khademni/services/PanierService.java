@@ -9,9 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import khademni.entity.Historique;
 import khademni.entity.Ligne_commande;
 import khademni.entity.Panier;
 import khademni.interfaces.IPanier;
@@ -41,6 +43,12 @@ public class PanierService implements IPanier {
             ste.setFloat(2, p.getSomme());
             ste.executeUpdate();
             System.out.println("Panier ajoutée");
+            
+            HistoriqueService hs= new HistoriqueService();
+            String ajoutaction="Ajout panier";
+           
+            Historique h= new Historique(p.getId_user(),"2002/20/20",ajoutaction);
+            hs.ajouterHistorique(h);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

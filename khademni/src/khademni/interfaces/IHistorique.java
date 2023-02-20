@@ -4,11 +4,15 @@
  */
 package khademni.interfaces;
 
+import java.util.List;
+import khademni.entity.Historique;
+
 /**
  *
  * @author mikea
  */
 public interface IHistorique {
     
-    
+    public void ajouterHistorique (Historique h);
+       public List<Historique> afficherLigneCommande();
 }
