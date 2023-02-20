@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="410.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.AjoutEvenementController">
+<AnchorPane id="AnchorPane" prefHeight="410.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.AjoutEvenementController" stylesheets="@design.css" styleClass="login-bg" >
    <children>
       <Label layoutX="3.0" layoutY="103.0" text="Nom de la societe" />
       <TextField fx:id="nom_soc" layoutX="104.0" layoutY="99.0" prefHeight="25.0" prefWidth="97.0" />
