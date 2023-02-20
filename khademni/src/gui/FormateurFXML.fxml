@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FormateurFXMLController">
+      <Label layoutX="92.0" layoutY="137.0" text="Nom:" />
+      <Label layoutX="92.0" layoutY="235.0" text="Prenom:" />
+      <TextField fx:id="resNom" editable="false" layoutX="207.0" layoutY="132.0" />
+      <TextField fx:id="resPrenom" editable="false" layoutX="207.0" layoutY="230.0" />
+</AnchorPane>
