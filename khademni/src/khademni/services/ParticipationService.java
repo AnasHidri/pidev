@@ -31,6 +31,11 @@ public class ParticipationService implements IParticipation<Participation> {
     @Override
     public void ajouterParticipation(Participation p) {
          try {
+             if (participantExists(p.getId_user())) {
+             System.out.println("L'utilisateur existe déjà.");
+            
+        }
+             else{
             String sql = "insert into participation(id_evenement,id_user,status)"
                     + "values (?,?,?)";
             PreparedStatement ste = cnx.prepareStatement(sql);
@@ -39,9 +44,11 @@ public class ParticipationService implements IParticipation<Participation> {
             ste.setString(3, p.getStatus());
             ste.executeUpdate();
             System.out.println("Participation ajoutée");
+             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+         
     }
 
 
@@ -91,6 +98,16 @@ public class ParticipationService implements IParticipation<Participation> {
         }
         return participations;
     }
+    
+    private boolean participantExists(int id_user) throws SQLException {
+        String query = "SELECT * FROM participation WHERE id_user = ?";
+        PreparedStatement statement = cnx.prepareStatement(query);
+        statement.setInt(1, id_user);
+        ResultSet result = statement.executeQuery();
+        return result.next();
+    }
+    
+   
     
     
     }
