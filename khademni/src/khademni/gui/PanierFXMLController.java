@@ -84,7 +84,7 @@ public class PanierFXMLController implements Initializable {
     public void payer(ActionEvent event) {
         Panier panier = new Panier(10,100);
         p.payer(panier);
-          Ligne_commande commande= new Ligne_commande(2,1,500,"SQL",0);
+     //     Ligne_commande commande= new Ligne_commande(2,1,500,"SQL",0);
         us.ViderCommande(panier);
         showRec();
     }

@@ -52,7 +52,7 @@ public class PanierService implements IPanier {
        
        int prixtotal=0;
         try {
-            String sql = "select prix from ligne_commande,panier where ligne_commande.id_panier= panier.id_panier"
+            String sql = "select prix from ligne_commande,panier where ligne_commande.id_panier= panier.id_panier and status="+0
                     ;
             java.sql.Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
@@ -74,7 +74,7 @@ public class PanierService implements IPanier {
 
     @Override
     public void supprimerPanier(Panier p) {
-            String sql = "delete from panier where id=?";
+            String sql = "delete from panier where id_panier=?";
         try {
             PreparedStatement ste = cnx.prepareStatement(sql);
             ste.setInt(1, p.getId_panier());
@@ -119,7 +119,7 @@ public class PanierService implements IPanier {
     @Override
     public int affichesomme(Panier p) {
         int prixtot=0;
-        String sql3 = "select somme from panier,ligne_commande where panier.id_panier =ligne_commande.id_panier and status="+0+" and panier.id_user="+10;
+        String sql3 = "select somme from panier where panier.id_user="+10;
    try {
             
               java.sql.Statement ste = cnx.createStatement();
@@ -129,7 +129,7 @@ public class PanierService implements IPanier {
               while (s.next()) {
 
                 prixtot=prixtot+s.getInt("somme");
-             System.out.println(prixtot);
+             System.out.println("hedhi somme" +prixtot);
 
             }
             
@@ -160,7 +160,6 @@ public class PanierService implements IPanier {
 
                 soldeuser=soldeuser+s.getInt("solde");
              System.out.println("solde user" + soldeuser);
-             
              
 
             }

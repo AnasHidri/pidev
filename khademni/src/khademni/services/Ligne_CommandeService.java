@@ -74,7 +74,7 @@ public class Ligne_CommandeService implements ILigne_commande {
                 String sql = "update ligne_commande set status="+1+" where id_panier="+1;
         try {
             PreparedStatement ste = cnx.prepareStatement(sql);
-            ste.setInt(1, p.getId_ligne_commande());
+           
             ste.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -116,8 +116,9 @@ public class Ligne_CommandeService implements ILigne_commande {
        ObservableList<Ligne_commande> commandes = FXCollections.observableArrayList();
         try {
             String sql = "select ligne_commande.id_ligne_commande,ligne_commande.id_formation,panier.id_panier, titre,prix,status from ligne_commande,panier where ligne_commande.id_panier=panier.id_panier and panier.id_user="+10;
-            java.sql.Statement ste = cnx.createStatement();
+              java.sql.Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
+         
             while (s.next()) {
 
                 Ligne_commande u = new Ligne_commande(
@@ -127,8 +128,9 @@ public class Ligne_CommandeService implements ILigne_commande {
                 s.getInt("prix"),
                         s.getString("titre"),
                         s.getInt("status")
+                       
                 );
-               
+               u.toString();
                 modifierCommande(u);
 
             }
@@ -142,6 +144,34 @@ public class Ligne_CommandeService implements ILigne_commande {
     }
     
     
+    
+        @Override
+    public ObservableList<Ligne_commande> afficherMesFormation() {
+            
+   
+        ObservableList<Ligne_commande> commandes = FXCollections.observableArrayList();
+        try {
+            String sql = "select ligne_commande.id_ligne_commande,panier.id_panier, titre,prix from ligne_commande,panier where ligne_commande.id_panier=panier.id_panier and status="+1+" and panier.id_user="+10;
+            java.sql.Statement ste = cnx.createStatement();
+            ResultSet s = ste.executeQuery(sql);
+            while (s.next()) {
+
+                Ligne_commande u = new Ligne_commande(
+                      s.getInt("id_ligne_commande"),
+                        s.getInt("id_panier"),
+                s.getInt("prix"),
+                        s.getString("titre")
+                );
+                commandes.add(u);
+
+            }
+            
+        
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return commandes;
+    }
   
     }
     

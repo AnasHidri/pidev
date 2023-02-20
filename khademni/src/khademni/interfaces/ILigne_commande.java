@@ -18,6 +18,7 @@ public interface ILigne_commande {
     public void ViderCommande(Panier p);
     public void supprimerCommande(Ligne_commande p);
    public List<Ligne_commande> afficherLigneCommande();
+   public List<Ligne_commande> afficherMesFormation();
    public void modifierCommande(Ligne_commande p);
    
 }
