@@ -31,8 +31,8 @@ public class ParticipationService implements IParticipation<Participation> {
     @Override
     public void ajouterParticipation(Participation p) {
          try {
-             if (participantExists(p.getId_user())) {
-             System.out.println("L'utilisateur existe déjà.");
+             if (participantExists(p.getId_user(),p.getId_evenement())) {
+             System.out.println("L'utilisateur a deja participé a cet evenement!!");
             
         }
              else{
@@ -99,10 +99,11 @@ public class ParticipationService implements IParticipation<Participation> {
         return participations;
     }
     
-    private boolean participantExists(int id_user) throws SQLException {
-        String query = "SELECT * FROM participation WHERE id_user = ?";
+    private boolean participantExists(int id_user, int id_evenement) throws SQLException {
+        String query = "SELECT * FROM participation WHERE id_user = ? and id_evenement =?";
         PreparedStatement statement = cnx.prepareStatement(query);
         statement.setInt(1, id_user);
+        statement.setInt(2, id_evenement);
         ResultSet result = statement.executeQuery();
         return result.next();
     }
