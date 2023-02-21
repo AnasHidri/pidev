@@ -111,6 +111,32 @@ public class EvenementService implements IEvenement<Evenement> {
         }
     }
     
+     
+   public ObservableList<Evenement> MaListe() {
+         
+         ObservableList<Evenement> evenements = FXCollections.observableArrayList();
+          
+        try {
+            String query = "select evenement.id_evenement, evenement.id_user, evenement.titre, evenement.description, evenement.nom_societe"
+                    + ", evenement.lieu from evenement,participation where evenement.id_evenement=participation.id_evenement and participation.id_user="+2;
+             PreparedStatement ste = cnx.prepareStatement(query);
+              ResultSet s = ste.executeQuery();
+              while(s.next()){
+                     Evenement e = new Evenement(s.getInt(1),s.getInt(2), 
+                   s.getString("titre"), s.getString("description"), s.getString("nom_societe"), s.getString("lieu"));
+                evenements.add(e);
+                e.toString();
+              }
+            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+      
+       return evenements;
+    
+    }
+    
     
     
     }

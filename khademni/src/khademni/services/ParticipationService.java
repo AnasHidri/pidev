@@ -110,30 +110,6 @@ public class ParticipationService implements IParticipation<Participation> {
         ResultSet result = statement.executeQuery();
         return result.next();
     }
-    
-  /* public ListView<String> MaListe() {
-         
-         ListView<String> participationListView;
-          participationListView = new ListView<>();
-        try {
-            String query = "SELECT e.titre AS titre " +
-                           "FROM participation p " +
-                           "INNER JOIN user u ON p.id_user = u.id " +
-                           "INNER JOIN evenement e ON p.id_evenement = e.id " +
-                           "WHERE u.id = " +2;
-             PreparedStatement ste = cnx.prepareStatement(query);
-              ResultSet s = ste.executeQuery();
-              while(s.next()){
-                  String titre = s.getString("titre");
-                  participationListView.getItems().add(titre);
-              }
-            
-        }catch(SQLException ex){
-            System.out.println(ex.getMessage());
-        }
-       return participationListView;
-    
-    }*/
-    
+   
 
 }

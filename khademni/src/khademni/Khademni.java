@@ -30,7 +30,8 @@ public class Khademni {
 //        e.ajouterEvenement(ev);
          //e.supprimerEvenement(ev);
         //e.modifierEvenement("recru","journee","marsa", ev);
-         //System.out.println(e.getAll());
+         System.out.println( e.MaListe());
+        
         
         ParticipationService p=new ParticipationService();
         Participation participation= new Participation(19,2,"bbb");

@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="khademni.gui.MesParticipationsController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.MesParticipationsController">
    <children>
-      <TableView fx:id="tab_mes_parti" layoutX="75.0" layoutY="78.0" prefHeight="236.0" prefWidth="423.0">
+      <TableView fx:id="tab_mes_parti" layoutX="28.0" layoutY="78.0" prefHeight="247.0" prefWidth="541.0">
         <columns>
-          <TableColumn fx:id="titre_ma_liste" prefWidth="210.0" text="Titre de l'evenement" />
+          <TableColumn fx:id="titre_ma_liste" prefWidth="93.0" text="Titre " />
+            <TableColumn fx:id="desc_ma_liste" prefWidth="140.0" text="Description" />
+            <TableColumn fx:id="nom_soc_ma_liste" prefWidth="154.0" text="Nom de la societe" />
+            <TableColumn fx:id="lieu_ma_liste" prefWidth="129.0" text="Lieu" />
         </columns>
       </TableView>
+      <Button fx:id="btn_select_ma_liste" layoutX="69.0" layoutY="340.0" mnemonicParsing="false" onAction="#SelectEV" text="Select" />
+      <Button fx:id="btn_annuler_parti_ma_liste" layoutX="442.0" layoutY="340.0" mnemonicParsing="false" onAction="#AnnulerP" text="Annuler Participation" />
+      <TextField fx:id="idev2" layoutX="62.0" layoutY="40.0" prefHeight="25.0" prefWidth="112.0" visible="false" />
    </children>
 </AnchorPane>

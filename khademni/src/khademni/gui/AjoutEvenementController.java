@@ -82,11 +82,11 @@ public class AjoutEvenementController implements Initializable {
         alert.showAndWait();
         }
         
-            else if (titre_event.getText().matches(".*\\d.*")) {
+            else if (!titre_event.getText().matches("[a-zA-Z]+")) {
         // Afficher un message d'erreur si le titre contient des chiffres
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Erreur de saisie");
-        alert.setHeaderText("Le titre ne doit pas contenir de chiffres");
+        alert.setHeaderText("Le titre ne doit contenir que des lettres");
         alert.showAndWait();
         }
         else{
