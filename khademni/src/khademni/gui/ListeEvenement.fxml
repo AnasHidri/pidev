@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="434.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.ListeEvenementController">
+<AnchorPane id="AnchorPane" prefHeight="434.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.ListeEvenementController" stylesheets="@design.css" styleClass="login-bg">
    <children>
       <TableView fx:id="tab_ev_liste" layoutX="29.0" layoutY="76.0" prefHeight="248.0" prefWidth="511.0">
         <columns>

@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import khademni.entity.Evenement;
 import khademni.entity.Participation;
 import khademni.interfaces.IParticipation;
@@ -80,8 +82,8 @@ public class ParticipationService implements IParticipation<Participation> {
     }
 
     @Override
-    public List<Participation> getAll() {
-         List<Participation> participations = new ArrayList<>();
+    public ObservableList<Participation> getAll() {
+         ObservableList<Participation> participations = FXCollections.observableArrayList();
         try {
             String sql = "select * from participation";
             Statement ste = cnx.createStatement();
@@ -108,9 +110,27 @@ public class ParticipationService implements IParticipation<Participation> {
         return result.next();
     }
     
-   
-    
+   public ObservableList<Participation> MaListe() {
+         ObservableList<Participation> participations = FXCollections.observableArrayList();
+        try {
+            String query = "SELECT e.titre AS titre " +
+                           "FROM participation p " +
+                           "INNER JOIN user u ON p.id_user = u.id " +
+                           "INNER JOIN evenement e ON p.id_evenement = e.id " +
+                           "WHERE u.id = " +2;
+             PreparedStatement ste = cnx.prepareStatement(query);
+              ResultSet s = ste.executeQuery();
+              while(s.next()){
+                  String titre = s.getString("titre");
+                  System.out.printf("%s", titre);
+              }
+            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+       return participations;
     
     }
     
 
+}

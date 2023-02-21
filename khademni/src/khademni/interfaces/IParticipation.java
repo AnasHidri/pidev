@@ -5,6 +5,7 @@
 package khademni.interfaces;
 
 import java.util.List;
+import javafx.collections.ObservableList;
 import khademni.entity.Evenement;
 import khademni.entity.Participation;
 
@@ -18,5 +19,5 @@ public interface IParticipation<T> {
     public void modifierParticipation(String status,Participation p);
     public void supprimerParticipation(Evenement e);
     
-    public List<T> getAll();
+    public ObservableList<Participation> getAll();
 }
