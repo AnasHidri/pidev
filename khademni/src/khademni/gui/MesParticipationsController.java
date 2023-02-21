@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -35,15 +36,15 @@ public class MesParticipationsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        MesParticipations();
+        //MesParticipations();
     }    
     
-    @FXML
+   /* @FXML
       public void MesParticipations(){
      ParticipationService ps= new ParticipationService();
-         ObservableList<Participation> list = ps.MaListe();
+         ListView<String> list = ps.MaListe();
          System.out.println("list ::: "+list);
          titre_ma_liste.setCellValueFactory(new PropertyValueFactory<>("titre"));
          tab_mes_parti.setItems(list);
-      }
+      }*/
 }

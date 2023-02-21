@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
 import khademni.entity.Evenement;
 import khademni.entity.Participation;
 import khademni.interfaces.IParticipation;
@@ -110,8 +111,10 @@ public class ParticipationService implements IParticipation<Participation> {
         return result.next();
     }
     
-   public ObservableList<Participation> MaListe() {
-         ObservableList<Participation> participations = FXCollections.observableArrayList();
+  /* public ListView<String> MaListe() {
+         
+         ListView<String> participationListView;
+          participationListView = new ListView<>();
         try {
             String query = "SELECT e.titre AS titre " +
                            "FROM participation p " +
@@ -122,15 +125,15 @@ public class ParticipationService implements IParticipation<Participation> {
               ResultSet s = ste.executeQuery();
               while(s.next()){
                   String titre = s.getString("titre");
-                  System.out.printf("%s", titre);
+                  participationListView.getItems().add(titre);
               }
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
-       return participations;
+       return participationListView;
     
-    }
+    }*/
     
 
 }

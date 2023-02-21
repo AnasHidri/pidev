@@ -12,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -72,6 +74,22 @@ public class AjoutEvenementController implements Initializable {
     
      @FXML
     private void AjoutEv(ActionEvent event) {
+        if (titre_event.getText().isEmpty() || desc_event.getText().isEmpty()|| nom_soc.getText().isEmpty() || lieu_event.getText().isEmpty() ) {
+        // Afficher un message d'erreur si un champ est vide
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erreur de saisie");
+        alert.setHeaderText("Tous les champs sont obligatoires");
+        alert.showAndWait();
+        }
+        
+            else if (titre_event.getText().matches(".*\\d.*")) {
+        // Afficher un message d'erreur si le titre contient des chiffres
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erreur de saisie");
+        alert.setHeaderText("Le titre ne doit pas contenir de chiffres");
+        alert.showAndWait();
+        }
+        else{
         String titre=titre_event.getText();
         String description=desc_event.getText();
         String nom_societe=nom_soc.getText();
@@ -91,6 +109,7 @@ public class AjoutEvenementController implements Initializable {
         es.ajouterEvenement(e);
         AffichEV(); 
                  System.out.println("tese2");
+                }
 
     }
     
