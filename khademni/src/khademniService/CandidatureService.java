@@ -1,0 +1,101 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package khademniService;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import khademni.entity.Candidature;
+import khademni.entity.Offre;
+import khademni.interfaces.ICandidature;
+import khademni.utils.MyConnection;
+
+/**
+ *
+ * @author CYBERLAND
+ */
+public class CandidatureService implements ICandidature <Candidature>{
+       Connection myconn =MyConnection.getInstance().getmyconn();
+
+    @Override
+    public void ajouterCandidature(Candidature P) {
+ try {
+     
+              
+            String sql = "INSERT INTO candidature(id_candidature,id_offre,id_user,etat)"
+                    + "VALUES (?,?,?,?)";
+            
+            PreparedStatement ste = myconn.prepareStatement(sql);
+            ste.setInt(1, P.getId_candidature());
+            ste.setInt(2, P.getId_offre());
+            ste.setInt(3, P.getId_user());
+             ste.setString(4, P.getEtat());
+            
+            ste.executeUpdate();
+            System.out.println(" Candidature ajouté");
+            
+        } catch (SQLException ex){ 
+            System.out.println(ex.getMessage());
+        }    }
+
+    @Override
+    public void modifierCandidature(Candidature P) {
+String sql="update candidature set etat=? where id_offre=? ";
+        try {
+            PreparedStatement ste=myconn.prepareStatement(sql);
+                ste.setString(1,P.getEtat());
+                ste.setInt(2,P.getId_offre());
+            ste.executeUpdate();
+            System.out.println("Candidature modifié");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }    }
+
+    public ObservableList<String> afficherCandidature() {
+       ObservableList<String> CandidatureList = FXCollections.observableArrayList();
+        try {
+           String sql = "select offre.titre,user.nom,user.prenom,user.adresse from user,candidature,offre where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+47;
+            Statement ste = myconn.createStatement();
+            ResultSet s = ste.executeQuery(sql);
+            while (s.next()) {
+             /*   Candidature c = new Candidature(s.getInt(1), 
+                        s.getInt(2),s.getInt(3), s.getString("etat"));*/
+             //   CandidatureList.add(c);
+            CandidatureList.add(s.getString(1));
+            CandidatureList.add(s.getString(2));
+            CandidatureList.add(s.getString(3));
+            CandidatureList.add(s.getString(4));
+           }
+
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return CandidatureList;
+    }
+    @Override
+    public void supprimerCandidature(Candidature P) {
+  String sql = "delete from candidature where id_offre=? ";
+        try {
+            PreparedStatement ste = myconn.prepareStatement(sql);
+            ste.setInt(1,P.getId_offre());
+             ste.executeUpdate();
+            System.out.println("Offre supprimée");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }    }
+
+
+
+
+   
+    
+}

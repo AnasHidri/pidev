@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.Gui.InterfacePrincipaleFXMLController">
+    <stylesheets>
+        <URL value="@interfaceprincipalefxml.css" />
+    </stylesheets>
+   <children>
+      <ImageView fitHeight="442.0" fitWidth="752.0" layoutX="-10.0" layoutY="-13.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@welcome1.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnEmployeur" layoutX="275.0" layoutY="320.0" mnemonicParsing="false" onAction="#OpenEmployeur" prefHeight="44.0" prefWidth="150.0" style="-fx-background-color: #991849;" text="Employeur" textFill="#fcfafa">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnClient" layoutX="458.0" layoutY="321.0" mnemonicParsing="false" onAction="#OpenClient" prefHeight="45.0" prefWidth="126.0" style="-fx-background-color: #991849;" text="Client" textFill="#fffafa">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEmployeur1" layoutX="122.0" layoutY="321.0" mnemonicParsing="false" onAction="#OpenAdmin" prefHeight="32.0" prefWidth="126.0" style="-fx-background-color: #991849;" text="Admin" textFill="#fcfafa">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

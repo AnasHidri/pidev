@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="651.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.Gui.ListOffreClientFXMLController">
+    <stylesheets>
+        <URL value="@listoffreclientfxml.css" />
+    </stylesheets>
+   <children>
+      <ImageView fitHeight="635.0" fitWidth="912.0" layoutX="-225.0" layoutY="-23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@khademni.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="33.0" layoutY="278.0" prefHeight="204.0" prefWidth="254.0">
+         <children>
+            <TableView prefHeight="49.0" prefWidth="206.0">
+               <columns>
+                  <TableColumn prefWidth="112.0" text="Titre" />
+               </columns>
+            </TableView>
+            <TableView prefHeight="79.0" prefWidth="206.0">
+               <columns>
+                  <TableColumn prefWidth="112.0" text="Description" />
+               </columns>
+            </TableView>
+            <TableView prefHeight="39.0" prefWidth="206.0">
+               <columns>
+                  <TableColumn prefWidth="113.0" text="Domaine D'offre" />
+               </columns>
+            </TableView>
+            <TableView prefHeight="66.0" prefWidth="224.0">
+               <columns>
+                  <TableColumn prefWidth="114.0" text="Adresse Societe" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <VBox layoutX="373.0" layoutY="278.0" prefHeight="204.0" prefWidth="254.0">
+         <children>
+            <TableView prefHeight="49.0" prefWidth="206.0">
+               <columns>
+                  <TableColumn prefWidth="112.0" text="Titre" />
+               </columns>
+            </TableView>
+            <TableView prefHeight="79.0" prefWidth="206.0">
+               <columns>
+                  <TableColumn prefWidth="112.0" text="Description" />
+               </columns>
+            </TableView>
+            <TableView prefHeight="39.0" prefWidth="206.0">
+               <columns>
+                  <TableColumn prefWidth="113.0" text="Domaine D'offre" />
+               </columns>
+            </TableView>
+            <TableView prefHeight="66.0" prefWidth="224.0">
+               <columns>
+                  <TableColumn prefWidth="114.0" text="Adresse Societe" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <Button layoutX="199.0" layoutY="482.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="88.0" style="-fx-background-color: #832c8d;" text="Postuler" textFill="#fcfcfc">
+         <font>
+            <Font name="MV Boli" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="539.0" layoutY="482.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="88.0" style="-fx-background-color: #832c8d;" text="Postuler" textFill="#fcfcfc">
+         <font>
+            <Font name="MV Boli" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnPost" layoutX="513.0" layoutY="221.0" mnemonicParsing="false" onAction="#AddOffre" prefHeight="15.0" prefWidth="88.0" style="-fx-background-color: #832c8d;" text="Postuler" textFill="#fcfcfc">
+         <font>
+            <Font name="MV Boli" size="17.0" />
+         </font>
+      </Button>
+      <TableView fx:id="tvOffre23" layoutX="11.0" layoutY="28.0" prefHeight="179.0" prefWidth="666.0">
+         <columns>
+            <TableColumn fx:id="colTitre" prefWidth="89.0" text="Titre" />
+            <TableColumn fx:id="colDescription" minWidth="0.0" prefWidth="134.0" text="Description" />
+            <TableColumn fx:id="colDomaine" prefWidth="115.0" text="Domaine D'offre" />
+            <TableColumn fx:id="colAdresse" prefWidth="122.0" text="Adresse Societe" />
+            <TableColumn fx:id="colDateDebut" prefWidth="123.0" text="Date debut" />
+            <TableColumn fx:id="colDateLimite" prefWidth="81.0" text="Date limite" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

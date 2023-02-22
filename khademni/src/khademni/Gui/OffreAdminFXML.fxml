@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="701.0" style="-fx-background-color: #98AFC7;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.Gui.OffreAdminFXMLController">
+   <children>
+      <ImageView fitHeight="507.0" fitWidth="780.0" layoutX="-39.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@khademni.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tvOffre" layoutX="58.0" layoutY="36.0" prefHeight="271.0" prefWidth="639.0">
+         <columns>
+            <TableColumn fx:id="colTitre" minWidth="0.0" prefWidth="133.0" text="Titre" />
+            <TableColumn fx:id="colDescription" prefWidth="99.0" text="Description" />
+            <TableColumn fx:id="colAdresse_societe" minWidth="3.0" prefWidth="118.0" text="Adresse société" />
+            <TableColumn fx:id="colDomaine_offre" minWidth="0.0" prefWidth="116.0" text="Domaine D'offre" />
+            <TableColumn fx:id="colDate_debut" minWidth="0.0" prefWidth="83.0" text="Date debut" />
+            <TableColumn fx:id="colDate_limite" prefWidth="89.0" text="Date Limite" />
+         </columns>
+      </TableView>
+      <Button layoutX="208.0" layoutY="339.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Refuser" textFill="#fcfcfc">
+         <font>
+            <Font name="MV Boli" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="408.0" layoutY="339.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Valider" textFill="#fcfcfc">
+         <font>
+            <Font name="MV Boli" size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
