@@ -110,6 +110,50 @@ public class ParticipationService implements IParticipation<Participation> {
         ResultSet result = statement.executeQuery();
         return result.next();
     }
+    
+    public void likeEvent(Participation p) {
+        try {
+            if (participantExists(p.getId_user(),p.getId_evenement())){
+                 
+                 String sql = "update participation set vote="+1+" where id_evenement=? and id_user=?";
+        
+            PreparedStatement ste = cnx.prepareStatement(sql);
+           // ste.setInt(1, p.getVote());
+            ste.setInt(1,p.getId_evenement());
+            ste.setInt(2,p.getId_user());
+            ste.executeUpdate();
+            System.out.println("like ajouté");
+        } 
+        
+             else{
+                 System.out.println("Vous n'avez pas encore participé");
+             }
+        }  catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void DislikeEvent(Participation p) {
+        try {
+            if (participantExists(p.getId_user(),p.getId_evenement())){
+                 
+                 String sql = "update participation set vote="+2+" where id_evenement=? and id_user=?";
+        
+            PreparedStatement ste = cnx.prepareStatement(sql);
+           // ste.setInt(1, p.getVote());
+            ste.setInt(1,p.getId_evenement());
+            ste.setInt(2,p.getId_user());
+            ste.executeUpdate();
+            System.out.println("dislike ajouté");
+        } 
+        
+             else{
+                 System.out.println("Vous n'avez pas encore participé");
+             }
+        }  catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
    
 
 }

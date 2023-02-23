@@ -34,10 +34,12 @@ public class Khademni {
         
         
         ParticipationService p=new ParticipationService();
-        Participation participation= new Participation(19,2,"bbb");
-        // p.ajouterParticipation(participation);
+        Participation participation= new Participation(18,2,"bbb");
+         //p.ajouterParticipation(participation);
        // p.supprimerParticipation(participation);
        // p.modifierParticipation("achevée", participation);
+      //p.likeEvent(participation);
+     // p.DislikeEvent(participation);
        //System.out.println(p.getAll());
     }
     

@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -53,8 +54,13 @@ public class ListeEvenementController implements Initializable {
     private TextField idevl;
        @FXML
         private Button btn_consulte;
-       @FXML
-    
+      
+       
+        
+        
+        
+       
+       
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -120,13 +126,26 @@ try{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MesParticipations.fxml"));
              Parent root = loader.load();
 
-               Scene scene = new Scene(root);
-                Stage stage = (Stage) btn_consulte.getScene().getWindow();
-                   stage.setScene(scene);
-                      stage.show();
+              Scene scene = new Scene(root);
+               Stage stage = (Stage) btn_consulte.getScene().getWindow();
+                stage.setScene(scene);
+                 stage.show();
 
-                        }catch(IOException ex){
-                                 System.out.println(ex.getCause().getMessage());
-                                     }
+                  }catch(IOException ex){
+                      System.out.println(ex.getCause().getMessage());
+                      }
     }
+    
+    
+            
+            
+   /* btn_like.setOnAction(event -> {
+            likeCount++;
+            countLabel.setText("Likes: " + likeCount + " Dislikes: " + dislikeCount);
+        });
+        
+        dislikeBtn.setOnAction(event -> {
+            dislikeCount++;
+            countLabel.setText("Likes: " + likeCount + " Dislikes: " + dislikeCount);
+        });*/
 }

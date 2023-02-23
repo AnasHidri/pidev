@@ -50,6 +50,10 @@ public class MesParticipationsController implements Initializable {
      private Button btn_annuler_parti_ma_liste;
       @FXML
     private TextField idev2;
+      @FXML
+      private Button btn_like;
+      @FXML
+      private Button btn_dislike;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -80,6 +84,14 @@ public class MesParticipationsController implements Initializable {
 
       
     }
+  /*  @FXML
+    private void SelectP(ActionEvent event){
+        Participation selectedPa =  tab_mes_parti.getSelectionModel().getSelectedItem();
+        System.out.println("id_p::"+selectedPa);
+        idev2.setText(String.valueOf(selectedPa.getId_evenement()));
+
+      
+    }*/
     
      @FXML
     private void AnnulerP(ActionEvent event){
@@ -93,5 +105,29 @@ public class MesParticipationsController implements Initializable {
         MesParticipations();
     }
     
+    @FXML
+            private void LikeE(ActionEvent event){
+                 Evenement selectedEV =  tab_mes_parti.getSelectionModel().getSelectedItem();
+        System.out.println("id_e::"+selectedEV.getId_evenement());
+        idev2.setText(String.valueOf(selectedEV.getId_evenement()));
+        Participation p= new Participation(selectedEV.getId_evenement(), 2,"active");
+        System.out.println("tese1");
+        ParticipationService ps= new ParticipationService();
+        ps.likeEvent(p);
+        System.out.println("tese2");
+            }
+            
+            @FXML
+            private void DislikeE(ActionEvent event){
+                 Evenement selectedEV =  tab_mes_parti.getSelectionModel().getSelectedItem();
+        System.out.println("id_e::"+selectedEV.getId_evenement());
+        idev2.setText(String.valueOf(selectedEV.getId_evenement()));
+         Participation p= new Participation(selectedEV.getId_evenement(), 2,"active");
+        System.out.println("tese1");
+        ParticipationService ps= new ParticipationService();
+        ps.DislikeEvent(p);
+        System.out.println("tese2");
+            }
+            
     
 }

@@ -14,6 +14,7 @@ public class Participation {
     private int id_evenement;
     private int id_user;
     private String status;
+    private int vote=0;
 
     public Participation(int id_evenement, int id_user, String status) {
         this.id_evenement = id_evenement;
@@ -52,6 +53,16 @@ public class Participation {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public int getVote() {
+        return vote;
+    }
+
+    public void setVote(int vote) {
+        this.vote = vote;
+    }
+    
+    
 
     @Override
     public String toString() {
