@@ -23,6 +23,8 @@ import java.sql.SQLException;
 public class HistoriqueService implements IHistorique {
 
     Connection cnx;
+      ObservableList<Historique> historique = FXCollections.observableArrayList(); 
+        ObservableList<String> namedata = FXCollections.observableArrayList(); 
     
     public  HistoriqueService(){
          cnx = MyConnection.getInstance().getConnexion();
@@ -47,7 +49,7 @@ public class HistoriqueService implements IHistorique {
     }
 
     @Override
-    public ObservableList<Historique> afficherLigneCommande() {
+    public ObservableList<Historique> afficherHistorique() {
         
          ObservableList<Historique> historique = FXCollections.observableArrayList(); 
          
@@ -78,5 +80,42 @@ public class HistoriqueService implements IHistorique {
          
         return  historique; 
     }
+    
+        public List<Historique> getColumn1Data() {
+        return historique;
+    }
+
+    public List<String> getColumn2Data() {
+        return namedata;
+    }
+        
+    
+     public ObservableList<String> afficherHistoriqueWithUser() {
+        
+         
+           try {
+            String sql = "select nom from historique,user where user.id_user=historique.id_user ";
+            java.sql.Statement ste = cnx.createStatement();
+            ResultSet s = ste.executeQuery(sql);
+            while (s.next()) {
+
+               
+             namedata.add(s.getString("nom"));
+             System.out.println(namedata);
+             
+
+            }
+            
+        
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+         
+         
+         
+        return  namedata; 
+    }
+    
+    
     
 }

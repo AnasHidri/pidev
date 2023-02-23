@@ -7,6 +7,7 @@ package khademni;
 import java.sql.Connection;
 import khademni.entity.Ligne_commande;
 import khademni.entity.Panier;
+import khademni.services.HistoriqueService;
 import khademni.services.Ligne_CommandeService;
 import khademni.services.PanierService;
 import khademni.utils.MyConnection;
@@ -27,15 +28,16 @@ public class Khademni {
         
         PanierService p = new PanierService();
         Panier panier = new Panier(10,100);
-       p.ajouterPanier(panier);
+       //p.ajouterPanier(panier);
       // p.modifierPanier(panier);
        Ligne_CommandeService cm= new Ligne_CommandeService();
-       Ligne_commande commande= new Ligne_commande(1,1,500,"SQL",0);
-        //cm.ajouterCommande(commande);
+       Ligne_commande commande= new Ligne_commande(1,1,500,"DELETE",0);
+     //   cm.ajouterCommande(commande);
         System.out.println(cm.afficherLigneCommande());
        
         
-        p.affichesomme(panier);
+        HistoriqueService hs = new HistoriqueService();
+      System.out.println(hs.afficherHistoriqueWithUser());  
     }
     
 }

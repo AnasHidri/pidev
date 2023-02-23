@@ -14,5 +14,5 @@ import khademni.entity.Historique;
 public interface IHistorique {
     
     public void ajouterHistorique (Historique h);
-       public List<Historique> afficherLigneCommande();
+       public List<Historique> afficherHistorique();
 }

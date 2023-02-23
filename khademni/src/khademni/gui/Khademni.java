@@ -21,7 +21,7 @@ public class Khademni extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("MesFormationFXML.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("HistoriqueFXML.fxml"));
             Scene scene = new Scene(root);
                 
             primaryStage.setTitle("Khademni !");

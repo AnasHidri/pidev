@@ -29,6 +29,11 @@ public class Historique {
         this.action = action;
     }
 
+    public Historique(String date_action, String action) {
+        this.date_action = date_action;
+        this.action = action;
+    }
+
     public int getId_historique() {
         return id_historique;
     }
