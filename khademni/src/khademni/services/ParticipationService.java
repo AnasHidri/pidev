@@ -154,6 +154,30 @@ public class ParticipationService implements IParticipation<Participation> {
             System.out.println(ex.getMessage());
         }
     }
+    
+    public int[] getLikesAndDislikesCount(Participation p) {
+    int[] counts = new int[2];
+    try {
+        // Préparer la requête SQL pour sélectionner tous les votes pour l'événement donné
+        String sql = "SELECT vote FROM participation WHERE id_evenement = ?";
+        PreparedStatement stmt = cnx.prepareStatement(sql);
+        stmt.setInt(1, p.getId_evenement());
+        
+        // Exécuter la requête SQL et parcourir les résultats pour compter les votes positifs et négatifs
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            int vote = rs.getInt("vote");
+            if (vote == 1) {
+                counts[0]++;
+            } else if (vote == 2) {
+                counts[1]++;
+            }
+        }
+    } catch (SQLException ex) {
+        System.out.println("Erreur lors du calcul du nombre de likes et dislikes : " + ex.getMessage());
+    }
+    return counts;
+}
    
 
 }

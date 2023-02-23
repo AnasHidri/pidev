@@ -40,6 +40,8 @@ public class Khademni {
        // p.modifierParticipation("achevée", participation);
       //p.likeEvent(participation);
      // p.DislikeEvent(participation);
+    p.getLikesAndDislikesCount(participation);
+     System.out.println(p.getLikesAndDislikesCount(participation));
        //System.out.println(p.getAll());
     }
     
