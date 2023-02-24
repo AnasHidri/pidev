@@ -6,6 +6,7 @@ package khademni.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,6 +55,10 @@ public class MesParticipationsController implements Initializable {
       private Button btn_like;
       @FXML
       private Button btn_dislike;
+      @FXML
+      private TextField recherche_text_par;
+      @FXML
+      private Button btn_recherche;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -141,8 +146,34 @@ private void showLikesAndDislikes(ActionEvent event) {
 }
 Dans cet exemple, nous appelons la méthode getLikesAndDislikesCount à partir du service participationService, en passant une instance de Participation contenant l'ID de l'événement sélectionné. Nous stockons le nombre de likes et de dislikes dans les variables likes et dislikes, puis nous construisons une chaîne de caractères message pour afficher les résultats. Enfin, nous mettons à jour l'étiquette likesAndDislikesLabel avec le message.
 */
+            
+            @FXML
+        private void rechercheEvenement(ActionEvent event) {
+        // Récupérer le titre de l'événement à rechercher depuis le champ de texte
+         String titreEvenement = recherche_text_par.getText();
+
+       
+      // Récupérer la liste des événements auxquels l'utilisateur a participé depuis la TableView
+        ObservableList<Evenement> evenements = tab_mes_parti.getItems();
+
+       // Créer une nouvelle liste pour stocker les résultats de la recherche
+        ObservableList<Evenement> evenementsRecherche = FXCollections.observableArrayList();
+
+         // Parcourir la liste des événements et ajouter les événements correspondant au titre de recherche
+         for (Evenement evenement : evenements) {
+          if (evenement.getTitre().toLowerCase().contains(titreEvenement.toLowerCase())) {
+            evenementsRecherche.add(evenement);
+        }
+      }
+
+        if (!evenementsRecherche.isEmpty()) {
+       // Afficher les résultats de la recherche dans la TableView
+        tab_mes_parti.setItems(evenementsRecherche);
+      } else {
+       // Afficher un message d'erreur si aucune participation n'a été trouvée
+       System.out.println("Aucune participation trouvée pour l'événement " + titreEvenement);
+              }
 
 
-
-
+     }
 }

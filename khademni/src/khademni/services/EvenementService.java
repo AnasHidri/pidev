@@ -14,6 +14,8 @@ import java.sql.Statement;
 //import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 //import javafx.scene.control.DatePicker;
@@ -135,6 +137,20 @@ public class EvenementService implements IEvenement<Evenement> {
       
        return evenements;
     
+    }
+   
+    private BooleanProperty hidden = new SimpleBooleanProperty(false);
+
+    public boolean isHidden() {
+        return hidden.get();
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden.set(hidden);
+    }
+
+    public BooleanProperty hiddenProperty() {
+        return hidden;
     }
     
     

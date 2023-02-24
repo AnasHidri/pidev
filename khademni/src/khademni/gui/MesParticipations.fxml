@@ -16,10 +16,12 @@
             <TableColumn fx:id="lieu_ma_liste" prefWidth="129.0" text="Lieu" />
         </columns>
       </TableView>
-      <Button fx:id="btn_select_ma_liste" layoutX="69.0" layoutY="340.0" mnemonicParsing="false" onAction="#SelectEV"  text="Select" />
+      <Button fx:id="btn_select_ma_liste" layoutX="69.0" layoutY="340.0" mnemonicParsing="false" onAction="#SelectEV" text="Select" />
       <Button fx:id="btn_annuler_parti_ma_liste" layoutX="442.0" layoutY="340.0" mnemonicParsing="false" onAction="#AnnulerP" text="Annuler Participation" />
       <TextField fx:id="idev2" layoutX="62.0" layoutY="40.0" prefHeight="25.0" prefWidth="112.0" visible="false" />
       <Button fx:id="btn_like" layoutX="187.0" layoutY="340.0" mnemonicParsing="false" onAction="#LikeE" text="Like" />
       <Button fx:id="btn_dislike" layoutX="273.0" layoutY="340.0" mnemonicParsing="false" onAction="#DislikeE" text="Dislike" />
+      <TextField fx:id="recherche_text_par" layoutX="28.0" layoutY="40.0" prefHeight="25.0" prefWidth="263.0" />
+      <Button fx:id="btn_recherche" layoutX="300.0" layoutY="40.0" mnemonicParsing="false" onAction="#rechercheEvenement" text="Recherche" />
    </children>
 </AnchorPane>

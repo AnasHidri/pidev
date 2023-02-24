@@ -6,7 +6,11 @@ package khademni.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,7 +58,10 @@ public class ListeEvenementController implements Initializable {
     private TextField idevl;
        @FXML
         private Button btn_consulte;
-      
+      @FXML
+      private TextField recherche_text_par;
+      @FXML
+      private Button btn_recherche;
        
         
         
@@ -136,7 +143,63 @@ try{
                       }
     }
     
+   /* @FXML
+    private void recherche_par(ActionEvent event) {
+            // Récupérer l'ID de la fomation à rechercher depuis le champ de texte
+    String titre = recherche_text_par.getText();
+
+    // Appeler le service pour récupérer la formation correspondant à l'ID
+    Evenement EvenementRecherche = (Evenement) sp.readById(titre);
+
+    if (EvenementRecherche != null) {
+        // Afficher l formation trouvé dans la ListView
+        ObservableList<Participation> Participations = FXCollections.observableArrayList(participationRecherche);
+        list2.setItems(Participations);
+    } else {
+        // Afficher un message d'erreur si la formation n'a pas été trouvé
+        System.out.println("Participation non trouvée");
+    }
+    }*/
     
+    
+   @FXML
+private void rechercheEvenement(ActionEvent event) {
+    // Récupérer le titre de l'événement à rechercher depuis le champ de texte
+    String titreEvenement = recherche_text_par.getText();
+
+    // Récupérer la liste des événements affichée dans la TableView
+    ObservableList<Evenement> evenements = tab_ev_liste.getItems();
+
+    // Créer une nouvelle liste pour stocker les résultats de la recherche
+    ObservableList<Evenement> evenementsRecherche = FXCollections.observableArrayList();
+
+    // Parcourir la liste des événements et ajouter les événements correspondant au titre de recherche
+    for (Evenement evenement : evenements) {
+        if (evenement.getTitre().toLowerCase().contains(titreEvenement.toLowerCase())) {
+            evenementsRecherche.add(evenement);
+        }
+    }
+
+    if (!evenementsRecherche.isEmpty()) {
+        // Afficher les résultats de la recherche dans la TableView
+        tab_ev_liste.setItems(evenementsRecherche);
+    } else {
+        // Afficher un message d'erreur si aucune participation n'a été trouvée
+        System.out.println("Aucune participation trouvée pour l'événement " + titreEvenement);
+    }
+}
+    
+   
+
+
+    // ...
+
+
+
+
+
+
+
             
             
    /* btn_like.setOnAction(event -> {
