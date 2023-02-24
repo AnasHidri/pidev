@@ -61,6 +61,7 @@ public class UsersListFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
                 showUsers();
+                searchRec();
     } 
     
      public void showUsers(){
@@ -120,33 +121,40 @@ public class UsersListFXMLController implements Initializable {
 
     }
     
-    /*
+    
     private void searchRec() {
-         ObservableList<Utilisateur> list = us.afficherUtilisateurs() ;
-         System.out.println("list ::: "+list);
-         nomUser.setCellValueFactory(new PropertyValueFactory<>("nom"));
-         prenomUser.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-         roleUser.setCellValueFactory(new PropertyValueFactory<>("role"));
-         etatUser.setCellValueFactory(new PropertyValueFactory<>("etat"));
-         emailUser.setCellValueFactory(new PropertyValueFactory<>("mail"));
-      
-         tableviewUser.setItems(list);
-         FilteredList<Utilisateur> filteredData = new FilteredList<>(list,b->true);
-         Recherche_User.textProperty().addListener((observable,oldValue,newValue)-> {
-             filteredData.setPredicate(rec-> {
-                 if (newValue == null || newValue.isEmpty()){
-                     return true;
-                 }
-                 String lowerCaseFilter = newValue.toLowerCase();
-                 if (rec.getMail().toLowerCase().contains(lowerCaseFilter)){
-                 return true;
-                 }else if (rec.getNom().toLowerCase().contains(lowerCaseFilter)){
-                 return true;
-                 }
-                 else
-                 return false ;
-             });
-         });
+    ObservableList<Utilisateur> list = us.afficherUtilisateurs();
+    FilteredList<Utilisateur> filteredData = new FilteredList<>(list, p -> true);
+
+    // Set the items of your TableView to the filtered data
+    tableviewUser.setItems(filteredData);
+
+    // Add a listener to the text property of the TextField to detect changes in user input
+    Recherche_User.textProperty().addListener((observable, oldValue, newValue) -> {
+        filteredData.setPredicate(user -> {
+            // If the TextField is empty, show all items
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+
+            // Convert the user input to lowercase
+            String lowerCaseFilter = newValue.toLowerCase();
+
+            // Define a Predicate to match the user input against the relevant columns in your TableView
+            if (user.getNom().toLowerCase().contains(lowerCaseFilter)) {
+                return true; // Match on the nom column
+            } else if (user.getPrenom().toLowerCase().contains(lowerCaseFilter)) {
+                return true; // Match on the prenom column
+            } else if (user.getMail().toLowerCase().contains(lowerCaseFilter)) {
+                return true; // Match on the email column
+            } else if (user.getRole().toLowerCase().contains(lowerCaseFilter)) {
+                return true; // Match on the role column
+            } else {
+                return false; // No match
+            }
+        });
+    });
 }
-*/
+
+    
 }
