@@ -17,10 +17,11 @@
       </TableView>
       <Button layoutX="502.0" layoutY="366.0" mnemonicParsing="false" onAction="#supprimer" styleClass="button-design" stylesheets="@design.css" text="Supprimer" textFill="WHITE" />
       <Button layoutX="433.0" layoutY="366.0" mnemonicParsing="false" onAction="#payer" styleClass="button-design" stylesheets="@design.css" text="Payer" textFill="WHITE" />
-      <Button layoutX="500.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" styleClass="exit" stylesheets="@design.css" text="LogOut" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="2.0" />
       <TextField fx:id="prixtotal" editable="false" layoutX="24.0" layoutY="362.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css">
          
       </TextField>
+      <TextField fx:id="recherche" layoutX="14.0" layoutY="1.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css" />
+      <Button fx:id="chercher" layoutX="165.0" layoutY="2.0" mnemonicParsing="false" onAction="#chercher" styleClass="button-design" stylesheets="@design.css" text="Chercher" textFill="WHITE" />
      
    </children>
 </AnchorPane>

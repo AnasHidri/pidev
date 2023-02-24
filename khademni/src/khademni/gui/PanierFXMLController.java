@@ -39,6 +39,8 @@ public class PanierFXMLController implements Initializable {
     private TableColumn<?, ?> prixform;
     @FXML
     private TextField prixtotal;
+    @FXML 
+     private TextField recherche;
 
     
     Ligne_CommandeService us = new Ligne_CommandeService();
@@ -48,6 +50,12 @@ public class PanierFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
          
        showRec();
+       
+           // Add a listener to the recherche TextField
+    recherche.textProperty().addListener((observable, oldValue, newValue) -> {
+        // Call the chercher method with the updated search term
+        chercher(null);
+    });
         
     }    
     
@@ -87,6 +95,30 @@ public class PanierFXMLController implements Initializable {
      //     Ligne_commande commande= new Ligne_commande(2,1,500,"SQL",0);
         us.ViderCommande(panier);
         showRec();
+    }
+    
+    public void chercher (ActionEvent event){
+        String nom = recherche.getText();
+        if (nom == ""){
+            showRec();
+        }else { 
+          ObservableList<Ligne_commande> list = us.afficherMesFormationSelonRecherche(nom) ;
+         System.out.println("list ::: "+list);
+         idform.setCellValueFactory(new PropertyValueFactory<>("titre"));
+         prixform.setCellValueFactory(new PropertyValueFactory<>("prix"));
+      
+         tableviewUser.setItems(list);
+         
+        int prixtot=0;
+        Panier panier = new Panier(10,100);
+        p.modifierPanier(panier);
+       prixtot= p.affichesomme(panier);
+         prixtotal.setText("Prix totale : "+prixtot+"");
+        
+        
+        }
+          
+         
     }
     
 }

@@ -172,6 +172,42 @@ public class Ligne_CommandeService implements ILigne_commande {
         }
         return commandes;
     }
+    
+    
+    
+    
+      
+    public ObservableList<Ligne_commande> afficherMesFormationSelonRecherche(String nom) {
+            
+   
+        ObservableList<Ligne_commande> commandes = FXCollections.observableArrayList();
+        try {
+           String sql = "SELECT ligne_commande.id_ligne_commande, panier.id_panier, titre, prix "
+                   + "FROM ligne_commande, panier "
+                   + "WHERE ligne_commande.id_panier = panier.id_panier AND status = ? AND panier.id_user = ? AND ligne_commande.titre = ?";
+              PreparedStatement ps = cnx.prepareStatement(sql);
+        ps.setInt(1, 0);   // set the value of the first placeholder to 0
+        ps.setInt(2, 10);  // set the value of the second placeholder to 10
+        ps.setString(3, nom);  // set the value of the third placeholder to the value of nom
+        ResultSet s = ps.executeQuery();
+            while (s.next()) {
+
+                Ligne_commande u = new Ligne_commande(
+                      s.getInt("id_ligne_commande"),
+                        s.getInt("id_panier"),
+                s.getInt("prix"),
+                        s.getString("titre")
+                );
+                commandes.add(u);
+
+            }
+            
+        
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return commandes;
+    }
   
     }
     

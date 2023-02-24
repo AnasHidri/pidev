@@ -36,8 +36,10 @@ public class Khademni {
         System.out.println(cm.afficherLigneCommande());
        
         
-        HistoriqueService hs = new HistoriqueService();
-      System.out.println(hs.afficherHistoriqueWithUser());  
+      //  HistoriqueService hs = new HistoriqueService();
+      //System.out.println(hs.afficherHistoriqueWithUser());  
+      
+      System.out.println(cm.afficherMesFormationSelonRecherche("DELETE"));
     }
     
 }
