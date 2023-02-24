@@ -183,11 +183,12 @@
                         <Font size="15.0" />
                      </font>
                   </PasswordField>
-                  <TextField fx:id="tfcertif_form" layoutX="90.0" layoutY="278.0" prefHeight="28.0" prefWidth="220.0" promptText="Certificat ..." styleClass="textfield-design" stylesheets="@design.css">
+                  <TextField fx:id="tfcertif_form" disable="true" layoutX="200.0" layoutY="278.0" prefHeight="34.0" prefWidth="110.0" promptText="..." styleClass="textfield-design" stylesheets="@design.css" text="...">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </TextField>
+                  <Button layoutX="90.0" layoutY="282.0" mnemonicParsing="false" onAction="#selectCertif" prefHeight="26.0" prefWidth="101.0" text="Select Certificat" />
                   <PasswordField fx:id="tfpassword_form" layoutX="90.0" layoutY="351.0" prefHeight="28.0" prefWidth="220.0" promptText="Mot de passe ..." styleClass="textfield-design" stylesheets="@design.css">
                      <font>
                         <Font size="15.0" />
@@ -220,7 +221,7 @@
          
              <!-- ************************************************************************************************************* -->
 
-         <AnchorPane fx:id="signup_form_client" prefHeight="512.0" prefWidth="816.0" visible="false">
+         <AnchorPane fx:id="signup_form_client" prefHeight="512.0" prefWidth="816.0" visible="false" >
     <children>
             <AnchorPane layoutX="390.0" layoutY="-10.0" prefHeight="530.0" prefWidth="426.0" styleClass="login-bg" stylesheets="@design.css">
                <children>
@@ -262,11 +263,12 @@
                         <Font size="15.0" />
                      </font>
                   </PasswordField>
-                  <TextField fx:id="tfcv_cl" layoutX="90.0" layoutY="278.0" prefHeight="28.0" prefWidth="220.0" promptText="CV ..." styleClass="textfield-design" stylesheets="@design.css">
+                  <TextField fx:id="tfcv_cl" layoutX="200.0" layoutY="278.0" prefHeight="34.0" prefWidth="110.0" promptText="..." styleClass="textfield-design" stylesheets="@design.css" disable="true"  >
                      <font>
                         <Font size="15.0" />
                      </font>
                   </TextField>
+                  <Button layoutX="90.0" layoutY="282.0" mnemonicParsing="false" onAction="#selectCv" prefHeight="26.0" prefWidth="101.0" text="Select cv"  />
                   <PasswordField fx:id="tfpassword_cl" layoutX="90.0" layoutY="351.0" prefHeight="28.0" prefWidth="220.0" promptText="Mot de passe ..." styleClass="textfield-design" stylesheets="@design.css">
                      <font>
                         <Font size="15.0" />
@@ -316,7 +318,7 @@
                      <graphic>
                      </graphic>
                   </Button>
-                  <Label layoutX="158.0" layoutY="155.0" prefHeight="54.0" prefWidth="118.0" text="Sign IN" textFill="#662d60">
+                  <Label layoutX="126.0" layoutY="155.0" prefHeight="54.0" prefWidth="192.0" text="S'identifier" textFill="#662d60">
                      <font>
                         <Font name="Berlin Sans FB" size="40.0" />
                      </font>
@@ -331,12 +333,12 @@
                         <Font size="15.0" />
                      </font>
                   </PasswordField>
-                  <Button fx:id="login_btn" onAction="#login"  layoutX="183.0" layoutY="339.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="77.0" styleClass="button-design" stylesheets="@design.css" text="Login" textFill="WHITE">
+                  <Button fx:id="login_btn" layoutX="167.0" layoutY="339.0" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="94.0" styleClass="button-design" stylesheets="@design.css" text="Connecter" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Hyperlink fx:id="create_acc" layoutX="144.0" layoutY="448.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Create new account ?">
+                  <Hyperlink fx:id="create_acc" layoutX="144.0" layoutY="448.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Créer un nouveau compte ?">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>

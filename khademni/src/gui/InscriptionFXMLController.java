@@ -4,11 +4,13 @@
  */
 package gui;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import khademni.entity.Client;
@@ -151,6 +154,7 @@ public class InscriptionFXMLController implements Initializable {
     }
     
     UtilisateurService us = new UtilisateurService();
+    Connection myconn =MyConnection.getInstance().getConnexion();
 
     
     
@@ -202,9 +206,45 @@ public class InscriptionFXMLController implements Initializable {
         }
     }
     
+    private boolean userExist(String login ) throws SQLException {
+        String query = "SELECT * FROM user WHERE login = ?";
+        PreparedStatement statement = myconn.prepareStatement(query);
+        statement.setString(1, login);
+        ResultSet result = statement.executeQuery();
+        return result.next();
+    }
+    
+    @FXML
+    public void selectCertif() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter pdfFilter = new FileChooser.ExtensionFilter(
+        "PDF files (*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(pdfFilter);
+
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            tfcertif_form.setText(selectedFile.getPath());
+            System.out.println("filepath::"+tfcertif_form.getText());
+        }
+    }
+    
+    @FXML
+    public void selectCv() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter pdfFilter = new FileChooser.ExtensionFilter(
+        "PDF files (*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(pdfFilter);
+
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            tfcv_cl.setText(selectedFile.getPath());
+            System.out.println("filepath::"+tfcv_cl.getText());
+        }
+    }
+    
     @FXML
     private void saveEmployeur(ActionEvent event) throws IOException {
-        String nom = tfnom_emp.getText();
+            String nom = tfnom_emp.getText();
             String prenom = tfprenom_emp.getText();
             String login = tflogin_emp.getText();
             String password = tfpassword_emp.getText();
@@ -238,13 +278,24 @@ public class InscriptionFXMLController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("Le mot de passe doit etre sup à 8 caractéres et le meme pour confirmer mot de passe !!");
                 alert.showAndWait();    
+            }else if(!(nom.matches("[a-zA-Z]+") & prenom.matches("[a-zA-Z]+") )){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Khademni :: Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Le nom et le prenom doivent contenir que des lettres !!");
+                alert.showAndWait();    
+            }else if(userExist(login)){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Travel Me :: Error Message");
+                                alert.setHeaderText(null);
+                                alert.setContentText("l'identifiant : "+login+" est deja utilise!!");
+                                alert.showAndWait();
             }
             else{
                 if(ValidationEmail(mail)){
                 Employeur emp = new Employeur(nom, prenom, login, password, role, mail, domaine, nom_soc);
                 us.ajouterEmployeur(emp);
                 
-                System.out.println("ajout employeur avec succès");
                 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Khademni :: BIENVENNUE");
@@ -252,21 +303,25 @@ public class InscriptionFXMLController implements Initializable {
                 alert.setContentText("Vous Etes Inscrit !!");
                 alert.showAndWait();
                 
+                tfnom_emp.setText(null);
+                tfprenom_emp.setText(null);
+                tflogin_cl.setText(null);
+                tfpassword_emp.setText(null);
+                tfnomsoc_emp.setText(null);
+                tfemail_emp.setText(null);
+                tfdomaine_emp.setText(null);
+                tfconfirm_password_emp.setText(null);
+            
+                
                 login_form.setVisible(true);
                 signup_form_employeur.setVisible(false);
                     }
                 }
 
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 System.out.println(e.getMessage());
         }
-            
-            /*FXMLLoader loader = new FXMLLoader(getClass().getResource("UsersListFXML.fxml"));
-            Parent root = loader.load();
-            FormateurFXMLController fc = loader.getController();
-            fc.setResNom(nom);
-            fc.setResPrenom(prenom);
-            tfnom.getScene().setRoot(root);*/
+
            
     }
     
@@ -305,25 +360,45 @@ public class InscriptionFXMLController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("Le mot de passe doit etre sup à 8 caractéres et le meme pour confirmer mot de passe !!");
                 alert.showAndWait();    
+            }else if(!(nom.matches("[a-zA-Z]+") & prenom.matches("[a-zA-Z]+") )){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Khademni :: Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Le nom et le prenom doivent contenir que des lettres !!");
+                alert.showAndWait();    
+            }else if(userExist(login)){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Travel Me :: Error Message");
+                                alert.setHeaderText(null);
+                                alert.setContentText("l'identifiant : "+login+" est deja utilise!!");
+                                alert.showAndWait();
             }
             else{
                 if(ValidationEmail(mail)){
                 Formateur f = new Formateur(nom, prenom, login, password, role, mail, domaine,certif);
                 us.ajouterFormateur(f);
-                
-                System.out.println("ajout formateur avec succès");
-                
+                                
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Khademni :: BIENVENNUE");
                 alert.setHeaderText(null);
                 alert.setContentText("Vous Etes Inscrit !!");
                 alert.showAndWait();
                 
+                tfnom_form.setText(null);
+             tfprenom_form.setText(null);
+            tflogin_form.setText(null);
+            tfpassword_form.setText(null);
+            tfcertif_form.setText("...");
+            tfemail_form.setText(null);
+             tfdomaine_form.setText(null);
+            tfconfirm_password_form.setText(null);
+            
+                
                 login_form.setVisible(true);
                 signup_form_formateur.setVisible(false);
                     }
                 }
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 System.out.println(e.getMessage());
         }  
     }
@@ -345,7 +420,7 @@ public class InscriptionFXMLController implements Initializable {
             
             try {
             
-            if(       nom.isEmpty()
+            if(      nom.isEmpty()
                     | prenom.isEmpty()
                     | login.isEmpty()
                     | password.isEmpty()
@@ -366,32 +441,50 @@ public class InscriptionFXMLController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("Le mot de passe doit etre sup à 8 caractéres et le meme pour confirmer mot de passe !!");
                 alert.showAndWait();    
+            }else if(!(nom.matches("[a-zA-Z]+") & prenom.matches("[a-zA-Z]+") )){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Khademni :: Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Le nom et le prenom doivent contenir que des lettres !!");
+                alert.showAndWait();    
+            }else if(userExist(login)){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Travel Me :: Error Message");
+                                alert.setHeaderText(null);
+                                alert.setContentText("l'identifiant : "+login+" est deja utilise!!");
+                                alert.showAndWait();
             }
             else{
                 if(ValidationEmail(mail)){
                 Client c = new Client(nom, prenom, login, password, role, mail, domaine,solde,cv);
                 us.ajouterClient(c);
-                
-                System.out.println("ajout Client avec succès");
-                
+                                
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Khademni :: BIENVENNUE");
                 alert.setHeaderText(null);
                 alert.setContentText("Vous Etes Inscrit !!");
                 alert.showAndWait();
                 
+                
+            tfnom_cl.setText(null);
+            tfprenom_cl.setText(null);
+            tflogin_cl.setText(null);
+            tfpassword_cl.setText(null);
+            tfcv_cl.setText("...");
+            tfemail_cl.setText(null);
+            tfdomaine_cl.setText(null);
+            tfconfirm_password_cl.setText(null);
+                
                 login_form.setVisible(true);
                 signup_form_client.setVisible(false);
                     }
                 }
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 System.out.println(e.getMessage());
         }  
     }
-    
-    
-    
-    
+        
+
     public void login() throws IOException{
         if(login_signin.getText().equals("yassineadmin") && password_signin.getText().equals("adminadmin") )
         {
@@ -401,7 +494,7 @@ public class InscriptionFXMLController implements Initializable {
                      alert.setContentText("Bienvenue Admin");
                      try{
          // Charger la nouvelle vue
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminFxml.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UsersListFxml.fxml"));
         Parent root = loader.load();
 
         
@@ -426,6 +519,13 @@ public class InscriptionFXMLController implements Initializable {
                ResultSet rs= smt.executeQuery();
                 if(rs.next()){
                     if("Employeur".equals(rs.getString("role"))){
+                        if("inactif".equals(rs.getString("etat"))){
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Travel Me :: Error Message");
+                                alert.setHeaderText(null);
+                                alert.setContentText("Votre compte n'est pas actif");
+                                alert.showAndWait();
+                        }else{
                         Employeur e = new Employeur(rs.getInt(1),rs.getString("nom"), rs.getString("prenom"), rs.getString("login"), rs.getString("password"), rs.getString("role"), rs.getString("mail"), rs.getString("domaine"), rs.getString("nom_societe"));
                         Utilisateur.setCurrent_User(e);
                         System.out.println("current user id ::"+Utilisateur.Current_User.getId_user());
@@ -450,6 +550,7 @@ public class InscriptionFXMLController implements Initializable {
                                        }catch(IOException ex){
                                            System.out.println(ex.getCause().getMessage());
                                        }
+                        }
                                 
 
                     }
@@ -462,7 +563,7 @@ public class InscriptionFXMLController implements Initializable {
                 alert.showAndWait();  
                 }
           
-      }catch(Exception ex){
+      }catch(SQLException ex){
            System.out.println(ex.getMessage());
       }
 

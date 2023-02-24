@@ -80,6 +80,7 @@ public class UsersListFXMLController implements Initializable {
      @FXML
     private void ModifierUser(ActionEvent event) throws IOException {
         Utilisateur user = tableviewUser.getSelectionModel().getSelectedItem();
+        
         try{
          // Charger la nouvelle vue
             System.out.println("user.id::::"+user.getId_user());

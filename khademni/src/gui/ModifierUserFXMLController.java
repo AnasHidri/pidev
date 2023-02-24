@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import khademni.entity.Utilisateur;
@@ -36,18 +37,20 @@ public class ModifierUserFXMLController implements Initializable {
     private TextField tfrole2;
     @FXML
     private TextField tfmail2;
-    @FXML
-    private TextField tfetat2;
+    
     @FXML
     private TextField idUser2;
     
     @FXML
     private Button modifier_btn;
     
+    @FXML
+    private ChoiceBox cbetat;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        cbetat.getItems().addAll("actif","inactif");
     }   
     
     @FXML
@@ -59,14 +62,15 @@ public class ModifierUserFXMLController implements Initializable {
          String nom=tfnom2.getText();
          String prenom=tfprenom2.getText();
          String role=tfrole2.getText();
-         String etat=tfetat2.getText();
+         String etat=cbetat.getValue().toString();
+         System.out.println("cbetat.getValue().toString()"+cbetat.getValue().toString());
          String mail=tfmail2.getText();
          
          Utilisateur user =new Utilisateur(id,nom,prenom,role,etat,mail);
            us.modifierUtilisateur(user);
            
            
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Khademni :: Success Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Utilsateur modifié");
@@ -92,7 +96,7 @@ public class ModifierUserFXMLController implements Initializable {
        tfnom2.setText(u.getNom());
         tfprenom2.setText(u.getPrenom());
         tfrole2.setText(u.getRole());
-        tfetat2.setText(u.getEtat());
+        cbetat.setValue(u.getEtat());
         tfmail2.setText(u.getMail());
     }
     

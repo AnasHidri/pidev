@@ -27,10 +27,14 @@ public class UtilisateurService implements IUtilisateurService {
     
     Connection myconn =MyConnection.getInstance().getConnexion();
 
-
+ 
+   
+    
     @Override
     public void ajouterEmployeur(Employeur e){
          try {
+             
+            
               
             String sql = "INSERT INTO user(nom, prenom,login,password,role,mail,domaine,nom_societe)"
                     + "VALUES (?,?,?,?,?,?,?,?)";
@@ -46,6 +50,7 @@ public class UtilisateurService implements IUtilisateurService {
             ste.setString(8, e.getNom_societe());
             ste.executeUpdate();
             System.out.println(" Employeur ajouté");
+           
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -55,6 +60,8 @@ public class UtilisateurService implements IUtilisateurService {
     @Override
     public void ajouterFormateur(Formateur f){
          try {
+             
+            
               
             String sql = "INSERT INTO user(nom, prenom,login,password,role,mail,domaine,certif)"
                     + "VALUES (?,?,?,?,?,?,?,?)";
@@ -70,14 +77,16 @@ public class UtilisateurService implements IUtilisateurService {
             ste.setString(8, f.getCertif());
             ste.executeUpdate();
             System.out.println("Formateur ajouté");
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
-    
+     
     @Override
     public void ajouterClient(Client c){
          try {
+           
               
             String sql = "INSERT INTO user(nom, prenom,login,password,role,mail,domaine,solde,cv)"
                     + "VALUES (?,?,?,?,?,?,?,?,?)";
@@ -94,6 +103,8 @@ public class UtilisateurService implements IUtilisateurService {
             ste.setString(9, c.getCv());
             ste.executeUpdate();
             System.out.println("Client ajouté");
+            
+             
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

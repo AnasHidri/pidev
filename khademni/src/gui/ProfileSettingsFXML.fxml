@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="secondary-color" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui.ProfileSettingsFXMLController">
+    <stylesheets>
+        <URL value="@profilesettingsfxml.css" />
+    </stylesheets>
+   <children>
+      <VBox layoutX="574.0" layoutY="14.0" prefHeight="134.0" prefWidth="123.0">
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Downloads/3-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <Label layoutX="637.0" layoutY="148.0" text="Yassine123" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="531.0" layoutY="448.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="210.0" text="Modifier" textAlignment="CENTER" textFill="#f4fafa">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="55.0" layoutY="29.0" prefHeight="32.0" prefWidth="322.0" text="Paramètres de profil" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <VBox layoutX="55.0" layoutY="81.0" prefHeight="162.0" prefWidth="430.0">
+         <children>
+            <Label prefHeight="32.0" prefWidth="330.0" text="Informations personnelle  " textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="438.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="125.0" text="Nom " textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="26.0" prefWidth="125.0" />
+                  <TextField prefHeight="26.0" prefWidth="167.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="430.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="138.0" text="Prénom" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="26.0" prefWidth="128.0" />
+                  <TextField prefHeight="26.0" prefWidth="186.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="430.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="183.0" text="Domaine" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="26.0" prefWidth="128.0" />
+                  <TextField prefHeight="26.0" prefWidth="208.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </HBox>
+            <VBox prefHeight="213.0" prefWidth="430.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="430.0">
+                     <children>
+                        <Label prefHeight="26.0" prefWidth="305.0" text="E-mail" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="26.0" prefWidth="120.0">
+                           <padding>
+                              <Insets top="1.0" />
+                           </padding>
+                        </Pane>
+                        <TextField prefHeight="26.0" prefWidth="266.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" top="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox layoutX="55.0" layoutY="273.0" prefHeight="103.0" prefWidth="422.0">
+         <children>
+            <Label prefHeight="32.0" prefWidth="330.0" text="Changer le mot de passe " textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="463.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="259.0" text="Mot de passe actuel" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="26.0" prefWidth="128.0">
+                     <padding>
+                        <Insets top="1.0" />
+                     </padding>
+                  </Pane>
+                  <TextField prefHeight="26.0" prefWidth="239.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="463.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="273.0" text="Nouveau mot de passe " textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="26.0" prefWidth="128.0">
+                     <padding>
+                        <Insets top="1.0" />
+                     </padding>
+                  </Pane>
+                  <TextField prefHeight="26.0" prefWidth="250.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="463.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="274.0" text="Confirmer mot de passe " textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="26.0" prefWidth="30.0">
+                     <padding>
+                        <Insets top="1.0" />
+                     </padding>
+                  </Pane>
+                  <TextField prefHeight="26.0" prefWidth="200.0" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="5.0" />
+               </padding>
+            </HBox>
+         </children>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
