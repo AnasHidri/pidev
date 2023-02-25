@@ -10,10 +10,12 @@
    <children>
       <TableView fx:id="tab_mes_parti" layoutX="28.0" layoutY="78.0" prefHeight="247.0" prefWidth="541.0">
         <columns>
-          <TableColumn fx:id="titre_ma_liste" prefWidth="93.0" text="Titre " />
-            <TableColumn fx:id="desc_ma_liste" prefWidth="140.0" text="Description" />
-            <TableColumn fx:id="nom_soc_ma_liste" prefWidth="154.0" text="Nom de la societe" />
-            <TableColumn fx:id="lieu_ma_liste" prefWidth="129.0" text="Lieu" />
+          <TableColumn fx:id="titre_ma_liste" prefWidth="76.0" text="Titre " />
+            <TableColumn fx:id="desc_ma_liste" prefWidth="97.0" text="Description" />
+            <TableColumn fx:id="nom_soc_ma_liste" prefWidth="115.0" text="Nom de la societe" />
+            <TableColumn fx:id="lieu_ma_liste" prefWidth="72.0" text="Lieu" />
+            <TableColumn fx:id="date_deb_maliste" prefWidth="72.0" text="Date Debut" />
+            <TableColumn fx:id="date_fin_maliste" prefWidth="72.0" text="Date Fin" />
         </columns>
       </TableView>
       <Button fx:id="btn_select_ma_liste" layoutX="69.0" layoutY="340.0" mnemonicParsing="false" onAction="#SelectEV" text="Select" />

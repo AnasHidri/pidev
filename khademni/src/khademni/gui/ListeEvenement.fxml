@@ -8,12 +8,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="489.0" prefWidth="600.0" styleClass="login-bg" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.ListeEvenementController">
    <children>
-      <TableView fx:id="tab_ev_liste" layoutX="29.0" layoutY="76.0" prefHeight="248.0" prefWidth="511.0">
+      <TableView fx:id="tab_ev_liste" layoutX="29.0" layoutY="76.0" prefHeight="248.0" prefWidth="537.0">
         <columns>
-          <TableColumn fx:id="titre_list" prefWidth="131.0" text="Titre" />
-          <TableColumn fx:id="desc_list" prefWidth="112.0" text="Description" />
-            <TableColumn fx:id="nom_soc_list" prefWidth="112.0" text="Nom de la Societe" />
-            <TableColumn fx:id="lieu_list" prefWidth="116.0" text="Lieu" />
+          <TableColumn fx:id="titre_list" prefWidth="84.0" text="Titre" />
+          <TableColumn fx:id="desc_list" prefWidth="95.0" text="Description" />
+            <TableColumn fx:id="nom_soc_list" prefWidth="118.0" text="Nom de la Societe" />
+            <TableColumn fx:id="lieu_list" prefWidth="62.0" text="Lieu" />
+            <TableColumn fx:id="date_deb_list" prefWidth="84.0" text="Date Debut" />
+            <TableColumn fx:id="date_fin_list" prefWidth="95.0" text="Date Fin" />
         </columns>
       </TableView>
       <Button fx:id="btn_select_list" layoutX="41.0" layoutY="335.0" mnemonicParsing="false" onAction="#SelectEV" prefHeight="25.0" prefWidth="85.0" text="Select" />

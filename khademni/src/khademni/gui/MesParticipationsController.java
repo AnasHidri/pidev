@@ -48,6 +48,10 @@ public class MesParticipationsController implements Initializable {
      @FXML
      private TableColumn lieu_ma_liste;
      @FXML
+     private TableColumn date_deb_maliste;
+     @FXML
+     private TableColumn date_fin_maliste;
+     @FXML
      private Button btn_select_ma_liste;
       @FXML
      private Button btn_annuler_parti_ma_liste;
@@ -82,7 +86,8 @@ public class MesParticipationsController implements Initializable {
          desc_ma_liste.setCellValueFactory(new PropertyValueFactory<>("description"));
          nom_soc_ma_liste.setCellValueFactory(new PropertyValueFactory<>("nom_societe"));
          lieu_ma_liste.setCellValueFactory(new PropertyValueFactory<>("lieu"));
-         
+         date_deb_maliste.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
+         date_fin_maliste.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
       
          tab_mes_parti.setItems(liste);
       }

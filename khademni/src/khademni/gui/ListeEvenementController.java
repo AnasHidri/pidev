@@ -44,12 +44,17 @@ public class ListeEvenementController implements Initializable {
      private TableView<Evenement> tab_ev_liste;
       @FXML
      private TableColumn titre_list;
+      
       @FXML
      private TableColumn desc_list;
       @FXML
      private TableColumn nom_soc_list;
       @FXML
      private TableColumn lieu_list;
+      @FXML
+     private TableColumn date_deb_list;
+      @FXML
+     private TableColumn date_fin_list;
       @FXML
      private Button select_ev_list;
       @FXML
@@ -85,7 +90,8 @@ public class ListeEvenementController implements Initializable {
          desc_list.setCellValueFactory(new PropertyValueFactory<>("description"));
          nom_soc_list.setCellValueFactory(new PropertyValueFactory<>("nom_societe"));
          lieu_list.setCellValueFactory(new PropertyValueFactory<>("lieu"));
-         
+         date_deb_list.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
+         date_fin_list.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
       
          tab_ev_liste.setItems(list);
          
