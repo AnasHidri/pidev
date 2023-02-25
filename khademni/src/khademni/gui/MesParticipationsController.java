@@ -6,6 +6,7 @@ package khademni.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import static javax.swing.UIManager.addPropertyChangeListener;
 import khademni.entity.Evenement;
 import khademni.entity.Participation;
 import khademni.services.EvenementService;
@@ -59,6 +61,10 @@ public class MesParticipationsController implements Initializable {
       private TextField recherche_text_par;
       @FXML
       private Button btn_recherche;
+      @FXML
+      private TextField nb_like_dislike;
+      @FXML
+      private Button btn_nb_ld;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -119,6 +125,7 @@ public class MesParticipationsController implements Initializable {
         System.out.println("tese1");
         ParticipationService ps= new ParticipationService();
         ps.likeEvent(p);
+        ps.updateLikesAndDislikes(p);
         System.out.println("tese2");
             }
             
@@ -131,6 +138,7 @@ public class MesParticipationsController implements Initializable {
         System.out.println("tese1");
         ParticipationService ps= new ParticipationService();
         ps.DislikeEvent(p);
+        ps.updateLikesAndDislikes(p);
         System.out.println("tese2");
             }
             
@@ -173,7 +181,30 @@ Dans cet exemple, nous appelons la méthode getLikesAndDislikesCount à partir d
        // Afficher un message d'erreur si aucune participation n'a été trouvée
        System.out.println("Aucune participation trouvée pour l'événement " + titreEvenement);
               }
+    }
+        
+  @FXML
+ public void AfficherLikesDislikes(ActionEvent event) {
+    // Récupérer l'ID de l'événement sélectionné
+    Evenement selectedEV = tab_mes_parti.getSelectionModel().getSelectedItem();
+    System.out.println("id_e::"+selectedEV.getId_evenement());
+    idev2.setText(String.valueOf(selectedEV.getId_evenement()));
 
+    // Récupérer l'instance de Participation pour l'événement sélectionné depuis votre base de données
+    Participation p = new Participation(selectedEV.getId_evenement(), 2, "active");
+    System.out.println("test1");
 
-     }
+    // Afficher les résultats dans votre interface utilisateur
+    ParticipationService ps = new ParticipationService();
+    int[] likesAndDislikes = ps.getLikesAndDislikesCount(p);
+    nb_like_dislike.setText("Likes: " + likesAndDislikes[0] + " Dislikes: " + likesAndDislikes[1]);
+
+    // Ajouter un écouteur sur l'instance de Participation pour mettre à jour l'affichage des likes et dislikes automatiquement
+    ps.addPropertyChangeListener(evt -> {
+        int[] newLikesAndDislikes = ps.getLikesAndDislikesCount(p);
+        Platform.runLater(() -> {
+            nb_like_dislike.setText("Likes: " + newLikesAndDislikes[0] + " Dislikes: " + newLikesAndDislikes[1]);
+        });
+    });
+}
 }

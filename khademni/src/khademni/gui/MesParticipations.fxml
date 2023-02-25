@@ -23,5 +23,7 @@
       <Button fx:id="btn_dislike" layoutX="273.0" layoutY="340.0" mnemonicParsing="false" onAction="#DislikeE" text="Dislike" />
       <TextField fx:id="recherche_text_par" layoutX="28.0" layoutY="40.0" prefHeight="25.0" prefWidth="263.0" />
       <Button fx:id="btn_recherche" layoutX="300.0" layoutY="40.0" mnemonicParsing="false" onAction="#rechercheEvenement" text="Recherche" />
+      <TextField fx:id="nb_like_dislike" layoutX="409.0" layoutY="40.0" />
+      <Button fx:id="btn_nb_ld" layoutX="474.0" layoutY="14.0" mnemonicParsing="false" onAction="#AfficherLikesDislikes" text="nb like et dislike" />
    </children>
 </AnchorPane>

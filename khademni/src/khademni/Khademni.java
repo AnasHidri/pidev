@@ -43,6 +43,10 @@ public class Khademni {
     //p.getLikesAndDislikesCount(participation);
      //System.out.println(p.getLikesAndDislikesCount(participation));
        //System.out.println(p.getAll());
+       //System.out.println(p.getLikesAndDislikesCount(participation));
+      // int[] counts = p.getLikesAndDislikesCount(participation);
+       //System.out.println("Likes: " + counts[0]);
+     // System.out.println("Dislikes: " + counts[1]);
     }
     
 }

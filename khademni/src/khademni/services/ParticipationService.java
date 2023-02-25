@@ -4,6 +4,8 @@
  */
 package khademni.services;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
@@ -26,6 +29,7 @@ import khademni.utils.MyConnection;
 public class ParticipationService implements IParticipation<Participation> {
     
     Connection cnx;
+    
 
     public ParticipationService() {
         cnx = MyConnection.getInstance().getConnexion();
@@ -178,6 +182,22 @@ public class ParticipationService implements IParticipation<Participation> {
     }
     return counts;
 }
+    
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+    pcs.addPropertyChangeListener(listener);
+}
+    
+    private int likesCount = 0;
+    private int dislikesCount = 0;
+    
+    public void updateLikesAndDislikes(Participation p) {
+        int[] newLikesAndDislikes = getLikesAndDislikesCount(p);
+        int[] oldLikesAndDislikes = { likesCount, dislikesCount };
+        likesCount = newLikesAndDislikes[0];
+        dislikesCount = newLikesAndDislikes[1];
+        pcs.firePropertyChange("likesAndDislikes", oldLikesAndDislikes, newLikesAndDislikes);
+    }
    
 
 }
