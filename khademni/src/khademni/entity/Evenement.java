@@ -4,9 +4,10 @@
  */
 package khademni.entity;
 
-import java.util.Date;
+//import java.util.Date;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import java.sql.Date;
 
 /**
  *
@@ -16,12 +17,13 @@ public class Evenement {
     
     private int id_evenement;
     private int id_user;
-    private String date_debut;
-    private String date_fin;
+    private Date date_debut;
+    private Date date_fin;
     private String titre;
     private String description;
     private String nom_societe;
     private String lieu;
+    
 
     public Evenement(int id_user,String titre, String description, String nom_societe, String lieu) {
         this.id_user = id_user;
@@ -32,16 +34,30 @@ public class Evenement {
         this.lieu = lieu;
     }
 
-    public Evenement(int id_evenement, int id_user, String titre, String description, String nom_societe, String lieu) {
+    public Evenement(int id_evenement, int id_user, Date date_debut, Date date_fin, String titre, String description, String nom_societe, String lieu) {
         this.id_evenement = id_evenement;
         this.id_user = id_user;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
         this.titre = titre;
         this.description = description;
         this.nom_societe = nom_societe;
         this.lieu = lieu;
     }
 
-    
+   
+
+    public Evenement(int id_user, Date date_debut, Date date_fin, String titre, String description, String nom_societe, String lieu) {
+        this.id_user = id_user;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.titre = titre;
+        this.description = description;
+        this.nom_societe = nom_societe;
+        this.lieu = lieu;
+    }
+
+   
     
     public int getId_evenement() {
         return id_evenement;
@@ -51,13 +67,7 @@ public class Evenement {
         return id_user;
     }
 
-    public String getDate_debut() {
-        return date_debut;
-    }
-
-    public String getDate_fin() {
-        return date_fin;
-    }
+    
 
     public String getTitre() {
         return titre;
@@ -83,13 +93,23 @@ public class Evenement {
         this.id_user = id_user;
     }
 
-    public void setDate_debut(String date_debut) {
+    public Date getDate_debut() {
+        return date_debut;
+    }
+
+    public void setDate_debut(Date date_debut) {
         this.date_debut = date_debut;
     }
 
-    public void setDate_fin(String date_fin) {
+    public Date getDate_fin() {
+        return date_fin;
+    }
+
+    public void setDate_fin(Date date_fin) {
         this.date_fin = date_fin;
     }
+
+   
 
     public void setTitre(String titre) {
         this.titre = titre;

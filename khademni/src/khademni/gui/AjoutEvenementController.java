@@ -5,6 +5,11 @@
 package khademni.gui;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 //import java.time.LocalDate;
 //import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -15,6 +20,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 //import javafx.scene.control.DatePicker;
@@ -43,10 +50,10 @@ public class AjoutEvenementController implements Initializable {
     private TextField lieu_event;
        @FXML
     private TextField idev2;
-   //  @FXML
-     //private DatePicker date_deb_ev;
-     //@FXML
-     //private DatePicker date_fin_ev;
+     @FXML
+     private DatePicker date_deb_ev;
+     @FXML
+     private DatePicker date_fin_ev;
      @FXML
     private Button btn_ajout_ev;
      @FXML
@@ -58,13 +65,17 @@ public class AjoutEvenementController implements Initializable {
      @FXML
      private TableView<Evenement> tab_ev;
      @FXML
-     private TableColumn titre_ev_aff;
+     private TableColumn<Evenement, String> titre_ev_aff;
      @FXML
-     private TableColumn desc_ev_aff;
+     private TableColumn<Evenement, String> desc_ev_aff;
      @FXML
-     private TableColumn nomsoc_ev_aff;
+     private TableColumn<Evenement, String> nomsoc_ev_aff;
      @FXML
-     private TableColumn lieu_ev_aff;
+     private TableColumn<Evenement, String> lieu_ev_aff;
+      @FXML
+     private TableColumn<Evenement, LocalDate> date_deb_aff;
+       @FXML
+     private TableColumn<Evenement, LocalDate> date_fin_aff;
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -94,23 +105,26 @@ public class AjoutEvenementController implements Initializable {
         String description=desc_event.getText();
         String nom_societe=nom_soc.getText();
         String lieu=lieu_event.getText();
-       // DatePicker datePicker = new DatePicker();
-     
-            // Get the selected date from the DatePicker control
-            //LocalDate date_deb_ev = datePicker.getValue();
-           // DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-           // String date_debut = date_deb_ev.format(dateFormatter);
-            
-        //String date_debut=date_deb_ev.getText();
-        //String date_fin=date_fin_ev.getText();
-         System.out.println("tese1");
-        Evenement e= new Evenement(1,titre, description, nom_societe, lieu);
-        EvenementService es= new EvenementService();
-        es.ajouterEvenement(e);
-        AffichEV(); 
-                 System.out.println("tese2");
-                }
+       LocalDate date_debut = date_deb_ev.getValue();
+        LocalDate date_fin = date_fin_ev.getValue();
 
+        // Vérifier si la date de début est supérieure à la date de fin
+        if (date_debut.isAfter(date_fin)) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Erreur de saisie");
+            alert.setHeaderText("La date de début ne peut pas être supérieure à la date de fin");
+            alert.showAndWait();
+        } else {
+            Date sqlDateDebut = Date.valueOf(date_debut);
+            Date sqlDateFin = Date.valueOf(date_fin);
+            System.out.println("tese1");
+            Evenement e = new Evenement(1, sqlDateDebut, sqlDateFin, titre, description, nom_societe, lieu);
+            EvenementService es = new EvenementService();
+            es.ajouterEvenement(e);
+            AffichEV();
+            System.out.println("tese2");
+        }
+    }
     }
     
     @FXML
@@ -123,6 +137,9 @@ public class AjoutEvenementController implements Initializable {
         desc_event.setText(selectedEV.getDescription());
         nom_soc.setText(selectedEV.getNom_societe());
         lieu_event.setText(selectedEV.getLieu());
+        date_deb_ev.setValue(selectedEV.getDate_debut().toLocalDate()); 
+        date_fin_ev.setValue(selectedEV.getDate_debut().toLocalDate());
+        
     }
     
      @FXML
@@ -133,31 +150,36 @@ public class AjoutEvenementController implements Initializable {
         String description=desc_event.getText();
         String nom_societe=nom_soc.getText();
         String lieu=lieu_event.getText();
-        //String date_debut=date_deb_ev.getText();
-        //String date_fin=date_fin_ev.getText();
+        LocalDate date_debut = date_deb_ev.getValue();
+       Date sqlDateDebut = Date.valueOf(date_debut);
+      LocalDate date_fin = date_fin_ev.getValue();
+       Date sqlDateFin = Date.valueOf(date_fin);
          System.out.println("tese1");
-        Evenement e= new Evenement(idev,1,titre, description, nom_societe, lieu);
+        Evenement e= new Evenement(idev,1,sqlDateDebut,sqlDateFin,titre, description, nom_societe, lieu);
         EvenementService es= new EvenementService();
-        es.modifierEvenement(titre, description, lieu, e);
+        es.modifierEvenement(sqlDateDebut,sqlDateFin,titre, description, lieu, e);
         AffichEV();
                  System.out.println("tese2");
 
     }
-    @FXML
-    public void AffichEV(){
+   @FXML
+public void AffichEV(){
        
-         EvenementService es= new EvenementService();
-         ObservableList<Evenement> list = es.getAll();
-         System.out.println("list ::: "+list);
-         titre_ev_aff.setCellValueFactory(new PropertyValueFactory<>("titre"));
-         desc_ev_aff.setCellValueFactory(new PropertyValueFactory<>("description"));
-         nomsoc_ev_aff.setCellValueFactory(new PropertyValueFactory<>("nom_societe"));
-         lieu_ev_aff.setCellValueFactory(new PropertyValueFactory<>("lieu"));
-         
-      
-         tab_ev.setItems(list);
-         
-     }
+     
+    EvenementService es = new EvenementService();
+    ObservableList<Evenement> list = es.getAll();
+    //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    titre_ev_aff.setCellValueFactory(new PropertyValueFactory<>("titre"));
+    desc_ev_aff.setCellValueFactory(new PropertyValueFactory<>("description"));
+    nomsoc_ev_aff.setCellValueFactory(new PropertyValueFactory<>("nom_societe"));
+    lieu_ev_aff.setCellValueFactory(new PropertyValueFactory<>("lieu"));
+
+    date_deb_aff.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
+    date_fin_aff.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
+    tab_ev.setItems(list);
+}
+
     
     @FXML
     private void SuppEv(ActionEvent event){

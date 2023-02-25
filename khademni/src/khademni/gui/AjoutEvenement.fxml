@@ -28,8 +28,10 @@
          <columns>
             <TableColumn fx:id="titre_ev_aff" prefWidth="84.0" text="Titre" />
             <TableColumn fx:id="desc_ev_aff" prefWidth="104.0" text="Description" />
-            <TableColumn fx:id="nomsoc_ev_aff" prefWidth="120.0" text="Nom de la societe" />
-            <TableColumn fx:id="lieu_ev_aff" prefWidth="96.0" text="Lieu" />
+            <TableColumn fx:id="nomsoc_ev_aff" prefWidth="105.0" text="Nom de la societe" />
+            <TableColumn fx:id="lieu_ev_aff" prefWidth="61.0" text="Lieu" />
+            <TableColumn fx:id="date_deb_aff" prefWidth="94.0" text="date debut" />
+            <TableColumn fx:id="date_fin_aff" prefWidth="94.0" text="date fin" />
          </columns>
       </TableView>
       <Button fx:id="btn_aff_ev" layoutX="474.0" layoutY="151.0" mnemonicParsing="false" onAction="#AffichEV" text="Afficher" />

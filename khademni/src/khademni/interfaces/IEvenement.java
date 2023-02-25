@@ -7,6 +7,7 @@ package khademni.interfaces;
 import java.util.List;
 import javafx.collections.ObservableList;
 import khademni.entity.Evenement;
+import java.sql.Date;
 
 /**
  *
@@ -16,7 +17,7 @@ import khademni.entity.Evenement;
 public interface IEvenement<T> {
     
     public void ajouterEvenement(Evenement e);
-    public void modifierEvenement(String titre,String description,String lieu, Evenement e);
+    public void modifierEvenement(Date date_debut, Date date_fin, String titre,String description,String lieu, Evenement e);
     public void supprimerEvenement( Evenement e);
     public ObservableList<Evenement> getAll();
 }

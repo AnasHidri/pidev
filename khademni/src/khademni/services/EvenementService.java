@@ -22,6 +22,7 @@ import javafx.collections.ObservableList;
 import khademni.entity.Evenement;
 import khademni.interfaces.IEvenement;
 import khademni.utils.MyConnection;
+import java.sql.Date;
 
 /**
  *
@@ -42,16 +43,18 @@ public class EvenementService implements IEvenement<Evenement> {
     @Override
     public void ajouterEvenement(Evenement e) {
          try {
-            String sql = "insert into evenement(id_user,titre,description,nom_societe,lieu)"
-                    + "values (?,?,?,?,?)";
+            String sql = "insert into evenement(id_user,date_debut,date_fin,titre,description,nom_societe,lieu)"
+                    + "values (?,?,?,?,?,?,?)";
             PreparedStatement ste = cnx.prepareStatement(sql);
             ste.setInt(1, e.getId_user());
-             //ste.setString(2,e.getDate_debut());
-             //ste.setDate(3,  new java.sql.Date(e.getDate_fin().getTime()));
-            ste.setString(2, e.getTitre());
-            ste.setString(3, e.getDescription());
-            ste.setString(4, e.getNom_societe());
-            ste.setString(5, e.getLieu());
+             
+            
+             ste.setDate(2, e.getDate_debut());
+            ste.setDate(3, e.getDate_fin());
+            ste.setString(4, e.getTitre());
+            ste.setString(5, e.getDescription());
+            ste.setString(6, e.getNom_societe());
+            ste.setString(7, e.getLieu());
             ste.executeUpdate();
             System.out.println("Evenement ajoutée");
         } catch (SQLException ex) {
@@ -85,7 +88,7 @@ public class EvenementService implements IEvenement<Evenement> {
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
 
-                Evenement e = new Evenement(s.getInt(1),s.getInt(2), 
+                Evenement e = new Evenement(s.getInt(1),s.getInt(2), s.getDate(3),s.getDate(4),
                    s.getString("titre"), s.getString("description"), s.getString("nom_societe"), s.getString("lieu"));
                 evenements.add(e);
 
@@ -97,14 +100,16 @@ public class EvenementService implements IEvenement<Evenement> {
     }
 
     @Override
-    public void modifierEvenement(String titre, String description, String lieu, Evenement e) {
-        String sql = "update evenement set titre=?, description=?, lieu=? where id_evenement=?";
+    public void modifierEvenement(Date date_debut, Date date_fin,String titre, String description, String lieu, Evenement e) {
+        String sql = "update evenement set date_debut=?, date_fin=?, titre=?, description=?, lieu=? where id_evenement=?";
         try {
             PreparedStatement ste = cnx.prepareStatement(sql);
-            ste.setString(1, titre);
-            ste.setString(2, description);
-            ste.setString(3, lieu);
-            ste.setInt(4, e.getId_evenement());
+             ste.setDate(1, date_debut);
+            ste.setDate(2, date_fin);
+            ste.setString(3, titre);
+            ste.setString(4, description);
+            ste.setString(5, lieu);
+             ste.setInt(6, e.getId_evenement());
            // ste.setInt(2,e.getId_evenement());
             ste.executeUpdate();
             System.out.println("Evenement modifié");
@@ -124,7 +129,7 @@ public class EvenementService implements IEvenement<Evenement> {
              PreparedStatement ste = cnx.prepareStatement(query);
               ResultSet s = ste.executeQuery();
               while(s.next()){
-                     Evenement e = new Evenement(s.getInt(1),s.getInt(2), 
+                     Evenement e = new Evenement(s.getInt(1),s.getInt(2),s.getDate(3),s.getDate(4), 
                    s.getString("titre"), s.getString("description"), s.getString("nom_societe"), s.getString("lieu"));
                 evenements.add(e);
                 e.toString();
@@ -139,7 +144,7 @@ public class EvenementService implements IEvenement<Evenement> {
     
     }
    
-    private BooleanProperty hidden = new SimpleBooleanProperty(false);
+    /*private BooleanProperty hidden = new SimpleBooleanProperty(false);
 
     public boolean isHidden() {
         return hidden.get();
@@ -151,7 +156,7 @@ public class EvenementService implements IEvenement<Evenement> {
 
     public BooleanProperty hiddenProperty() {
         return hidden;
-    }
+    }*/
     
     
     

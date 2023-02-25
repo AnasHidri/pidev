@@ -10,6 +10,7 @@ import khademni.entity.Participation;
 import khademni.services.EvenementService;
 import khademni.services.ParticipationService;
 import khademni.utils.MyConnection;
+import java.sql.Date;
 
 /**
  *
@@ -26,19 +27,22 @@ public class Khademni {
         Connection myconn =MyConnection.getInstance().getConnexion();
         
         EvenementService e=new EvenementService();
-        Evenement ev= new Evenement(1,"hhhh","event","aa","bb");
-//        e.ajouterEvenement(ev);
+        //Evenement ev= new Evenement(1,"hhhh","event","aa","bb");
+         Evenement ev= new Evenement(1, Date.valueOf("2223-03-22"), Date.valueOf("2223-04-22"), "ee", "aa", "bb", "cc");
+      // e.ajouterEvenement(ev);
+       //System.out.println(e.getAll());
          //e.supprimerEvenement(ev);
-        //e.modifierEvenement("recru","journee","marsa", ev);
-         System.out.println( e.MaListe());
+       // e.modifierEvenement(Date.valueOf("2223-03-22"), Date.valueOf("2223-04-22"),"ll","mm","ddd", ev);
+      // e.modifierEvenement(Date.valueOf("2000-04-04"), Date.valueOf("2111-11-03"), "mmm", "ppp", "a", ev);
+       //System.out.println( e.MaListe());
         
         
         ParticipationService p=new ParticipationService();
-        Participation participation= new Participation(18,2,"bbb");
-         //p.ajouterParticipation(participation);
+        Participation participation= new Participation(27,1,"bbb");
+        // p.ajouterParticipation(participation);
        // p.supprimerParticipation(participation);
        // p.modifierParticipation("achevée", participation);
-      //p.likeEvent(participation);
+     // p.likeEvent(participation);
      // p.DislikeEvent(participation);
     //p.getLikesAndDislikesCount(participation);
      //System.out.println(p.getLikesAndDislikesCount(participation));
