@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DashboardFXMLController">
+          <PieChart fx:id="pieChart" layoutX="158.0" layoutY="63.0" prefHeight="274.0" prefWidth="282.0" title="Utilisateurs par rôle" />
+
+</AnchorPane>

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="secondary-color" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui.ProfileSettingsFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="secondary-color" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProfileSettingsFXMLController">
     <stylesheets>
         <URL value="@profilesettingsfxml.css" />
     </stylesheets>
@@ -23,19 +23,19 @@
             <Insets right="10.0" />
          </padding>
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Downloads/3-removebg-preview.png" />
+                  <Image url="@logo.jpg" />
                </image>
             </ImageView>
          </children>
       </VBox>
-      <Label layoutX="637.0" layoutY="148.0" text="Yassine123" textFill="WHITE">
+      <Label fx:id="login" layoutX="637.0" layoutY="148.0" text="Yassine123" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="531.0" layoutY="448.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="210.0" text="Modifier" textAlignment="CENTER" textFill="#f4fafa">
+      <Button fx:id="modifier_btn" alignment="CENTER" contentDisplay="RIGHT" layoutX="531.0" layoutY="448.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="210.0" text="Modifier" textAlignment="CENTER" textFill="#f4fafa">
          <font>
             <Font size="15.0" />
          </font>
@@ -60,7 +60,7 @@
                      </font>
                   </Label>
                   <Pane prefHeight="26.0" prefWidth="125.0" />
-                  <TextField prefHeight="26.0" prefWidth="167.0" />
+                  <TextField fx:id="tfnom" prefHeight="26.0" prefWidth="167.0" />
                </children>
                <padding>
                   <Insets bottom="10.0" top="5.0" />
@@ -74,13 +74,13 @@
                      </font>
                   </Label>
                   <Pane prefHeight="26.0" prefWidth="128.0" />
-                  <TextField prefHeight="26.0" prefWidth="186.0" />
+                  <TextField fx:id="tfprenom" prefHeight="26.0" prefWidth="186.0" />
                </children>
                <padding>
                   <Insets bottom="10.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="430.0">
+            <HBox fx:id="cc" alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="430.0">
                <children>
                   <Label prefHeight="26.0" prefWidth="183.0" text="Domaine" textFill="WHITE">
                      <font>
@@ -88,7 +88,7 @@
                      </font>
                   </Label>
                   <Pane prefHeight="26.0" prefWidth="128.0" />
-                  <TextField prefHeight="26.0" prefWidth="208.0" />
+                  <TextField fx:id="tfdomaine" prefHeight="26.0" prefWidth="208.0" />
                </children>
                <padding>
                   <Insets bottom="10.0" />
@@ -108,7 +108,7 @@
                               <Insets top="1.0" />
                            </padding>
                         </Pane>
-                        <TextField prefHeight="26.0" prefWidth="266.0" />
+                        <TextField fx:id="tfmail" prefHeight="26.0" prefWidth="266.0" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" top="5.0" />
@@ -143,7 +143,7 @@
                         <Insets top="1.0" />
                      </padding>
                   </Pane>
-                  <TextField prefHeight="26.0" prefWidth="239.0" />
+                  <TextField fx:id="tfactuel" prefHeight="26.0" prefWidth="239.0" />
                </children>
                <padding>
                   <Insets bottom="10.0" top="5.0" />
@@ -161,7 +161,7 @@
                         <Insets top="1.0" />
                      </padding>
                   </Pane>
-                  <TextField prefHeight="26.0" prefWidth="250.0" />
+                  <TextField fx:id="tfnouv" prefHeight="26.0" prefWidth="250.0" />
                </children>
                <padding>
                   <Insets bottom="10.0" top="5.0" />
@@ -179,7 +179,7 @@
                         <Insets top="1.0" />
                      </padding>
                   </Pane>
-                  <TextField prefHeight="26.0" prefWidth="200.0" />
+                  <TextField fx:id="tfconfirm" prefHeight="26.0" prefWidth="200.0" />
                </children>
                <padding>
                   <Insets bottom="10.0" top="5.0" />

@@ -4,23 +4,26 @@
  */
 package gui;
 
+import api.MailService;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.security.GeneralSecurityException;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.VBox;
+
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
+
+import javax.mail.MessagingException;
+
 
 /**
  * FXML Controller class
@@ -36,6 +39,9 @@ public class FormateurFXMLController implements Initializable {
     private Button pdf;
          @FXML 
     private ToggleButton tbn;
+         
+         @FXML
+    private Button btnmail;
          
      /* 
      * Initializes the controller class.
@@ -83,8 +89,65 @@ if (file.exists() && file.isFile()) {
     System.out.println("File does not exist or is not a file.");
 }
     }
-     
     
-  
+    @FXML
+public void SendMail() throws GeneralSecurityException{
+           /*  try {
+                 MailService.sendEmail("yassine.mahfoudh@esprit.tn", "test","bonjour");
+             } catch (MessagingException ex) {
+                 System.out.println("ex::"+ex.getMessage());
+             }*/
+           ExecutorService executor = Executors.newSingleThreadExecutor();
+executor.execute(new Runnable() {
+    public void run() {
+        try {
+                 MailService.sendEmail("anashidri36@gmail.com", "test","bonjour");
+        } catch (MessagingException | GeneralSecurityException e) {
+            e.printStackTrace();
+        }
+    }
+});
+executor.shutdown();
+           
+}
     
+    /*
+    @FXML
+public void SendMail(){
+    String username = "ymahfoudh55@example.com";
+    String password = "Yassine240118";
+    String recipient = "yassine.mahfoudh@esprit.tn";
+    String subject = "Test";
+    String body = "Bonjour";
+    
+    Properties props = new Properties();
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.starttls.enable", "true");
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.port", "587");
+    
+    Session session = Session.getInstance(props,
+      new javax.mail.Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(username, password);
+        }
+      });
+
+    try {
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));
+        message.setRecipients(Message.RecipientType.TO,
+            InternetAddress.parse(recipient));
+        message.setSubject(subject);
+        message.setText(body);
+
+        Transport.send(message);
+
+        System.out.println("Message sent successfully!");
+
+    } catch (MessagingException e) {
+        throw new RuntimeException(e);
+    }
+}
+    */
 }

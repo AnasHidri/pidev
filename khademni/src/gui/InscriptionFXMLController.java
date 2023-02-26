@@ -529,6 +529,7 @@ public class InscriptionFXMLController implements Initializable {
                         Employeur e = new Employeur(rs.getInt(1),rs.getString("nom"), rs.getString("prenom"), rs.getString("login"), rs.getString("password"), rs.getString("role"), rs.getString("mail"), rs.getString("domaine"), rs.getString("nom_societe"));
                         Utilisateur.setCurrent_User(e);
                         System.out.println("current user id ::"+Utilisateur.Current_User.getId_user());
+                        System.out.println("current user id ::"+Utilisateur.Current_User.getLogin());
                         System.out.println("current user :: "+Utilisateur.Current_User);
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                                 alert.setTitle("Travel Me :: Success Message");
@@ -539,7 +540,7 @@ public class InscriptionFXMLController implements Initializable {
                                 
                                 try{
                                         // Charger la nouvelle vue
-                                       FXMLLoader loader = new FXMLLoader(getClass().getResource("EmployeurFxml.fxml"));
+                                       FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileSettingsFXML.fxml"));
                                        Parent root = loader.load();
                                         // Afficher la nouvelle vue dans la fenêtre principale
                                        Scene scene = new Scene(root);
