@@ -4,6 +4,10 @@
  */
 package khademni.services;
 
+
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.Properties;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -151,14 +155,10 @@ public class PanierService implements IPanier {
     }
 
     @Override
-    public void payer(Panier p) {
-      
-        
-        int soldeuser =0;
-        
-        
-       String sql3 = "select solde from user";
-   try {
+   public void payer(Panier p) {
+    int soldeuser = 0;
+    String sql3 = "select solde from user";
+  try {
             
               java.sql.Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql3);
@@ -177,18 +177,47 @@ public class PanierService implements IPanier {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        int prixtot =  affichesomme(p);
-        int nouveausolde = soldeuser-prixtot;
-         try {
-            String sql = "update user,panier,ligne_commande set user.solde="+nouveausolde;
-                    
-             PreparedStatement ste2 = cnx.prepareStatement(sql);
-            ste2.executeUpdate();
-        
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+  
+    int prixtot = affichesomme(p);
+    int nouveausolde = soldeuser - prixtot;
+
+    try (PreparedStatement ste2 = cnx.prepareStatement("update user set user.solde=?")) {
+        ste2.setInt(1, nouveausolde);
+        ste2.executeUpdate();
+        System.out.println("User balance updated successfully.");
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
     }
+
+    // send email notification
+    final String username = "anashidri36@gmail.com";
+    final String password = "yadnnyyowlxctwcr";
+    String recipientEmail = "anashidri36@gmail.com";
+    String subject = "Payment notification";
+    String message = "The payment process has completed successfully.";
+    Properties props = new Properties();
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.starttls.enable", "true");
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.port", "587");
+    Session session = Session.getInstance(props, new Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(username, password);
+        }
+    });
+    try {
+        Message msg = new MimeMessage(session);
+        msg.setFrom(new InternetAddress(username));
+        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+        msg.setSubject(subject);
+        msg.setText(message);
+        Transport.send(msg);
+        System.out.println("Email notification sent successfully.");
+    } catch (MessagingException ex) {
+        System.out.println(ex.getMessage());
+    }
+}
+
   
   
 }
