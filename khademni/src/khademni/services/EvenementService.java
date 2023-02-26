@@ -171,6 +171,7 @@ public class EvenementService implements IEvenement<Evenement> {
                    s.getString("titre"), s.getString("description"), s.getString("nom_societe"), s.getString("lieu"));
             
             list.add(e);
+            System.out.println("testttt");
         }
     } catch (SQLException ex) {
         ex.printStackTrace();
