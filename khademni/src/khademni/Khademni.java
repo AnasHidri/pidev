@@ -31,8 +31,8 @@ public class Khademni {
        //p.ajouterPanier(panier);
       // p.modifierPanier(panier);
        Ligne_CommandeService cm= new Ligne_CommandeService();
-       Ligne_commande commande= new Ligne_commande(1,3,250,"MATH",0);
-      // cm.ajouterCommande(commande);
+       Ligne_commande commande= new Ligne_commande(1,3,250,"SQL",0);
+       //cm.ajouterCommande(commande);
        // System.out.println(cm.afficherLigneCommande());
        
         

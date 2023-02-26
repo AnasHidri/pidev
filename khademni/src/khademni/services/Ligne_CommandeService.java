@@ -32,15 +32,35 @@ public class Ligne_CommandeService implements ILigne_commande {
     }
     @Override
     public void ajouterCommande(Ligne_commande p) {
-        
+         String titre_formation="";
+              float prix_formation=0;
+          try {
+             
+             
+            String sql = "select titre,prix from formation where id_formation="+p.getId_formation();
+           java.sql.Statement ste = cnx.createStatement();
+            ResultSet s = ste.executeQuery(sql);
+            while (s.next()) {
+
+              titre_formation=s.getString(1);
+              prix_formation=s.getFloat(2);
+              System.out.println(titre_formation);
+              System.out.println(prix_formation);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+          
          try {
+             
+             
             String sql = "insert into ligne_commande(id_panier,id_formation,prix,titre,status)"
                     + "values (?,?,?,?,?)";
             PreparedStatement ste = cnx.prepareStatement(sql);
             ste.setInt(1, p.getId_panier());
             ste.setInt(2, p.getId_formation());
-             ste.setFloat(3, p.getPrix());
-             ste.setString(4,p.getTitre());
+             ste.setFloat(3, prix_formation);
+             ste.setString(4,titre_formation);
              ste.setInt(5, p.getStatus());
             ste.executeUpdate();
             System.out.println("Commande ajoutée");
