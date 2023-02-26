@@ -4,15 +4,22 @@
  */
 package khademni.gui;
 
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.log.Logger;
+import com.sun.javafx.logging.PlatformLogger.Level;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import khademni.entity.Evenement;
+import khademni.entity.PdfEv;
 import khademni.services.EvenementService;
 
 /**
@@ -42,6 +49,8 @@ public class ListeEvenementADController implements Initializable {
      private TableColumn date_deb_ev_ad;
       @FXML
      private TableColumn date_fin_ev_ad;
+      @FXML
+      private Button btn_pdf_ev;
     
   
       
@@ -67,5 +76,20 @@ public class ListeEvenementADController implements Initializable {
          tab_liste_ev_ad.setItems(list);
          
      }
+   
+    @FXML
+    public void GenererPdfEv(ActionEvent event){
+         EvenementService es= new EvenementService();
+      ObservableList<Evenement> list = es.getAll();
+      
+       PdfEv pd=new PdfEv();
+        try{
+                     pd.generatePdf("evenements.pdf", list);
+
+            System.out.println("impression done");
+        } catch  (Exception ex) {
+        ex.printStackTrace();
+            }
+    }
     
 }

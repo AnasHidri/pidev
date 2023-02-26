@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="644.0" styleClass="login-bg" stylesheets="@design.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="khademni.gui.ListeEvenementADController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="644.0" styleClass="login-bg" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.ListeEvenementADController">
    <children>
       <TableView fx:id="tab_liste_ev_ad" layoutX="35.0" layoutY="92.0" prefHeight="200.0" prefWidth="538.0">
         <columns>
@@ -17,5 +17,6 @@
             <TableColumn fx:id="date_fin_ev_ad" prefWidth="84.0" text="Date Fin" />
         </columns>
       </TableView>
+      <Button fx:id="btn_pdf_ev" layoutX="451.0" layoutY="306.0" mnemonicParsing="false" onAction="#GenererPdfEv"  text="PDF" />
    </children>
 </AnchorPane>
