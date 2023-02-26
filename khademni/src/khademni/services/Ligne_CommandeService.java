@@ -208,6 +208,39 @@ public class Ligne_CommandeService implements ILigne_commande {
         }
         return commandes;
     }
+    
+    
+     public ObservableList<Ligne_commande> afficherStatistiqiueFormation() {
+    ObservableList<Ligne_commande> commandes = FXCollections.observableArrayList();
+         
+    try {
+        String sql = "SELECT DISTINCT l.id_formation, f.titre, COUNT(*) AS count "
+                + "FROM ligne_commande l "
+                + "JOIN formation f ON l.id_formation = f.id_formation "
+                + "WHERE l.status = 0 "
+                + "GROUP BY l.id_formation, f.titre, f.prix "
+                + "ORDER BY count DESC "
+                + "LIMIT 3";
+         
+        java.sql.Statement ste = cnx.createStatement();
+        ResultSet s = ste.executeQuery(sql);
+        while (s.next()) {
+            Ligne_commande u = new Ligne_commande(
+                s.getInt("id_formation"), 
+                 
+                s.getInt("count"),
+                s.getString("titre")
+            );
+            commandes.add(u);
+        }           
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return commandes;
+}
+
+    
+    
   
     }
     

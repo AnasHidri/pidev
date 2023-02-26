@@ -15,6 +15,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 /**
  *
@@ -38,7 +39,8 @@ public class HistoriqueService implements IHistorique {
                     + "values (?,?,?)";
             PreparedStatement ste = cnx.prepareStatement(sql);
             ste.setInt(1, h.getId_user());
-            ste.setString(2, h.getDate_action());
+            LocalDate today = LocalDate.now();
+            ste.setDate(2, java.sql.Date.valueOf(today));
             ste.setString(3,h.getAction());
             ste.executeUpdate();
             System.out.println("Historique ajoutée");
@@ -61,7 +63,7 @@ public class HistoriqueService implements IHistorique {
 
                   Historique u = new Historique(
                       s.getInt("id_user"),
-                        s.getString("date_action"),
+                        s.getDate("date_action"),
                 s.getString("action")
                       
                 );
@@ -85,7 +87,7 @@ public class HistoriqueService implements IHistorique {
         return historique;
     }
 
-    public List<String> getColumn2Data() {
+    public ObservableList<String> getColumn2Data() {
         return namedata;
     }
         

@@ -90,9 +90,10 @@ public class Ligne_commande {
 
     @Override
     public String toString() {
-        return "Ligne_commande{" + "id_ligne_commande=" + id_ligne_commande + ", id_panier=" + id_panier + ", id_formation=" + id_formation + ", prix=" + prix + ", titre=" + titre + ", status=" + status + '}';
+        return "Ligne_commande{" + "id_formation=" + id_formation + ", prix=" + prix + ", titre=" + titre + '}';
     }
 
+  
   
 
    
@@ -112,6 +113,12 @@ public class Ligne_commande {
         this.titre = titre;
     }
 
+    public Ligne_commande(int id_formation, int prix, String titre) {
+        this.id_formation = id_formation;
+        this.prix = prix;
+        this.titre = titre;
+    }
+
    
 
  
@@ -119,11 +126,11 @@ public class Ligne_commande {
 
 
 
-    public Ligne_commande(int id_ligne_commande, int prix, String titre) {
+   /* public Ligne_commande(int id_ligne_commande, int prix, String titre) {
         this.id_ligne_commande = id_ligne_commande;
         this.prix = prix;
         this.titre = titre;
-    }
+    }*/
 
     public Ligne_commande(int prix, String titre) {
         this.prix = prix;

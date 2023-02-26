@@ -13,23 +13,23 @@ import java.util.Date;
 public class Historique {
     private int id_historique;
     private int id_user;
-    private String date_action;
+    private Date date_action;
     private String action;
 
-    public Historique(int id_historique, int id_user, String date_action, String action) {
+    public Historique(int id_historique, int id_user, Date date_action, String action) {
         this.id_historique = id_historique;
         this.id_user = id_user;
         this.date_action = date_action;
         this.action = action;
     }
 
-    public Historique(int id_user, String date_action, String action) {
+    public Historique(int id_user, Date date_action, String action) {
         this.id_user = id_user;
         this.date_action = date_action;
         this.action = action;
     }
 
-    public Historique(String date_action, String action) {
+    public Historique(Date date_action, String action) {
         this.date_action = date_action;
         this.action = action;
     }
@@ -47,11 +47,11 @@ public class Historique {
     }
 
 
-    public String getDate_action() {
+    public Date getDate_action() {
         return date_action;
     }
 
-    public void setDate_action(String date_action) {
+    public void setDate_action(Date date_action) {
         this.date_action = date_action;
     }
 

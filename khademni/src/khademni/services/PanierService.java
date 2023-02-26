@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,8 +47,8 @@ public class PanierService implements IPanier {
             
             HistoriqueService hs= new HistoriqueService();
             String ajoutaction="Ajout panier";
-           
-            Historique h= new Historique(p.getId_user(),"2002/20/20",ajoutaction);
+             LocalDate today = LocalDate.now();
+            Historique h= new Historique(p.getId_user(),java.sql.Date.valueOf(today),ajoutaction);
             hs.ajouterHistorique(h);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

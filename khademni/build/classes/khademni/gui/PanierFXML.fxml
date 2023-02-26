@@ -21,7 +21,6 @@
          
       </TextField>
       <TextField fx:id="recherche" layoutX="14.0" layoutY="1.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css" />
-      <Button fx:id="chercher" layoutX="165.0" layoutY="2.0" mnemonicParsing="false" onAction="#chercher" styleClass="button-design" stylesheets="@design.css" text="Chercher" textFill="WHITE" />
      
    </children>
 </AnchorPane>
