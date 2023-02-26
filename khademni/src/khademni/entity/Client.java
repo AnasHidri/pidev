@@ -20,6 +20,14 @@ private String cv ;
         this.cv = cv;
     }
 
+    public Client(int id, String nom, String prenom, String login, String password, String role, String mail, String domaine,float solde, String cv, String etat, String image) {
+        super(id, nom, prenom, login, password, role, mail, domaine, etat, image);
+        this.solde = solde;
+        this.cv = cv;
+    }
+    
+    
+
     public float getSolde() {
         return solde;
     }

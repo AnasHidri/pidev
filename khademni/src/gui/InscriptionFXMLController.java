@@ -526,7 +526,7 @@ public class InscriptionFXMLController implements Initializable {
                                 alert.setContentText("Votre compte n'est pas actif");
                                 alert.showAndWait();
                         }else{
-                        Employeur e = new Employeur(rs.getInt(1),rs.getString("nom"), rs.getString("prenom"), rs.getString("login"), rs.getString("password"), rs.getString("role"), rs.getString("mail"), rs.getString("domaine"), rs.getString("nom_societe"));
+                        Employeur e = new Employeur(rs.getInt(1),rs.getString("nom"), rs.getString("prenom"), rs.getString("login"), rs.getString("password"), rs.getString("role"), rs.getString("mail"), rs.getString("domaine"), rs.getString("nom_societe"),rs.getString("etat"),rs.getString("image"));
                         Utilisateur.setCurrent_User(e);
                         System.out.println("current user id ::"+Utilisateur.Current_User.getId_user());
                         System.out.println("current user id ::"+Utilisateur.Current_User.getLogin());
@@ -537,6 +537,84 @@ public class InscriptionFXMLController implements Initializable {
                                 alert.setContentText("Vous etes connecté");
                                 alert.showAndWait();
                                 login_btn.getScene().getWindow().hide();
+                                
+                                try{
+                                        // Charger la nouvelle vue
+                                       FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileSettingsFXML.fxml"));
+                                       Parent root = loader.load();
+                                        // Afficher la nouvelle vue dans la fenêtre principale
+                                       Scene scene = new Scene(root);
+                                       Stage stage = (Stage) login_btn.getScene().getWindow();
+                                       stage.setScene(scene);
+                                       stage.show();
+
+                                       }catch(IOException ex){
+                                           System.out.println(ex.getCause().getMessage());
+                                       }
+                        }
+                                
+
+                    }else if("Formateur".equals(rs.getString("role"))){
+                        if("inactif".equals(rs.getString("etat"))){
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Travel Me :: Error Message");
+                                alert.setHeaderText(null);
+                                alert.setContentText("Votre compte n'est pas actif");
+                                alert.showAndWait();
+                        }else{
+                        Formateur f = new Formateur(rs.getInt(1),rs.getString("nom"), rs.getString("prenom"),
+                                rs.getString("login"), rs.getString("password"), rs.getString("role"),
+                                rs.getString("mail"), rs.getString("domaine"), rs.getString("certif"),
+                                rs.getString("etat"),rs.getString("image"));
+                        
+                        
+                        Utilisateur.setCurrent_User(f);
+                        System.out.println("current user id ::"+Utilisateur.Current_User.getId_user());
+                        System.out.println("current user id ::"+Utilisateur.Current_User.getLogin());
+                        System.out.println("current user :: "+Utilisateur.Current_User);
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                alert.setTitle("Travel Me :: Success Message");
+                                alert.setHeaderText(null);
+                                alert.setContentText("Vous etes connecté");
+                                alert.showAndWait();
+                                login_btn.getScene().getWindow().hide();
+                                
+                                try{
+                                        // Charger la nouvelle vue
+                                       FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileSettingsFXML.fxml"));
+                                       Parent root = loader.load();
+                                        // Afficher la nouvelle vue dans la fenêtre principale
+                                       Scene scene = new Scene(root);
+                                       Stage stage = (Stage) login_btn.getScene().getWindow();
+                                       stage.setScene(scene);
+                                       stage.show();
+
+                                       }catch(IOException ex){
+                                           System.out.println(ex.getCause().getMessage());
+                                       }
+                        }
+                                
+
+                    }else if("Client".equals(rs.getString("role"))){
+                        if("inactif".equals(rs.getString("etat"))){
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Travel Me :: Error Message");
+                                alert.setHeaderText(null);
+                                alert.setContentText("Votre compte n'est pas actif");
+                                alert.showAndWait();
+                        }else{
+                        Client c = new Client(rs.getInt(1),rs.getString("nom"), rs.getString("prenom"), rs.getString("login"), rs.getString("password"), rs.getString("role"), rs.getString("mail"), rs.getString("domaine"), rs.getFloat("solde"),rs.getString("cv"),rs.getString("etat"),rs.getString("image"));
+                        Utilisateur.setCurrent_User(c);
+                        System.out.println("current user id ::"+Utilisateur.Current_User.getId_user());
+                        System.out.println("current user id ::"+Utilisateur.Current_User.getLogin());
+                        System.out.println("current user :: "+Utilisateur.Current_User);
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                alert.setTitle("Travel Me :: Success Message");
+                                alert.setHeaderText(null);
+                                alert.setContentText("Vous etes connecté");
+                                alert.showAndWait();
+                                login_btn.getScene().getWindow().hide();
+                                System.out.println("testtttt111");
                                 
                                 try{
                                         // Charger la nouvelle vue

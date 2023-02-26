@@ -4,14 +4,23 @@
  */
 package gui;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import khademni.entity.Utilisateur;
+import services.UtilisateurService;
 
 /**
  * FXML Controller class
@@ -34,12 +43,16 @@ public class ProfileSettingsFXMLController implements Initializable {
     private TextField tfnouv;
     @FXML
     private TextField tfconfirm;
+     @FXML
+    private TextField tfimg;
+    
     @FXML
     private Label login;
     
     @FXML
     private Button modifier_btn;
-    
+     @FXML
+    private ImageView imageView;
     
     
     /**
@@ -48,7 +61,12 @@ public class ProfileSettingsFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setTextFields();
+        displayImage();
+    //    Image image = new Image("C:\\Users\\ASUS\\Desktop\\IMG_1976.png");
+   // imageView.setImage(image);
     }   
+    
+    UtilisateurService us = new UtilisateurService();
     
      public void setTextFields(){
         tfnom.setText(Utilisateur.Current_User.getNom());
@@ -56,6 +74,35 @@ public class ProfileSettingsFXMLController implements Initializable {
         tfdomaine.setText(Utilisateur.Current_User.getDomaine());
         tfmail.setText(Utilisateur.Current_User.getMail());
         login.setText(Utilisateur.Current_User.getLogin());
+        tfimg.setText(Utilisateur.Current_User.getImage());
     }
     
+     
+     @FXML
+    void selectImage(ActionEvent event) throws FileNotFoundException, SQLException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Profile Image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            String imagePath = selectedFile.getPath();
+            // Save the imagePath in your database using an SQL query
+            tfimg.setText(imagePath);
+            us.updateImage(imagePath, Utilisateur.Current_User.getId_user());
+            // Display the selected image in the ImageView control
+            Image image = new Image(new FileInputStream(selectedFile));
+            imageView.setImage(image);
+        }
+    }
+    
+     public void displayImage() {
+    try {
+        Image image = new Image(new FileInputStream(tfimg.getText()));
+        imageView.setImage(image);
+    } catch (FileNotFoundException e) {
+        System.out.println("Image file not found: " + tfimg.getText());
+    }
+}
 }

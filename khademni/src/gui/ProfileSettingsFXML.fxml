@@ -23,10 +23,7 @@
             <Insets right="10.0" />
          </padding>
          <children>
-            <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@logo.jpg" />
-               </image>
+            <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
             </ImageView>
          </children>
       </VBox>
@@ -190,5 +187,7 @@
             <Insets top="5.0" />
          </padding>
       </VBox>
+      <Button fx:id="selecimg" layoutX="629.0" layoutY="214.0" mnemonicParsing="false" onAction="#selectImage" text="Select image" textFill="WHITE" />
+      <TextField fx:id="tfimg" layoutX="620.0" layoutY="328.0"  visible="false" />
    </children>
 </AnchorPane>

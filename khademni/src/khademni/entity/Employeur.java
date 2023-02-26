@@ -4,7 +4,6 @@
  */
 package khademni.entity;
 
-import java.sql.Date;
 
 /**
  *
@@ -18,8 +17,8 @@ public class Employeur extends Utilisateur{
         this.nom_societe = nom_societe;
     }
     
-    public Employeur(int id,String nom, String prenom, String login, String password, String role, String mail, String domaine,String nom_societe) {
-        super(id,nom, prenom, login, password, role, mail, domaine);
+    public Employeur(int id,String nom, String prenom, String login, String password, String role, String mail, String domaine,String nom_societe,String etat,String image) {
+        super(id,nom, prenom, login, password, role, mail, domaine,etat,image);
         this.nom_societe = nom_societe;
     }
 

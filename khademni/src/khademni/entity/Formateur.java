@@ -18,6 +18,13 @@ public class Formateur extends Utilisateur{
         this.certif = certif;
     }
 
+    public Formateur(int id, String nom, String prenom, String login, String password, String role, String mail, String domaine,String certif, String etat, String image) {
+        super(id, nom, prenom, login, password, role, mail, domaine, etat, image);
+        this.certif = certif;
+    }
+
+    
+    
     public String getCertif() {
         return certif;
     }

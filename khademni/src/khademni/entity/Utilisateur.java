@@ -13,7 +13,7 @@ package khademni.entity;
 public class Utilisateur {
     
     private int id_user;
-    private String login,password,nom,prenom,role,mail,domaine,etat;
+    private String login,password,nom,prenom,role,mail,domaine,etat,image;
     public static Utilisateur Current_User;
 
     
@@ -33,7 +33,7 @@ public class Utilisateur {
         this.domaine = domaine;
     }
     
-    public Utilisateur(int id, String nom, String prenom,String login, String password,String role, String mail, String domaine) {
+    public Utilisateur(int id, String nom, String prenom,String login, String password,String role, String mail, String domaine,String etat,String image) {
         this.id_user=id;
         this.login = login;
         this.password = password;
@@ -42,6 +42,8 @@ public class Utilisateur {
         this.role = role;
         this.mail = mail;
         this.domaine = domaine;
+        this.etat=etat;
+        this.image=image;
     }
 
     public Utilisateur(int id,String nom, String prenom, String role,String etat,String mail) {
@@ -119,6 +121,16 @@ public class Utilisateur {
         this.mail = mail;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    
+    
     public String getDomaine() {
         return domaine;
     }

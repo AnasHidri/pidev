@@ -168,4 +168,19 @@ public class UtilisateurService implements IUtilisateurService {
     }
 
     
+    public void updateImage(String imgPath, int Id) throws SQLException {
+    try {
+        String sql = "UPDATE user SET image = ? WHERE id_user = ?";
+            PreparedStatement ste=myconn.prepareStatement(sql);
+        ste.setString(1, imgPath);
+        ste.setInt(2, Id);
+        ste.executeUpdate();
+        System.out.println("image modifié");
+    } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+}
+    
+    
+    
 }
