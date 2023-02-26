@@ -4,6 +4,7 @@
  */
 package khademni.gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -21,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import static javax.swing.UIManager.addPropertyChangeListener;
 import khademni.entity.Evenement;
 import khademni.entity.Participation;
@@ -69,6 +71,8 @@ public class MesParticipationsController implements Initializable {
       private TextField nb_like_dislike;
       @FXML
       private Button btn_nb_ld;
+      @FXML
+      private Button qr_code;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -212,4 +216,20 @@ Dans cet exemple, nous appelons la méthode getLikesAndDislikesCount à partir d
         });
     });
 }
+ 
+     @FXML
+    private void generer(ActionEvent event)  throws IOException {
+   
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("Qrcode.fxml"));
+         Stage stage = new Stage();
+         
+         stage.setScene(new Scene(loader.load()));
+         stage.show();
+    Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+    currentStage.hide();
+   
+   
+   
+}
+ 
 }
