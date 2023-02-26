@@ -231,5 +231,20 @@ Dans cet exemple, nous appelons la méthode getLikesAndDislikesCount à partir d
    
    
 }
+    
+     @FXML
+    private void Retour(ActionEvent event)  throws IOException {
+   
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("ListeEvenement.fxml"));
+         Stage stage = new Stage();
+         
+         stage.setScene(new Scene(loader.load()));
+         stage.show();
+    Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+    currentStage.hide();
+   
+   
+   
+}
  
 }

@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -105,12 +106,29 @@ public class QrcodeController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
+    
+    
        
        
        
        
        
     }
+    
+     @FXML
+    private void Retour(ActionEvent event)  throws IOException {
+   
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("MesParticipations.fxml"));
+         Stage stage = new Stage();
+         
+         stage.setScene(new Scene(loader.load()));
+         stage.show();
+    Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+    currentStage.hide();
+   
+   
+   
+}
    
    
    

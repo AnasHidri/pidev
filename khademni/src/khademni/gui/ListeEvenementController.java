@@ -6,8 +6,11 @@ package khademni.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -19,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -29,6 +33,8 @@ import khademni.entity.Evenement;
 import khademni.entity.Participation;
 import khademni.services.EvenementService;
 import khademni.services.ParticipationService;
+import java.sql.Date;
+import static java.util.Collections.list;
 
 /**
  * FXML Controller class
@@ -67,6 +73,12 @@ public class ListeEvenementController implements Initializable {
       private TextField recherche_text_par;
       @FXML
       private Button btn_recherche;
+       @FXML
+     private DatePicker date_deb;
+       @FXML
+     private DatePicker datefin;
+       @FXML
+       private Button filtre;
        
         
         
@@ -193,6 +205,18 @@ private void rechercheEvenement(ActionEvent event) {
         // Afficher un message d'erreur si aucune participation n'a été trouvée
         System.out.println("Aucune participation trouvée pour l'événement " + titreEvenement);
     }
+}
+
+@FXML
+public void filterEvents() {
+    LocalDate date_debut = date_deb.getValue();
+    Date sqlDateDebut = Date.valueOf(date_debut);
+    LocalDate date_fin = datefin.getValue();
+    Date sqlDateFin = Date.valueOf(date_fin);
+
+    EvenementService es = new EvenementService();
+    ObservableList<Evenement> filteredList = es.getBetweenDates(sqlDateDebut, sqlDateFin);
+    tab_ev_liste.setItems(filteredList);
 }
     
    

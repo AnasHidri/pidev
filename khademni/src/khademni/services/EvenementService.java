@@ -158,6 +158,25 @@ public class EvenementService implements IEvenement<Evenement> {
         return hidden;
     }*/
     
+  public ObservableList<Evenement> getBetweenDates(Date date_debut, Date date_fin) {
+    ObservableList<Evenement> list = FXCollections.observableArrayList();
+    String query = "SELECT * FROM evenement WHERE date_debut >= ? AND date_fin <= ?";
+    try {
+        PreparedStatement ste = cnx.prepareStatement(query);
+        ste.setDate(1, date_debut);
+        ste.setDate(2, date_fin);
+        ResultSet s = ste.executeQuery();
+        while (s.next()) {
+            Evenement e = new Evenement(s.getInt(2), s.getDate(3), s.getDate(4), 
+                   s.getString("titre"), s.getString("description"), s.getString("nom_societe"), s.getString("lieu"));
+            
+            list.add(e);
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return list;
+}
     
     
     }
