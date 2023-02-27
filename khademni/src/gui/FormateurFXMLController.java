@@ -92,12 +92,20 @@ if (file.exists() && file.isFile()) {
     
     @FXML
 public void SendMail() throws GeneralSecurityException{
+    
+    try {
+                 MailService.sendEmail("ymahfoudh55@gmail.com", "test","bonjour");
+        } catch (MessagingException | GeneralSecurityException e) {
+            e.printStackTrace();
+        }
+    
+    
            /*  try {
                  MailService.sendEmail("yassine.mahfoudh@esprit.tn", "test","bonjour");
              } catch (MessagingException ex) {
                  System.out.println("ex::"+ex.getMessage());
              }*/
-           ExecutorService executor = Executors.newSingleThreadExecutor();
+         /*  ExecutorService executor = Executors.newSingleThreadExecutor();
 executor.execute(new Runnable() {
     public void run() {
         try {
@@ -107,7 +115,7 @@ executor.execute(new Runnable() {
         }
     }
 });
-executor.shutdown();
+executor.shutdown();*/
            
 }
     

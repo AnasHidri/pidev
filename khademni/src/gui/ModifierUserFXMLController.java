@@ -4,9 +4,13 @@
  */
 package gui;
 
+import api.MailService;
 import java.io.IOException;
 import java.net.URL;
+import java.security.GeneralSecurityException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.mail.MessagingException;
 import khademni.entity.Utilisateur;
 import services.UtilisateurService;
 
@@ -51,7 +56,17 @@ public class ModifierUserFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cbetat.getItems().addAll("actif","inactif");
-    }   
+    }  
+    
+     public void SendMail(String destination, String subject, String body) throws GeneralSecurityException{        
+    try {
+                // MailService.sendEmail("ymahfoudh55@gmail.com", "test","bonjour");
+                 MailService.sendEmail(destination, subject,body);
+        } catch (MessagingException | GeneralSecurityException e) {
+            e.printStackTrace();
+        }
+    }
+     
     
     @FXML
     void ModifierUser(ActionEvent event) throws IOException {
@@ -69,6 +84,13 @@ public class ModifierUserFXMLController implements Initializable {
          Utilisateur user =new Utilisateur(id,nom,prenom,role,etat,mail);
            us.modifierUtilisateur(user);
            
+           if("actif".equals(etat)){
+             try {
+                 SendMail(mail, "Khadamni, Activation du compte ", "Bonjour, votre compte est activé par l'admin, vous pouvez y accéder.");
+             } catch (GeneralSecurityException ex) {
+                 System.out.println(ex.getMessage());
+             }
+           }
            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Khademni :: Success Message");
