@@ -6,6 +6,7 @@ package khademni.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -23,6 +24,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import static javax.swing.UIManager.addPropertyChangeListener;
 import khademni.entity.Evenement;
 import khademni.entity.Participation;
@@ -123,6 +132,34 @@ public class MesParticipationsController implements Initializable {
          ps.supprimerParticipation(selectedEV);
         System.out.println("tese2");
         MesParticipations();
+        
+         // Envoi du mail
+    String to = "oueslati.yassmine1@gmail.com"; // Adresse mail de l'utilisateur
+    String from = "oueslati.yassmine1@gmail.com"; // Votre adresse mail
+    String host = "smtp.gmail.com"; // Adresse du serveur SMTP (ici, Gmail)
+    String username = "oueslati.yassmine1@gmail.com"; // Votre adresse mail
+    String password = "hqtddpsdqejxjunk"; // Votre mot de passe Gmail
+    Properties properties = new Properties();
+    properties.put("mail.smtp.auth", "true");
+    properties.put("mail.smtp.starttls.enable", "true");
+    properties.put("mail.smtp.host", host);
+    properties.put("mail.smtp.port", "587");
+    Session session = Session.getInstance(properties, new Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(username, password);
+        }
+    });
+    try {
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(from));
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+        message.setSubject("Notification de l'annulation de la participation à un événement");
+        message.setText("Bonjour,\n\nVous avez annulé votre participation à l'événement "+selectedEV.getTitre()+"\n\nCordialement,\nKhademni");
+        Transport.send(message);
+        System.out.println("Le message a été envoyé avec succès.");
+    } catch (MessagingException mex) {
+        mex.printStackTrace();
+    }
     }
     
     @FXML

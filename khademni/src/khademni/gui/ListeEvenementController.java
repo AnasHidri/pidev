@@ -35,6 +35,17 @@ import khademni.services.EvenementService;
 import khademni.services.ParticipationService;
 import java.sql.Date;
 import static java.util.Collections.list;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.*;
+import javax.mail.internet.*;
+
+
 
 /**
  * FXML Controller class
@@ -121,18 +132,45 @@ public class ListeEvenementController implements Initializable {
         //lieu_list.setText(selectedEV.getLieu());
     }
     
-    @FXML
-    private void ParticipeEV(ActionEvent event){
-        Evenement selectedEV =  tab_ev_liste.getSelectionModel().getSelectedItem();
-        System.out.println("id_e::"+selectedEV.getId_evenement());
-        idevl.setText(String.valueOf(selectedEV.getId_evenement()));
-        Participation p= new Participation(selectedEV.getId_evenement(), 2,"active");
-        System.out.println("tese1");
-        ParticipationService ps= new ParticipationService();
-        ps.ajouterParticipation(p);
-        System.out.println("tese2");
-        
+   @FXML
+private void ParticipeEV(ActionEvent event){
+    Evenement selectedEV =  tab_ev_liste.getSelectionModel().getSelectedItem();
+    System.out.println("id_e::"+selectedEV.getId_evenement());
+    idevl.setText(String.valueOf(selectedEV.getId_evenement()));
+    Participation p= new Participation(selectedEV.getId_evenement(), 2,"active");
+    System.out.println("tese1");
+    ParticipationService ps= new ParticipationService();
+    ps.ajouterParticipation(p);
+    System.out.println("tese2");
+
+    // Envoi du mail
+    String to = "oueslati.yassmine1@gmail.com"; // Adresse mail de l'utilisateur
+    String from = "oueslati.yassmine1@gmail.com"; // Votre adresse mail
+    String host = "smtp.gmail.com"; // Adresse du serveur SMTP (ici, Gmail)
+    String username = "oueslati.yassmine1@gmail.com"; // Votre adresse mail
+    String password = "hqtddpsdqejxjunk"; // Votre mot de passe Gmail
+    Properties properties = new Properties();
+    properties.put("mail.smtp.auth", "true");
+    properties.put("mail.smtp.starttls.enable", "true");
+    properties.put("mail.smtp.host", host);
+    properties.put("mail.smtp.port", "587");
+    Session session = Session.getInstance(properties, new Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(username, password);
+        }
+    });
+    try {
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(from));
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+        message.setSubject("Notification de participation à un événement");
+        message.setText("Bonjour,\n\nVous avez participé à l'événement "+selectedEV.getTitre()+"\n\nCordialement,\nKhademni");
+        Transport.send(message);
+        System.out.println("Le message a été envoyé avec succès.");
+    } catch (MessagingException mex) {
+        mex.printStackTrace();
     }
+}
     
     @FXML
     private void AnnulerP(ActionEvent event){
@@ -143,6 +181,34 @@ public class ListeEvenementController implements Initializable {
          ParticipationService ps= new ParticipationService();
          ps.supprimerParticipation(selectedEV);
         System.out.println("tese2");
+        
+         // Envoi du mail
+    String to = "oueslati.yassmine1@gmail.com"; // Adresse mail de l'utilisateur
+    String from = "oueslati.yassmine1@gmail.com"; // Votre adresse mail
+    String host = "smtp.gmail.com"; // Adresse du serveur SMTP (ici, Gmail)
+    String username = "oueslati.yassmine1@gmail.com"; // Votre adresse mail
+    String password = "hqtddpsdqejxjunk"; // Votre mot de passe Gmail
+    Properties properties = new Properties();
+    properties.put("mail.smtp.auth", "true");
+    properties.put("mail.smtp.starttls.enable", "true");
+    properties.put("mail.smtp.host", host);
+    properties.put("mail.smtp.port", "587");
+    Session session = Session.getInstance(properties, new Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(username, password);
+        }
+    });
+    try {
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(from));
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+        message.setSubject("Notification de l'annulation de la participation à un événement");
+        message.setText("Bonjour,\n\nVous avez annulé votre participation à l'événement "+selectedEV.getTitre()+"\n\nCordialement,\nKhademni");
+        Transport.send(message);
+        System.out.println("Le message a été envoyé avec succès.");
+    } catch (MessagingException mex) {
+        mex.printStackTrace();
+    }
     }
     
      @FXML

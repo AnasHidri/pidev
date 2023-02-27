@@ -17,6 +17,6 @@
             <TableColumn fx:id="date_fin_ev_ad" prefWidth="84.0" text="Date Fin" />
         </columns>
       </TableView>
-      <Button fx:id="btn_pdf_ev" layoutX="451.0" layoutY="306.0" mnemonicParsing="false" onAction="#GenererPdfEv"  text="PDF" />
+      <Button fx:id="btn_pdf_ev" layoutX="451.0" layoutY="306.0" mnemonicParsing="false" onAction="#GenererPdfEv" text="PDF" />
    </children>
 </AnchorPane>
