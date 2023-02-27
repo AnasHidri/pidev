@@ -61,10 +61,11 @@
             <TextField fx:id="tfDate_Limite" />
          </children>
       </VBox>
-      <Button fx:id="btnEmployeur1" layoutX="496.0" layoutY="382.0" mnemonicParsing="false" onAction="#OpenAdmin" prefHeight="33.0" prefWidth="113.0" style="-fx-background-color: #991849;" text="Modifier" textFill="#fcfafa">
+      <Button fx:id="btnEmployeur1" layoutX="496.0" layoutY="382.0" mnemonicParsing="false" onAction="#SetTFOffre" prefHeight="33.0" prefWidth="113.0" style="-fx-background-color: #991849;" text="Modifier" textFill="#fcfafa">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Button>
+      <TextField fx:id="tfId_offre" layoutX="320.0" layoutY="55.0" visible="false" />
    </children>
 </AnchorPane>

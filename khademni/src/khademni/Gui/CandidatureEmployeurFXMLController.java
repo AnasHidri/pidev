@@ -24,7 +24,23 @@ import khademniService.OffreService;
  */
 public class CandidatureEmployeurFXMLController implements Initializable {
 
+ @FXML
+    private TableColumn<?, ?> colEmail;
 
+    @FXML
+    private TableColumn<?, ?> colEtat;
+
+    @FXML
+    private TableColumn<?, ?> colNom;
+
+    @FXML
+    private TableColumn<?, ?> colPrenom;
+
+    @FXML
+    private TableColumn<?, ?> colTitre;
+
+    @FXML
+    private TableView<String> tvCandidature;
     /**
      * Initializes the controller class.
      */
@@ -34,7 +50,21 @@ public class CandidatureEmployeurFXMLController implements Initializable {
         // TODO
     }    
     
+ public void showOffre(){
+  CandidatureService cs =new CandidatureService(); 
 
+ObservableList<String> listeCandidature = cs.afficherCandidature();
+
+
+colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
+colNom.setCellValueFactory(new PropertyValueFactory <>("nom"));
+colPrenom.setCellValueFactory(new PropertyValueFactory <>("prenom"));
+colEmail.setCellValueFactory(new PropertyValueFactory <>("email"));
+colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
+
+    
+       tvCandidature.setItems(listeCandidature);
+} 
 
 
 }

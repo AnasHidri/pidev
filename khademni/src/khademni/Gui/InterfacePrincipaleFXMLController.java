@@ -47,15 +47,17 @@ public class InterfacePrincipaleFXMLController implements Initializable {
          SceneController SC= new SceneController();
          SC.Scene1(event);
    }
+ 
     @FXML
+    void InterEmployeur(ActionEvent event) throws IOException {
+        SceneController SC= new SceneController();
+         SC.Scene2(event);
+    }
+  
+       @FXML
     void OpenClient(ActionEvent event) throws IOException {
         SceneController SC= new SceneController();
-         SC.Scene3(event);
-    }
-   @FXML
-    void OpenEmployeur(ActionEvent event)throws IOException  {
-  SceneController SC= new SceneController();
-         SC.Scene2(event);
+         SC.Scene5(event);
     }
     }
 

@@ -17,7 +17,7 @@
             <Image url="@welcome1.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="btnEmployeur" layoutX="275.0" layoutY="320.0" mnemonicParsing="false" onAction="#OpenEmployeur" prefHeight="44.0" prefWidth="150.0" style="-fx-background-color: #991849;" text="Employeur" textFill="#fcfafa">
+      <Button fx:id="btnEmployeur" layoutX="275.0" layoutY="320.0" mnemonicParsing="false" onAction="#InterEmployeur" prefHeight="44.0" prefWidth="150.0" style="-fx-background-color: #991849;" text="Employeur" textFill="#fcfafa">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>

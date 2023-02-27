@@ -4,6 +4,7 @@
  */
 package khademni.Gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -23,8 +24,10 @@ public class OffreClientFXMLController implements Initializable {
     /**
      * Initializes the controller class.
      */
-       @FXML
+    @FXML
     private Button Btn;
+     @FXML
+    private Button Btncandidature;
 
     @FXML
     private TableColumn<?, ?> colAdresse;
@@ -35,16 +38,22 @@ public class OffreClientFXMLController implements Initializable {
     @FXML
     private TableColumn<?, ?> colDomaine;
 
-    @FXML
-    void AddMesOffres(ActionEvent event) {
-
-    }
+  
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
     } 
-    
+   @FXML
+    void AddMesCandidature(ActionEvent event) throws IOException {
+ 
+    }
+        @FXML
+    void retourneInterPre(ActionEvent event) throws IOException {
+     SceneController SC= new SceneController();
+         SC.Scene5(event);
+    }
+ 
     
 }

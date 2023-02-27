@@ -1,4 +1,5 @@
 
+import khademni.entity.Candidature;
 import khademni.entity.Offre;
 import khademniService.CandidatureService;
 import khademniService.OffreService;
@@ -21,13 +22,14 @@ public class Khademni {
     public static void main(String[] args) {
     
     
-    Offre O =new Offre(1,"css","css","tunis","html","22/2/2023","22/3/2023");
+   // Offre O =new Offre(1,"css","css","tunis","html","22/2/2023","22/3/2023");
      OffreService os= new OffreService();
     // os.ajouterOffre(O);
     // os.modifierOffre(O);
-     
-     CandidatureService cs = new CandidatureService();
-    System.out.println(cs.afficherCandidature()); 
+         CandidatureService Cs = new CandidatureService();
+      Candidature C =new Candidature(68,2,"en attente ");
+           Cs.ajouterCandidature(C);
+    System.out.println(Cs.afficherCandidatureClient()); 
     }
     
 }

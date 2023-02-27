@@ -4,6 +4,7 @@
  */
 package khademni.entity;
 
+import java.sql.Date;
 import java.util.Objects;
 
 
@@ -14,12 +15,14 @@ import java.util.Objects;
 public class Offre {
     private int id_offre ;
     private int id_user;
-    private String titre ,description,adresse_societe,domaine_offre,date_debut,date_limite;
+    private String titre ,description,adresse_societe,domaine_offre;
+    private Date date_debut,date_limite;
+    private String etat;
 
     public Offre() {
     }
 
-    public Offre(int id_user, String titre, String description, String adresse_societe, String domaine_offre, String date_debut, String date_limite) {
+    public Offre(int id_user, String titre, String description, String adresse_societe, String domaine_offre, Date date_debut, Date date_limite) {
         this.id_user = id_user;
         this.titre = titre;
         this.description = description;
@@ -27,9 +30,11 @@ public class Offre {
         this.domaine_offre = domaine_offre;
         this.date_debut = date_debut;
         this.date_limite = date_limite;
+      
+
     }
 
-    public Offre(int id_offre, int id_user, String titre, String description, String adresse_societe, String domaine_offre, String date_debut, String date_limite) {
+    public Offre(int id_offre, int id_user, String titre, String description, String adresse_societe, String domaine_offre, Date date_debut, Date date_limite) {
         this.id_offre = id_offre;
         this.id_user = id_user;
         this.titre = titre;
@@ -38,16 +43,30 @@ public class Offre {
         this.domaine_offre = domaine_offre;
         this.date_debut = date_debut;
         this.date_limite = date_limite;
+         
     }
 
-    public Offre(String titre, String description, String adresse_societe, String domaine_offre, String date_debut, String date_limite) {
+    public Offre(int id_offre, int id_user, String titre, String description, String adresse_societe, String domaine_offre, Date date_debut, Date date_limite, String etat) {
+        this.id_offre = id_offre;
+        this.id_user = id_user;
         this.titre = titre;
         this.description = description;
         this.adresse_societe = adresse_societe;
         this.domaine_offre = domaine_offre;
         this.date_debut = date_debut;
         this.date_limite = date_limite;
+        this.etat = etat;
     }
+
+    
+    public Offre(String titre, String description, String adresse_societe, String domaine_offre, Date date_debut, Date date_limite,String etat) {
+        this.titre = titre;
+        this.description = description;
+        this.adresse_societe = adresse_societe;
+        this.domaine_offre = domaine_offre;
+        this.date_debut = date_debut;
+        this.date_limite = date_limite;
+          }
 
    
    
@@ -76,11 +95,11 @@ public class Offre {
         return domaine_offre;
     }
 
-    public String getDate_debut() {
+    public Date getDate_debut() {
         return date_debut;
     }
 
-    public String getDate_limite() {
+    public Date getDate_limite() {
         return date_limite;
     }
 
@@ -100,25 +119,34 @@ public class Offre {
         this.domaine_offre = domaine_offre;
     }
 
-    public void setDate_debut(String date_debut) {
+    public void setDate_debut(Date date_debut) {
         this.date_debut = date_debut;
     }
 
-    public void setDate_limite(String date_limite) {
+    public void setDate_limite(Date date_limite) {
         this.date_limite = date_limite;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 19 * hash + this.id_offre;
-        hash = 19 * hash + this.id_user;
-        hash = 19 * hash + Objects.hashCode(this.titre);
-        hash = 19 * hash + Objects.hashCode(this.description);
-        hash = 19 * hash + Objects.hashCode(this.adresse_societe);
-        hash = 19 * hash + Objects.hashCode(this.domaine_offre);
-        hash = 19 * hash + Objects.hashCode(this.date_debut);
-        hash = 19 * hash + Objects.hashCode(this.date_limite);
+        int hash = 7;
+        hash = 59 * hash + this.id_offre;
+        hash = 59 * hash + this.id_user;
+        hash = 59 * hash + Objects.hashCode(this.titre);
+        hash = 59 * hash + Objects.hashCode(this.description);
+        hash = 59 * hash + Objects.hashCode(this.adresse_societe);
+        hash = 59 * hash + Objects.hashCode(this.domaine_offre);
+        hash = 59 * hash + Objects.hashCode(this.date_debut);
+        hash = 59 * hash + Objects.hashCode(this.date_limite);
+        hash = 59 * hash + Objects.hashCode(this.etat);
         return hash;
     }
 
@@ -155,20 +183,19 @@ public class Offre {
         if (!Objects.equals(this.date_debut, other.date_debut)) {
             return false;
         }
-        return Objects.equals(this.date_limite, other.date_limite);
+        if (!Objects.equals(this.date_limite, other.date_limite)) {
+            return false;
+        }
+        return Objects.equals(this.etat, other.etat);
     }
+    
 
+   
     @Override
     public String toString() {
-        return "Offre{" + "id_offre=" + id_offre + ", id_user=" + id_user + ", titre=" + titre + ", description=" + description + ", adresse_societe=" + adresse_societe + ", domaine_offre=" + domaine_offre + ", date_debut=" + date_debut + ", date_limite=" + date_limite + '}';
+        return "Offre{" + "id_offre=" + id_offre + ", id_user=" + id_user + ", titre=" + titre + ", description=" + description + ", adresse_societe=" + adresse_societe + ", domaine_offre=" + domaine_offre + ", date_debut=" + date_debut + ", date_limite=" + date_limite + ", etat=" + etat + '}';
     }
 
-  
-   
-
-   
-  
-    
     
 
    

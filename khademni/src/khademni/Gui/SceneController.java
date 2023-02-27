@@ -30,9 +30,9 @@ public class SceneController {
     stage.show();
     }
      public void Scene2(ActionEvent event)throws IOException{
-   Parent root = FXMLLoader.
+         Parent root = FXMLLoader.
                     load(getClass().getResource("EmployeurFXML.fxml"));
-    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);
     stage.show();
@@ -46,4 +46,26 @@ public class SceneController {
     stage.setScene(scene);
     stage.show();
     }
+      public void Scene4(ActionEvent event)throws IOException{
+   Parent root = FXMLLoader.load(getClass().getResource("InterfacePrincipaleFXML.fxml"));
+    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
 }
+    
+        public void Scene5(ActionEvent event)throws IOException{
+   Parent root = FXMLLoader.load(getClass().getResource("ListOffreClientFXML.fxml"));
+    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();}
+     public void Scene6(ActionEvent event)throws IOException{
+   Parent root = FXMLLoader.load(getClass().getResource("MesCandidatureClientFXML.fxml"));
+    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
+
+  
+}}

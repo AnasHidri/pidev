@@ -37,7 +37,12 @@
           <TableColumn fx:id="colDomaine" minWidth="0.0" prefWidth="293.0" text="Domaine D'Offre" />
         </columns>
       </TableView>
-     <Button fx:id="Btn" layoutX="497.0" layoutY="347.0" mnemonicParsing="false" onAction="#AddMesOffres" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Postuler" textFill="#fcfcfc">
+     <Button fx:id="Btncandidature" layoutX="497.0" layoutY="347.0" mnemonicParsing="false" onAction="#AddMesCandidature" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Postuler" textFill="#fcfcfc">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="Btn1" layoutX="33.0" layoutY="347.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #832c8d;" text="&lt;----" textFill="#fcfcfc">
          <font>
             <Font name="System Bold Italic" size="17.0" />
          </font>

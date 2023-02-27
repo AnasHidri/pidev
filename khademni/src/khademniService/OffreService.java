@@ -1,4 +1,4 @@
- /*
+  /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -40,8 +40,10 @@ public class OffreService implements IOffre   {
             ste.setString(3, O.getDescription());
             ste.setString(4, O.getAdresse_societe());
             ste.setString(5, O.getDomaine_offre());
-            ste.setString(6, O.getDate_debut());
-            ste.setString(7, O.getDate_limite());
+            ste.setDate(6, O.getDate_debut());
+            ste.setDate(7, O.getDate_limite());
+         
+
             ste.executeUpdate();
             System.out.println(" Offre ajoutée");
         } catch (SQLException ex) {
@@ -61,8 +63,9 @@ public class OffreService implements IOffre   {
                 ste.setString(2, O.getDescription());
                 ste.setString(3, O.getAdresse_societe());
                 ste.setString(4, O.getDomaine_offre());
-                ste.setString(5, O.getDate_debut());
-                ste.setString(6, O.getDate_limite());
+                ste.setDate(5, O.getDate_debut());
+                ste.setDate(6, O.getDate_limite());
+               
                  ste.setInt(7, O.getId_user());
             ste.executeUpdate();
             System.out.println("Offre modifiée");
@@ -95,7 +98,7 @@ public class OffreService implements IOffre   {
         ObservableList<Offre> OffreList = FXCollections.observableArrayList();
 
         try {
-            String sql = "select * from offre";
+            String sql = "select * from offre ";
             Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
@@ -106,10 +109,11 @@ public class OffreService implements IOffre   {
                        s.getString("description"),
                        s.getString("adresse_societe"),
                        s.getString("domaine_offre"),
-                       s.getString("date_debut"),
+                       s.getDate(7),
                         
-                       s.getString("date_limite"));
-              
+                       s.getDate(8),
+                       s.getString("etat"));
+
                        OffreList.add(o);
 
             }
@@ -119,8 +123,93 @@ public class OffreService implements IOffre   {
         return OffreList;
     }
 
+    public void RefuseOffre(Offre O) {
+ String sql="update offre set etat='refuse' where id_offre=?  ";
+        try {
+            PreparedStatement ste=myconn.prepareStatement(sql);
+             
 
+                               
 
+                 ste.setInt(1, O.getId_offre());
+            ste.executeUpdate();
+            System.out.println("Offre Réfusée");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+       }
+      public ObservableList<Offre> afficherRefuserOffre() {
+       
+        ObservableList<Offre> OffreList = FXCollections.observableArrayList();
+
+        try {
+            String sql = "select * from offre where offre.etat='Refuse'";
+            Statement ste = myconn.createStatement();
+            ResultSet s = ste.executeQuery(sql);
+            while (s.next()) {
+
+                Offre o = new Offre(s.getInt(1),
+                       s.getInt(2),
+                       s.getString("titre"),
+                       s.getString("description"),
+                       s.getString("adresse_societe"),
+                       s.getString("domaine_offre"),
+                       s.getDate("date_debut"),
+                        
+                       s.getDate("date_limite"),
+                       s.getString("etat"));
+
+                       OffreList.add(o);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return OffreList;
+    }
+
+    public void accepterOffre(Offre O) {
+ String sql="update offre set etat='accepter'  where id_offre=?  ";
+        try {
+            PreparedStatement ste=myconn.prepareStatement(sql);
+             
+               
+                 ste.setInt(1, O.getId_offre());
+            ste.executeUpdate();
+            System.out.println("Offre Accepter");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+       }
+    public ObservableList<Offre> afficherAccepterOffre() {
+       
+        ObservableList<Offre> OffreList = FXCollections.observableArrayList();
+
+        try {
+            String sql = "select * from offre where offre.etat='accepter'";
+            Statement ste = myconn.createStatement();
+            ResultSet s = ste.executeQuery(sql);
+            while (s.next()) {
+
+                Offre o = new Offre(s.getInt(1),
+                       s.getInt(2),
+                       s.getString("titre"),
+                       s.getString("description"),
+                       s.getString("adresse_societe"),
+                       s.getString("domaine_offre"),
+                       s.getDate(7),
+                        
+                       s.getDate(8),
+                       s.getString("etat"));
+
+                       OffreList.add(o);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return OffreList;
+    }
 
     }
 

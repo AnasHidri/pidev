@@ -80,6 +80,29 @@ String sql="update candidature set etat=? where id_offre=? ";
         }
         return CandidatureList;
     }
+     public ObservableList<String> afficherCandidatureClient() {
+       ObservableList<String> CandidatureClientList = FXCollections.observableArrayList();
+        try {
+           String sql = "select offre.titre,offre.description,offre.domaine_offre,offre.adresse_societe,offre.date_debut,offre.date_limite from  offre,candidature where  offre.id_offre=candidature.id_offre and candidature.id_user="+2;
+            Statement ste = myconn.createStatement();
+            ResultSet s = ste.executeQuery(sql);
+            while (s.next()) {
+             /*   Candidature c = new Candidature(s.getInt(1), 
+                        s.getInt(2),s.getInt(3), s.getString("etat"));*/
+             //   CandidatureList.add(c);
+            CandidatureClientList.add(s.getString(1));
+            CandidatureClientList.add(s.getString(2));
+            CandidatureClientList.add(s.getString(3));
+            CandidatureClientList.add(s.getString(4));
+             CandidatureClientList.add(s.getString(5));
+              CandidatureClientList.add(s.getString(6));
+
+            }
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return CandidatureClientList;
+    }
     @Override
     public void supprimerCandidature(Candidature P) {
   String sql = "delete from candidature where id_offre=? ";

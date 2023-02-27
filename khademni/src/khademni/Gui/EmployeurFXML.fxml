@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -17,7 +18,7 @@
             <Image url="@khademni.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnAdd" layoutX="151.0" layoutY="414.0" mnemonicParsing="false" onAction="#AddOffre" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Ajouter" textFill="#fcfcfc">
+      <Button fx:id="btnAdd" layoutX="318.0" layoutY="228.0" mnemonicParsing="false" onAction="#AddOffre" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Ajouter" textFill="#fcfcfc">
          <font>
             <Font name="MV Boli" size="17.0" />
          </font>
@@ -32,8 +33,6 @@
       <TextField fx:id="tfTitre" layoutX="164.0" layoutY="79.0" />
       <TextField fx:id="tfDomaine_offre" layoutX="549.0" layoutY="79.0" />
       <TextField fx:id="tfAdressse_societe" layoutX="178.0" layoutY="174.0" />
-      <TextField fx:id="tfDate_debut" layoutX="551.0" layoutY="131.0" />
-      <TextField fx:id="tfDate_Limite" layoutX="551.0" layoutY="182.0" />
       <Text fill="WHITE" layoutX="88.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre" wrappingWidth="53.984375">
          <font>
             <Font name="System Bold Italic" size="18.0" />
@@ -64,26 +63,36 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Text>
-      <TableView fx:id="tvOffre" layoutX="15.0" layoutY="215.0" prefHeight="184.0" prefWidth="739.0">
+      <TableView fx:id="tvOffre" layoutX="10.0" layoutY="285.0" prefHeight="184.0" prefWidth="751.0">
          <columns>
-            <TableColumn fx:id="colTitre" minWidth="0.0" prefWidth="98.0" text="Titre" />
-            <TableColumn fx:id="colDescription" prefWidth="134.0" text="Description" />
-            <TableColumn fx:id="colAdresse_societe" minWidth="3.0" prefWidth="127.0" text="Adresse société" />
-            <TableColumn fx:id="colDomaine_offre" minWidth="0.0" prefWidth="136.0" text="Domaine D'offre" />
-            <TableColumn fx:id="colDate_debut" minWidth="0.0" prefWidth="140.0" text="Date debut" />
-            <TableColumn fx:id="colDate_limite" prefWidth="103.0" text="Date Limite" />
+            <TableColumn fx:id="colTitre" minWidth="0.0" prefWidth="118.0" text="Titre" />
+            <TableColumn fx:id="colDescription" prefWidth="104.0" text="Description" />
+            <TableColumn fx:id="colAdresse_societe" minWidth="3.0" prefWidth="105.0" text="Adresse société" />
+            <TableColumn fx:id="colDomaine_offre" minWidth="0.0" prefWidth="140.0" text="Domaine D'offre" />
+            <TableColumn fx:id="colDate_debut" minWidth="0.0" prefWidth="101.0" text="Date debut" />
+            <TableColumn fx:id="colDate_limite" minWidth="0.0" prefWidth="102.0" text="Date Limite" />
+            <TableColumn fx:id="colEtat" minWidth="0.0" text="Etat" />
          </columns>
       </TableView>
       <TextField fx:id="tfDescription" layoutX="178.0" layoutY="122.0" />
-      <Button fx:id="btnAdd1" layoutX="290.0" layoutY="414.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Modifier" textFill="#fcfcfc">
+      <Button fx:id="btnupdate" layoutX="443.0" layoutY="228.0" mnemonicParsing="false" onAction="#update" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Modifier" textFill="#fcfcfc">
          <font>
             <Font name="MV Boli" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="btnDelete" layoutX="421.0" layoutY="414.0" mnemonicParsing="false" onAction="#DeleteOffre" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Supprimer" textFill="#fcfcfc">
+      <Button fx:id="btnDelete" layoutX="567.0" layoutY="228.0" mnemonicParsing="false" onAction="#DeleteOffre" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Supprimer" textFill="#fcfcfc">
          <font>
             <Font name="MV Boli" size="17.0" />
          </font>
       </Button>
+      <Button fx:id="btnIntPr" layoutX="3.0" layoutY="6.0" mnemonicParsing="false" onAction="#IntP" prefHeight="41.0" prefWidth="65.0" style="-fx-background-color: #832c8d;" text="&lt;----" textFill="#fcfcfc">
+         <font>
+            <Font name="MV Boli" size="17.0" />
+         </font>
+      </Button>
+      <TextField fx:id="tfEtat" layoutX="573.0" layoutY="47.0" visible="false" />
+      <TextField fx:id="tfRecherche" layoutX="61.0" layoutY="236.0" onAction="#RechercheOffre" prefHeight="25.0" prefWidth="179.0" promptText="Recherche" />
+      <DatePicker fx:id="tfDate_debut" layoutX="524.0" layoutY="130.0" />
+      <DatePicker fx:id="tfDate_Limite" layoutX="524.0" layoutY="185.0" />
    </children>
 </AnchorPane>
