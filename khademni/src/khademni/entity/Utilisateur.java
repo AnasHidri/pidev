@@ -19,9 +19,17 @@ public class Utilisateur {
     
     public Utilisateur() {
     }
-
-
     
+/*
+public Utilisateur(int id, String nom, String prenom, String domaine,String mail,String password ) {
+        this.id_user=id;
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+        this.domaine = domaine;
+    }
+    */
     
     public Utilisateur(String nom, String prenom,String login, String password,String role, String mail, String domaine) {
         this.login = login;
@@ -46,14 +54,17 @@ public class Utilisateur {
         this.image=image;
     }
 
-    public Utilisateur(int id,String nom, String prenom, String role,String etat,String mail) {
+        public Utilisateur(int id,String nom, String prenom, String role,String etat,String mail,String domaine,String password) {
         this.id_user=id;
         this.nom = nom;
         this.prenom = prenom;
         this.role = role;
         this.etat = etat;
         this.mail = mail;
+        this.domaine=domaine;
+        this.password=password;
     }
+    
 
     public String getEtat() {
         return etat;

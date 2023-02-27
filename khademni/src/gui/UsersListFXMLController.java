@@ -156,5 +156,23 @@ public class UsersListFXMLController implements Initializable {
     });
 }
 
+    @FXML
+    public void logout(){
+        try{
+                                        // Charger la nouvelle vue
+                                       FXMLLoader loader = new FXMLLoader(getClass().getResource("InscriptionFXML.fxml"));
+                                       Parent root = loader.load();
+                                        // Afficher la nouvelle vue dans la fenêtre principale
+                                       Scene scene = new Scene(root);
+                                       Stage stage = (Stage) btn_modifier.getScene().getWindow();
+                                       stage.setScene(scene);
+                                       stage.show();
+                                       
+                                       Utilisateur.setCurrent_User(new Utilisateur());
+
+                                       }catch(IOException ex){
+                                           System.out.println(ex.getCause().getMessage());
+                                       }
+    }
     
 }

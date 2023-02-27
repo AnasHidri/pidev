@@ -80,8 +80,10 @@ public class ModifierUserFXMLController implements Initializable {
          String etat=cbetat.getValue().toString();
          System.out.println("cbetat.getValue().toString()"+cbetat.getValue().toString());
          String mail=tfmail2.getText();
+         String domaine ="";
+         String password ="";
          
-         Utilisateur user =new Utilisateur(id,nom,prenom,role,etat,mail);
+         Utilisateur user =new Utilisateur(id,nom,prenom,role,etat,mail,domaine,password);
            us.modifierUtilisateur(user);
            
            if("actif".equals(etat)){

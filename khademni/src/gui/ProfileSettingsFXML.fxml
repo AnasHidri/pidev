@@ -32,7 +32,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="modifier_btn" alignment="CENTER" contentDisplay="RIGHT" layoutX="531.0" layoutY="448.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="210.0" text="Modifier" textAlignment="CENTER" textFill="#f4fafa">
+      <Button fx:id="modifier_btn"  onAction="#ModifierUser"  alignment="CENTER" contentDisplay="RIGHT" layoutX="531.0" layoutY="448.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="210.0" text="Modifier" textAlignment="CENTER" textFill="#f4fafa">
          <font>
             <Font size="15.0" />
          </font>

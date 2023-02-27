@@ -128,6 +128,23 @@ public class UtilisateurService implements IUtilisateurService {
             System.out.println(ex);
         }
     }
+    public void modifierProfil(Utilisateur u) {
+        String sql="update user set nom=?, prenom=?,domaine=?,mail=?,password=? where id_user=? ";
+        try {
+            PreparedStatement ste=myconn.prepareStatement(sql);
+                ste.setString(1, u.getNom());
+                ste.setString(2, u.getPrenom());
+                ste.setString(3, u.getDomaine());
+                ste.setString(4, u.getMail());
+                ste.setString(5, u.getPassword());
+                ste.setInt(6, u.getId_user());
+    
+            ste.executeUpdate();
+            System.out.println("Utilisateur modifié");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
 
     
     @Override
@@ -157,7 +174,7 @@ public class UtilisateurService implements IUtilisateurService {
             while (s.next()) {
 
                 Utilisateur u = new Utilisateur(s.getInt(1),
-                        s.getString("nom"), s.getString("prenom"),s.getString("role"),s.getString("etat"),s.getString("mail"));
+                        s.getString("nom"), s.getString("prenom"),s.getString("role"),s.getString("etat"),s.getString("mail"),s.getString("domaine"),s.getString("password"));
                 users.add(u);
 
             }

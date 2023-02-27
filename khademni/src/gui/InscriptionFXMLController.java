@@ -312,7 +312,7 @@ public class InscriptionFXMLController implements Initializable {
                     System.out.println("emp ajouté");
                 
                     
-                        SendMail(emp.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni. \n Veuillez attendez l'activation de votre compte par l'administrateur pour y acceder.");
+                        SendMail(emp.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni.\n Veuillez attendez l'activation de votre compte par l'administrateur pour y acceder.\n Votre login : "+emp.getLogin()+"\n votre mot de passe : "+emp.getPassword());
                         SendMail("ymahfoudh55@gmail.com", "Nouvelle inscription", "Bonjour, un nouvel utilisateur  sous le login : "+emp.getLogin()+" ,est inscrit sur l'application avec le role employeur. Veuillez activer son compte.");
                      
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -344,7 +344,7 @@ public class InscriptionFXMLController implements Initializable {
     }
     
     @FXML
-    private void saveFormateur(ActionEvent event) throws IOException {
+    private void saveFormateur(ActionEvent event) throws IOException, GeneralSecurityException {
         String nom = tfnom_form.getText();
             String prenom = tfprenom_form.getText();
             String login = tflogin_form.getText();
@@ -396,12 +396,10 @@ public class InscriptionFXMLController implements Initializable {
                 Formateur f = new Formateur(nom, prenom, login, password, role, mail, domaine,certif);
                 us.ajouterFormateur(f);
                 
-                try {
-                        SendMail(f.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni. \n Veuillez attendez l'activation de votre compte par l'administrateur pour y acceder.");
+                
+                
+                SendMail(f.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni.\n Veuillez attendez l'activation de votre compte par l'administrateur pour y acceder.\n Votre login : "+f.getLogin()+"\n votre mot de passe : "+f.getPassword());
                         SendMail("ymahfoudh55@gmail.com", "Nouvelle inscription", "Bonjour, un nouvel utilisateur  sous le login : "+f.getLogin()+" ,est inscrit sur l'application avec le role formateur. Veuillez activer son compte.");
-                    } catch (GeneralSecurityException ex) {
-                        System.out.println(ex.getMessage());
-                    }
                 
                                 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -432,7 +430,7 @@ public class InscriptionFXMLController implements Initializable {
     
     
     @FXML
-    private void saveClient(ActionEvent event) throws IOException {
+    private void saveClient(ActionEvent event) throws IOException, GeneralSecurityException {
         String nom = tfnom_cl.getText();
             String prenom = tfprenom_cl.getText();
             String login = tflogin_cl.getText();
@@ -485,12 +483,8 @@ public class InscriptionFXMLController implements Initializable {
                 Client c = new Client(nom, prenom, login, password, role, mail, domaine,solde,cv);
                 us.ajouterClient(c);
                 
-                try {
-                        SendMail(c.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni. \n Veuillez attendez l'activation de votre compte par l'administrateur pour y acceder.");
+                SendMail(c.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni.\n Veuillez attendez l'activation de votre compte par l'administrateur pour y acceder.\n Votre login : "+c.getLogin()+"\n votre mot de passe : "+c.getPassword());
                         SendMail("ymahfoudh55@gmail.com", "Nouvelle inscription", "Bonjour, un nouvel utilisateur  sous le login : "+c.getLogin()+" ,est inscrit sur l'application avec le role client. Veuillez activer son compte.");
-                    } catch (GeneralSecurityException ex) {
-                        System.out.println(ex.getMessage());
-                    }
                                 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Khademni :: BIENVENNUE");

@@ -94,7 +94,7 @@
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Hyperlink fx:id="login_acc_emp" layoutX="127.0" layoutY="461.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Login your Account ?">
+                  <Hyperlink fx:id="login_acc_emp" layoutX="127.0" layoutY="461.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Déjà inscrit? S'identifier">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
@@ -173,7 +173,7 @@
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Hyperlink fx:id="login_acc_form" layoutX="127.0" layoutY="461.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Login your Account ?">
+                  <Hyperlink fx:id="login_acc_form" layoutX="127.0" layoutY="461.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Déjà inscrit? S'identifier">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
@@ -253,7 +253,7 @@
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Hyperlink fx:id="login_acc_cl" layoutX="127.0" layoutY="461.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Login your Account ?">
+                  <Hyperlink fx:id="login_acc_cl" layoutX="127.0" layoutY="461.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Déjà inscrit? S'identifier">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
