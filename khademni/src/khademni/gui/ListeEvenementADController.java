@@ -13,11 +13,15 @@ import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import khademni.entity.Evenement;
 import khademni.entity.PdfEv;
 import khademni.services.EvenementService;
@@ -51,6 +55,8 @@ public class ListeEvenementADController implements Initializable {
      private TableColumn date_fin_ev_ad;
       @FXML
       private Button btn_pdf_ev;
+      @FXML
+      private Button cons_part;
     
   
       
@@ -90,6 +96,34 @@ public class ListeEvenementADController implements Initializable {
         } catch  (Exception ex) {
         ex.printStackTrace();
             }
+    }
+    
+    @FXML
+public void ConsulterParticipants(ActionEvent event) throws IOException {
+Evenement selectedEV = tab_liste_ev_ad.getSelectionModel().getSelectedItem();
+int eventId = selectedEV.getId_evenement(); // Récupérer l'identifiant de l'événement sélectionné
+System.out.println("id_e::" + eventId);
+try {
+// Charger la nouvelle vue
+FXMLLoader loader = new FXMLLoader(getClass().getResource("LesParticipationsAD.fxml"));
+Parent root = loader.load();
+
+
+    // Obtenir le contrôleur de la nouvelle vue
+    LesParticipationsADController controleur = loader.getController();
+
+    // Passer les données de l'utilisateur actuel et l'identifiant de l'événement sélectionné au nouveau contrôleur
+    controleur.setTextFields(selectedEV);
+    controleur.setEventId(eventId);
+
+    Scene scene = new Scene(root);
+    Stage stage = (Stage) cons_part.getScene().getWindow();
+    stage.setScene(scene);
+    stage.show();
+
+} catch (IOException e) {
+    System.out.println(e.getCause().getMessage());
+}
     }
     
 }

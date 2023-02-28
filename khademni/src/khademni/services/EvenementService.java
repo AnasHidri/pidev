@@ -179,9 +179,45 @@ public class EvenementService implements IEvenement<Evenement> {
     return list;
 }
     
-    
+   public ObservableList<Evenement> Stat() {
+    ObservableList<Evenement> list = FXCollections.observableArrayList();
+    try {
+        String sql = "SELECT e.id_evenement, e.titre, e.nom_societe, COUNT(p.id_user) AS nombre_participants " +
+                     "FROM evenement e " +
+                     "JOIN participation p ON e.id_evenement = p.id_evenement " +
+                     "GROUP BY e.id_evenement " +
+                     "ORDER BY nombre_participants DESC " +
+                     "LIMIT 1";
+        PreparedStatement statement = cnx.prepareStatement(sql);
+        ResultSet s = statement.executeQuery();
+
+        // Récupération des valeurs de la première ligne de résultat
+        int eventId = -1;
+        String eventTitle = "";
+        String nom_societe = "";
+        //int eventParticipantCount = -1;
+        while (s.next()) {
+            eventId = s.getInt("id_evenement");
+            eventTitle = s.getString("titre");
+            nom_societe = s.getString("nom_societe");
+           // eventParticipantCount = s.getInt("nombre_participants");
+        }
+
+        // Ajout de l'événement avec le plus de participants dans la liste
+        
+           System.out.println("Identifiant de l'événement : " + eventId);
+    System.out.println("Titre de l'événement : " + eventTitle);
+    System.out.println("Nom de la société organisatrice : " + nom_societe);
+    //System.out.println("Nombre de participants : " + eventParticipantCount);
+            //list.add(e);
+        
+
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
     }
-    
+    return list;
+}
+} 
 
     
     

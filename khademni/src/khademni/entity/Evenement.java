@@ -57,6 +57,12 @@ public class Evenement {
         this.lieu = lieu;
     }
 
+    public Evenement(int id_evenement, String titre, String nom_societe) {
+        this.id_evenement = id_evenement;
+        this.titre = titre;
+        this.nom_societe = nom_societe;
+    }
+
    
     
     public int getId_evenement() {

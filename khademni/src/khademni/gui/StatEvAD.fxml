@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextField?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="khademni.gui.StatEvADController">
+   <children>
+      <TableView fx:id="tab_stat" layoutX="150.0" layoutY="89.0" prefHeight="200.0" prefWidth="222.0">
+        <columns>
+          <TableColumn fx:id="titre_best" prefWidth="75.0" text="Titre" />
+          <TableColumn fx:id="nom_soc_best" prefWidth="146.0" text="Societe Oraganisatrice" />
+        </columns>
+      </TableView>
+      <TextField fx:id="idevb" layoutX="62.0" layoutY="40.0" prefHeight="25.0" prefWidth="112.0" visible="false" />
+   </children>
+</AnchorPane>

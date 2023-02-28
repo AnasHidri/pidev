@@ -198,6 +198,30 @@ public class ParticipationService implements IParticipation<Participation> {
         dislikesCount = newLikesAndDislikes[1];
         pcs.firePropertyChange("likesAndDislikes", oldLikesAndDislikes, newLikesAndDislikes);
     }
-   
+    
+    
+    
+    public ObservableList<String> Participants(int id) {
+         ObservableList<String> participations = FXCollections.observableArrayList();
+        try {
+            String sql = "select nom,prenom from user,participation,evenement where evenement.id_evenement=participation.id_evenement and participation.id_user=user.id_user and user.id_user="+2+" and evenement.id_evenement="+id;
+            Statement ste = cnx.createStatement();
+            ResultSet s = ste.executeQuery(sql);
+            while (s.next()) {
+
+              String nom = s.getString(1);
+              String prenom = s.getString(2);
+              participations.add(nom);
+              participations.add(prenom);
+              
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return participations;
+    }
+    
+    
 
 }
