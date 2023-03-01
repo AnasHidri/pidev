@@ -104,21 +104,24 @@ public class ListeEvenementController implements Initializable {
     }    
     
     @FXML
-    public void ListEV(){
-       
-         EvenementService es= new EvenementService();
-         ObservableList<Evenement> list = es.getAll();
-         System.out.println("list ::: "+list);
-         titre_list.setCellValueFactory(new PropertyValueFactory<>("titre"));
-         desc_list.setCellValueFactory(new PropertyValueFactory<>("description"));
-         nom_soc_list.setCellValueFactory(new PropertyValueFactory<>("nom_societe"));
-         lieu_list.setCellValueFactory(new PropertyValueFactory<>("lieu"));
-         date_deb_list.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
-         date_fin_list.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
-      
-         tab_ev_liste.setItems(list);
-         
-     }
+public void ListEV(){
+    EvenementService es= new EvenementService();
+    ObservableList<Evenement> list = es.getAll();
+    
+    // Filtrer la liste pour n'afficher que les événements dont la date de fin est supérieure à la date actuelle
+    LocalDate currentDate = LocalDate.now();
+    list = list.filtered(e -> new java.sql.Date(e.getDate_fin().getTime()).toLocalDate().isAfter(currentDate));
+    
+    System.out.println("list ::: "+list);
+    titre_list.setCellValueFactory(new PropertyValueFactory<>("titre"));
+    desc_list.setCellValueFactory(new PropertyValueFactory<>("description"));
+    nom_soc_list.setCellValueFactory(new PropertyValueFactory<>("nom_societe"));
+    lieu_list.setCellValueFactory(new PropertyValueFactory<>("lieu"));
+    date_deb_list.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
+    date_fin_list.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
+  
+    tab_ev_liste.setItems(list);
+}
     
     @FXML
     private void SelectEV(ActionEvent event){

@@ -83,7 +83,7 @@ public class ListeEvenementADController implements Initializable {
          
      }
    
-    @FXML
+   /* @FXML
     public void GenererPdfEv(ActionEvent event){
          EvenementService es= new EvenementService();
       ObservableList<Evenement> list = es.getAll();
@@ -96,7 +96,7 @@ public class ListeEvenementADController implements Initializable {
         } catch  (Exception ex) {
         ex.printStackTrace();
             }
-    }
+    }*/
     
     @FXML
 public void ConsulterParticipants(ActionEvent event) throws IOException {
@@ -113,8 +113,8 @@ Parent root = loader.load();
     LesParticipationsADController controleur = loader.getController();
 
     // Passer les données de l'utilisateur actuel et l'identifiant de l'événement sélectionné au nouveau contrôleur
-    controleur.setTextFields(selectedEV);
-    controleur.setEventId(eventId);
+    controleur.setTextFields(eventId);
+  
 
     Scene scene = new Scene(root);
     Stage stage = (Stage) cons_part.getScene().getWindow();

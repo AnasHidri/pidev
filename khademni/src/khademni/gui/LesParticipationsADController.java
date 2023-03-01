@@ -40,11 +40,11 @@ public class LesParticipationsADController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        MesParticipations();
+       
     }    
     
     @FXML
-      public void MesParticipations(){
+      public void MesParticipations(int eventId){
      ParticipationService ps= new ParticipationService();
          ObservableList<String>  liste = ps.Participants(eventId);
          System.out.println("list ::: "+liste);
@@ -60,9 +60,10 @@ public class LesParticipationsADController implements Initializable {
      public void setEventId(int eventId) {
     this.eventId = eventId;
 }
-    public void setTextFields(Evenement e){
-        idEvent.setText(String.valueOf(e.getId_evenement()));
-      
+    public void setTextFields(int eventId){
+        idEvent.setText(eventId+"");
+        System.out.println("anas "+eventId);
+       MesParticipations(eventId);
     }
      
 }

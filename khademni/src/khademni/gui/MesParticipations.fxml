@@ -28,6 +28,7 @@
       <TextField fx:id="nb_like_dislike" layoutX="414.0" layoutY="65.0" />
       <Button fx:id="btn_nb_ld" layoutX="469.0" layoutY="28.0" mnemonicParsing="false" onAction="#AfficherLikesDislikes" text="nb like et dislike" />
       <Button fx:id="qr_code" layoutX="320.0" layoutY="365.0" mnemonicParsing="false" onAction="#generer" text="QR" />
-      <Button fx:id="retour_list" layoutX="520.0" layoutY="417.0" mnemonicParsing="false" onAction="#Retour"  text="Retour" />
+      <Button fx:id="retour_list" layoutX="520.0" layoutY="417.0" mnemonicParsing="false" onAction="#Retour" text="Retour" />
+      <Button fx:id="btn_pdf" layoutX="218.0" layoutY="405.0" mnemonicParsing="false"  text="Pdf" />
    </children>
 </AnchorPane>

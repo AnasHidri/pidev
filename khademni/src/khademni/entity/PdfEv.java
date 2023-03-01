@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Cell;
+import javafx.scene.control.TableView;
 /**
  *
  * @author user
@@ -35,44 +36,44 @@ import javafx.scene.control.Cell;
 public class PdfEv {
     
      
-         public void generatePdf(String filename, ObservableList<Evenement> evenements) throws  FileNotFoundException, DocumentException, BadElementException, IOException, InterruptedException, SQLException {
+         public void generatePdf(String filename, Evenement evenement) throws  FileNotFoundException, DocumentException, BadElementException, IOException, InterruptedException, SQLException {
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(filename));
         document.open();
         
         document.add(new Paragraph("            Date  :"+LocalDateTime.now()));
+        //document.add(new Paragraph("            Liste des Evenements   :"));
          document.add(new Paragraph("                      "));
         document.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------"));
 
-        // Table with 6 columns
-        PdfPTable table = new PdfPTable(6);
-
-        // Add table headers
-        Stream.of("Titre", "Description", "Nom société", "Lieu", "Date début", "Date fin")
-                .forEach(columnTitle -> {
-                    PdfPCell header = new PdfPCell();
-                    header.setBackgroundColor(BaseColor.LIGHT_GRAY);
-                    header.setBorderWidth(1);
-                    header.setPhrase(new Phrase(columnTitle));
-                    table.addCell(header);
-                });
-
-        // Add table data
-        evenements.forEach(evenement -> {
-            table.addCell(evenement.getTitre());
-            table.addCell(evenement.getDescription());
-            table.addCell(evenement.getNom_societe());
-            table.addCell(evenement.getLieu());
-            table.addCell(evenement.getDate_debut().toString());
-            table.addCell(evenement.getDate_fin().toString());
-        });
-
-        // Add table to document
-        document.add(table);
+       document.add(new Paragraph("Titre : " + evenement.getTitre()));
+        document.add(new Paragraph("Description : " + evenement.getDescription()));
+        document.add(new Paragraph("Nom société : " + evenement.getNom_societe()));
+        document.add(new Paragraph("Lieu : " + evenement.getLieu()));
+        document.add(new Paragraph("Date début : " + evenement.getDate_debut()));
+        document.add(new Paragraph("Date fin : " + evenement.getDate_fin()));
+        
+        // Add QR code to document
+/*String data = "https://example.com/participation?id=" + evenement.getId_evenement();
+Image qrCodeImage = generateQRCodeImage(data);
+ImageElement qrCodeElement = new ImageElement((com.itextpdf.text.Image) qrCodeImage);
+qrCodeElement.setAlignment(Element.ALIGN_CENTER);
+document.newPage();
+document.add(qrCodeElement);*/
+        
        document.add(new Paragraph("---------------------------------------------------------------------------------------------------------------------------------- "));
         document.add(new Paragraph("                              KHADEMNI                    "));
         document.close();
         Process pro = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + filename + ".pdf");
     }
+         
+          public void generatePdfFromTableView(String filename, TableView<Evenement> tableView) throws FileNotFoundException, DocumentException, BadElementException, IOException, InterruptedException, SQLException  {
+        Evenement evenement = tableView.getSelectionModel().getSelectedItem();
+        if (evenement != null) {
+            generatePdf(filename, evenement);
+        }
+    }
+          
+          
     
 }

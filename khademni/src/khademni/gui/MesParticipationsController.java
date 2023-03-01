@@ -4,6 +4,8 @@
  */
 package khademni.gui;
 
+import com.itextpdf.text.DocumentException;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
@@ -32,11 +34,12 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import static javax.swing.UIManager.addPropertyChangeListener;
+
 import khademni.entity.Evenement;
 import khademni.entity.Participation;
 import khademni.services.EvenementService;
 import khademni.services.ParticipationService;
+import khademni.entity.PdfEv;
 
 /**
  * FXML Controller class
@@ -82,12 +85,23 @@ public class MesParticipationsController implements Initializable {
       private Button btn_nb_ld;
       @FXML
       private Button qr_code;
+      @FXML
+      private Button btn_pdf;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
         MesParticipations();
+        btn_pdf.setOnAction(event -> {
+        try {
+            generatePdfParticipation("evenement.pdf", tab_mes_parti);
+        } catch (DocumentException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    });
+        
+        
     }    
     
      @FXML
@@ -283,5 +297,22 @@ Dans cet exemple, nous appelons la méthode getLikesAndDislikesCount à partir d
    
    
 }
+    
+    @FXML
+     public void generatePdfParticipation(String filename, TableView<Evenement> tableView) throws DocumentException, FileNotFoundException {
+   Evenement selectedEV =  tab_mes_parti.getSelectionModel().getSelectedItem();
+        System.out.println("id_e::"+selectedEV.getId_evenement());
+    if (selectedEV != null) {
+        PdfEv pd=new PdfEv();
+        try{
+        pd.generatePdf("Ma Participation.pdf", selectedEV);
+        System.out.println("impression done");
+    }catch  (Exception ex) {
+        ex.printStackTrace();
+}
  
+}
+     }
+     
+     
 }

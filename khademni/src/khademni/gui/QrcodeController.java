@@ -54,7 +54,7 @@ public class QrcodeController implements Initializable {
      @Override
     public void initialize(URL url, ResourceBundle rb) {
          try {
-             generateQRCode("https://www.example.com", qr);
+             generateQRCode("https://www.facebook.com", qr);
          } catch (WriterException ex) {
              Logger.getLogger(QrcodeController.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -73,6 +73,7 @@ public class QrcodeController implements Initializable {
        
        
     }
+    
    
    
    
