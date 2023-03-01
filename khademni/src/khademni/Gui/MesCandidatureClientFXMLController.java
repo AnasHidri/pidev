@@ -12,9 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import khademni.entity.Offre;
 import khademniService.CandidatureService;
-import khademniService.OffreService;
 
 /**
  * FXML Controller class
@@ -50,7 +48,7 @@ public class MesCandidatureClientFXMLController implements Initializable {
     private TableColumn<?, ?> colEtat;
 
     @FXML
-    private TableView<String> tvOffre23;
+    private TableView<String> tvMesCandidature;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -60,10 +58,9 @@ public class MesCandidatureClientFXMLController implements Initializable {
     
          public void showOffre(){
   CandidatureService cs =new CandidatureService(); 
+ObservableList<String> mesCandidatures = cs.afficherCandidatureClient();
 
-ObservableList<String> list12 = cs.afficherCandidatureClient();
-
-
+colId_Offre.setCellValueFactory(new PropertyValueFactory <>("id_offre"));
 colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
 colDescription.setCellValueFactory(new PropertyValueFactory <>("description"));
 colAdresse.setCellValueFactory(new PropertyValueFactory <>("adresse_societe"));
@@ -71,10 +68,8 @@ colDomaine.setCellValueFactory(new PropertyValueFactory <>("domaine_offre"));
 colDateDebut.setCellValueFactory(new PropertyValueFactory <>("date_debut"));
 colDateLimite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
 colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
-colId_Offre.setCellValueFactory(new PropertyValueFactory <>("id_offre"));
 
-    
-       tvOffre23.setItems(list12);
+       tvMesCandidature.setItems(mesCandidatures);
 }  
    
 }

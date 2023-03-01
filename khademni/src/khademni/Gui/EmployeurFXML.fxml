@@ -18,7 +18,7 @@
             <Image url="@khademni.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnAdd" layoutX="318.0" layoutY="228.0" mnemonicParsing="false" onAction="#AddOffre" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Ajouter" textFill="#fcfcfc">
+      <Button fx:id="btnAdd" layoutX="213.0" layoutY="228.0" mnemonicParsing="false" onAction="#AddOffre" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Ajouter" textFill="#fcfcfc">
          <font>
             <Font name="MV Boli" size="17.0" />
          </font>
@@ -75,12 +75,12 @@
          </columns>
       </TableView>
       <TextField fx:id="tfDescription" layoutX="178.0" layoutY="122.0" />
-      <Button fx:id="btnupdate" layoutX="443.0" layoutY="228.0" mnemonicParsing="false" onAction="#update" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Modifier" textFill="#fcfcfc">
+      <Button fx:id="btnupdate" layoutX="335.0" layoutY="228.0" mnemonicParsing="false" onAction="#update" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Modifier" textFill="#fcfcfc">
          <font>
             <Font name="MV Boli" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="btnDelete" layoutX="567.0" layoutY="228.0" mnemonicParsing="false" onAction="#DeleteOffre" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Supprimer" textFill="#fcfcfc">
+      <Button fx:id="btnDelete" layoutX="453.0" layoutY="228.0" mnemonicParsing="false" onAction="#DeleteOffre" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #832c8d;" text="Supprimer" textFill="#fcfcfc">
          <font>
             <Font name="MV Boli" size="17.0" />
          </font>
@@ -91,8 +91,13 @@
          </font>
       </Button>
       <TextField fx:id="tfEtat" layoutX="573.0" layoutY="47.0" visible="false" />
-      <TextField fx:id="tfRecherche" layoutX="61.0" layoutY="236.0" onAction="#RechercheOffre" prefHeight="25.0" prefWidth="179.0" promptText="Recherche" />
+      <TextField fx:id="tfRecherche" layoutX="14.0" layoutY="236.0" onAction="#RechercheOffre" prefHeight="25.0" prefWidth="179.0" promptText="Recherche" />
       <DatePicker fx:id="tfDate_debut" layoutX="524.0" layoutY="130.0" />
       <DatePicker fx:id="tfDate_Limite" layoutX="524.0" layoutY="185.0" />
+      <Button fx:id="btnListe" layoutX="573.0" layoutY="228.0" mnemonicParsing="false" onAction="#ListeCandidature" prefHeight="41.0" prefWidth="174.0" style="-fx-background-color: #832c8d;" text="Liste Candidature" textFill="#fcfcfc">
+         <font>
+            <Font name="MV Boli" size="17.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

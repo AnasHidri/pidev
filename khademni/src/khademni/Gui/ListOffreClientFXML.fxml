@@ -20,7 +20,7 @@
             <Image url="@khademni.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnPost" layoutX="458.0" layoutY="330.0" mnemonicParsing="false" onAction="#AddCandidature" prefHeight="41.0" prefWidth="135.0" style="-fx-background-color: #832c8d;" text="Postuler" textFill="#fcfcfc">
+      <Button fx:id="btnPost" layoutX="323.0" layoutY="339.0" mnemonicParsing="false" onAction="#AddCandidature" prefHeight="41.0" prefWidth="135.0" style="-fx-background-color: #832c8d;" text="Postuler" textFill="#fcfcfc">
          <font>
             <Font name="MV Boli" size="17.0" />
          </font>
@@ -36,7 +36,12 @@
          </columns>
       </TableView>
       <TextField fx:id="tfRecherche" layoutX="86.0" layoutY="40.0" onAction="#Recherche" prefHeight="34.0" prefWidth="450.0" promptText="Recherche" />
-      <Button fx:id="btnretourne" layoutX="44.0" layoutY="339.0" mnemonicParsing="false" onAction="#retourneinterPrin" prefHeight="41.0" prefWidth="106.0" style="-fx-background-color: #832c8d;" text="&lt;----" textFill="#fcfcfc">
+      <Button fx:id="btnretourne" layoutX="43.0" layoutY="339.0" mnemonicParsing="false" onAction="#retourneinterPrin" prefHeight="41.0" prefWidth="106.0" style="-fx-background-color: #832c8d;" text="&lt;----" textFill="#fcfcfc">
+         <font>
+            <Font name="MV Boli" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnmescandid" layoutX="476.0" layoutY="339.0" mnemonicParsing="false" onAction="#MesCandidature" prefHeight="41.0" prefWidth="169.0" style="-fx-background-color: #832c8d;" text="Mes Candidatures" textFill="#fcfcfc">
          <font>
             <Font name="MV Boli" size="17.0" />
          </font>

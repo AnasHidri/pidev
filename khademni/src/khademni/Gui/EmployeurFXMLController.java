@@ -17,11 +17,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -30,7 +26,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import khademni.entity.Offre;
 import khademniService.OffreService;
 
@@ -55,6 +50,9 @@ public class EmployeurFXMLController implements Initializable {
   
     @FXML
     private Button btnupdate;
+    @FXML
+    private Button btnListe;
+
     @FXML
     private TableColumn<?, ?> colAdresse_societe;
 
@@ -183,12 +181,14 @@ colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
       String des= tfDescription.getText(); 
      String soc= tfAdressse_societe.getText(); 
      String off=  tfDomaine_offre.getText();
-      Date date_debut= Date.valueOf(tfDate_debut.getValue());
-     Date date_limite= Date.valueOf(tfDate_Limite.getValue());
+     LocalDate date_debut =tfDate_debut.getValue();
+      Date datedeb= Date.valueOf(date_debut);
+        LocalDate date_limite =tfDate_Limite.getValue();
+      Date datelim= Date.valueOf(date_limite);
 
-        o =new Offre(2, titre, des, soc, off, date_debut, date_limite);
+        o =new Offre(2, titre, des, soc, off, datedeb, datelim);
         
-    if(titre.trim().isEmpty() || des.trim().isEmpty() || soc.trim().isEmpty()|| off.trim().isEmpty()/*|| date_debut.isEmpty()|| date_limite.trim().isEmpty()*/) {
+    if(titre.trim().isEmpty() || des.trim().isEmpty() || soc.trim().isEmpty()|| off.trim().isEmpty()) {
       System.out.println();
        Alert alert = new Alert(AlertType.INFORMATION);
     alert.setContentText("Tous les champs doivent être remplis");
@@ -219,7 +219,9 @@ colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
    
       os.afficherOffre();
       
-      
+        tvOffre.refresh();
+  showOffre();
+
      
     }
     @FXML
@@ -244,9 +246,9 @@ colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
     String adresse_societe = tfAdressse_societe.getText();
     String domaine_offre = tfDomaine_offre.getText(); 
     LocalDate date_debut =tfDate_debut.getValue();
-      Date datedeb= Date.valueOf(date_debut);
-        LocalDate date_limite =tfDate_debut.getValue();
-      Date datelim= Date.valueOf(date_limite);
+    Date datedeb= Date.valueOf(date_debut);
+    LocalDate date_limite =tfDate_Limite.getValue();
+    Date datelim= Date.valueOf(date_limite);
     selectedOffre.setTitre(titre);
     selectedOffre.setDescription(description);
     selectedOffre.setAdresse_societe(adresse_societe);
@@ -266,7 +268,15 @@ colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
     Alert alert = new Alert(AlertType.INFORMATION);
     alert.setContentText("Offre Modifié!");
     alert.showAndWait();
+      tvOffre.refresh();
+  showOffre();
+
     } 
 
+      @FXML
+    void ListeCandidature(ActionEvent event) throws IOException {
+  SceneController SC= new SceneController();
+         SC.Scene7(event);
+    }
 }
 

@@ -13,7 +13,7 @@
             <Image url="@khademni.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tvOffre23" layoutX="8.0" layoutY="89.0" prefHeight="284.0" prefWidth="654.0">
+      <TableView fx:id="tvMesCandidature" layoutX="8.0" layoutY="89.0" prefHeight="284.0" prefWidth="654.0">
          <columns>
             <TableColumn fx:id="colTitre" prefWidth="89.0" text="Titre" />
             <TableColumn fx:id="colDescription" minWidth="0.0" prefWidth="100.0" text="Description" />
@@ -22,7 +22,6 @@
             <TableColumn fx:id="colDateDebut" prefWidth="76.0" text="Date debut" />
             <TableColumn fx:id="colDateLimite" prefWidth="82.0" text="Date limite" />
             <TableColumn fx:id="colEtat" prefWidth="64.0" text="Etat" />
-            <TableColumn fx:id="colId_Offre" prefWidth="89.0" text="Titre" />
          </columns>
       </TableView>
    </children>

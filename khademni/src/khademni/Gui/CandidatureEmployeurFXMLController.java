@@ -13,9 +13,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import khademni.entity.Candidature;
-import khademni.entity.Offre;
 import khademniService.CandidatureService;
-import khademniService.OffreService;
+
 
 /**
  * FXML Controller class
@@ -52,14 +51,12 @@ public class CandidatureEmployeurFXMLController implements Initializable {
     
  public void showOffre(){
   CandidatureService cs =new CandidatureService(); 
-
-ObservableList<String> listeCandidature = cs.afficherCandidature();
-
+ObservableList<String> listeCandidature = cs.afficherCandidatureEmployeur();
 
 colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
 colNom.setCellValueFactory(new PropertyValueFactory <>("nom"));
 colPrenom.setCellValueFactory(new PropertyValueFactory <>("prenom"));
-colEmail.setCellValueFactory(new PropertyValueFactory <>("email"));
+colEmail.setCellValueFactory(new PropertyValueFactory <>("adresse"));
 colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
 
     

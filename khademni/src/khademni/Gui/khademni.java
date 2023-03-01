@@ -22,7 +22,7 @@ public class khademni extends Application {
     public void start(Stage primaryStage) throws IOException {
         try {
             Parent root = FXMLLoader.
-                    load(getClass().getResource("MesCandidatureClientFXML.fxml"));
+                    load(getClass().getResource("InterfacePrincipaleFXML.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Hello World!");

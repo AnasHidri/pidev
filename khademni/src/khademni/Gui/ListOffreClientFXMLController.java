@@ -114,7 +114,7 @@ public class ListOffreClientFXMLController implements Initializable {
      public void showOffre(){
            OffreService os =new OffreService(); 
 
-ObservableList<Offre> list23 = os.afficherOffre();
+ObservableList<Offre> list23 = os.afficherAccepterOffre();
 
 
 colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
@@ -130,9 +130,9 @@ colDateLimite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
    @FXML
     void AddCandidature(ActionEvent event) throws IOException {
          Offre selectedOffre = tvOffre23.getSelectionModel().getSelectedItem();
- System.out.println("id_e::"+selectedOffre.getId_offre());
+        System.out.println("id_o::"+selectedOffre.getId_offre());
       //  selectedOffre.getId_offre.setText(String.valueOf(selectedOffre.getId_offre()));
-        Candidature C= new Candidature(selectedOffre.getId_offre(), 2,"en attente");
+        Candidature C= new Candidature(selectedOffre.getId_offre(), 1,"en attente");
         CandidatureService CV= new CandidatureService();
         CV.ajouterCandidature(C);
       

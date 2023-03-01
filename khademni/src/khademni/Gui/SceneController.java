@@ -68,4 +68,10 @@ public class SceneController {
     stage.show();
 
   
-}}
+}
+ public void Scene7(ActionEvent event)throws IOException{
+   Parent root = FXMLLoader.load(getClass().getResource("CandidatureEmployeurFXML.fxml"));
+    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();}}

@@ -6,13 +6,17 @@ package khademniService;
 
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import khademni.entity.Offre;
 import khademni.interfaces.IOffre;
 import khademni.utils.MyConnection;
@@ -55,7 +59,7 @@ public class OffreService implements IOffre   {
 
     @Override
     public void modifierOffre(Offre O) {
- String sql="update offre set  titre=?, description=?,adresse_societe=?,domaine_offre=?,date_debut=?,date_limite=? where id_user=?  ";
+ String sql="update offre set  titre=?, description=?,adresse_societe=?,domaine_offre=?,date_debut=?,date_limite=? where  id_user= ? and id_offre=? ";
         try {
             PreparedStatement ste=myconn.prepareStatement(sql);
              
@@ -65,8 +69,8 @@ public class OffreService implements IOffre   {
                 ste.setString(4, O.getDomaine_offre());
                 ste.setDate(5, O.getDate_debut());
                 ste.setDate(6, O.getDate_limite());
-               
-                 ste.setInt(7, O.getId_user());
+                ste.setInt(7, O.getId_user());
+                 ste.setInt(8, O.getId_offre());
             ste.executeUpdate();
             System.out.println("Offre modifiée");
         } catch (SQLException ex) {
@@ -98,7 +102,7 @@ public class OffreService implements IOffre   {
         ObservableList<Offre> OffreList = FXCollections.observableArrayList();
 
         try {
-            String sql = "select * from offre ";
+            String sql = "select * from offre  ";
             Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
@@ -128,9 +132,6 @@ public class OffreService implements IOffre   {
         try {
             PreparedStatement ste=myconn.prepareStatement(sql);
              
-
-                               
-
                  ste.setInt(1, O.getId_offre());
             ste.executeUpdate();
             System.out.println("Offre Réfusée");
@@ -138,12 +139,12 @@ public class OffreService implements IOffre   {
             System.out.println(ex);
         }
        }
-      public ObservableList<Offre> afficherRefuserOffre() {
+     public ObservableList<Offre> afficherattenteOffre() {
        
         ObservableList<Offre> OffreList = FXCollections.observableArrayList();
 
         try {
-            String sql = "select * from offre where offre.etat='Refuse'";
+            String sql = "select * from offre where offre.etat='en attente'";
             Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
@@ -211,8 +212,39 @@ public class OffreService implements IOffre   {
         return OffreList;
     }
 
-    }
+    
+    
 
   
 
+public ObservableList<Offre> getOffresByDate(LocalDate date_debut, LocalDate date_limite) {
+    ObservableList<Offre> offres = FXCollections.observableArrayList();
+    try {
+        String sql = "SELECT * FROM offre WHERE date_debut >= ? AND date_limite <= ? AND offre.etat='en attente'";
+        PreparedStatement pstmt = myconn.prepareStatement(sql);
+        pstmt.setDate(1, Date.valueOf(date_debut));
+        pstmt.setDate(2, Date.valueOf(date_limite));
+        ResultSet s = pstmt.executeQuery();
+        while (s.next()) {
+            Offre o = new Offre(s.getInt(1),
+                   s.getInt(2),
+                   s.getString("titre"),
+                   s.getString("description"),
+                   s.getString("adresse_societe"),
+                   s.getString("domaine_offre"),
+                   s.getDate(7),
+                        
+                       s.getDate(8),
+                   s.getString("etat"));
+            offres.add(o);
+        }
+        return offres;
+    } catch (SQLException ex) {
+        System.err.println(ex.getMessage());
+        return null;
+    }
+}
 
+
+
+}

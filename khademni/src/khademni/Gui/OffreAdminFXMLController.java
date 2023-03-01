@@ -7,7 +7,9 @@ package khademni.Gui;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -42,7 +45,11 @@ public class OffreAdminFXMLController implements Initializable {
     private Button btnvalide;
   @FXML
     private TextField tfSearch;
+    @FXML
+    private DatePicker tfDate_Debut;
 
+    @FXML
+    private DatePicker tfDate_limite;
  @FXML
     private TableColumn<?, ?> colEtat;
 
@@ -83,7 +90,8 @@ public class OffreAdminFXMLController implements Initializable {
     @FXML
     private TableView<Offre> tvOffre;
 
-   
+       @FXML
+    private Button btnafficher;
    
     //void handButtonAction(ActionEvent event) {
       /*if(event.getSource() == btnAdd){
@@ -125,10 +133,7 @@ public class OffreAdminFXMLController implements Initializable {
                     return true;
                 } else if (predicateOffreData.getAdresse_societe().toLowerCase().contains(searchKey)) {
                     return true;
-               // } else if (predicateOffreData.getDate_debut().toLowerCase().contains(searchKey)) {
-                   // return true;
-               // } else if (predicateOffreData.getDate_limite().toLowerCase().contains(searchKey)) {
-                   // return true;
+               
                 } else 
                     return false;
                 
@@ -145,7 +150,7 @@ public class OffreAdminFXMLController implements Initializable {
     public void showOffre(){
            OffreService os =new OffreService(); 
 
-ObservableList<Offre> list = os.afficherOffre();
+ObservableList<Offre> list = os.afficherattenteOffre();
 
 
 colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
@@ -158,6 +163,27 @@ colDate_limite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
 
        tvOffre.setItems(list);
 }
+    
+
+    @FXML
+    void toutOffres(ActionEvent event) {
+  OffreService os =new OffreService(); 
+
+ObservableList<Offre> list = os.afficherattenteOffre();
+
+
+colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
+colDescription.setCellValueFactory(new PropertyValueFactory <>("description"));
+colAdresse_societe.setCellValueFactory(new PropertyValueFactory <>("adresse_societe"));
+colDomaine_offre.setCellValueFactory(new PropertyValueFactory <>("domaine_offre"));
+colDate_debut.setCellValueFactory(new PropertyValueFactory <>("date_debut"));
+colDate_limite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
+    colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
+
+       tvOffre.setItems(list);
+
+    }
+
     @FXML
     void retourneInter(ActionEvent event) throws IOException {
          SceneController SC= new SceneController();
@@ -176,12 +202,15 @@ colDate_limite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
         return;
           
     }os.RefuseOffre(selectedOffre);
-    os.afficherRefuserOffre();
+    os.afficherattenteOffre();
     
    
    Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setContentText("Offre Refusée!");
     alert.showAndWait();
+     tvOffre.refresh();
+  showOffre();
+
 }    
         
  
@@ -200,14 +229,34 @@ colDate_limite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
         return;
           
     }os.accepterOffre(selectedOffre);
-    os.afficherAccepterOffre();
+    os.afficherattenteOffre();
     
    
    Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setContentText("Offre Validée!");
     alert.showAndWait();
+     tvOffre.refresh();
+  showOffre();
+
     
-}}
+}@FXML
+void filtrerOffre(ActionEvent event) {
+    LocalDate date_debut = tfDate_Debut.getValue();
+    LocalDate date_limite = tfDate_limite.getValue();
+    
+    Date datedeb = Date.valueOf(date_debut);
+    Date datelim = Date.valueOf(date_limite);
+    
+    OffreService os = new OffreService(); 
+    ObservableList<Offre> filteredList = os.getOffresByDate(
+        datedeb.toLocalDate(),
+        datelim.toLocalDate()
+    );
+    
+    tvOffre.setItems(filteredList);
+}
+    
+}
  
 
 
