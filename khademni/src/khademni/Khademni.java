@@ -5,6 +5,11 @@
 package khademni;
 
 import java.sql.Connection;
+import khademni.entity.Ligne_commande;
+import khademni.entity.Panier;
+import khademni.services.HistoriqueService;
+import khademni.services.Ligne_CommandeService;
+import khademni.services.PanierService;
 import khademni.utils.MyConnection;
 
 /**
@@ -20,6 +25,21 @@ public class Khademni {
         // TODO code application logic here
         
         Connection myconn =MyConnection.getInstance().getConnexion();
+        
+        PanierService p = new PanierService();
+        Panier panier = new Panier(10,100);
+       //p.ajouterPanier(panier);
+      // p.modifierPanier(panier);
+       Ligne_CommandeService cm= new Ligne_CommandeService();
+       Ligne_commande commande= new Ligne_commande(1,3,250,"SQL",0);
+       //cm.ajouterCommande(commande);
+       // System.out.println(cm.afficherLigneCommande());
+       
+        
+      //  HistoriqueService hs = new HistoriqueService();
+      //System.out.println(hs.afficherHistoriqueWithUser());  
+      
+      System.out.println(cm.afficherStatistiqiueFormation());
     }
     
 }

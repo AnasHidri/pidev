@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiUser.InscriptionFXMLController">
+            
+    <!-- ************************************************************************************************************* -->
+   
+  <AnchorPane fx:id="role_form" layoutX="10.0" layoutY="10.0" prefHeight="502.0" prefWidth="798.0" visible="false">   
+    <children>
+        <ImageView fx:id="ImageP" fitHeight="521.0" fitWidth="817.0" layoutX="-11.0" layoutY="-10.0">
+         <image>
+            <Image url="@fond.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="logo" fitHeight="157.0" fitWidth="150.0" layoutX="576.0" layoutY="164.0">
+         <image>
+            <Image url="@logo-no-bg.png" />
+         </image>
+      </ImageView>
+      
+                  <Button layoutX="726.0" mnemonicParsing="false" onAction="#exit" prefHeight="24.0" prefWidth="52.0" styleClass="exit" stylesheets="@design.css" text="X" AnchorPane.leftAnchor="726.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="9.0">
+                     <graphic>
+                     </graphic>
+                  </Button>                  
+                  <Label layoutX="64.0" layoutY="232.0" text="S'inscrire en tant que : " textFill="#662d60">
+                     <font>
+                        <Font name="Berlin Sans FB" size="25.0" />
+                     </font>
+                  </Label>
+                  <Hyperlink fx:id="Client_signup" layoutX="88.0" layoutY="337.0" onAction="#changeForm" styleClass="hyp" stylesheets="@design.css" text="Client">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                     </font>
+                  </Hyperlink>
+                  <Hyperlink fx:id="Formateur_signup" layoutX="88.0" layoutY="313.0" onAction="#changeForm" styleClass="hyp" stylesheets="@design.css" text="Formateur">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                     </font>
+                  </Hyperlink>
+                  <Hyperlink fx:id="Employeur_signup" layoutX="87.0" layoutY="289.0" onAction="#changeForm" styleClass="hyp" stylesheets="@design.css" text="Employeur">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                     </font>
+                  </Hyperlink>
+         <Label layoutX="57.0" layoutY="97.0" prefHeight="54.0" prefWidth="472.0" text="Bienvenu chez Khademni" textFill="#0b55db">
+            <font>
+               <Font name="Berlin Sans FB Bold" size="32.0" />
+            </font>
+         </Label> 
+         </children>
+         </AnchorPane>
+    
+        <!-- ************************************************************************************************************* -->
+
+    
+    <AnchorPane fx:id="signup_form_employeur" prefHeight="512.0" prefWidth="816.0" visible="true">
+    <children>
+            <AnchorPane layoutX="390.0" layoutY="-10.0" prefHeight="530.0" prefWidth="426.0" styleClass="login-bg" stylesheets="@design.css">
+               <children>
+                  <Label layoutX="96.0" layoutY="220.0" text="Khademni">
+                     <font>
+                        <Font name="Baskerville Old Face" size="50.0" /> 
+                     </font>
+                  </Label>
+                  <Button layoutX="352.0" mnemonicParsing="false" onAction="#exit" prefHeight="26.0" prefWidth="57.0" styleClass="exit" stylesheets="@design.css" text="X" AnchorPane.leftAnchor="352.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="9.0">
+                     <graphic>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="-10.0" prefHeight="513.0" prefWidth="400.0">
+               <children>
+                  <Label layoutX="121.0" layoutY="64.0" prefHeight="54.0" prefWidth="162.0" text="S'inscrire" textFill="#662d60">
+                     <font>
+                        <Font name="Berlin Sans FB" size="39.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfnom_emp" layoutX="90.0" layoutY="130.0" prefHeight="28.0" prefWidth="220.0" promptText="Nom ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="signup_btn_emp" layoutX="159.0" layoutY="428.0" mnemonicParsing="false" onAction="#saveEmployeur" prefHeight="24.0" prefWidth="83.0" styleClass="button-design" stylesheets="@design.css" text="S'inscrire" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Hyperlink fx:id="login_acc_emp" layoutX="127.0" layoutY="461.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Déjà inscrit? S'identifier">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                     </font>
+                  </Hyperlink>
+                  <PasswordField fx:id="tfconfirm_password_emp" layoutX="90.0" layoutY="388.0" prefHeight="28.0" prefWidth="220.0" promptText="Confirmer le mot de passe ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+                  <TextField fx:id="tfnomsoc_emp" layoutX="90.0" layoutY="278.0" prefHeight="28.0" prefWidth="220.0" promptText="Nom société ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField fx:id="tfpassword_emp" layoutX="90.0" layoutY="351.0" prefHeight="28.0" prefWidth="220.0" promptText="Mot de passe ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+                  <TextField fx:id="tflogin_emp" layoutX="90.0" layoutY="315.0" prefHeight="28.0" prefWidth="220.0" promptText="Identifiant ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="tfprenom_emp" layoutX="90.0" layoutY="167.0" prefHeight="28.0" prefWidth="220.0" promptText="Prenom ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+               <TextField fx:id="tfemail_emp" layoutX="90.0" layoutY="204.0" prefHeight="28.0" prefWidth="220.0" promptText="Email ..." styleClass="textfield-design" stylesheets="@design.css">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </TextField>
+               <ComboBox fx:id="tfdomaine_emp" layoutX="90.0" layoutY="244.0" prefHeight="26.0" prefWidth="220.0" promptText="Choisir domaine" />
+               </children>
+            </AnchorPane>
+         </children>
+         </AnchorPane>
+         
+             <!-- ************************************************************************************************************* -->
+         
+         <AnchorPane fx:id="signup_form_formateur" prefHeight="512.0" prefWidth="816.0" visible="false">
+    <children>
+            <AnchorPane layoutX="390.0" layoutY="-10.0" prefHeight="530.0" prefWidth="426.0" styleClass="login-bg" stylesheets="@design.css">
+               <children>
+                  <Label layoutX="96.0" layoutY="220.0" text="Khademni">
+                     <font>
+                        <Font name="Baskerville Old Face" size="50.0" /> 
+                     </font>
+                  </Label>
+                  <Button layoutX="352.0" mnemonicParsing="false" onAction="#exit" prefHeight="26.0" prefWidth="57.0" styleClass="exit" stylesheets="@design.css" text="X" AnchorPane.leftAnchor="352.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="9.0">
+                     <graphic>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="-10.0" prefHeight="513.0" prefWidth="400.0">
+               <children>
+                  <Label layoutX="121.0" layoutY="64.0" prefHeight="54.0" prefWidth="162.0" text="S'inscrire" textFill="#662d60">
+                     <font>
+                        <Font name="Berlin Sans FB" size="39.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfnom_form" layoutX="90.0" layoutY="130.0" prefHeight="28.0" prefWidth="220.0" promptText="Nom ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="signup_btn_form" layoutX="159.0" layoutY="428.0" mnemonicParsing="false" onAction="#saveFormateur" prefHeight="24.0" prefWidth="83.0" styleClass="button-design" stylesheets="@design.css" text="S'inscrire" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Hyperlink fx:id="login_acc_form" layoutX="127.0" layoutY="461.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Déjà inscrit? S'identifier">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                     </font>
+                  </Hyperlink>
+                  <PasswordField fx:id="tfconfirm_password_form" layoutX="90.0" layoutY="388.0" prefHeight="28.0" prefWidth="220.0" promptText="Confirmer le mot de passe ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+                  <TextField fx:id="tfcertif_form" disable="true" layoutX="200.0" layoutY="278.0" prefHeight="34.0" prefWidth="110.0" promptText="..." styleClass="textfield-design" stylesheets="@design.css" text="...">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="90.0" layoutY="282.0" mnemonicParsing="false" onAction="#selectCertif" prefHeight="26.0" prefWidth="101.0" text="Select Certificat" />
+                  <PasswordField fx:id="tfpassword_form" layoutX="90.0" layoutY="351.0" prefHeight="28.0" prefWidth="220.0" promptText="Mot de passe ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+               <ComboBox fx:id="tfdomaine_form" layoutX="90.0" layoutY="244.0" prefHeight="26.0" prefWidth="220.0" promptText="Choisir domaine" />
+                  <TextField fx:id="tflogin_form" layoutX="90.0" layoutY="315.0" prefHeight="28.0" prefWidth="220.0" promptText="Identifiant ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="tfprenom_form" layoutX="90.0" layoutY="167.0" prefHeight="28.0" prefWidth="220.0" promptText="Prenom ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+               <TextField fx:id="tfemail_form" layoutX="90.0" layoutY="204.0" prefHeight="28.0" prefWidth="220.0" promptText="Email ..." styleClass="textfield-design" stylesheets="@design.css">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </TextField>
+               </children>
+            </AnchorPane>
+         </children>
+         </AnchorPane>
+         
+             <!-- ************************************************************************************************************* -->
+
+         <AnchorPane fx:id="signup_form_client" prefHeight="512.0" prefWidth="816.0" visible="false">
+    <children>
+            <AnchorPane layoutX="390.0" layoutY="-10.0" prefHeight="530.0" prefWidth="426.0" styleClass="login-bg" stylesheets="@design.css">
+               <children>
+                  <Label layoutX="96.0" layoutY="220.0" text="Khademni">
+                     <font>
+                        <Font name="Baskerville Old Face" size="50.0" /> 
+                     </font>
+                  </Label>
+                  <Button layoutX="352.0" mnemonicParsing="false" onAction="#exit" prefHeight="26.0" prefWidth="57.0" styleClass="exit" stylesheets="@design.css" text="X" AnchorPane.leftAnchor="352.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="9.0">
+                     <graphic>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="-10.0" prefHeight="513.0" prefWidth="400.0">
+               <children>
+                  <Label layoutX="121.0" layoutY="64.0" prefHeight="54.0" prefWidth="162.0" text="S'inscrire" textFill="#662d60">
+                     <font>
+                        <Font name="Berlin Sans FB" size="39.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfnom_cl" layoutX="90.0" layoutY="130.0" prefHeight="28.0" prefWidth="220.0" promptText="Nom ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="signup_btn_cl" layoutX="159.0" layoutY="428.0" mnemonicParsing="false" onAction="#saveClient" prefHeight="24.0" prefWidth="83.0" styleClass="button-design" stylesheets="@design.css" text="S'inscrire" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Hyperlink fx:id="login_acc_cl" layoutX="127.0" layoutY="461.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Déjà inscrit? S'identifier">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                     </font>
+                  </Hyperlink>
+                  <PasswordField fx:id="tfconfirm_password_cl" layoutX="90.0" layoutY="388.0" prefHeight="28.0" prefWidth="220.0" promptText="Confirmer le mot de passe ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+                  <TextField fx:id="tfcv_cl" disable="true" layoutX="200.0" layoutY="278.0" prefHeight="34.0" prefWidth="110.0" promptText="..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="90.0" layoutY="282.0" mnemonicParsing="false" onAction="#selectCv" prefHeight="26.0" prefWidth="101.0" text="Select cv" />
+                  <PasswordField fx:id="tfpassword_cl" layoutX="90.0" layoutY="351.0" prefHeight="28.0" prefWidth="220.0" promptText="Mot de passe ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+                  <ComboBox fx:id="tfdomaine_cl" layoutX="90.0" layoutY="244.0" prefHeight="26.0" prefWidth="220.0" promptText="Choisir domaine" />
+                  <TextField fx:id="tflogin_cl" layoutX="90.0" layoutY="315.0" prefHeight="28.0" prefWidth="220.0" promptText="Identifiant ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="tfprenom_cl" layoutX="90.0" layoutY="167.0" prefHeight="28.0" prefWidth="220.0" promptText="Prenom ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+               <TextField fx:id="tfemail_cl" layoutX="90.0" layoutY="204.0" prefHeight="28.0" prefWidth="220.0" promptText="Email ..." styleClass="textfield-design" stylesheets="@design.css">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </TextField>
+               </children>
+            </AnchorPane>
+         </children>
+         </AnchorPane>
+         
+                      <!-- ************************************************************************************************************* -->
+
+         <AnchorPane fx:id="login_form" prefHeight="500.0" prefWidth="394.0" visible="false">
+         <children>
+            <AnchorPane prefHeight="522.0" prefWidth="400.0" styleClass="login-bg" stylesheets="@design.css">
+               <children>
+                  <Label layoutX="96.0" layoutY="220.0" text="Khademni">
+                     <font>
+                        <Font name="Baskerville Old Face" size="50.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="401.0" prefHeight="500.0" prefWidth="400.0">
+               <children>
+                  <Button layoutX="318.0" layoutY="9.0" mnemonicParsing="false" onAction="#exit" prefHeight="24.0" prefWidth="52.0" styleClass="exit" stylesheets="@design.css" text="X" AnchorPane.leftAnchor="318.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="9.0">
+                     <graphic>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="126.0" layoutY="155.0" prefHeight="54.0" prefWidth="192.0" text="S'identifier" textFill="#662d60">
+                     <font>
+                        <Font name="Berlin Sans FB" size="40.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="login_signin" layoutX="112.0" layoutY="250.0" prefHeight="28.0" prefWidth="220.0" promptText="Nom d'utilisateur ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField fx:id="password_signin" layoutX="112.0" layoutY="290.0" prefHeight="28.0" prefWidth="220.0" promptText="Mot de passe ..." styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </PasswordField>
+                  <Button fx:id="login_btn" layoutX="167.0" layoutY="339.0" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="94.0" styleClass="button-design" stylesheets="@design.css" text="Connecter" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Hyperlink fx:id="create_acc" layoutX="144.0" layoutY="448.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Créer un nouveau compte ?">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                     </font>
+                  </Hyperlink>
+                  <!--<Hyperlink fx:id="mdp_oub" layoutX="145.0" layoutY="427.0" styleClass="hypertext-design" stylesheets="@design.css" text="Mot de passe oublié ?">
+                     <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                     </font>
+                  </Hyperlink>
+                  -->
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      
+</AnchorPane>

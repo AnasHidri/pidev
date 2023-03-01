@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="login-bg" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.HistoriqueFXMLController">
+     <children>
+        
+      <TableView fx:id="tableviewUser" layoutX="14.0" layoutY="26.0" prefHeight="330.0" prefWidth="416.0">
+        <columns>
+              <TableColumn fx:id="dateaction" prefWidth="132.00006103515625" text="Date action" />
+          <TableColumn fx:id="action" prefWidth="286.4000244140625" text="Action" />
+  
+        </columns>
+      </TableView>
+     
+      <TextField fx:id="prixtotal" editable="false" layoutX="24.0" layoutY="362.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css">
+         
+      </TextField>
+      <TableView fx:id="tableviewUser2" layoutX="431.0" layoutY="26.0" prefHeight="330.0" prefWidth="134.0">
+         <columns>
+            <TableColumn fx:id="username" prefWidth="132.00006103515625" text="Utilisateur" />
+         </columns>
+      </TableView>
+   
+   </children>
+</AnchorPane>
