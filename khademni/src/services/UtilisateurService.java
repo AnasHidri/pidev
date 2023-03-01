@@ -129,22 +129,37 @@ public class UtilisateurService implements IUtilisateurService {
         }
     }
     public void modifierProfil(Utilisateur u) {
-        String sql="update user set nom=?, prenom=?,domaine=?,mail=?,password=? where id_user=? ";
+        String sql="update user set nom=?, prenom=?,domaine=?,mail=? where id_user=? ";
         try {
             PreparedStatement ste=myconn.prepareStatement(sql);
                 ste.setString(1, u.getNom());
                 ste.setString(2, u.getPrenom());
                 ste.setString(3, u.getDomaine());
                 ste.setString(4, u.getMail());
-                ste.setString(5, u.getPassword());
-                ste.setInt(6, u.getId_user());
+                //ste.setString(5, u.getPassword());
+                ste.setInt(5, u.getId_user());
     
             ste.executeUpdate();
-            System.out.println("Utilisateur modifié");
+            System.out.println("profil Utilisateur modifié");
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
+    
+    public void modifierPassword(Utilisateur u) {
+        String sql="update user set password=? where id_user=? ";
+        try {
+            PreparedStatement ste=myconn.prepareStatement(sql);
+                ste.setString(1, u.getPassword());
+                ste.setInt(2, u.getId_user());
+                
+            ste.executeUpdate();
+            System.out.println(" mdp Utilisateur modifié");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
 
     
     @Override
@@ -197,7 +212,31 @@ public class UtilisateurService implements IUtilisateurService {
             System.out.println(ex);
         }
 }
-    
+        public void updateCv(String cvPath, int Id) throws SQLException {
+    try {
+        String sql = "UPDATE user SET cv = ? WHERE id_user = ?";
+            PreparedStatement ste=myconn.prepareStatement(sql);
+        ste.setString(1, cvPath);
+        ste.setInt(2, Id);
+        ste.executeUpdate();
+        System.out.println("cv modifié");
+    } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+}
+            public void updateCertif(String certifPath, int Id) throws SQLException {
+    try {
+        String sql = "UPDATE user SET certif = ? WHERE id_user = ?";
+            PreparedStatement ste=myconn.prepareStatement(sql);
+        ste.setString(1, certifPath);
+        ste.setInt(2, Id);
+        ste.executeUpdate();
+        System.out.println("certif modifié");
+    } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+}
+            
     
     
 }

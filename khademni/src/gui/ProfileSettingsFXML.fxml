@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -18,21 +17,16 @@
         <URL value="@profilesettingsfxml.css" />
     </stylesheets>
    <children>
-      <VBox layoutX="574.0" layoutY="14.0" prefHeight="134.0" prefWidth="123.0">
+      <VBox layoutX="524.0" layoutY="43.0" prefHeight="136.0" prefWidth="191.0">
          <padding>
             <Insets right="10.0" />
          </padding>
          <children>
-            <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageView" fitHeight="144.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
             </ImageView>
          </children>
       </VBox>
-      <Label fx:id="login" layoutX="637.0" layoutY="148.0" text="Yassine123" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Button fx:id="modifier_btn"  onAction="#ModifierUser"  alignment="CENTER" contentDisplay="RIGHT" layoutX="531.0" layoutY="448.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="210.0" text="Modifier" textAlignment="CENTER" textFill="#f4fafa">
+      <Button fx:id="modifier_btn" alignment="CENTER" contentDisplay="RIGHT" layoutX="171.0" layoutY="273.0" mnemonicParsing="false" onAction="#ModifierInfo" prefHeight="14.0" prefWidth="98.0" text="Modifier" textAlignment="CENTER" textFill="#f4fafa">
          <font>
             <Font size="15.0" />
          </font>
@@ -118,7 +112,7 @@
             </VBox>
          </children>
       </VBox>
-      <VBox layoutX="55.0" layoutY="273.0" prefHeight="103.0" prefWidth="422.0">
+      <VBox layoutX="55.0" layoutY="302.0" prefHeight="103.0" prefWidth="422.0">
          <children>
             <Label prefHeight="32.0" prefWidth="330.0" text="Changer le mot de passe " textFill="WHITE">
                <font>
@@ -187,7 +181,62 @@
             <Insets top="5.0" />
          </padding>
       </VBox>
-      <Button fx:id="selecimg" layoutX="629.0" layoutY="214.0" mnemonicParsing="false" onAction="#selectImage" text="Select image" textFill="WHITE" />
-      <TextField fx:id="tfimg" layoutX="620.0" layoutY="328.0"  visible="false" />
+      <Button fx:id="selecimg" layoutX="578.0" layoutY="209.0" mnemonicParsing="false" onAction="#selectImage" text="Select image" textFill="WHITE" />
+      <TextField fx:id="tfimg" layoutX="620.0" layoutY="328.0" visible="false" />
+      <Button fx:id="modifier_btn2" alignment="CENTER" contentDisplay="RIGHT" layoutX="119.0" layoutY="461.0" mnemonicParsing="false" onAction="#ModifierPassword" prefHeight="31.0" prefWidth="178.0" text="Modifier mot de passe" textAlignment="CENTER" textFill="#f4fafa">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <HBox prefHeight="100.0" prefWidth="200.0" />
+      <VBox layoutX="527.0" layoutY="284.0" prefHeight="143.0" prefWidth="262.0">
+         <children>
+            <HBox prefHeight="78.0" prefWidth="253.0">
+               <children>
+                  <Button fx:id="cv" mnemonicParsing="false" onAction="#selectCv" text="Choisir cv" textFill="WHITE" />
+                  <TextField fx:id="tfcv" disable="true" prefHeight="26.0" prefWidth="172.0">
+                     <HBox.margin>
+                        <Insets left="12.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="74.0" prefWidth="244.0">
+               <children>
+                  <HBox prefHeight="49.0" prefWidth="254.0">
+                     <children>
+                        <Button fx:id="openCV" mnemonicParsing="false" onAction="#openCV" prefHeight="26.0" prefWidth="146.0" text="Voir cv" textFill="WHITE" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="78.0" prefWidth="253.0">
+               <children>
+                  <Button fx:id="certif" mnemonicParsing="false" onAction="#selectCv" prefHeight="26.0" prefWidth="144.0" text="Choisir certificat" textFill="WHITE" />
+                  <TextField fx:id="tfcertif" disable="true" prefHeight="26.0" prefWidth="172.0">
+                     <HBox.margin>
+                        <Insets left="12.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="78.0" prefWidth="253.0">
+               <children>
+                  <Button fx:id="openCertif" mnemonicParsing="false" onAction="#openCertif" prefHeight="26.0" prefWidth="144.0" text="Voir certif" textFill="WHITE" />
+                  <TextField disable="true" prefHeight="26.0" prefWidth="172.0">
+                     <HBox.margin>
+                        <Insets left="12.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Label fx:id="login" layoutX="366.0" layoutY="19.0" text="Yassine123" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="logout" layoutX="729.0" layoutY="16.0" mnemonicParsing="false" onAction="#logout" text="Logout" textFill="#f70606" />
    </children>
 </AnchorPane>

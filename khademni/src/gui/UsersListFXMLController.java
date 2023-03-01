@@ -7,6 +7,7 @@ package gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
@@ -17,6 +18,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -58,12 +61,33 @@ public class UsersListFXMLController implements Initializable {
    
     
     UtilisateurService us = new UtilisateurService();
+    @FXML
+    private Button btn_filter;
+    @FXML
+    private ComboBox rolechoice;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
                 showUsers();
                 searchRec();
+    rolechoice.getItems().addAll("Client","Formateur","Employeur");
+
     } 
     
+    @FXML
+private void filterByRole(ActionEvent event) {
+    String selectedRole = (String) rolechoice.getSelectionModel().getSelectedItem();
+
+    FilteredList<Utilisateur> filteredData = tableviewUser.getItems().filtered(user -> true);
+
+    Predicate<Utilisateur> rolePredicate = user -> user.getRole().equals(selectedRole);
+
+    filteredData.setPredicate(rolePredicate);
+    
+         tableviewUser.setItems(filteredData);
+}
+
+    
+    @FXML
      public void showUsers(){
        
          ObservableList<Utilisateur> list = us.afficherUtilisateurs() ;

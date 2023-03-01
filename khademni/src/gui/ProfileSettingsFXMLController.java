@@ -4,6 +4,7 @@
  */
 package gui;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,8 +25,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import khademni.entity.Client;
+import khademni.entity.Formateur;
 import khademni.entity.Utilisateur;
 import services.UtilisateurService;
 
@@ -60,15 +64,56 @@ public class ProfileSettingsFXMLController implements Initializable {
     private Button modifier_btn;
      @FXML
     private ImageView imageView;
+
+    @FXML
+    private Button selecimg;
+    @FXML
+    private Button modifier_btn2;
+    @FXML
+    private Button cv;
+    @FXML
+    private TextField tfcv;
+    @FXML
+    private Button certif;
+    @FXML
+    private TextField tfcertif;
+    @FXML
+    private Button openCV;
+    @FXML
+    private Button openCertif;
+    @FXML
+    private Button logout;
     
     
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setTextFields();
         displayImage();
+        if("Client".equals(Utilisateur.Current_User.getRole())){
+            certif.setVisible(false);
+            tfcertif.setVisible(false);
+            openCertif.setVisible(false);
+        }else if("Formateur".equals(Utilisateur.Current_User.getRole())){
+            cv.setVisible(false);
+            tfcv.setVisible(false);
+            openCV.setVisible(false);
+
+        }else{
+            certif.setVisible(false);
+            tfcertif.setVisible(false);
+            cv.setVisible(false);
+            tfcv.setVisible(false);
+            openCV.setVisible(false);
+            openCertif.setVisible(false);
+
+
+        }
+        
+        
     //    Image image = new Image("C:\\Users\\ASUS\\Desktop\\IMG_1976.png");
    // imageView.setImage(image);
     }   
@@ -82,6 +127,13 @@ public class ProfileSettingsFXMLController implements Initializable {
         tfmail.setText(Utilisateur.Current_User.getMail());
         login.setText(Utilisateur.Current_User.getLogin());
         tfimg.setText(Utilisateur.Current_User.getImage());
+        if (Utilisateur.Current_User instanceof Client) {
+            Client client = (Client) Utilisateur.Current_User;
+            tfcv.setText(client.getCv());
+        }else if(Utilisateur.Current_User instanceof Formateur){
+            Formateur formateur = (Formateur) Utilisateur.Current_User;
+            tfcertif.setText(formateur.getCertif());
+        }
     }
     
      
@@ -114,7 +166,7 @@ public class ProfileSettingsFXMLController implements Initializable {
 }
      
      @FXML
-    void ModifierUser(ActionEvent event) throws IOException {
+    void ModifierInfo(ActionEvent event) throws IOException {
          UtilisateurService us= new UtilisateurService();
          
          Integer id=Utilisateur.Current_User.getId_user();
@@ -123,37 +175,179 @@ public class ProfileSettingsFXMLController implements Initializable {
          String prenom=tfprenom.getText();
          String domaine=tfdomaine.getText();
          String mail=tfmail.getText();
-         String mdp=tfnouv.getText();
          
+         String mdp="";
          String role="";
          String etat="";
-         
-         if(Utilisateur.Current_User.getPassword().equals(tfactuel.getText()) && tfnouv.getText().equals(tfconfirm.getText())){
-             
-         
-        
-         
+
+         if(       nom.isEmpty()
+                    | prenom.isEmpty()
+                    | domaine.isEmpty()
+                    | mail.isEmpty()
+                    ){
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Khademni :: Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Tous les champs sont obligatoire !!");
+                alert.showAndWait();
+         }else if(!(nom.matches("[a-zA-Z]+") & prenom.matches("[a-zA-Z]+") )){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Khademni :: Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Le nom et le prenom doivent contenir que des lettres !!");
+                alert.showAndWait();    
+            }else {
          Utilisateur user =new Utilisateur(id,nom,prenom,role,etat,mail,domaine,mdp);
          System.out.println(user.getDomaine());
          System.out.println("user :: "+user); 
            us.modifierProfil(user);
-           
+          
            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Khademni :: Success Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Données modifiés");
                 alert.showAndWait();  
-         }else {
-             Alert alert = new Alert(Alert.AlertType.ERROR);
+         }
+    }
+    
+    @FXML
+    void ModifierPassword(ActionEvent event) throws IOException {
+        
+        UtilisateurService us= new UtilisateurService();
+        
+        Integer id=Utilisateur.Current_User.getId_user();
+        
+        String nom=tfnom.getText();
+         String prenom=tfprenom.getText();
+         String domaine=tfdomaine.getText();
+         String mail=tfmail.getText();
+         
+         String role="";
+         String etat="";
+         
+        String mdp=tfnouv.getText();
+
+    if(Utilisateur.Current_User.getPassword().equals(tfactuel.getText()) && mdp.equals(tfconfirm.getText())){
+        
+           Utilisateur user =new Utilisateur(id,nom,prenom,role,etat,mail,domaine,mdp);
+           us.modifierPassword(user);
+           
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Khademni :: Success Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Mot de passe modifié");
+                alert.showAndWait();  
+        
+    }else{
+        Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Khademni :: Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Erreur au niveau du mot de passe");
                 alert.showAndWait();  
-         }
-  
-             
-
     }
+
+                 
+    }
+    
+        @FXML
+    public void logout(){
+        try{
+                                        // Charger la nouvelle vue
+                                       FXMLLoader loader = new FXMLLoader(getClass().getResource("InscriptionFXML.fxml"));
+                                       Parent root = loader.load();
+                                        // Afficher la nouvelle vue dans la fenêtre principale
+                                       Scene scene = new Scene(root);
+                                       Stage stage = (Stage) cv.getScene().getWindow();
+                                       stage.setScene(scene);
+                                       stage.show();
+                                       
+                                       Utilisateur.setCurrent_User(new Utilisateur());
+
+                                       }catch(IOException ex){
+                                           System.out.println(ex.getCause().getMessage());
+                                       }
+    }
+    
+    
+    @FXML
+    public void selectCertif() throws SQLException {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter pdfFilter = new FileChooser.ExtensionFilter(
+        "PDF files (*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(pdfFilter);
+
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            tfcertif.setText(selectedFile.getPath());
+            us.updateCv(tfcertif.getText(), Utilisateur.Current_User.getId_user());
+            System.out.println("filepath::"+tfcertif.getText());
+        }
+    }
+    
+    @FXML
+    public void selectCv() throws SQLException {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter pdfFilter = new FileChooser.ExtensionFilter(
+        "PDF files (*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(pdfFilter);
+
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            tfcv.setText(selectedFile.getPath());
+            us.updateCv(tfcv.getText(), Utilisateur.Current_User.getId_user());
+
+            System.out.println("filepath::"+tfcv.getText());
+        }
+    }
+    
+    @FXML
+    public void openCV(){
+ String cvPath = tfcv.getText(); // get file path from the database
+
+// Create a new file object with the file path
+File file = new File(cvPath);
+
+// Check if the file exists and is a file
+if (file.exists() && file.isFile()) {
+    // Get the desktop object
+    Desktop desktop = Desktop.getDesktop();
+
+    try {
+        // Open the file using the desktop object
+        desktop.open(file);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+} else {
+    // The file does not exist or is not a file
+    System.out.println("File does not exist or is not a file.");
+}
+    }
+    
+    @FXML
+    public void openCertif(){
+ String certifPath = tfcertif.getText(); // get file path from the database
+
+// Create a new file object with the file path
+File file = new File(certifPath);
+
+// Check if the file exists and is a file
+if (file.exists() && file.isFile()) {
+    // Get the desktop object
+    Desktop desktop = Desktop.getDesktop();
+
+    try {
+        // Open the file using the desktop object
+        desktop.open(file);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+} else {
+    // The file does not exist or is not a file
+    System.out.println("File does not exist or is not a file.");
+}
+    }
+    
      
 }

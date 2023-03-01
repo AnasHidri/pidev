@@ -14,8 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
@@ -26,12 +24,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javax.mail.MessagingException;
 import khademni.entity.Client;
 import khademni.entity.Employeur;
@@ -65,11 +64,10 @@ public class InscriptionFXMLController implements Initializable {
     @FXML
     private TextField tfnomsoc_emp;
     @FXML
-    private TextField tfdomaine_emp;
+    private ComboBox tfdomaine_emp;
     @FXML
     private TextField tfemail_emp;
-    @FXML
-    private Button signup_btn_emp;
+    
     @FXML
     private Hyperlink login_acc_emp;
     @FXML
@@ -146,14 +144,22 @@ public class InscriptionFXMLController implements Initializable {
         //role form
     @FXML
     private AnchorPane role_form;
+    @FXML
+    private ImageView ImageP;
+    @FXML
+    private ImageView logo;
+    @FXML
+    private Button signup_btn_emp;
    
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+            tfdomaine_emp.getItems().addAll("Client","Formateur","Employeur");
+
     } 
     
+    @FXML
     public void exit(){
         System.exit(0);
     }
@@ -164,6 +170,7 @@ public class InscriptionFXMLController implements Initializable {
     
     
             
+    @FXML
     public void changeForm(ActionEvent event){
         if(event.getSource() == create_acc){
             role_form.setVisible(true);
@@ -264,7 +271,8 @@ public class InscriptionFXMLController implements Initializable {
             String password = tfpassword_emp.getText();
             String nom_soc = tfnomsoc_emp.getText();
             String mail = tfemail_emp.getText();
-            String domaine = tfdomaine_emp.getText();
+            //String domaine = tfdomaine_emp.getText();
+            String domaine = (String) tfdomaine_emp.getSelectionModel().getSelectedItem();
             String role="Employeur";
             String confirm_pasword=tfconfirm_password_emp.getText();
 
@@ -327,7 +335,7 @@ public class InscriptionFXMLController implements Initializable {
                 tfpassword_emp.setText(null);
                 tfnomsoc_emp.setText(null);
                 tfemail_emp.setText(null);
-                tfdomaine_emp.setText(null);
+                tfdomaine_emp.setPromptText("Choisir role");
                 tfconfirm_password_emp.setText(null);
             
                 
@@ -484,7 +492,7 @@ public class InscriptionFXMLController implements Initializable {
                 us.ajouterClient(c);
                 
                 SendMail(c.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni.\n Veuillez attendez l'activation de votre compte par l'administrateur pour y acceder.\n Votre login : "+c.getLogin()+"\n votre mot de passe : "+c.getPassword());
-                        SendMail("ymahfoudh55@gmail.com", "Nouvelle inscription", "Bonjour, un nouvel utilisateur  sous le login : "+c.getLogin()+" ,est inscrit sur l'application avec le role client. Veuillez activer son compte.");
+                SendMail("ymahfoudh55@gmail.com", "Nouvelle inscription", "Bonjour, un nouvel utilisateur  sous le login : "+c.getLogin()+" ,est inscrit sur l'application avec le role client. Veuillez activer son compte.");
                                 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Khademni :: BIENVENNUE");
@@ -512,6 +520,7 @@ public class InscriptionFXMLController implements Initializable {
     }
         
 
+    @FXML
     public void login() throws IOException{
         if(login_signin.getText().equals("yassineadmin") && password_signin.getText().equals("adminadmin") )
         {
@@ -633,7 +642,8 @@ public class InscriptionFXMLController implements Initializable {
                         Client c = new Client(rs.getInt(1),rs.getString("nom"), rs.getString("prenom"), rs.getString("login"), rs.getString("password"), rs.getString("role"), rs.getString("mail"), rs.getString("domaine"), rs.getFloat("solde"),rs.getString("cv"),rs.getString("etat"),rs.getString("image"));
                         Utilisateur.setCurrent_User(c);
                         System.out.println("current user id ::"+Utilisateur.Current_User.getId_user());
-                        System.out.println("current user id ::"+Utilisateur.Current_User.getLogin());
+                    //    System.out.println("current user login ::"+(Client)Utilisateur.Current_User.getCv());
+                        System.out.println("current user cv ::"+Utilisateur.Current_User.getLogin());
                         System.out.println("current user :: "+Utilisateur.Current_User);
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                                 alert.setTitle("Travel Me :: Success Message");
