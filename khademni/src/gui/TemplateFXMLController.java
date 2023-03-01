@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author ASUS
  */
-public class EmployeurFXMLController implements Initializable {
+public class TemplateFXMLController implements Initializable {
 
     /**
      * Initializes the controller class.

@@ -17,10 +17,15 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -525,7 +530,7 @@ public class InscriptionFXMLController implements Initializable {
     public void login() throws IOException{
         if(login_signin.getText().equals("yassineadmin") && password_signin.getText().equals("adminadmin") )
         {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                      alert.setTitle("Travel Me :: Success Message");
                      alert.setHeaderText(null);
                      alert.setContentText("Bienvenue Admin");
@@ -557,7 +562,7 @@ public class InscriptionFXMLController implements Initializable {
                         System.out.println("current user :: "+Utilisateur.Current_User);
                         System.out.println("current user is employeur et le nom de la soc est  :: "+emp.getNom_societe());
                         */
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                 alert.setTitle("Travel Me :: Success Message");
                                 alert.setHeaderText(null);
                                 alert.setContentText("Vous etes connecté");
@@ -598,7 +603,7 @@ public class InscriptionFXMLController implements Initializable {
                         System.out.println("current user id ::"+Utilisateur.Current_User.getId_user());
                         System.out.println("current user id ::"+Utilisateur.Current_User.getLogin());
                         System.out.println("current user :: "+Utilisateur.Current_User);
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                 alert.setTitle("Travel Me :: Success Message");
                                 alert.setHeaderText(null);
                                 alert.setContentText("Vous etes connecté");
@@ -615,28 +620,6 @@ public class InscriptionFXMLController implements Initializable {
                                        stage.setScene(scene);
                                        stage.show();
 
-
-//// Charger la nouvelle vue
-//FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileSettingsFXML.fxml"));
-//Parent root = loader.load();
-//// Créer une transition Fade
-//FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
-//fadeTransition.setFromValue(0);
-//fadeTransition.setToValue(1);
-//
-//
-//// Ajouter la transition Fade
-//fadeTransition.setOnFinished((event) -> {
-//    // Afficher la nouvelle vue dans la fenêtre principale
-//    Scene scene = new Scene(root);
-//    Stage stage = (Stage) login_btn.getScene().getWindow();
-//    stage.setScene(scene);
-//    stage.show();
-//});
-//
-//// Lancer la transition Fade
-//fadeTransition.play();
-
                                        }catch(IOException ex){
                                            System.out.println(ex.getCause().getMessage());
                                        }
@@ -652,7 +635,7 @@ public class InscriptionFXMLController implements Initializable {
                     //    System.out.println("current user login ::"+(Client)Utilisateur.Current_User.getCv());
                         System.out.println("current user cv ::"+Utilisateur.Current_User.getLogin());
                         System.out.println("current user :: "+Utilisateur.Current_User);
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                 alert.setTitle("Travel Me :: Success Message");
                                 alert.setHeaderText(null);
                                 alert.setContentText("Vous etes connecté");
@@ -674,6 +657,8 @@ public class InscriptionFXMLController implements Initializable {
                                            System.out.println(ex.getCause().getMessage());
                                        }
 
+            
+
                     }
                      
                 }else{
@@ -688,6 +673,7 @@ public class InscriptionFXMLController implements Initializable {
         }
          
     }
+
     
 
     
