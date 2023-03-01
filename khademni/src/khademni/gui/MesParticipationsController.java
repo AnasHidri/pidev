@@ -5,6 +5,8 @@
 package khademni.gui;
 
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -202,18 +204,7 @@ public class MesParticipationsController implements Initializable {
         System.out.println("tese2");
             }
             
-    /*@FXML
-private void showLikesAndDislikes(ActionEvent event) {
-    Evenement selectedEvent =  tab_mes_parti.getSelectionModel().getSelectedItem();
-    Participation p = new Participation(selectedEvent.getId_evenement(), 0, "");
-    int[] counts = participationService.getLikesAndDislikesCount(p);
-    int likes = counts[0];
-    int dislikes = counts[1];
-    String message = "Likes : " + likes + ", Dislikes : " + dislikes;
-    likesAndDislikesLabel.setText(message);
-}
-Dans cet exemple, nous appelons la méthode getLikesAndDislikesCount à partir du service participationService, en passant une instance de Participation contenant l'ID de l'événement sélectionné. Nous stockons le nombre de likes et de dislikes dans les variables likes et dislikes, puis nous construisons une chaîne de caractères message pour afficher les résultats. Enfin, nous mettons à jour l'étiquette likesAndDislikesLabel avec le message.
-*/
+ 
             
             @FXML
         private void rechercheEvenement(ActionEvent event) {
@@ -299,20 +290,23 @@ Dans cet exemple, nous appelons la méthode getLikesAndDislikesCount à partir d
 }
     
     @FXML
-     public void generatePdfParticipation(String filename, TableView<Evenement> tableView) throws DocumentException, FileNotFoundException {
-   Evenement selectedEV =  tab_mes_parti.getSelectionModel().getSelectedItem();
-        System.out.println("id_e::"+selectedEV.getId_evenement());
+public void generatePdfParticipation(String filename, TableView<Evenement> tableView) throws DocumentException, FileNotFoundException {
+    Evenement selectedEV = tab_mes_parti.getSelectionModel().getSelectedItem();
+    System.out.println("id_e::" + selectedEV.getId_evenement());
     if (selectedEV != null) {
-        PdfEv pd=new PdfEv();
-        try{
-        pd.generatePdf("Ma Participation.pdf", selectedEV);
-        System.out.println("impression done");
-    }catch  (Exception ex) {
-        ex.printStackTrace();
+        PdfEv pd = new PdfEv();
+        try {
+            ByteArrayOutputStream qrCodeStream = new ByteArrayOutputStream();
+            pd.generateQRCode("https://example.com/participation?id=" + selectedEV.getId_evenement(), qrCodeStream);
+            Image qrCodeImage = Image.getInstance(qrCodeStream.toByteArray());
+            pd.generatePdfWithQRCode(filename, selectedEV, qrCodeImage);
+            System.out.println("impression done");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
 }
- 
-}
-     }
      
      
 }

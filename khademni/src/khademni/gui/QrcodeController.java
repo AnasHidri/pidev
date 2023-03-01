@@ -73,13 +73,7 @@ public class QrcodeController implements Initializable {
        
        
     }
-    
-   
-   
-   
-   
-   
-   
+ 
    
     @FXML
     private void downloadqr(ActionEvent event) {
