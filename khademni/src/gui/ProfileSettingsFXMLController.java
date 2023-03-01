@@ -197,7 +197,7 @@ public class ProfileSettingsFXMLController implements Initializable {
                 alert.setContentText("Le nom et le prenom doivent contenir que des lettres !!");
                 alert.showAndWait();    
             }else {
-         Utilisateur user =new Utilisateur(id,nom,prenom,role,etat,mail,domaine,mdp);
+         Utilisateur user =new Utilisateur(id,nom,prenom,"",role,etat,mail,domaine,mdp);
          System.out.println(user.getDomaine());
          System.out.println("user :: "+user); 
            us.modifierProfil(user);
@@ -230,7 +230,7 @@ public class ProfileSettingsFXMLController implements Initializable {
 
     if(Utilisateur.Current_User.getPassword().equals(tfactuel.getText()) && mdp.equals(tfconfirm.getText())){
         
-           Utilisateur user =new Utilisateur(id,nom,prenom,role,etat,mail,domaine,mdp);
+           Utilisateur user =new Utilisateur(id,nom,prenom,"",role,etat,mail,domaine,mdp);
            us.modifierPassword(user);
            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

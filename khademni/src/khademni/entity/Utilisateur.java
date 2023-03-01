@@ -54,10 +54,11 @@ public Utilisateur(int id, String nom, String prenom, String domaine,String mail
         this.image=image;
     }
 
-        public Utilisateur(int id,String nom, String prenom, String role,String etat,String mail,String domaine,String password) {
+        public Utilisateur(int id,String nom, String prenom,String login, String role,String etat,String mail,String domaine,String password) {
         this.id_user=id;
         this.nom = nom;
         this.prenom = prenom;
+        this.login=login;
         this.role = role;
         this.etat = etat;
         this.mail = mail;

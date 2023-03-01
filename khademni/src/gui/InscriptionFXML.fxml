@@ -191,11 +191,7 @@
                         <Font size="15.0" />
                      </font>
                   </PasswordField>
-                  <TextField fx:id="tfdomaine_form" layoutX="90.0" layoutY="241.0" prefHeight="28.0" prefWidth="220.0" promptText="Domaine ..." styleClass="textfield-design" stylesheets="@design.css">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
+               <ComboBox fx:id="tfdomaine_form" layoutX="90.0" layoutY="244.0" prefHeight="26.0" prefWidth="220.0" promptText="Choisir domaine" />
                   <TextField fx:id="tflogin_form" layoutX="90.0" layoutY="315.0" prefHeight="28.0" prefWidth="220.0" promptText="Identifiant ..." styleClass="textfield-design" stylesheets="@design.css">
                      <font>
                         <Font size="15.0" />
@@ -271,11 +267,7 @@
                         <Font size="15.0" />
                      </font>
                   </PasswordField>
-                  <TextField fx:id="tfdomaine_cl" layoutX="90.0" layoutY="241.0" prefHeight="28.0" prefWidth="220.0" promptText="Domaine ..." styleClass="textfield-design" stylesheets="@design.css">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
+                  <ComboBox fx:id="tfdomaine_cl" layoutX="90.0" layoutY="244.0" prefHeight="26.0" prefWidth="220.0" promptText="Choisir domaine" />
                   <TextField fx:id="tflogin_cl" layoutX="90.0" layoutY="315.0" prefHeight="28.0" prefWidth="220.0" promptText="Identifiant ..." styleClass="textfield-design" stylesheets="@design.css">
                      <font>
                         <Font size="15.0" />

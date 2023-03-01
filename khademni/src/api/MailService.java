@@ -18,8 +18,8 @@ public class MailService {
     public static void sendEmail(String toEmail, String subject, String body) throws MessagingException, GeneralSecurityException {
 
     //String username = "securesally@gmail.com";
-    String username = "ymahfoudh55@gmail.com";
-    String password = "yyykjakrsaboljwp";
+    String username = "khademni.serviceClient@gmail.com";
+    String password = "iptppxmbutpkhtee";
 
     // Set mail properties
     Properties props = new Properties();

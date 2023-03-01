@@ -11,11 +11,10 @@
     <children> 
       <TableView fx:id="tableviewUser" layoutX="27.0" layoutY="87.0" prefHeight="269.0" prefWidth="559.0">
         <columns>
-            <TableColumn fx:id="nomUser" prefWidth="75.0" text="Nom" />
-          <TableColumn fx:id="prenomUser" prefWidth="69.0" text="Prenom" />
-            <TableColumn fx:id="roleUser" prefWidth="106.0" text="Role" />
-            <TableColumn fx:id="etatUser" prefWidth="115.0" text="Etat" />
-            <TableColumn fx:id="emailUser" prefWidth="167.0" text="EMAIL" />
+            <TableColumn fx:id="nomUser" prefWidth="92.79998588562012" text="Nom" />
+          <TableColumn fx:id="prenomUser" prefWidth="132.79998779296875" text="Prenom" />
+            <TableColumn fx:id="roleUser" prefWidth="163.1999969482422" text="Login" />
+            <TableColumn fx:id="emailUser" prefWidth="171.19989013671875" text="EMAIL" />
         </columns>
       </TableView>
       <Button layoutX="502.0" layoutY="366.0" mnemonicParsing="false" onAction="#SupprimerUtilisateur" styleClass="button-design" stylesheets="@design.css" text="Supprimer" textFill="WHITE" />
@@ -23,7 +22,7 @@
       <Button layoutX="500.0" layoutY="2.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="72.0" styleClass="exit" stylesheets="@design.css" text="LogOut" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="2.0" />
       <TextField fx:id="Recherche_User" layoutX="24.0" layoutY="362.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css">   
       </TextField>
-      <Button layoutX="330.0" layoutY="49.0" mnemonicParsing="false" onAction="#showUsers" styleClass="button-design" stylesheets="@design.css" text="Actulisier" textFill="WHITE" />
+      <Button layoutX="318.0" layoutY="47.0" mnemonicParsing="false" onAction="#showUsers" styleClass="button-design" stylesheets="@design.css" text="Tous les roles" textFill="WHITE" />
       <Button fx:id="btn_filter" layoutX="339.0" layoutY="15.0" mnemonicParsing="false" onAction="#filterByRole" styleClass="button-design" stylesheets="@design.css" text="Filtrer" textFill="WHITE" />
       <ComboBox fx:id="rolechoice" layoutX="109.0" layoutY="28.0" prefWidth="150.0" promptText="Choisir role" />
    </children>

@@ -39,10 +39,18 @@ public class Khademni {
        
       // us.supprimerUtilisateur(u1);
        
-        System.out.println(us.afficherUtilisateurs());
+      //  System.out.println(us.afficherUtilisateurs());
 
+      
+      /*
+      Utilisateur uu=us.findUserByLogin("anas12","12345678");
+      Client emp = (Client)uu;
+                        Utilisateur.setCurrent_User(emp);
 
-    
+        System.out.println("findByloginddddd :: "+emp.getCv());
+                System.out.println("Curent  :: "+Utilisateur.getCurrent_User());
+
+    */
     }
     
 }

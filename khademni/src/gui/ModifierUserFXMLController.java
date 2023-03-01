@@ -53,7 +53,6 @@ public class ModifierUserFXMLController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cbetat.getItems().addAll("actif","inactif");
     }  
     
      public void SendMail(String destination, String subject, String body) throws GeneralSecurityException{        
@@ -81,7 +80,7 @@ public class ModifierUserFXMLController implements Initializable {
          String domaine ="";
          String password ="";
          
-         Utilisateur user =new Utilisateur(id,nom,prenom,role,etat,mail,domaine,password);
+         Utilisateur user =new Utilisateur(id,nom,prenom,"",role,etat,mail,domaine,password);
            us.modifierUtilisateur(user);
            
            if("actif".equals(etat)){

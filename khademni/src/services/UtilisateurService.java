@@ -189,7 +189,7 @@ public class UtilisateurService implements IUtilisateurService {
             while (s.next()) {
 
                 Utilisateur u = new Utilisateur(s.getInt(1),
-                        s.getString("nom"), s.getString("prenom"),s.getString("role"),s.getString("etat"),s.getString("mail"),s.getString("domaine"),s.getString("password"));
+                        s.getString("nom"), s.getString("prenom"),s.getString("login"),s.getString("role"),s.getString("etat"),s.getString("mail"),s.getString("domaine"),s.getString("password"));
                 users.add(u);
 
             }
@@ -236,7 +236,64 @@ public class UtilisateurService implements IUtilisateurService {
             System.out.println(ex);
         }
 }
+      
             
+           public Utilisateur findUserByLogin(String login, String mdp) {
+    Utilisateur u = null;
+
+    try {
+        String sql = "select * from user where login=?  and password=?";
+        PreparedStatement ste=myconn.prepareStatement(sql);
+        ste.setString(1,login);
+        ste.setString(2,mdp);
+        ResultSet s = ste.executeQuery();
+        if (s.next()) {
+            String role = s.getString("role");
+            System.out.println(role + " ok");
+            if (role.equals("Employeur")) {
+                u = new Employeur(s.getInt(1),
+                        s.getString("nom"), s.getString("prenom"),
+                        s.getString("login"), s.getString("password"),
+                        s.getString("role"), s.getString("mail"),
+                        s.getString("domaine"), s.getString("nom_societe"),
+                        s.getString("etat"),s.getString("image"));
+            } else if (role.equals("Formateur")) {
+                u = new Formateur(s.getInt(1),
+                        s.getString("nom"), s.getString("prenom"),
+                        s.getString("login"), s.getString("password"),
+                        s.getString("role"), s.getString("mail"),
+                        s.getString("domaine"), s.getString("certif"),
+                        s.getString("etat"),s.getString("image"));
+            } else if (role.equals("Client")) {
+//public Client(int id, String nom, String prenom, String login, String password, String role,
+//String mail, String domaine,float solde, String cv, String etat, String image) {
+                u = new Client(s.getInt(1),
+                        s.getString("nom"), s.getString("prenom"),
+                        s.getString("login"), s.getString("password"),
+                        s.getString("role"), s.getString("mail"),
+                        s.getString("domaine"), s.getFloat("solde"),
+                        s.getString("cv"),s.getString("etat"),s.getString("image"));
+            }
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return u;
+}   
+           
+           public void changeUserState(int userId, String newState) {
+    try {
+        String sql = "UPDATE user SET etat=? WHERE id_user=?";
+        PreparedStatement statement = myconn.prepareStatement(sql);
+        statement.setString(1, newState);
+        statement.setInt(2, userId);
+        statement.executeUpdate();
+        
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
     
-    
+}
+           
+           
 }

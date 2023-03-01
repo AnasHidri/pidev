@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +32,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javax.mail.MessagingException;
 import khademni.entity.Client;
 import khademni.entity.Employeur;
@@ -89,8 +91,6 @@ public class InscriptionFXMLController implements Initializable {
     @FXML
     private TextField tfcertif_form;
     @FXML
-    private TextField tfdomaine_form;
-    @FXML
     private TextField tfemail_form;
     @FXML
     private Button signup_btn_form;
@@ -113,8 +113,6 @@ public class InscriptionFXMLController implements Initializable {
     private TextField tfconfirm_password_cl;
     @FXML
     private TextField tfcv_cl;
-    @FXML
-    private TextField tfdomaine_cl;
     @FXML
     private TextField tfemail_cl;
     @FXML
@@ -150,13 +148,18 @@ public class InscriptionFXMLController implements Initializable {
     private ImageView logo;
     @FXML
     private Button signup_btn_emp;
+      @FXML
+    private ComboBox tfdomaine_form;
+      @FXML
+    private ComboBox tfdomaine_cl;
    
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            tfdomaine_emp.getItems().addAll("Client","Formateur","Employeur");
-
+            tfdomaine_emp.getItems().addAll("Informatique","Cuisine","Management");
+            tfdomaine_form.getItems().addAll("Informatique","Cuisine","Management");
+            tfdomaine_cl.getItems().addAll("Informatique","Cuisine","Management");
     } 
     
     @FXML
@@ -167,8 +170,6 @@ public class InscriptionFXMLController implements Initializable {
     UtilisateurService us = new UtilisateurService();
     Connection myconn =MyConnection.getInstance().getConnexion();
 
-    
-    
             
     @FXML
     public void changeForm(ActionEvent event){
@@ -320,8 +321,8 @@ public class InscriptionFXMLController implements Initializable {
                     System.out.println("emp ajouté");
                 
                     
-                        SendMail(emp.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni.\n Veuillez attendez l'activation de votre compte par l'administrateur pour y acceder.\n Votre login : "+emp.getLogin()+"\n votre mot de passe : "+emp.getPassword());
-                        SendMail("ymahfoudh55@gmail.com", "Nouvelle inscription", "Bonjour, un nouvel utilisateur  sous le login : "+emp.getLogin()+" ,est inscrit sur l'application avec le role employeur. Veuillez activer son compte.");
+                        SendMail(emp.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni.\n  Votre login : "+emp.getLogin()+"\n votre mot de passe : "+emp.getPassword());
+                        SendMail("khademni.serviceClient@gmail.com", "Nouvelle inscription", "Bonjour, un nouvel utilisateur  sous le login : "+emp.getLogin()+" ,est inscrit sur l'application avec le role employeur.");
                      
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Khademni :: BIENVENNUE");
@@ -359,7 +360,7 @@ public class InscriptionFXMLController implements Initializable {
             String password = tfpassword_form.getText();
             String certif = tfcertif_form.getText();
             String mail = tfemail_form.getText();
-            String domaine = tfdomaine_form.getText();
+            String domaine = (String) tfdomaine_form.getSelectionModel().getSelectedItem();
             String role="Formateur";
             String confirm_pasword=tfconfirm_password_form.getText();
             
@@ -407,7 +408,7 @@ public class InscriptionFXMLController implements Initializable {
                 
                 
                 SendMail(f.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni.\n Veuillez attendez l'activation de votre compte par l'administrateur pour y acceder.\n Votre login : "+f.getLogin()+"\n votre mot de passe : "+f.getPassword());
-                        SendMail("ymahfoudh55@gmail.com", "Nouvelle inscription", "Bonjour, un nouvel utilisateur  sous le login : "+f.getLogin()+" ,est inscrit sur l'application avec le role formateur. Veuillez activer son compte.");
+                SendMail("khademni.serviceClient@gmail.com", "Nouvelle inscription", "Bonjour, un nouvel utilisateur  sous le login : "+f.getLogin()+" ,est inscrit sur l'application avec le role formateur. Veuillez activer son compte.");
                 
                                 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -422,7 +423,7 @@ public class InscriptionFXMLController implements Initializable {
             tfpassword_form.setText(null);
             tfcertif_form.setText("...");
             tfemail_form.setText(null);
-             tfdomaine_form.setText(null);
+                tfdomaine_form.setPromptText("Choisir role");
             tfconfirm_password_form.setText(null);
             
                 
@@ -445,7 +446,7 @@ public class InscriptionFXMLController implements Initializable {
             String password = tfpassword_cl.getText();
             String cv = tfcv_cl.getText();
             String mail = tfemail_cl.getText();
-            String domaine = tfdomaine_cl.getText();
+            String domaine = (String) tfdomaine_cl.getSelectionModel().getSelectedItem();
             String role="Client";
             float solde=1000;
             String confirm_pasword=tfconfirm_password_cl.getText();
@@ -491,8 +492,8 @@ public class InscriptionFXMLController implements Initializable {
                 Client c = new Client(nom, prenom, login, password, role, mail, domaine,solde,cv);
                 us.ajouterClient(c);
                 
-                SendMail(c.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni.\n Veuillez attendez l'activation de votre compte par l'administrateur pour y acceder.\n Votre login : "+c.getLogin()+"\n votre mot de passe : "+c.getPassword());
-                SendMail("ymahfoudh55@gmail.com", "Nouvelle inscription", "Bonjour, un nouvel utilisateur  sous le login : "+c.getLogin()+" ,est inscrit sur l'application avec le role client. Veuillez activer son compte.");
+                SendMail(c.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni.\n Votre login : "+c.getLogin()+"\n votre mot de passe : "+c.getPassword());
+                SendMail("khademni.serviceClient@gmail.com", "Nouvelle inscription", "Bonjour, un nouvel utilisateur  sous le login : "+c.getLogin()+" ,est inscrit sur l'application avec le role client.");
                                 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Khademni :: BIENVENNUE");
@@ -507,7 +508,7 @@ public class InscriptionFXMLController implements Initializable {
             tfpassword_cl.setText(null);
             tfcv_cl.setText("...");
             tfemail_cl.setText(null);
-            tfdomaine_cl.setText(null);
+            tfdomaine_cl.setPromptText("Choisir role");
             tfconfirm_password_cl.setText(null);
                 
                 login_form.setVisible(true);
@@ -544,29 +545,18 @@ public class InscriptionFXMLController implements Initializable {
             System.out.println(e.getCause().getMessage());
         }                   
         }else {
-            
-            String query2="select * from user where login=?  and password=?";
-            Connection myconn =MyConnection.getInstance().getConnexion();
-           try{
-              PreparedStatement smt = myconn.prepareStatement(query2);
-       
-               smt.setString(1,login_signin.getText());
-               smt.setString(2,password_signin.getText());
-               ResultSet rs= smt.executeQuery();
-                if(rs.next()){
-                    if("Employeur".equals(rs.getString("role"))){
-                        if("inactif".equals(rs.getString("etat"))){
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                                alert.setTitle("Travel Me :: Error Message");
-                                alert.setHeaderText(null);
-                                alert.setContentText("Votre compte n'est pas actif");
-                                alert.showAndWait();
-                        }else{
-                        Employeur e = new Employeur(rs.getInt(1),rs.getString("nom"), rs.getString("prenom"), rs.getString("login"), rs.getString("password"), rs.getString("role"), rs.getString("mail"), rs.getString("domaine"), rs.getString("nom_societe"),rs.getString("etat"),rs.getString("image"));
-                        Utilisateur.setCurrent_User(e);
-                        System.out.println("current user id ::"+Utilisateur.Current_User.getId_user());
+            Utilisateur u = us.findUserByLogin(login_signin.getText(),password_signin.getText());
+                if(u!=null){
+                    if("Employeur".equals(u.getRole())){
+                       
+                        Employeur emp = (Employeur) u;
+                        //Employeur e = new Employeur(u.getId_user(),u.getNom(),u.getPrenom() , u.getLogin(), u.getPassword(), u.getRole(), u.getMail(), u.getDomaine(), u.get,rs.getString("etat"),rs.getString("image"));
+                        Utilisateur.setCurrent_User(emp);
+                       /* System.out.println("current user id ::"+Utilisateur.Current_User.getId_user());
                         System.out.println("current user id ::"+Utilisateur.Current_User.getLogin());
                         System.out.println("current user :: "+Utilisateur.Current_User);
+                        System.out.println("current user is employeur et le nom de la soc est  :: "+emp.getNom_societe());
+                        */
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                                 alert.setTitle("Travel Me :: Success Message");
                                 alert.setHeaderText(null);
@@ -587,24 +577,24 @@ public class InscriptionFXMLController implements Initializable {
                                        }catch(IOException ex){
                                            System.out.println(ex.getCause().getMessage());
                                        }
-                        }
-                                
 
-                    }else if("Formateur".equals(rs.getString("role"))){
-                        if("inactif".equals(rs.getString("etat"))){
+                    }else if("Formateur".equals(u.getRole())){
+                        if("inactif".equals(u.getEtat())){
                             Alert alert = new Alert(Alert.AlertType.ERROR);
                                 alert.setTitle("Travel Me :: Error Message");
                                 alert.setHeaderText(null);
                                 alert.setContentText("Votre compte n'est pas actif");
                                 alert.showAndWait();
                         }else{
-                        Formateur f = new Formateur(rs.getInt(1),rs.getString("nom"), rs.getString("prenom"),
+                        Formateur form = (Formateur) u;
+
+                        /*Formateur f = new Formateur(rs.getInt(1),rs.getString("nom"), rs.getString("prenom"),
                                 rs.getString("login"), rs.getString("password"), rs.getString("role"),
                                 rs.getString("mail"), rs.getString("domaine"), rs.getString("certif"),
                                 rs.getString("etat"),rs.getString("image"));
                         
-                        
-                        Utilisateur.setCurrent_User(f);
+                        */
+                        Utilisateur.setCurrent_User(form);
                         System.out.println("current user id ::"+Utilisateur.Current_User.getId_user());
                         System.out.println("current user id ::"+Utilisateur.Current_User.getLogin());
                         System.out.println("current user :: "+Utilisateur.Current_User);
@@ -625,22 +615,39 @@ public class InscriptionFXMLController implements Initializable {
                                        stage.setScene(scene);
                                        stage.show();
 
+
+//// Charger la nouvelle vue
+//FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileSettingsFXML.fxml"));
+//Parent root = loader.load();
+//// Créer une transition Fade
+//FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+//fadeTransition.setFromValue(0);
+//fadeTransition.setToValue(1);
+//
+//
+//// Ajouter la transition Fade
+//fadeTransition.setOnFinished((event) -> {
+//    // Afficher la nouvelle vue dans la fenêtre principale
+//    Scene scene = new Scene(root);
+//    Stage stage = (Stage) login_btn.getScene().getWindow();
+//    stage.setScene(scene);
+//    stage.show();
+//});
+//
+//// Lancer la transition Fade
+//fadeTransition.play();
+
                                        }catch(IOException ex){
                                            System.out.println(ex.getCause().getMessage());
                                        }
                         }
                                 
 
-                    }else if("Client".equals(rs.getString("role"))){
-                        if("inactif".equals(rs.getString("etat"))){
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                                alert.setTitle("Travel Me :: Error Message");
-                                alert.setHeaderText(null);
-                                alert.setContentText("Votre compte n'est pas actif");
-                                alert.showAndWait();
-                        }else{
-                        Client c = new Client(rs.getInt(1),rs.getString("nom"), rs.getString("prenom"), rs.getString("login"), rs.getString("password"), rs.getString("role"), rs.getString("mail"), rs.getString("domaine"), rs.getFloat("solde"),rs.getString("cv"),rs.getString("etat"),rs.getString("image"));
-                        Utilisateur.setCurrent_User(c);
+                    }else if("Client".equals(u.getRole())){
+                        
+                            Client cl = (Client) u;
+                       // Client c = new Client(rs.getInt(1),rs.getString("nom"), rs.getString("prenom"), rs.getString("login"), rs.getString("password"), rs.getString("role"), rs.getString("mail"), rs.getString("domaine"), rs.getFloat("solde"),rs.getString("cv"),rs.getString("etat"),rs.getString("image"));
+                        Utilisateur.setCurrent_User(cl);
                         System.out.println("current user id ::"+Utilisateur.Current_User.getId_user());
                     //    System.out.println("current user login ::"+(Client)Utilisateur.Current_User.getCv());
                         System.out.println("current user cv ::"+Utilisateur.Current_User.getLogin());
@@ -666,8 +673,6 @@ public class InscriptionFXMLController implements Initializable {
                                        }catch(IOException ex){
                                            System.out.println(ex.getCause().getMessage());
                                        }
-                        }
-                                
 
                     }
                      
@@ -679,15 +684,11 @@ public class InscriptionFXMLController implements Initializable {
                 alert.showAndWait();  
                 }
           
-      }catch(SQLException ex){
-           System.out.println(ex.getMessage());
-      }
-
-            
+      }     
         }
          
     }
     
 
     
-}
+

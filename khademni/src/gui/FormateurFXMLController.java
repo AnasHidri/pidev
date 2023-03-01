@@ -94,6 +94,7 @@ public void SendMail() throws GeneralSecurityException{
     
     try {
                  MailService.sendEmail("ymahfoudh55@gmail.com", "test","bonjour");
+                 //MailService.sendEmail("oueslati.yassmine1@gmail.com", "test","bonjour");
         } catch (MessagingException | GeneralSecurityException e) {
             e.printStackTrace();
         }
