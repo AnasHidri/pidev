@@ -144,19 +144,7 @@ public class EvenementService implements IEvenement<Evenement> {
     
     }
    
-    /*private BooleanProperty hidden = new SimpleBooleanProperty(false);
-
-    public boolean isHidden() {
-        return hidden.get();
-    }
-
-    public void setHidden(boolean hidden) {
-        this.hidden.set(hidden);
-    }
-
-    public BooleanProperty hiddenProperty() {
-        return hidden;
-    }*/
+    
     
   public ObservableList<Evenement> getBetweenDates(Date date_debut, Date date_fin) {
     ObservableList<Evenement> list = FXCollections.observableArrayList();
@@ -179,38 +167,31 @@ public class EvenementService implements IEvenement<Evenement> {
     return list;
 }
     
-   public ObservableList<Evenement> Stat() {
+  public ObservableList<Evenement> Stat() {
     ObservableList<Evenement> list = FXCollections.observableArrayList();
     try {
-        String sql = "SELECT e.id_evenement, e.titre, e.nom_societe, COUNT(p.id_user) AS nombre_participants " +
+        String sql = "SELECT e.id_evenement, e.id_user, e.date_debut, e.date_fin, e.titre, e.description, e.nom_societe, e.lieu " +
                      "FROM evenement e " +
                      "JOIN participation p ON e.id_evenement = p.id_evenement " +
                      "GROUP BY e.id_evenement " +
-                     "ORDER BY nombre_participants DESC " +
-                     "LIMIT 1";
+                     "ORDER BY COUNT(p.id_user) DESC " +
+                     "LIMIT 3";
         PreparedStatement statement = cnx.prepareStatement(sql);
         ResultSet s = statement.executeQuery();
 
-        // Récupération des valeurs de la première ligne de résultat
-        int eventId = -1;
-        String eventTitle = "";
-        String nom_societe = "";
-        //int eventParticipantCount = -1;
+        // Récupération des valeurs de chaque ligne de résultat
         while (s.next()) {
-            eventId = s.getInt("id_evenement");
-            eventTitle = s.getString("titre");
-            nom_societe = s.getString("nom_societe");
-           // eventParticipantCount = s.getInt("nombre_participants");
+            int eventId = s.getInt("id_evenement");
+            int userId = s.getInt("id_user");
+            Date startDate = s.getDate("date_debut");
+            Date endDate = s.getDate("date_fin");
+            String eventTitle = s.getString("titre");
+            String description = s.getString("description");
+            String nomSociete = s.getString("nom_societe");
+            String lieu = s.getString("lieu");
+            Evenement e = new Evenement(eventId, userId, startDate, endDate, eventTitle, description, nomSociete, lieu);
+            list.add(e);
         }
-
-        // Ajout de l'événement avec le plus de participants dans la liste
-        
-           System.out.println("Identifiant de l'événement : " + eventId);
-    System.out.println("Titre de l'événement : " + eventTitle);
-    System.out.println("Nom de la société organisatrice : " + nom_societe);
-    //System.out.println("Nombre de participants : " + eventParticipantCount);
-            //list.add(e);
-        
 
     } catch (SQLException ex) {
         System.out.println(ex.getMessage());

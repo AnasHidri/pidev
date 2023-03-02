@@ -54,7 +54,7 @@ public class ListeEvenementADController implements Initializable {
       @FXML
      private TableColumn date_fin_ev_ad;
       @FXML
-      private Button btn_pdf_ev;
+      private Button btn_stat;
       @FXML
       private Button cons_part;
     
@@ -124,6 +124,22 @@ Parent root = loader.load();
 } catch (IOException e) {
     System.out.println(e.getCause().getMessage());
 }
+    }
+
+     @FXML
+    private void StatEvPart(ActionEvent event) throws IOException{
+        try{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StatEvAD.fxml"));
+             Parent root = loader.load();
+
+              Scene scene = new Scene(root);
+               Stage stage = (Stage) btn_stat.getScene().getWindow();
+                stage.setScene(scene);
+                 stage.show();
+
+                  }catch(IOException ex){
+                      System.out.println(ex.getCause().getMessage());
+                      }
     }
     
 }

@@ -27,36 +27,43 @@ public class StatEvADController implements Initializable {
      * Initializes the controller class.
      */
      @FXML
-     private TableView<Evenement> tab_stat;
+     private TableView<Evenement> tab_ev_stat;
      @FXML
-     private TableColumn titre_best;
+     private TableColumn titre_stat;
       @FXML
-     private TableColumn nom_soc_best;
+     private TableColumn desc_stat;
+       @FXML
+     private TableColumn nom_soc_stat;
+        @FXML
+     private TableColumn lieu_stat;
+         @FXML
+     private TableColumn date_deb_stat;
+          @FXML
+     private TableColumn date_fin_stat;
       @FXML
     private TextField idevb;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        ListEV();
+        StatEv();
     }    
     
     
      @FXML
-    public void ListEV(){
+    public void StatEv(){
        
          EvenementService es= new EvenementService();
          ObservableList<Evenement> list = es.Stat();
          System.out.println("list ::: "+list);
-         //Evenement e= new Evenement(35,titre, nom_soc);
-        // idevb.setText(String.valueOf(e.getId_evenement()));
-         titre_best.setCellValueFactory(new PropertyValueFactory<>("titre"));
-         
-         nom_soc_best.setCellValueFactory(new PropertyValueFactory<>("nom_societe"));
-        
+         titre_stat.setCellValueFactory(new PropertyValueFactory<>("titre"));
+         desc_stat.setCellValueFactory(new PropertyValueFactory<>("description"));
+         nom_soc_stat.setCellValueFactory(new PropertyValueFactory<>("nom_societe"));
+         lieu_stat.setCellValueFactory(new PropertyValueFactory<>("lieu"));
+         date_deb_stat.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
+         date_fin_stat.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
       
-         tab_stat.setItems(list);
-         
+         tab_ev_stat.setItems(list);
      }
     
 }
