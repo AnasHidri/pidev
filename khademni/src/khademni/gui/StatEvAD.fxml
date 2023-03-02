@@ -7,10 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="login-bg" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.StatEvADController">
+<AnchorPane id="AnchorPane" prefHeight="433.0" prefWidth="600.0" styleClass="login-bg" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.StatEvADController">
    <children>
       <TextField fx:id="idevb" layoutX="62.0" layoutY="40.0" prefHeight="25.0" prefWidth="112.0" visible="false" />
-      <TableView fx:id="tab_ev_stat" layoutX="32.0" layoutY="85.0" prefHeight="154.0" prefWidth="537.0">
+      <TableView fx:id="tab_ev_stat" layoutX="32.0" layoutY="65.0" prefHeight="154.0" prefWidth="537.0">
          <columns>
             <TableColumn fx:id="titre_stat" prefWidth="84.0" text="Titre" />
             <TableColumn fx:id="desc_stat" prefWidth="82.0" text="Description" />
@@ -20,10 +20,25 @@
             <TableColumn fx:id="date_fin_stat" prefWidth="95.0" text="Date Fin" />
          </columns>
       </TableView>
-      <Label layoutX="32.0" layoutY="20.0" prefHeight="53.0" prefWidth="555.0" text="Les trois Meilleurs Evenements selon le nombre de Participants">
+      <Label layoutX="23.0" layoutY="12.0" prefHeight="53.0" prefWidth="555.0" text="Les trois Meilleurs Evenements selon le nombre de Participants">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
+      <Label layoutX="23.0" layoutY="219.0" prefHeight="53.0" prefWidth="555.0" text="Les trois Meilleurs Evenements selon le nombre de Vote">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tab_ev_best" layoutX="23.0" layoutY="261.0" prefHeight="154.0" prefWidth="537.0">
+         <columns>
+            <TableColumn fx:id="titre_best" prefWidth="84.0" text="Titre" />
+            <TableColumn fx:id="desc_best" prefWidth="82.0" text="Description" />
+            <TableColumn fx:id="nom_soc_best" prefWidth="131.0" text="Societe Organisatrice" />
+            <TableColumn fx:id="lieu_best" prefWidth="70.0" text="Lieu" />
+            <TableColumn fx:id="date_deb_best" prefWidth="76.0" text="Date Debut" />
+            <TableColumn fx:id="date_fin_best" prefWidth="95.0" text="Date Fin" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

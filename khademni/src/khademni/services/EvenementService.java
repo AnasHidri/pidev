@@ -198,6 +198,42 @@ public class EvenementService implements IEvenement<Evenement> {
     }
     return list;
 }
+  
+  public ObservableList<Evenement> getMostLikedEvents() {
+    ObservableList<Evenement> list = FXCollections.observableArrayList();
+    try {
+        String sql = "SELECT e.id_evenement, e.id_user, e.date_debut, e.date_fin, e.titre, e.description, e.nom_societe, e.lieu, COUNT(p.vote) AS likes " +
+                     "FROM evenement e " +
+                     "JOIN participation p ON e.id_evenement = p.id_evenement " +
+                     "WHERE p.vote = 1 " +
+                     "GROUP BY e.id_evenement " +
+                     "ORDER BY likes DESC " +
+                     "LIMIT 3";
+        PreparedStatement statement = cnx.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+
+        while (rs.next()) {
+            int idEvenement = rs.getInt("id_evenement");
+            int idUser = rs.getInt("id_user");
+            Date dateDebut = rs.getDate("date_debut");
+            Date dateFin = rs.getDate("date_fin");
+            String titre = rs.getString("titre");
+            String description = rs.getString("description");
+            String nomSociete = rs.getString("nom_societe");
+            String lieu = rs.getString("lieu");
+           // int likes = rs.getInt("likes");
+            Evenement evenement = new Evenement(idEvenement, idUser, dateDebut, dateFin, titre, description, nomSociete, lieu);
+            //evenement.setLikes(likes);
+            list.add(evenement);
+        }
+
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return list;
+}
+  
+  
 } 
 
     

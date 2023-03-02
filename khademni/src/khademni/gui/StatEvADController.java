@@ -42,11 +42,26 @@ public class StatEvADController implements Initializable {
      private TableColumn date_fin_stat;
       @FXML
     private TextField idevb;
+       @FXML
+     private TableView<Evenement> tab_ev_best;
+     @FXML
+     private TableColumn titre_best;
+      @FXML
+     private TableColumn desc_best;
+       @FXML
+     private TableColumn nom_soc_best;
+        @FXML
+     private TableColumn lieu_best;
+         @FXML
+     private TableColumn date_deb_best;
+          @FXML
+     private TableColumn date_fin_best;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         StatEv();
+        StatEvBest();
     }    
     
     
@@ -64,6 +79,22 @@ public class StatEvADController implements Initializable {
          date_fin_stat.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
       
          tab_ev_stat.setItems(list);
+     }
+    
+     @FXML
+    public void StatEvBest(){
+       
+         EvenementService es= new EvenementService();
+         ObservableList<Evenement> list = es.getMostLikedEvents();
+         System.out.println("list ::: "+list);
+         titre_best.setCellValueFactory(new PropertyValueFactory<>("titre"));
+         desc_best.setCellValueFactory(new PropertyValueFactory<>("description"));
+         nom_soc_best.setCellValueFactory(new PropertyValueFactory<>("nom_societe"));
+         lieu_best.setCellValueFactory(new PropertyValueFactory<>("lieu"));
+         date_deb_best.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
+         date_fin_best.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
+      
+         tab_ev_best.setItems(list);
      }
     
 }

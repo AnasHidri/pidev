@@ -7,6 +7,7 @@ package khademni.gui;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -297,14 +298,14 @@ public void generatePdfParticipation(String filename, TableView<Evenement> table
         PdfEv pd = new PdfEv();
         try {
             ByteArrayOutputStream qrCodeStream = new ByteArrayOutputStream();
-            pd.generateQRCode("https://example.com/participation?id=" + selectedEV.getId_evenement(), qrCodeStream);
+            String pdfFilePath = new File(filename).getAbsolutePath();
+            pd.generateQRCode("file:///" + pdfFilePath, qrCodeStream);
             Image qrCodeImage = Image.getInstance(qrCodeStream.toByteArray());
             pd.generatePdfWithQRCode(filename, selectedEV, qrCodeImage);
             System.out.println("impression done");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
     }
 }
      

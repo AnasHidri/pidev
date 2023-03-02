@@ -34,6 +34,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
+import khademni.entity.PdfEv;
 
 
 /**
@@ -50,28 +51,27 @@ public class QrcodeController implements Initializable {
     public ImageView qr;
       @FXML
     private Button download;
+      private String pdfFilePath;
     
      @Override
     public void initialize(URL url, ResourceBundle rb) {
-         try {
-             generateQRCode("https://www.facebook.com", qr);
-         } catch (WriterException ex) {
-             Logger.getLogger(QrcodeController.class.getName()).log(Level.SEVERE, null, ex);
-         }
+        pdfFilePath = "C:/Users/user/Documents/GitHub/pidev/khademni/evenement.pdf";
+        try {
+            generateQRCode("file:///" + pdfFilePath, qr);
+        } catch (WriterException ex) {
+            Logger.getLogger(QrcodeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }    
    
    
    
 
-    private void generateQRCode(String data, ImageView qr) throws WriterException{
-       
+    private void generateQRCode(String pdfFilePath, ImageView qr) throws WriterException {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
-    BitMatrix bitMatrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 200, 200);
-    WritableImage qrCodeImage = SwingFXUtils.toFXImage(MatrixToImageWriter.toBufferedImage(bitMatrix), null);
-    qr.setImage(qrCodeImage);
-       
-       
+        BitMatrix bitMatrix = qrCodeWriter.encode(pdfFilePath, BarcodeFormat.QR_CODE, 200, 200);
+        WritableImage qrCodeImage = SwingFXUtils.toFXImage(MatrixToImageWriter.toBufferedImage(bitMatrix), null);
+        qr.setImage(qrCodeImage);
     }
  
    
