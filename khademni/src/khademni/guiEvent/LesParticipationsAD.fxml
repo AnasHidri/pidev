@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextField?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="khademni.guiEvent.LesParticipationsADController">
+   <children>
+      <TableView fx:id="tab_part" layoutX="70.0" layoutY="79.0" prefHeight="200.0" prefWidth="246.0">
+        <columns>
+          <TableColumn fx:id="nom_part" prefWidth="75.0" text="Nom" />
+          <TableColumn fx:id="prenom_part" prefWidth="90.0" text="Prenom" />
+        </columns>
+      </TableView>
+      <TextField fx:id="idEvent" layoutX="62.0" layoutY="40.0" prefHeight="25.0" prefWidth="112.0" visible="false" />
+   </children>
+</AnchorPane>

@@ -566,13 +566,14 @@ public class InscriptionFXMLController implements Initializable {
                                 
                                 try{
                                         // Charger la nouvelle vue
-                                       FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileSettingsFXML.fxml"));
+                                       FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiUser/ProfileSettingsFXML.fxml"));
                                        Parent root = loader.load();
                                         // Afficher la nouvelle vue dans la fenêtre principale
                                        Scene scene = new Scene(root);
                                        Stage stage = (Stage) login_btn.getScene().getWindow();
                                        stage.setScene(scene);
                                        stage.show();
+                                       
 
                                        }catch(IOException ex){
                                            System.out.println(ex.getCause().getMessage());
@@ -662,14 +663,17 @@ public class InscriptionFXMLController implements Initializable {
                                 
                                 try{
                                         // Charger la nouvelle vue
+                                        System.out.println("avant");
                                        FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileSettingsFXML.fxml"));
+                                               System.out.println("apres");
                                        Parent root = loader.load();
+                                
                                         // Afficher la nouvelle vue dans la fenêtre principale
                                        Scene scene = new Scene(root);
                                        Stage stage = (Stage) login_btn.getScene().getWindow();
                                        stage.setScene(scene);
                                        stage.show();
-
+                                   
                                        }catch(IOException ex){
                                            System.out.println(ex.getCause().getMessage());
                                        }
