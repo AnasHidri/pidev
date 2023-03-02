@@ -4,11 +4,14 @@
  */
 package khademni.Gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -33,8 +36,11 @@ public class MesCandidatureClientFXMLController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> colDateLimite;
- @FXML
+    @FXML
     private TableColumn<?, ?> colId_Offre;
+ 
+    @FXML
+    private Button btnretourne;
 
     @FXML
     private TableColumn<?, ?> colDescription;
@@ -60,7 +66,7 @@ public class MesCandidatureClientFXMLController implements Initializable {
   CandidatureService cs =new CandidatureService(); 
 ObservableList<String> mesCandidatures = cs.afficherCandidatureClient();
 
-colId_Offre.setCellValueFactory(new PropertyValueFactory <>("id_offre"));
+
 colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
 colDescription.setCellValueFactory(new PropertyValueFactory <>("description"));
 colAdresse.setCellValueFactory(new PropertyValueFactory <>("adresse_societe"));
@@ -72,4 +78,9 @@ colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
        tvMesCandidature.setItems(mesCandidatures);
 }  
    
+    @FXML
+    void retourneOffre(ActionEvent event) throws IOException {
+SceneController SC = new SceneController();
+    SC.Scene5(event);
+    }
 }

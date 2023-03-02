@@ -3,13 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 package khademni.Gui;
-
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.Properties;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
@@ -106,7 +105,7 @@ public class EmployeurFXMLController implements Initializable {
 
      @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showOffre();
+     showOffre1();
         
     }
     
@@ -134,10 +133,7 @@ public class EmployeurFXMLController implements Initializable {
                     return true;
                 } else if (predicateOffreData.getAdresse_societe().toLowerCase().contains(searchKey)) {
                     return true;
-              /*  } else if (predicateOffreData.getDate_debut().toLowerCase().contains(searchKey)) {
-                    return true;
-                } else if (predicateOffreData.getDate_limite().toLowerCase().contains(searchKey)) {
-                    return true;*/
+             
                 } else 
                     return false;
                 
@@ -152,12 +148,9 @@ public class EmployeurFXMLController implements Initializable {
     }
 
     
-public void showOffre(){
+public void showOffre1(){
   OffreService os =new OffreService(); 
-
 ObservableList<Offre> list1 = os.afficherOffre();
-
-
 colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
 colDescription.setCellValueFactory(new PropertyValueFactory <>("description"));
 colAdresse_societe.setCellValueFactory(new PropertyValueFactory <>("adresse_societe"));
@@ -195,14 +188,25 @@ colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
     alert.showAndWait();
     } else {
          os.ajouterOffre(o);
+      String senderEmail = "khademni.serviceClient@gmail.com"; // Remplacez par votre adresse e-mail
+String senderPassword = "iptppxmbutpkhtee"; // Remplacez par votre mot de passe
+String receiverEmail = "achour.rihab2000@gmail.com"; // Remplacez par l'adresse e-mail du destinataire
+String subject = "Nouvelle offre ajoutée";
+String message = "Une nouvelle offre a été ajoutée avec succès.";
+
+try {
+    sendEmail(senderEmail, senderPassword, receiverEmail, subject, message);
+} catch (MessagingException ex) {
+    System.out.println("Erreur lors de l'envoi de l'email : " + ex.getMessage());
+}
  Alert alert = new Alert(AlertType.INFORMATION);
     alert.setContentText("Offre Ajoutée");
     alert.showAndWait();    }
              
   tvOffre.refresh();
-  showOffre();
+  showOffre1();
 
-   
+    
    
     }
  
@@ -220,7 +224,7 @@ colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
       os.afficherOffre();
       
         tvOffre.refresh();
-  showOffre();
+  showOffre1();
 
      
     }
@@ -269,14 +273,54 @@ colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
     alert.setContentText("Offre Modifié!");
     alert.showAndWait();
       tvOffre.refresh();
-  showOffre();
-
-    } 
+  showOffre1();}
 
       @FXML
     void ListeCandidature(ActionEvent event) throws IOException {
   SceneController SC= new SceneController();
          SC.Scene7(event);
     }
+
+
+public static void sendEmail(String senderEmail, String senderPassword, String receiverEmail, String subject, String message) throws MessagingException {
+    // Email server properties
+    Properties props = new Properties();
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.starttls.enable", "true");
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.port", "587");
+
+    // Create a Session object
+    Session session = Session.getInstance(props, new Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication("khademni.serviceClient@gmail.com", "iptppxmbutpkhtee");
+        }
+    });
+
+    // Create a MimeMessage object
+    Message email = new MimeMessage(session);
+
+    // Set From: header field
+    email.setFrom(new InternetAddress("khademni.serviceClient@gmail.com"));
+
+    // Set To: header field
+    email.setRecipients(Message.RecipientType.TO, InternetAddress.parse("achour.rihab2000@gmail.com"));
+
+    // Set Subject: header field
+    email.setSubject("offre");
+
+    // Set message content
+    email.setText("offre ajoute avec succes");
+
+    // Send email
+    Transport.send(email);
+
+    System.out.println("Email sent successfully.");
+}
+
+    
+    
+    
+    
 }
 

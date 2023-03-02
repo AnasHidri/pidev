@@ -13,7 +13,6 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -38,6 +37,8 @@ public class ListOffreClientFXMLController implements Initializable {
     private Button btnPost;
     @FXML
     private Button btnretourne;
+      @FXML
+    private Button btnmescandid;
     @FXML
     private TableColumn<?, ?> colAdresse;
 
@@ -93,10 +94,7 @@ public class ListOffreClientFXMLController implements Initializable {
                     return true;
                 } else if (predicateOffreData.getAdresse_societe().toLowerCase().contains(searchKey)) {
                     return true;
-               /* } else if (predicateOffreData.getDate_debut().toLowerCase().contains(searchKey)) {
-                    return true;
-                } else if (predicateOffreData.getDate_limite().toLowerCase().contains(searchKey)) {
-                    return true;*/
+              
                 } else 
                     return false;
                 
@@ -148,4 +146,9 @@ colDateLimite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
 
     }
     
+     @FXML
+    void MesCandidature(ActionEvent event) throws IOException {
+ SceneController SC = new SceneController();
+    SC.Scene6(event);
+    }
 }

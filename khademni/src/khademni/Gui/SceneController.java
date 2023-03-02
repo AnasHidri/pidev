@@ -75,3 +75,4 @@ public class SceneController {
     scene = new Scene(root);
     stage.setScene(scene);
     stage.show();}}
+ 

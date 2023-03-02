@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -93,17 +92,7 @@ public class OffreAdminFXMLController implements Initializable {
        @FXML
     private Button btnafficher;
    
-    //void handButtonAction(ActionEvent event) {
-      /*if(event.getSource() == btnAdd){
-            ajouterOffre();
-        }
-    */
-    //}
-    
-
-    /**
-     * Initializes the controller class.
-     */
+  
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

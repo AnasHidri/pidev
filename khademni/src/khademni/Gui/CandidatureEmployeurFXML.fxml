@@ -35,13 +35,13 @@
             <Font name="MV Boli" size="17.0" />
          </font>
       </Button>
-      <TableView fx:id="tvCandidature" cache="true" layoutX="65.0" layoutY="104.0" prefHeight="122.0" prefWidth="448.0">
+      <TableView fx:id="tvCandidature" cache="true" layoutX="65.0" layoutY="104.0" prefHeight="122.0" prefWidth="466.0">
          <columns>
-            <TableColumn fx:id="colTitre" prefWidth="95.0" text="Titre" />
-            <TableColumn fx:id="colNom" prefWidth="75.0" text="Nom" />
-            <TableColumn fx:id="colPrenom" prefWidth="86.0" text="Prenom" />
-            <TableColumn fx:id="colEmail" prefWidth="95.0" text="mail" />
-            <TableColumn fx:id="colEtat" prefWidth="90.0" text="Etat" />
+            <TableColumn fx:id="colTitre" prefWidth="129.0" text="Titre" />
+            <TableColumn fx:id="colNom" prefWidth="86.0" text="Nom" />
+            <TableColumn fx:id="colPrenom" prefWidth="81.0" text="Prenom" />
+            <TableColumn fx:id="colEmail" prefWidth="78.0" text="mail" />
+            <TableColumn fx:id="colEtat" prefWidth="91.0" text="Etat" />
          </columns>
       </TableView>
    </children>
