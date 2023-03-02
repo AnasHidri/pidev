@@ -18,6 +18,6 @@
         </columns>
       </TableView>
       <Button fx:id="cons_part" layoutX="164.0" layoutY="306.0" mnemonicParsing="false" onAction="#ConsulterParticipants" text="Consulter Les Participants" />
-      <Button fx:id="btn_stat" layoutX="451.0" layoutY="306.0" mnemonicParsing="false" onAction="#StatEvPart"  text="Statistique" />
+      <Button fx:id="btn_stat" layoutX="451.0" layoutY="306.0" mnemonicParsing="false" onAction="#StatEvPart" text="Statistique" />
    </children>
 </AnchorPane>

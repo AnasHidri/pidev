@@ -36,13 +36,13 @@ public class Khademni {
       // e.modifierEvenement(Date.valueOf("2000-04-04"), Date.valueOf("2111-11-03"), "mmm", "ppp", "a", ev);
        //System.out.println( e.MaListe());
        //System.out.println(e.Stat());
-       System.out.println(e.getMostLikedEvents());
+      // System.out.println(e.getMostLikedEvents());
         
         
         ParticipationService p=new ParticipationService();
-        Participation participation= new Participation(37,1,"bbb");
+        Participation participation= new Participation(33,2,"bbb");
         //p.ajouterParticipation(participation);
-       // p.supprimerParticipation(participation);
+        //p.supprimerParticipation(participation);
        // p.modifierParticipation("achevée", participation);
       // p.likeEvent(participation);
      // p.DislikeEvent(participation);
@@ -53,7 +53,7 @@ public class Khademni {
       // int[] counts = p.getLikesAndDislikesCount(participation);
        //System.out.println("Likes: " + counts[0]);
      // System.out.println("Dislikes: " + counts[1]);
-    // System.out.println(p.Participants(33));
+     System.out.println(p.Participants(33));
     
     }
     

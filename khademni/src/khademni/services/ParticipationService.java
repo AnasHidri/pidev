@@ -19,6 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import khademni.entity.Evenement;
 import khademni.entity.Participation;
+import khademni.entity.Utilisateur;
 import khademni.interfaces.IParticipation;
 import khademni.utils.MyConnection;
 
@@ -201,19 +202,16 @@ public class ParticipationService implements IParticipation<Participation> {
     
     
     
-    public ObservableList<String> Participants(int id) {
-         ObservableList<String> participations = FXCollections.observableArrayList();
+    public ObservableList<Utilisateur> Participants(int id) {
+         ObservableList<Utilisateur> participations = FXCollections.observableArrayList();
         try {
-            String sql = "select nom,prenom from user,participation,evenement where evenement.id_evenement=participation.id_evenement and participation.id_user=user.id_user and user.id_user="+2+" and evenement.id_evenement="+id;
+            String sql = "select nom,prenom,mail from user,participation,evenement where evenement.id_evenement=participation.id_evenement and participation.id_user=user.id_user and evenement.id_evenement="+id;
             Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
 
-              String nom = s.getString(1);
-              String prenom = s.getString(2);
-              participations.add(nom);
-              participations.add(prenom);
-              
+             Utilisateur u = new Utilisateur(s.getString("nom"),s.getString("prenom"),s.getString("mail"));
+               participations.add(u);
 
             }
         } catch (SQLException ex) {

@@ -152,10 +152,10 @@ public class MesParticipationsController implements Initializable {
         
          // Envoi du mail
     String to = "oueslati.yassmine1@gmail.com"; // Adresse mail de l'utilisateur
-    String from = "oueslati.yassmine1@gmail.com"; // Votre adresse mail
+    String from = "khademni.serviceClient@gmail.com"; // Votre adresse mail
     String host = "smtp.gmail.com"; // Adresse du serveur SMTP (ici, Gmail)
     String username = "oueslati.yassmine1@gmail.com"; // Votre adresse mail
-    String password = "hqtddpsdqejxjunk"; // Votre mot de passe Gmail
+    String password = "iptppxmbutpkhtee"; // Votre mot de passe Gmail
     Properties properties = new Properties();
     properties.put("mail.smtp.auth", "true");
     properties.put("mail.smtp.starttls.enable", "true");
