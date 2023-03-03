@@ -16,7 +16,8 @@ import javafx.collections.ObservableList;
 
 public interface ICandidature <Candidature>{
     public void ajouterCandidature(Candidature P);
-    public void modifierCandidature(Candidature P);
+    public void RefuserCandidature(Candidature P);
+      public void AccepterCandidature(Candidature P);
     public void supprimerCandidature(Candidature P);
     public ObservableList<Candidature> afficherCandidatureEmployeur1();
     public ObservableList<Candidature> afficherCandidatureEmployeur2();

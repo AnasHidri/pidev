@@ -27,12 +27,12 @@ public class Khademni {
     // os.ajouterOffre(O);
     // os.modifierOffre(O);
          CandidatureService Cs = new CandidatureService();
-      Candidature C =new Candidature(68,1,"en attente ");
+      Candidature C =new Candidature(88,1,"en attente");
           // Cs.ajouterCandidature(C);
-    System.out.println(Cs.afficherCandidatureEmployeur1());
-       System.out.println(Cs.afficherCandidatureEmployeur2());
+    System.out.println(Cs.afficherCandidatureEmployeur2());
+    //   System.out.println(Cs.afficherCandidatureEmployeur2());
 
-       System.out.println(Cs.afficherCandidatureEmployeur3());
+      // System.out.println(Cs.afficherCandidatureEmployeur3());
        //Cs.RefuserCandidature(C);
     }
     

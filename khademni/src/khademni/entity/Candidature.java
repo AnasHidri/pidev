@@ -36,13 +36,15 @@ public class Candidature {
     }
  
      
+    public Candidature(String titre, int id_offre) {
+        this.titre=titre;
+        this.id_offre=id_offre;
+    }
 
     public Candidature() {
     }
 
-    public Candidature(String etat) {
-        this.etat = etat;
-    }
+    
 
     public Candidature(int id_candidature,   int id_user,int id_offre, String etat) {
         this.id_candidature = id_candidature;
@@ -58,7 +60,11 @@ public class Candidature {
         
         this.etat = etat;
     }
-
+    public Candidature(String etat) {
+        this.etat = etat;
+           
+;
+    }
     public int getId_candidature() {
         return id_candidature;
     }

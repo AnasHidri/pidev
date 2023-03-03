@@ -12,6 +12,7 @@ import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import khademni.entity.Candidature;
+import khademni.entity.Offre;
 import khademni.interfaces.ICandidature;
 import khademni.utils.MyConnection;
 
@@ -43,28 +44,41 @@ public class CandidatureService implements ICandidature <Candidature>{
             System.out.println(ex.getMessage());
         }    }
 
-    @Override
-    public void modifierCandidature(Candidature P) {
-String sql="update candidature set etat=? where id_offre=? ";
+  
+    public void RefuserCandidature(Candidature P) {
+String sql="update candidature.etat='Refusée' from user,candidature,offre where user.id_user=Offre.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+88;
         try {
             PreparedStatement ste=myconn.prepareStatement(sql);
                 ste.setString(1,P.getEtat());
                 ste.setInt(2,P.getId_offre());
             ste.executeUpdate();
-            System.out.println("Candidature modifié");
+            System.out.println("Candidature Refusé");
         } catch (SQLException ex) {
             System.out.println(ex);
         }    }
+     public void AccepterCandidature(Candidature P) {
+ String sql="update candidature.etat='Accepté' from user,candidature,offre where user.id_user=Offre.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+88;
+        try {
+            PreparedStatement ste=myconn.prepareStatement(sql);
+                     ste.setString(1,P.getEtat());
+                 ste.setInt(2, P.getId_offre());
+            ste.executeUpdate();
+            System.out.println("Candidature Accepté");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+       }
+       @Override
  public ObservableList<Candidature> afficherCandidatureEmployeur1() {
        ObservableList<Candidature> CandidatureList1 = FXCollections.observableArrayList();
         try {
-           String sql = "select  offre.titre from user,candidature,offre where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+71;
+           String sql = "select offre.titre, offre.id_offre from user,candidature,offre where user.id_user=Offre.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+88 ;
            
             java.sql.Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
         
-           Candidature ce= new Candidature(s.getString("titre"));
+           Candidature ce= new Candidature(s.getString("titre"),s.getInt(2));
             CandidatureList1.add (ce);
             }
 
@@ -77,7 +91,7 @@ String sql="update candidature set etat=? where id_offre=? ";
     public ObservableList<Candidature> afficherCandidatureEmployeur2() {
        ObservableList<Candidature> CandidatureList2 = FXCollections.observableArrayList();
         try {
-           String sql = "select user.nom,user.prenom,user.email from user,candidature,offre where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+71;
+           String sql = "select user.nom,user.prenom,user.email from user,candidature,offre where user.id_user=Offre.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+88;
            
             java.sql.Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
@@ -99,7 +113,7 @@ String sql="update candidature set etat=? where id_offre=? ";
      public ObservableList<Candidature> afficherCandidatureEmployeur3() {
        ObservableList<Candidature> CandidatureList3 = FXCollections.observableArrayList();
         try {
-           String sql = "select  candidature.etat  from user,candidature,offre where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+71;
+           String sql = "select  candidature.etat   from user,candidature,offre where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+88;
            
             java.sql.Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
@@ -123,7 +137,7 @@ String sql="update candidature set etat=? where id_offre=? ";
      public ObservableList<Candidature> afficherCandidatureClient1() {
        ObservableList<Candidature> CandidatureClientList = FXCollections.observableArrayList();
         try {
-           String sql = "select offre.titre,offre.description,offre.adresse_societe,offre.domaine_offre,offre.date_debut,offre.date_limite from  offre,candidature where  offre.id_offre=candidature.id_offre and candidature.id_user="+2;
+           String sql = "select offre.titre,offre.description,offre.adresse_societe,offre.domaine_offre,offre.date_debut,offre.date_limite from  offre,candidature where  offre.id_offre=candidature.id_offre and candidature.id_user="+1;
             Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
@@ -132,7 +146,6 @@ String sql="update candidature set etat=? where id_offre=? ";
             s.getString("description"),
                   s.getString("adresse_societe"),
             s.getString("domaine_offre"),
-        
         s.getDate(5),
         s.getDate(6));
        
@@ -146,7 +159,7 @@ String sql="update candidature set etat=? where id_offre=? ";
      public ObservableList<Candidature> afficherCandidatureClient2() {
        ObservableList<Candidature> CandidatureEtat = FXCollections.observableArrayList();
         try {
-           String sql = "select candidature.etat from offre,candidature where  offre.id_offre=candidature.id_offre and candidature.id_user="+2;
+           String sql = "select candidature.etat from offre,candidature where  offre.id_offre=candidature.id_offre and candidature.id_user="+1;
             Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
@@ -184,17 +197,7 @@ String sql="update candidature set etat=? where id_offre=? ";
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }    }
-    public void RefuserCandidature(Candidature P) {
-String sql="update candidature set etat='Refusée' where id_offre=? ";
-        try {
-            PreparedStatement ste=myconn.prepareStatement(sql);
-                ste.setString(1,P.getEtat());
-                ste.setInt(2,P.getId_offre());
-            ste.executeUpdate();
-            System.out.println("Candidature Refusée");
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }    }
+    
   public void AffichRefuserCandidature(Candidature P) {
 String sql="update candidature set etat='Refuser' where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and offre.id_offre= ";
         try {
@@ -206,31 +209,18 @@ String sql="update candidature set etat='Refuser' where user.id_user=candidature
         } catch (SQLException ex) {
             System.out.println(ex);
         }    }
-   
-  
-
-    public void AccepterCandidature(Candidature P) {
-String sql="update candidature set etat='Accepter' where id_offre=? ";
-        try {
-            PreparedStatement ste=myconn.prepareStatement(sql);
-                ste.setString(1,P.getEtat());
-                ste.setInt(2,P.getId_offre());
-            ste.executeUpdate();
-            System.out.println("Candidature modifié");
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }    }
     
-  public void AffichAccepterCandidature(Candidature P) {
-String sql="update candidature set etat='Accepter' where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and offre.id_offre= ";
+  public void AffichAttenteCandidature(Candidature P) {
+String sql="update candidature set etat='Accepter' where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and candidature.etat='En attente'and offre.id_offre= ";
         try {
             PreparedStatement ste=myconn.prepareStatement(sql);
                 ste.setString(1,P.getEtat());
                 ste.setInt(2,P.getId_offre());
             ste.executeUpdate();
-            System.out.println("Candidature Acceptée");
+            System.out.println("Candidature En Attente");
         } catch (SQLException ex) {
             System.out.println(ex);
         }    }
-   
+
+    
 }
