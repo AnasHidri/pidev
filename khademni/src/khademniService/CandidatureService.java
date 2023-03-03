@@ -12,7 +12,6 @@ import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import khademni.entity.Candidature;
-import khademni.entity.Offre;
 import khademni.interfaces.ICandidature;
 import khademni.utils.MyConnection;
 
@@ -46,23 +45,21 @@ public class CandidatureService implements ICandidature <Candidature>{
 
   
     public void RefuserCandidature(Candidature P) {
-String sql="update candidature.etat='Refusée' from user,candidature,offre where user.id_user=Offre.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+88;
+String sql="update  user,candidature,offre set candidature.etat='Refusée'  where user.id_user = Offre.id_user and offre.id_offre = candidature.id_offre and offre.id_offre="+88;
         try {
-            PreparedStatement ste=myconn.prepareStatement(sql);
-                ste.setString(1,P.getEtat());
-                ste.setInt(2,P.getId_offre());
-            ste.executeUpdate();
+             java.sql.Statement ste = myconn.createStatement();
+
+            ste.executeUpdate(sql);
             System.out.println("Candidature Refusé");
         } catch (SQLException ex) {
             System.out.println(ex);
         }    }
      public void AccepterCandidature(Candidature P) {
- String sql="update candidature.etat='Accepté' from user,candidature,offre where user.id_user=Offre.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+88;
+ String sql="update user,candidature,offre set candidature.etat='Accepté' where user.id_user = Offre.id_user and offre.id_offre = candidature.id_offre and offre.id_offre="+88;
         try {
-            PreparedStatement ste=myconn.prepareStatement(sql);
-                     ste.setString(1,P.getEtat());
-                 ste.setInt(2, P.getId_offre());
-            ste.executeUpdate();
+                java.sql.Statement ste = myconn.createStatement();
+
+            ste.executeUpdate(sql);
             System.out.println("Candidature Accepté");
         } catch (SQLException ex) {
             System.out.println(ex);

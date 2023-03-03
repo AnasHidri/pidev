@@ -139,9 +139,8 @@ public class OffreService implements IOffre   {
             System.out.println(ex);
         }
        }
-     public ObservableList<Offre> afficherattenteOffre() {
-       
-        ObservableList<Offre> OffreList = FXCollections.observableArrayList();
+  public ObservableList<Offre> afficherattenteOffre() {
+  ObservableList<Offre> OffreList = FXCollections.observableArrayList();
 
         try {
             String sql = "select * from offre where offre.etat='en attente'";

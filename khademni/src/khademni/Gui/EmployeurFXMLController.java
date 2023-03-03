@@ -186,6 +186,24 @@ Date datelim = (date_limite == null) ? null : Date.valueOf(date_limite);
     alert.setContentText("Tous les champs doivent être remplis");
     alert.showAndWait();
     } 
+    else 
+if (!titre.matches("[a-zA-Z]+")) {
+    // Show an error message to the user
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setContentText("Veuillez saisir un titre valide en lettres minuscules ou majuscules.");
+    alert.showAndWait();
+    return;
+}
+
+
+if (!soc.matches("[a-zA-Z]+")) {
+    // Show an error message to the user
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setContentText("Veuillez saisir une adresse valide en lettres minuscules ou majuscules.");
+    alert.showAndWait();
+    return;
+}
+
 else if(date_debut == null) {
     Alert alert = new Alert(AlertType.INFORMATION);
     alert.setContentText("Veuillez sélectionner une date de début pour l'offre.");

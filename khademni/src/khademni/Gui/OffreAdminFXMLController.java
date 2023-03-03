@@ -6,12 +6,10 @@ package khademni.Gui;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Properties;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -33,10 +31,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import static khademni.Gui.EmployeurFXMLController.sendEmail;
-import khademni.entity.Candidature;
 import khademni.entity.Offre;
-import khademniService.CandidatureService;
 import khademniService.OffreService;
 
 /**
@@ -132,7 +127,6 @@ public class OffreAdminFXMLController implements Initializable {
                     return true;
                 } else if (predicateOffreData.getAdresse_societe().toLowerCase().contains(searchKey)) {
                     return true;
-               
                 } else 
                     return false;
                 
@@ -147,11 +141,8 @@ public class OffreAdminFXMLController implements Initializable {
     }
 
     public void showOffre(){
-           OffreService os =new OffreService(); 
-
-ObservableList<Offre> list = os.afficherattenteOffre();
-
-
+     OffreService os =new OffreService();
+     ObservableList<Offre> list = os.afficherattenteOffre();
 colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
 colDescription.setCellValueFactory(new PropertyValueFactory <>("description"));
 colAdresse_societe.setCellValueFactory(new PropertyValueFactory <>("adresse_societe"));

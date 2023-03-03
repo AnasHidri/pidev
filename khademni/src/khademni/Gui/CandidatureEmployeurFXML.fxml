@@ -26,12 +26,12 @@
             <Font name="MV Boli" size="25.0" />
          </font>
       </Text>
-      <Button layoutX="172.0" layoutY="345.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #832c8d;" text="Valider" textFill="#fcfcfc">
+      <Button fx:id="btnvalide" layoutX="172.0" layoutY="345.0" mnemonicParsing="false" onAction="#validerCandidat" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #832c8d;" text="Valider" textFill="#fcfcfc">
          <font>
             <Font name="MV Boli" size="17.0" />
          </font>
       </Button>
-      <Button layoutX="364.0" layoutY="345.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #832c8d;" text="Refuser" textFill="#fcfcfc">
+      <Button fx:id="btnRefuser" layoutX="364.0" layoutY="345.0" mnemonicParsing="false" onAction="#refusCandidat" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #832c8d;" text="Refuser" textFill="#fcfcfc">
          <font>
             <Font name="MV Boli" size="17.0" />
          </font>
@@ -57,5 +57,10 @@
             </TableView>
          </children>
       </HBox>
+      <Button fx:id="btnretourne" layoutX="21.0" layoutY="345.0" mnemonicParsing="false" onAction="#retourne" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #832c8d;" text="&lt;----" textFill="#fcfcfc">
+         <font>
+            <Font name="MV Boli" size="17.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
