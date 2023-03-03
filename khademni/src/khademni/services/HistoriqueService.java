@@ -16,6 +16,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import khademni.entity.Ligne_commande;
+import khademni.entity.Utilisateur;
 
 /**
  *
@@ -116,6 +118,38 @@ public class HistoriqueService implements IHistorique {
          
          
         return  namedata; 
+    }
+    
+     
+        
+    public ObservableList<Historique> afficherHistoriqueSelonRecherche(String nom) {
+            
+   
+        ObservableList<Historique> commandes = FXCollections.observableArrayList();
+        try {
+     
+           String sql = "SELECT date_action,action from historique where action = ?";
+              PreparedStatement ps = cnx.prepareStatement(sql);
+        ps.setString(1, nom);   // set the value of the first placeholder to 0
+      
+        ResultSet s = ps.executeQuery();
+            while (s.next()) {
+
+                Historique u = new Historique(
+                      s.getInt("id_user"),
+                        s.getDate("date_action"),
+                s.getString("action")
+                      
+                );
+                historique.add(u);
+
+            }
+            
+        
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return commandes;
     }
     
     

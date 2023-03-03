@@ -34,7 +34,6 @@
             <TableColumn fx:id="date_fin_aff" prefWidth="94.0" text="date fin" />
          </columns>
       </TableView>
-      <Button fx:id="btn_aff_ev" layoutX="474.0" layoutY="151.0" mnemonicParsing="false" onAction="#AffichEV" text="Afficher" />
       <Button fx:id="select_ev" layoutX="476.0" layoutY="74.0" mnemonicParsing="false" onAction="#SelectEV" text="Select" />
       <Button fx:id="btn_supp_ev" layoutX="513.0" layoutY="108.0" mnemonicParsing="false" onAction="#SuppEv" text="Supprimer" />
       <TextField fx:id="idev2" layoutX="62.0" layoutY="40.0" prefHeight="25.0" prefWidth="112.0" visible="false" />

@@ -9,12 +9,16 @@ import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import khademni.entity.Historique;
+import khademni.entity.Ligne_commande;
+import khademni.entity.Panier;
 import khademni.services.HistoriqueService;
 
 
@@ -35,6 +39,8 @@ public class HistoriqueFXMLController implements Initializable {
     private TableColumn<?, ?> action;
               @FXML
     private TableColumn<String, String> username;
+         @FXML 
+     private TextField recherche;
     
     HistoriqueService hs= new HistoriqueService();
     /**
@@ -45,6 +51,10 @@ public class HistoriqueFXMLController implements Initializable {
         
         showRec();
         
+          recherche.textProperty().addListener((observable, oldValue, newValue) -> {
+        // Call the chercher method with the updated search term
+        chercher(null);
+    });
         // TODO
     }  
     
@@ -71,6 +81,11 @@ public class HistoriqueFXMLController implements Initializable {
         tableviewUser2.setItems(list2);
          
          
+     }
+    
+     public void chercher (ActionEvent event){
+     //to be continued  
+     
      }
     
 }

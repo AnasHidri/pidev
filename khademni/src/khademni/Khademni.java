@@ -30,8 +30,8 @@ public class Khademni {
         Panier panier = new Panier(10,100);
        //p.ajouterPanier(panier);
       // p.modifierPanier(panier);
-       Ligne_CommandeService cm= new Ligne_CommandeService();
-       Ligne_commande commande= new Ligne_commande(1,3,250,"SQL",0);
+      // Ligne_CommandeService cm= new Ligne_CommandeService();
+     //  Ligne_commande commande= new Ligne_commande(1,3,250,"SQL",0);
        //cm.ajouterCommande(commande);
        // System.out.println(cm.afficherLigneCommande());
        
@@ -39,7 +39,7 @@ public class Khademni {
       //  HistoriqueService hs = new HistoriqueService();
       //System.out.println(hs.afficherHistoriqueWithUser());  
       
-      System.out.println(cm.afficherStatistiqiueFormation());
+     // System.out.println(cm.afficherStatistiqiueFormation());
     }
     
 }

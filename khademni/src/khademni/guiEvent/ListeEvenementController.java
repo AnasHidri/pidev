@@ -103,6 +103,25 @@ public class ListeEvenementController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         ListEV();
+        
+        // Ajouter un listener pour surveiller les modifications de texte
+    recherche_text_par.textProperty().addListener((observable, oldValue, newValue) -> {
+        // Récupérer la liste des événements affichée dans la TableView
+        ObservableList<Evenement> evenements = tab_ev_liste.getItems();
+
+        // Créer une nouvelle liste pour stocker les résultats de la recherche
+        ObservableList<Evenement> evenementsRecherche = FXCollections.observableArrayList();
+
+        // Parcourir la liste des événements et ajouter les événements correspondant au titre de recherche
+        for (Evenement evenement : evenements) {
+            if (evenement.getTitre().toLowerCase().contains(newValue.toLowerCase())) {
+                evenementsRecherche.add(evenement);
+            }
+        }
+
+        // Afficher les résultats de la recherche dans la TableView
+        tab_ev_liste.setItems(evenementsRecherche);
+    });
     }    
     
     @FXML
