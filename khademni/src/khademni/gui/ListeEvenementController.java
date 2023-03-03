@@ -34,8 +34,10 @@ import khademni.entity.Participation;
 import khademni.services.EvenementService;
 import khademni.services.ParticipationService;
 import java.sql.Date;
+import java.sql.SQLException;
 import static java.util.Collections.list;
 import java.util.Properties;
+import javafx.scene.control.Alert;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -140,7 +142,22 @@ private void ParticipeEV(ActionEvent event){
     Evenement selectedEV =  tab_ev_liste.getSelectionModel().getSelectedItem();
     System.out.println("id_e::"+selectedEV.getId_evenement());
     idevl.setText(String.valueOf(selectedEV.getId_evenement()));
-    Participation p= new Participation(selectedEV.getId_evenement(), 2,"active");
+    boolean exists = false;
+try {
+    ParticipationService ps = new ParticipationService();
+    exists = ps.participantExists(2, selectedEV.getId_evenement());
+} catch (SQLException ex ) {
+    ex.printStackTrace();
+}
+
+if (exists) {
+    // Si la participation existe déjà, afficher une alerte
+    Alert alert = new Alert(Alert.AlertType.WARNING);
+    alert.setTitle("Participation existante");
+    alert.setHeaderText("Vous avez déjà participé à cet événement.");
+    alert.showAndWait();
+}
+Participation p= new Participation(selectedEV.getId_evenement(), 2,"active");
     System.out.println("tese1");
     ParticipationService ps= new ParticipationService();
     ps.ajouterParticipation(p);
@@ -150,7 +167,7 @@ private void ParticipeEV(ActionEvent event){
     String to = "oueslati.yassmine1@gmail.com"; // Adresse mail de l'utilisateur
     String from = "khademni.serviceClient@gmail.com"; // Votre adresse mail
     String host = "smtp.gmail.com"; // Adresse du serveur SMTP (ici, Gmail)
-    String username = "oueslati.yassmine1@gmail.com"; // Votre adresse mail
+    String username = "khademni.serviceClient@gmail.com"; // Votre adresse mail
     String password = "iptppxmbutpkhtee"; // Votre mot de passe Gmail
     Properties properties = new Properties();
     properties.put("mail.smtp.auth", "true");
@@ -171,7 +188,12 @@ private void ParticipeEV(ActionEvent event){
         Transport.send(message);
         System.out.println("Le message a été envoyé avec succès.");
     } catch (MessagingException mex) {
-        mex.printStackTrace();
+         mex.printStackTrace();
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle("Erreur d'envoi de l'email");
+    alert.setHeaderText("Impossible d'envoyer l'email. Vérifiez que l'adresse email est correcte et que les informations d'identification sont valides.");
+    alert.setContentText(mex.getMessage());
+    alert.showAndWait();
     }
 }
     

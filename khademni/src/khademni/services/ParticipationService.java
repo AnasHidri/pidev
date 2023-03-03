@@ -107,7 +107,7 @@ public class ParticipationService implements IParticipation<Participation> {
         return participations;
     }
     
-    private boolean participantExists(int id_user, int id_evenement) throws SQLException {
+    public boolean participantExists(int id_user, int id_evenement) throws SQLException {
         String query = "SELECT * FROM participation WHERE id_user = ? and id_evenement =?";
         PreparedStatement statement = cnx.prepareStatement(query);
         statement.setInt(1, id_user);
