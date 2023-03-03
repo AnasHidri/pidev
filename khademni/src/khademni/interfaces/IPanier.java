@@ -6,6 +6,7 @@ package khademni.interfaces;
 
 import javafx.collections.ObservableList;
 import khademni.entity.Panier;
+import khademni.entity.Utilisateur;
 
 /**
  *
@@ -13,7 +14,7 @@ import khademni.entity.Panier;
  */
 public interface IPanier {
     
-     public void ajouterPanier(Panier p);
+     public void ajouterPanier(int u);
     public void modifierPanier(Panier p);
     public void supprimerPanier(Panier p);
     public ObservableList<String> afficherPanier();

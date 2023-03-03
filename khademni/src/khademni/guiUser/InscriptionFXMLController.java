@@ -40,6 +40,7 @@ import khademni.entity.Formateur;
 import khademni.entity.Utilisateur;
 import khademni.utils.MyConnection;
 import khademni.services.UtilisateurService;
+import khademni.services.PanierService;
 
 /**
  * FXML Controller class
@@ -654,6 +655,8 @@ public class InscriptionFXMLController implements Initializable {
                         System.out.println("current user cv ::"+Utilisateur.Current_User.getLogin());
                         System.out.println("current user :: "+Utilisateur.Current_User);
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        PanierService p= new PanierService();
+                        p.ajouterPanier(Utilisateur.Current_User.getId_user());
                                 alert.setTitle("Travel Me :: Success Message");
                                 alert.setHeaderText(null);
                                 alert.setContentText("Vous etes connecté");
@@ -664,7 +667,7 @@ public class InscriptionFXMLController implements Initializable {
                                 try{
                                         // Charger la nouvelle vue
                                         System.out.println("avant");
-                                       FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileSettingsFXML.fxml"));
+                                       FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/gui/PanierFXML.fxml"));
                                                System.out.println("apres");
                                        Parent root = loader.load();
                                 

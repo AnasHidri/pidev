@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import khademni.entity.Historique;
 import khademni.entity.Ligne_commande;
 import khademni.entity.Panier;
+import khademni.entity.Utilisateur;
 import khademni.interfaces.IPanier;
 import khademni.utils.MyConnection;
 
@@ -38,26 +39,43 @@ public class PanierService implements IPanier {
     }
 
     @Override
-    public void ajouterPanier(Panier p) {
+    public void ajouterPanier(int u) {
+        boolean verif = false;
+       try {
+        Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
+        String sql2 = "select panier.id_panier from panier, user where panier.id_user=user.id_user and user.id_user="+u;
     
+          java.sql.Statement ste2 = cnx.createStatement();
+            ResultSet s = ste2.executeQuery(sql2);
+            while (s.next()) {
+                    verif = true;
+               
+            }
+       }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+           
+       if (verif==false){
            try {
+                 Utilisateur utilisateur = new Utilisateur();
             String sql = "insert into panier(id_user,somme)"
                     + "values (?,?)";
             PreparedStatement ste = cnx.prepareStatement(sql);
-            ste.setInt(1, p.getId_user());
-            ste.setFloat(2, p.getSomme());
+            ste.setInt(1, u);
+            ste.setFloat(2, 0);
             ste.executeUpdate();
             System.out.println("Panier ajoutée");
             
             HistoriqueService hs= new HistoriqueService();
             String ajoutaction="Ajout panier";
              LocalDate today = LocalDate.now();
-            Historique h= new Historique(p.getId_user(),java.sql.Date.valueOf(today),ajoutaction);
+            Historique h= new Historique(u,java.sql.Date.valueOf(today),ajoutaction);
             hs.ajouterHistorique(h);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
+       }
     }
 
     @Override
@@ -65,7 +83,9 @@ public class PanierService implements IPanier {
        
        int prixtotal=0;
         try {
-            String sql = "select prix from ligne_commande,panier where ligne_commande.id_panier= panier.id_panier and status="+0
+               Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
+            String sql = "select prix from ligne_commande,panier where ligne_commande.id_panier= panier.id_panier and status="+0+" and panier.id_user="+utilisateur.Current_User.getId_user()
                     ;
             java.sql.Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
@@ -105,8 +125,8 @@ public class PanierService implements IPanier {
    
         ObservableList<String> l_formation = FXCollections.observableArrayList();
         try {
-            String sql = "select formation.titre,formation.prix from formation,panier,ligne_commande where ligne_commande.id_panier="+1+" and"
-                    + " panier.id_panier="+1+" and ligne_commande.id_formation=formation.id_formation";
+              Utilisateur utilisateur = new Utilisateur();
+            String sql = "select formation.titre,formation.prix from formation,panier,ligne_commande where formation.id_formation=ligne_commande.id_formation and panier.id_panier=ligne_commande.id_panier and panier.id_user="+utilisateur.Current_User.getId_user();
             java.sql.Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
@@ -132,7 +152,9 @@ public class PanierService implements IPanier {
     @Override
     public int affichesomme(Panier p) {
         int prixtot=0;
-        String sql3 = "select somme from panier where panier.id_user="+10;
+         Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
+        String sql3 = "select somme from panier where panier.id_user="+utilisateur.Current_User.getId_user();
    try {
             
               java.sql.Statement ste = cnx.createStatement();
@@ -157,7 +179,9 @@ public class PanierService implements IPanier {
     @Override
    public void payer(Panier p) {
     int soldeuser = 0;
-    String sql3 = "select solde from user";
+             Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
+    String sql3 = "select solde from user where id_user="+utilisateur.Current_User.getId_user();
   try {
             
               java.sql.Statement ste = cnx.createStatement();
@@ -181,7 +205,7 @@ public class PanierService implements IPanier {
     int prixtot = affichesomme(p);
     int nouveausolde = soldeuser - prixtot;
 
-    try (PreparedStatement ste2 = cnx.prepareStatement("update user set user.solde=?")) {
+    try (PreparedStatement ste2 = cnx.prepareStatement("update user set user.solde=? where id_user="+utilisateur.Current_User.getId_user())) {
         ste2.setInt(1, nouveausolde);
         ste2.executeUpdate();
         System.out.println("User balance updated successfully.");
@@ -221,7 +245,7 @@ public class PanierService implements IPanier {
      HistoriqueService hs= new HistoriqueService();
             String ajoutaction="Paiement effectus avec success";
              LocalDate today = LocalDate.now();
-            Historique h= new Historique(p.getId_user(),java.sql.Date.valueOf(today),ajoutaction);
+            Historique h= new Historique(utilisateur.Current_User.getId_user(),java.sql.Date.valueOf(today),ajoutaction);
             hs.ajouterHistorique(h);
             
 }

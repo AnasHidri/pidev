@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import khademni.entity.Panier;
+import khademni.entity.Utilisateur;
 
 
 /**
@@ -109,7 +110,9 @@ public class Ligne_CommandeService implements ILigne_commande {
    
         ObservableList<Ligne_commande> commandes = FXCollections.observableArrayList();
         try {
-            String sql = "select ligne_commande.id_ligne_commande,panier.id_panier, titre,prix from ligne_commande,panier where ligne_commande.id_panier=panier.id_panier and status="+0+" and panier.id_user="+10;
+            Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
+            String sql = "select ligne_commande.id_ligne_commande,panier.id_panier, titre,prix from ligne_commande,panier where ligne_commande.id_panier=panier.id_panier and status="+0+" and panier.id_user="+utilisateur.Current_User.getId_user();
             java.sql.Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
@@ -135,7 +138,9 @@ public class Ligne_CommandeService implements ILigne_commande {
     public void ViderCommande(Panier p) {
        ObservableList<Ligne_commande> commandes = FXCollections.observableArrayList();
         try {
-            String sql = "select ligne_commande.id_ligne_commande,ligne_commande.id_formation,panier.id_panier, titre,prix,status from ligne_commande,panier where ligne_commande.id_panier=panier.id_panier and panier.id_user="+10;
+                        Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
+            String sql = "select ligne_commande.id_ligne_commande,ligne_commande.id_formation,panier.id_panier, titre,prix,status from ligne_commande,panier where ligne_commande.id_panier=panier.id_panier and panier.id_user="+utilisateur.Current_User.getId_user();
               java.sql.Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
          
@@ -171,7 +176,9 @@ public class Ligne_CommandeService implements ILigne_commande {
    
         ObservableList<Ligne_commande> commandes = FXCollections.observableArrayList();
         try {
-            String sql = "select ligne_commande.id_ligne_commande,panier.id_panier, titre,prix from ligne_commande,panier where ligne_commande.id_panier=panier.id_panier and status="+1+" and panier.id_user="+10;
+           Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
+            String sql = "select ligne_commande.id_ligne_commande,panier.id_panier, titre,prix from ligne_commande,panier where ligne_commande.id_panier=panier.id_panier and status="+1+" and panier.id_user="+utilisateur.Current_User.getId_user();
             java.sql.Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
@@ -202,12 +209,14 @@ public class Ligne_CommandeService implements ILigne_commande {
    
         ObservableList<Ligne_commande> commandes = FXCollections.observableArrayList();
         try {
+               Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
            String sql = "SELECT ligne_commande.id_ligne_commande, panier.id_panier, titre, prix "
                    + "FROM ligne_commande, panier "
                    + "WHERE ligne_commande.id_panier = panier.id_panier AND status = ? AND panier.id_user = ? AND ligne_commande.titre = ?";
               PreparedStatement ps = cnx.prepareStatement(sql);
         ps.setInt(1, 0);   // set the value of the first placeholder to 0
-        ps.setInt(2, 10);  // set the value of the second placeholder to 10
+        ps.setInt(2, utilisateur.Current_User.getId_user());  // set the value of the second placeholder to 10
         ps.setString(3, nom);  // set the value of the third placeholder to the value of nom
         ResultSet s = ps.executeQuery();
             while (s.next()) {
