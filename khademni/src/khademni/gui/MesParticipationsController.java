@@ -104,6 +104,55 @@ public class MesParticipationsController implements Initializable {
         }
     });
         
+        // Ajouter un listener pour surveiller les modifications de texte
+    recherche_text_par.textProperty().addListener((observable, oldValue, newValue) -> {
+        // Récupérer la liste des événements affichée dans la TableView
+        ObservableList<Evenement> evenements = tab_mes_parti.getItems();
+
+        // Créer une nouvelle liste pour stocker les résultats de la recherche
+        ObservableList<Evenement> evenementsRecherche = FXCollections.observableArrayList();
+
+        // Parcourir la liste des événements et ajouter les événements correspondant au titre de recherche
+        for (Evenement evenement : evenements) {
+            if (evenement.getTitre().toLowerCase().contains(newValue.toLowerCase())) {
+                evenementsRecherche.add(evenement);
+            }
+        }
+
+        // Afficher les résultats de la recherche dans la TableView
+        tab_mes_parti.setItems(evenementsRecherche);
+    });
+        // Ajouter un écouteur sur la sélection de la table pour mettre à jour l'affichage des likes et dislikes automatiquement
+tab_mes_parti.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+    if (newValue != null) {
+        // Récupérer l'instance de Participation pour l'événement sélectionné depuis votre base de données
+        Participation p = new Participation(newValue.getId_evenement(), 2, "active");
+        
+        // Afficher les résultats dans votre interface utilisateur
+        ParticipationService ps = new ParticipationService();
+        int[] likesAndDislikes = ps.getLikesAndDislikesCount(p);
+        nb_like_dislike.setText("Likes: " + likesAndDislikes[0] + " Dislikes: " + likesAndDislikes[1]);
+
+        // Ajouter un écouteur sur l'instance de Participation pour mettre à jour l'affichage des likes et dislikes automatiquement
+        ps.addPropertyChangeListener(evt -> {
+            int[] newLikesAndDislikes = ps.getLikesAndDislikesCount(p);
+            Platform.runLater(() -> {
+                nb_like_dislike.setText("Likes: " + newLikesAndDislikes[0] + " Dislikes: " + newLikesAndDislikes[1]);
+            });
+        });
+         // Mettre à jour l'affichage des likes et dislikes
+    ps.addPropertyChangeListener(evt -> {
+        int[] newLikesAndDislikes = ps.getLikesAndDislikesCount(p);
+        Platform.runLater(() -> {
+            nb_like_dislike.setText("Likes: " + newLikesAndDislikes[0] + " Dislikes: " + newLikesAndDislikes[1]);
+        });
+    });
+    }
+    
+});
+      
+        
+        
         
     }    
     
@@ -190,6 +239,12 @@ public class MesParticipationsController implements Initializable {
         ps.likeEvent(p);
         ps.updateLikesAndDislikes(p);
         System.out.println("tese2");
+         // Mettre à jour l'affichage des likes et dislikes
+    ParticipationService ps2 = new ParticipationService();
+        int[] likesAndDislikes = ps2.getLikesAndDislikesCount(p);
+        nb_like_dislike.setText("Likes: " + likesAndDislikes[0] + " Dislikes: " + likesAndDislikes[1]);
+    
+   
             }
             
             @FXML
@@ -203,6 +258,10 @@ public class MesParticipationsController implements Initializable {
         ps.DislikeEvent(p);
         ps.updateLikesAndDislikes(p);
         System.out.println("tese2");
+          // Mettre à jour l'affichage des likes et dislikes
+    ParticipationService ps2 = new ParticipationService();
+        int[] likesAndDislikes = ps2.getLikesAndDislikesCount(p);
+        nb_like_dislike.setText("Likes: " + likesAndDislikes[0] + " Dislikes: " + likesAndDislikes[1]);
             }
             
  
