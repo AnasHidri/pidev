@@ -22,6 +22,11 @@ public class Offre {
     public Offre() {
     }
 
+    public Offre(int id_offre, String domaine_offre) {
+        this.id_offre = id_offre;
+        this.domaine_offre = domaine_offre;
+    }
+
     public Offre(int id_user, String titre, String description, String adresse_societe, String domaine_offre, Date date_debut, Date date_limite) {
         this.id_user = id_user;
         this.titre = titre;

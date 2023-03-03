@@ -6,6 +6,7 @@ package khademni.Gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -18,6 +19,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import static khademni.Gui.EmployeurFXMLController.sendEmail;
 import khademni.entity.Candidature;
 import khademni.entity.Offre;
 import khademniService.CandidatureService;
@@ -133,7 +143,17 @@ colDateLimite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
         Candidature C= new Candidature(selectedOffre.getId_offre(), 1,"en attente");
         CandidatureService CV= new CandidatureService();
         CV.ajouterCandidature(C);
-      
+       String senderEmail = "khademni.serviceClient@gmail.com"; 
+String senderPassword = "iptppxmbutpkhtee"; 
+String receiverEmail = "achour.rihab2000@gmail.com"; 
+String subject = "Une offre Postuler";
+String message = "Une nouvelle offre a été Postuler avec succès.";
+
+try {
+    sendEmail(senderEmail, senderPassword, receiverEmail, subject, message);
+} catch (MessagingException ex) {
+    System.out.println("Erreur lors de l'envoi de l'email : " + ex.getMessage());
+}
         
     }
   
@@ -151,4 +171,36 @@ colDateLimite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
  SceneController SC = new SceneController();
     SC.Scene6(event);
     }
+
+
+    
+    public static void sendEmail(String senderEmail, String senderPassword, String receiverEmail, String subject, String message) throws MessagingException {
+   
+    Properties props = new Properties();
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.starttls.enable", "true");
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.port", "587");
+
+    Session session = Session.getInstance(props, new Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication("khademni.serviceClient@gmail.com", "iptppxmbutpkhtee");
+        }
+    });
+
+    Message email = new MimeMessage(session);
+    email.setFrom(new InternetAddress("khademni.serviceClient@gmail.com"));
+    email.setRecipients(Message.RecipientType.TO, InternetAddress.parse("achour.rihab2000@gmail.com"));
+
+    email.setSubject("Postulation");
+    email.setText("offre Postuler avec succes");
+
+    Transport.send(email);
+
+    System.out.println("Email sent successfully.");
 }
+
+    
+
+}
+

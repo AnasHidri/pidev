@@ -24,10 +24,10 @@ import khademniService.CandidatureService;
 public class CandidatureEmployeurFXMLController implements Initializable {
 
  @FXML
-    private TableColumn<?, ?> colEmail;
+    private TableColumn<?, ?> ColEtat;
 
     @FXML
-    private TableColumn<?, ?> colEtat;
+    private TableColumn<?, ?> colEmail;
 
     @FXML
     private TableColumn<?, ?> colNom;
@@ -39,7 +39,14 @@ public class CandidatureEmployeurFXMLController implements Initializable {
     private TableColumn<?, ?> colTitre;
 
     @FXML
-    private TableView<String> tvCandidature;
+    private TableView<Candidature> tvCandidature1;
+
+    @FXML
+    private TableView<Candidature> tvCandidature2;
+
+    @FXML
+    private TableView<Candidature> tvCandidature3;
+
     /**
      * Initializes the controller class.
      */
@@ -47,21 +54,38 @@ public class CandidatureEmployeurFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         // TODO
+        
+        
+        showOffre1();
+        showOffre2();
+        showOffre3();
     }    
     
- public void showOffre(){
+ public void showOffre1(){
   CandidatureService cs =new CandidatureService(); 
-ObservableList<String> listeCandidature = cs.afficherCandidatureEmployeur();
+ObservableList<Candidature> listeCandidature1 = cs.afficherCandidatureEmployeur1();
 
 colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
-colNom.setCellValueFactory(new PropertyValueFactory <>("nom"));
-colPrenom.setCellValueFactory(new PropertyValueFactory <>("prenom"));
-colEmail.setCellValueFactory(new PropertyValueFactory <>("adresse"));
-colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
 
-    
-       tvCandidature.setItems(listeCandidature);
+       tvCandidature1.setItems(listeCandidature1);
 } 
 
+  public void showOffre2(){
+  CandidatureService cs =new CandidatureService(); 
+ObservableList<Candidature> listeCandidature2 = cs.afficherCandidatureEmployeur2();
 
+colNom.setCellValueFactory(new PropertyValueFactory <>("nom"));
+colPrenom.setCellValueFactory(new PropertyValueFactory <>("prenom"));
+colEmail.setCellValueFactory(new PropertyValueFactory <>("email"));
+    
+       tvCandidature2.setItems(listeCandidature2);
+} 
+ public void showOffre3(){
+  CandidatureService cs =new CandidatureService(); 
+ObservableList<Candidature> listeCandidature3 = cs.afficherCandidatureEmployeur3();
+
+ColEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
+
+       tvCandidature3.setItems(listeCandidature3);
+} 
 }

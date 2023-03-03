@@ -24,6 +24,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javax.mail.MessagingException;
+import static khademni.Gui.EmployeurFXMLController.sendEmail;
 import khademni.entity.Candidature;
 import khademni.entity.Offre;
 import khademniService.CandidatureService;
@@ -199,6 +201,7 @@ colDate_limite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
     alert.showAndWait();
      tvOffre.refresh();
   showOffre();
+  
 
 }    
         

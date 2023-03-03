@@ -167,49 +167,91 @@ colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
         Offre o;
         OffreService os=new OffreService();
      
-    // if(event.getSource() == btnAdd){
-                
-
+     
        String titre= tfTitre.getText();
       String des= tfDescription.getText(); 
      String soc= tfAdressse_societe.getText(); 
      String off=  tfDomaine_offre.getText();
-     LocalDate date_debut =tfDate_debut.getValue();
-      Date datedeb= Date.valueOf(date_debut);
-        LocalDate date_limite =tfDate_Limite.getValue();
-      Date datelim= Date.valueOf(date_limite);
+    LocalDate date_debut = tfDate_debut.getValue();
+Date datedeb = (date_debut == null) ? null : Date.valueOf(date_debut);
 
-        o =new Offre(2, titre, des, soc, off, datedeb, datelim);
-        
-    if(titre.trim().isEmpty() || des.trim().isEmpty() || soc.trim().isEmpty()|| off.trim().isEmpty()) {
+LocalDate date_limite = tfDate_Limite.getValue();
+Date datelim = (date_limite == null) ? null : Date.valueOf(date_limite);
+
+
+     
+    if(titre.isEmpty() || des.isEmpty() || soc.isEmpty()|| off.isEmpty()) {
       System.out.println();
        Alert alert = new Alert(AlertType.INFORMATION);
     alert.setContentText("Tous les champs doivent être remplis");
     alert.showAndWait();
-    } else {
+    } else
+        if(titre.isEmpty()) {
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setContentText("Veuillez saisir un titre pour l'offre.");
+    alert.showAndWait();
+} 
+else if(des.isEmpty()) {
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setContentText("Veuillez saisir une description pour l'offre.");
+    alert.showAndWait();
+} 
+
+else if(soc.isEmpty()) {
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setContentText("Veuillez saisir une adresse pour la société.");
+    alert.showAndWait();
+} 
+
+else if(off.isEmpty()) {
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setContentText("Veuillez saisir un domaine pour l'offre.");
+    alert.showAndWait();
+} 
+else if(date_debut == null) {
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setContentText("Veuillez sélectionner une date de début pour l'offre.");
+    alert.showAndWait();
+} 
+else if(date_limite == null) {
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setContentText("Veuillez sélectionner une date limite pour l'offre.");
+    alert.showAndWait();
+} 
+
+else if(date_debut.isAfter(date_limite)) {
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setContentText("La date de début doit être inférieur à la date Limite.");
+    alert.showAndWait();
+} 
+
+else {
+            o =new Offre(2, titre, des, soc, off, datedeb, datelim);
+
          os.ajouterOffre(o);
-      String senderEmail = "khademni.serviceClient@gmail.com"; // Remplacez par votre adresse e-mail
-String senderPassword = "iptppxmbutpkhtee"; // Remplacez par votre mot de passe
-String receiverEmail = "achour.rihab2000@gmail.com"; // Remplacez par l'adresse e-mail du destinataire
-String subject = "Nouvelle offre ajoutée";
-String message = "Une nouvelle offre a été ajoutée avec succès.";
+          Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setContentText("Offre Ajoutée");
+    alert.showAndWait();    
+             
+  tvOffre.refresh();
+  showOffre1();
+   String senderEmail = "khademni.serviceClient@gmail.com"; 
+String senderPassword = "iptppxmbutpkhtee"; 
+String receiverEmail = "achour.rihab2000@gmail.com"; 
+String subject = "Une offre Ajoutée";
+String message = "Une nouvelle offre a été Ajoutée avec succès.";
 
 try {
     sendEmail(senderEmail, senderPassword, receiverEmail, subject, message);
 } catch (MessagingException ex) {
     System.out.println("Erreur lors de l'envoi de l'email : " + ex.getMessage());
 }
- Alert alert = new Alert(AlertType.INFORMATION);
-    alert.setContentText("Offre Ajoutée");
-    alert.showAndWait();    }
-             
-  tvOffre.refresh();
-  showOffre1();
+     
 
     
    
     }
- 
+    }
    
     @FXML
  public void DeleteOffre(ActionEvent event) {
@@ -225,6 +267,18 @@ try {
       
         tvOffre.refresh();
   showOffre1();
+    String senderEmail = "khademni.serviceClient@gmail.com"; 
+String senderPassword = "iptppxmbutpkhtee"; 
+String receiverEmail = "achour.rihab2000@gmail.com"; 
+String subject = "Une offre Supprimée";
+String message = "Une nouvelle offre a été Supprimée avec succès.";
+
+try {
+    sendEmail(senderEmail, senderPassword, receiverEmail, subject, message);
+} catch (MessagingException ex) {
+    System.out.println("Erreur lors de l'envoi de l'email : " + ex.getMessage());
+}
+  
 
      
     }
@@ -273,7 +327,21 @@ try {
     alert.setContentText("Offre Modifié!");
     alert.showAndWait();
       tvOffre.refresh();
-  showOffre1();}
+  showOffre1();
+    
+     String senderEmail = "khademni.serviceClient@gmail.com"; 
+String senderPassword = "iptppxmbutpkhtee"; 
+String receiverEmail = "achour.rihab2000@gmail.com"; 
+String subject = "Une offre Modifiée";
+String message = "Une nouvelle offre a été Modifiée avec succès.";
+
+try {
+    sendEmail(senderEmail, senderPassword, receiverEmail, subject, message);
+} catch (MessagingException ex) {
+    System.out.println("Erreur lors de l'envoi de l'email : " + ex.getMessage());
+}
+  
+    }
 
       @FXML
     void ListeCandidature(ActionEvent event) throws IOException {
@@ -283,36 +351,28 @@ try {
 
 
 public static void sendEmail(String senderEmail, String senderPassword, String receiverEmail, String subject, String message) throws MessagingException {
-    // Email server properties
+   
     Properties props = new Properties();
     props.put("mail.smtp.auth", "true");
     props.put("mail.smtp.starttls.enable", "true");
     props.put("mail.smtp.host", "smtp.gmail.com");
     props.put("mail.smtp.port", "587");
 
-    // Create a Session object
     Session session = Session.getInstance(props, new Authenticator() {
         protected PasswordAuthentication getPasswordAuthentication() {
             return new PasswordAuthentication("khademni.serviceClient@gmail.com", "iptppxmbutpkhtee");
         }
     });
 
-    // Create a MimeMessage object
     Message email = new MimeMessage(session);
-
-    // Set From: header field
     email.setFrom(new InternetAddress("khademni.serviceClient@gmail.com"));
-
-    // Set To: header field
     email.setRecipients(Message.RecipientType.TO, InternetAddress.parse("achour.rihab2000@gmail.com"));
 
-    // Set Subject: header field
     email.setSubject("offre");
+    //email.setText("offre ajoutée avec succes");
+    email.setText("offre Supprimée avec succes");
+   // email.setText("offre modifiée avec succes");
 
-    // Set message content
-    email.setText("offre ajoute avec succes");
-
-    // Send email
     Transport.send(email);
 
     System.out.println("Email sent successfully.");

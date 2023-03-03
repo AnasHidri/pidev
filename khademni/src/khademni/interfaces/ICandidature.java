@@ -18,8 +18,10 @@ public interface ICandidature <Candidature>{
     public void ajouterCandidature(Candidature P);
     public void modifierCandidature(Candidature P);
     public void supprimerCandidature(Candidature P);
-    public ObservableList<String> afficherCandidatureEmployeur();
-    public ObservableList<String> afficherCandidatureClient();
-
+    public ObservableList<Candidature> afficherCandidatureEmployeur1();
+    public ObservableList<Candidature> afficherCandidatureEmployeur2();
+       public ObservableList<Candidature> afficherCandidatureEmployeur3();
+    public ObservableList<Candidature> afficherCandidatureClient1();
+public ObservableList<Candidature> afficherCandidatureClient2();
     
 } 

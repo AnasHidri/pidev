@@ -221,10 +221,10 @@ public ObservableList<Offre> getOffresByDate(LocalDate date_debut, LocalDate dat
     ObservableList<Offre> offres = FXCollections.observableArrayList();
     try {
         String sql = "SELECT * FROM offre WHERE date_debut >= ? AND date_limite <= ? AND offre.etat='en attente'";
-        PreparedStatement pstmt = myconn.prepareStatement(sql);
-        pstmt.setDate(1, Date.valueOf(date_debut));
-        pstmt.setDate(2, Date.valueOf(date_limite));
-        ResultSet s = pstmt.executeQuery();
+        PreparedStatement ste = myconn.prepareStatement(sql);
+        ste.setDate(1, Date.valueOf(date_debut));
+        ste.setDate(2, Date.valueOf(date_limite));
+        ResultSet s = ste.executeQuery();
         while (s.next()) {
             Offre o = new Offre(s.getInt(1),
                    s.getInt(2),
@@ -242,9 +242,29 @@ public ObservableList<Offre> getOffresByDate(LocalDate date_debut, LocalDate dat
     } catch (SQLException ex) {
         System.err.println(ex.getMessage());
         return null;
+    
+        
+
+}
+/*
+ public ObservableList<Offre> StatParDomaine() {
+    ObservableList<Offre> Stat = FXCollections.observableArrayList();
+    try {
+     String sql = "SELECT domaine, COUNT(*) AS nombre_offres FROM offre GROUP BY domaine";
+     PreparedStatement ps = myconn.prepareStatement(sql);
+     ResultSet s = ps.executeQuery();
+        while (s.next()) {
+            Offre o = new Offre(
+                s.getInt("id_offre"), 
+                s.getString("domaine_offre")
+            );
+            Stat.add(o);
+        }           
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
     }
+    return Stat;
 }
 
-
-
+ */}   
 }

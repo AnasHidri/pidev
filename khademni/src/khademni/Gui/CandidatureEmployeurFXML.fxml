@@ -7,6 +7,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -25,24 +26,36 @@
             <Font name="MV Boli" size="25.0" />
          </font>
       </Text>
-      <Button layoutX="171.0" layoutY="277.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #832c8d;" text="Valider" textFill="#fcfcfc">
+      <Button layoutX="172.0" layoutY="345.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #832c8d;" text="Valider" textFill="#fcfcfc">
          <font>
             <Font name="MV Boli" size="17.0" />
          </font>
       </Button>
-      <Button layoutX="337.0" layoutY="277.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #832c8d;" text="Refuser" textFill="#fcfcfc">
+      <Button layoutX="364.0" layoutY="345.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #832c8d;" text="Refuser" textFill="#fcfcfc">
          <font>
             <Font name="MV Boli" size="17.0" />
          </font>
       </Button>
-      <TableView fx:id="tvCandidature" cache="true" layoutX="65.0" layoutY="104.0" prefHeight="122.0" prefWidth="466.0">
-         <columns>
-            <TableColumn fx:id="colTitre" prefWidth="129.0" text="Titre" />
-            <TableColumn fx:id="colNom" prefWidth="86.0" text="Nom" />
-            <TableColumn fx:id="colPrenom" prefWidth="81.0" text="Prenom" />
-            <TableColumn fx:id="colEmail" prefWidth="78.0" text="mail" />
-            <TableColumn fx:id="colEtat" prefWidth="91.0" text="Etat" />
-         </columns>
-      </TableView>
+      <HBox layoutX="39.0" layoutY="68.0" prefHeight="265.0" prefWidth="539.0">
+         <children>
+            <TableView fx:id="tvCandidature1" prefHeight="265.0" prefWidth="121.0">
+              <columns>
+                <TableColumn fx:id="colTitre" prefWidth="103.0" text="Titre" />
+              </columns>
+            </TableView>
+            <TableView fx:id="tvCandidature2" cache="true" prefHeight="265.0" prefWidth="362.0">
+               <columns>
+                  <TableColumn fx:id="colNom" prefWidth="108.0" text="Nom" />
+                  <TableColumn fx:id="colPrenom" prefWidth="127.0" text="Prenom" />
+                  <TableColumn fx:id="colEmail" prefWidth="109.0" text="Email" />
+               </columns>
+            </TableView>
+            <TableView fx:id="tvCandidature3" prefHeight="258.0" prefWidth="108.0">
+              <columns>
+                <TableColumn fx:id="ColEtat" prefWidth="88.0" text="Etat" />
+              </columns>
+            </TableView>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import khademni.entity.Candidature;
 import khademniService.CandidatureService;
 
 /**
@@ -54,17 +55,20 @@ public class MesCandidatureClientFXMLController implements Initializable {
     private TableColumn<?, ?> colEtat;
 
     @FXML
-    private TableView<String> tvMesCandidature;
-
+    private TableView<Candidature> tvMesCandidature;
+    @FXML
+    private TableView<Candidature> tvMesCandidature1;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        showOffre();
+        showOffre1();
+         showOffre2();
     }    
     
-         public void showOffre(){
+         public void showOffre1(){
   CandidatureService cs =new CandidatureService(); 
-ObservableList<String> mesCandidatures = cs.afficherCandidatureClient();
+ObservableList<Candidature> mesCandidatures = cs.afficherCandidatureClient1();
 
 
 colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
@@ -73,9 +77,17 @@ colAdresse.setCellValueFactory(new PropertyValueFactory <>("adresse_societe"));
 colDomaine.setCellValueFactory(new PropertyValueFactory <>("domaine_offre"));
 colDateDebut.setCellValueFactory(new PropertyValueFactory <>("date_debut"));
 colDateLimite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
-colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
+
 
        tvMesCandidature.setItems(mesCandidatures);
+}  
+             public void showOffre2(){
+  CandidatureService cs =new CandidatureService(); 
+ObservableList<Candidature> mesCandidatures = cs.afficherCandidatureClient2();
+
+colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
+
+       tvMesCandidature1.setItems(mesCandidatures);
 }  
    
     @FXML
