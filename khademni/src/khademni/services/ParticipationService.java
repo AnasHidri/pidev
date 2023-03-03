@@ -19,6 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import khademni.entity.Evenement;
 import khademni.entity.Participation;
+import khademni.entity.Utilisateur;
 import khademni.interfaces.IParticipation;
 import khademni.utils.MyConnection;
 
@@ -38,7 +39,9 @@ public class ParticipationService implements IParticipation<Participation> {
     @Override
     public void ajouterParticipation(Participation p) {
          try {
-             if (participantExists(p.getId_user(),p.getId_evenement())) {
+                    Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
+             if (participantExists(utilisateur.Current_User.getId_user(),p.getId_evenement())) {
              System.out.println("L'utilisateur a deja participé a cet evenement!!");
             
         }
@@ -47,7 +50,7 @@ public class ParticipationService implements IParticipation<Participation> {
                     + "values (?,?,?)";
             PreparedStatement ste = cnx.prepareStatement(sql);
             ste.setInt(1, p.getId_evenement());
-            ste.setInt(2, p.getId_user());
+            ste.setInt(2, utilisateur.Current_User.getId_user());
             ste.setString(3, p.getStatus());
             ste.executeUpdate();
             System.out.println("Participation ajoutée");
@@ -61,7 +64,9 @@ public class ParticipationService implements IParticipation<Participation> {
 
     @Override
     public void supprimerParticipation(Evenement e) {
-        String sql = "delete from participation where id_evenement=? and id_user="+2;
+         Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
+        String sql = "delete from participation where id_evenement=? and id_user="+utilisateur.Current_User.getId_user();
         try {
             PreparedStatement ste = cnx.prepareStatement(sql);
             ste.setInt(1, e.getId_evenement());
@@ -106,17 +111,20 @@ public class ParticipationService implements IParticipation<Participation> {
         return participations;
     }
     
-    private boolean participantExists(int id_user, int id_evenement) throws SQLException {
-        String query = "SELECT * FROM participation WHERE id_user = ? and id_evenement =?";
+    public boolean participantExists(int id_user, int id_evenement) throws SQLException {
+                 Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
+        String query = "SELECT * FROM participation WHERE id_user ="+utilisateur.Current_User.getId_user()+" and id_evenement =?";
         PreparedStatement statement = cnx.prepareStatement(query);
-        statement.setInt(1, id_user);
-        statement.setInt(2, id_evenement);
+        statement.setInt(1, id_evenement);
         ResultSet result = statement.executeQuery();
         return result.next();
     }
     
     public void likeEvent(Participation p) {
         try {
+               Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
             if (participantExists(p.getId_user(),p.getId_evenement())){
                  
                  String sql = "update participation set vote="+1+" where id_evenement=? and id_user=?";
@@ -124,7 +132,7 @@ public class ParticipationService implements IParticipation<Participation> {
             PreparedStatement ste = cnx.prepareStatement(sql);
            // ste.setInt(1, p.getVote());
             ste.setInt(1,p.getId_evenement());
-            ste.setInt(2,p.getId_user());
+            ste.setInt(2,utilisateur.Current_User.getId_user());
             ste.executeUpdate();
             System.out.println("like ajouté");
         } 
@@ -139,6 +147,8 @@ public class ParticipationService implements IParticipation<Participation> {
     
     public void DislikeEvent(Participation p) {
         try {
+                 Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
             if (participantExists(p.getId_user(),p.getId_evenement())){
                  
                  String sql = "update participation set vote="+2+" where id_evenement=? and id_user=?";
@@ -146,7 +156,7 @@ public class ParticipationService implements IParticipation<Participation> {
             PreparedStatement ste = cnx.prepareStatement(sql);
            // ste.setInt(1, p.getVote());
             ste.setInt(1,p.getId_evenement());
-            ste.setInt(2,p.getId_user());
+            ste.setInt(2,utilisateur.Current_User.getId_user());
             ste.executeUpdate();
             System.out.println("dislike ajouté");
         } 
@@ -201,19 +211,16 @@ public class ParticipationService implements IParticipation<Participation> {
     
     
     
-    public ObservableList<String> Participants(int id) {
-         ObservableList<String> participations = FXCollections.observableArrayList();
+    public ObservableList<Utilisateur> Participants(int id) {
+         ObservableList<Utilisateur> participations = FXCollections.observableArrayList();
         try {
-            String sql = "select nom,prenom from user,participation,evenement where evenement.id_evenement=participation.id_evenement and participation.id_user=user.id_user and user.id_user="+2+" and evenement.id_evenement="+id;
+            String sql = "select nom,prenom,mail from user,participation,evenement where evenement.id_evenement=participation.id_evenement and participation.id_user=user.id_user and evenement.id_evenement="+id;
             Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
 
-              String nom = s.getString(1);
-              String prenom = s.getString(2);
-              participations.add(nom);
-              participations.add(prenom);
-              
+             Utilisateur u = new Utilisateur(s.getString("nom"),s.getString("prenom"),s.getString("mail"));
+               participations.add(u);
 
             }
         } catch (SQLException ex) {

@@ -23,6 +23,7 @@ import khademni.entity.Evenement;
 import khademni.interfaces.IEvenement;
 import khademni.utils.MyConnection;
 import java.sql.Date;
+import khademni.entity.Utilisateur;
 
 /**
  *
@@ -43,10 +44,12 @@ public class EvenementService implements IEvenement<Evenement> {
     @Override
     public void ajouterEvenement(Evenement e) {
          try {
+              Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
             String sql = "insert into evenement(id_user,date_debut,date_fin,titre,description,nom_societe,lieu)"
                     + "values (?,?,?,?,?,?,?)";
             PreparedStatement ste = cnx.prepareStatement(sql);
-            ste.setInt(1, e.getId_user());
+            ste.setInt(1, utilisateur.Current_User.getId_user());
              
             
              ste.setDate(2, e.getDate_debut());
@@ -120,12 +123,13 @@ public class EvenementService implements IEvenement<Evenement> {
     
      
    public ObservableList<Evenement> MaListe() {
-         
+                       Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
          ObservableList<Evenement> evenements = FXCollections.observableArrayList();
           
         try {
             String query = "select evenement.id_evenement, evenement.id_user, evenement.date_debut, evenement.date_fin, evenement.titre, evenement.description, evenement.nom_societe"
-                    + ", evenement.lieu from evenement,participation where evenement.id_evenement=participation.id_evenement and participation.id_user="+11;
+                    + ", evenement.lieu from evenement,participation where evenement.id_evenement=participation.id_evenement and participation.id_user="+utilisateur.Current_User.getId_user();
              PreparedStatement ste = cnx.prepareStatement(query);
               ResultSet s = ste.executeQuery();
               while(s.next()){
@@ -233,8 +237,43 @@ public class EvenementService implements IEvenement<Evenement> {
     return list;
 }
   
+  public int countParticipations(int eventId) {
+    int count = 0;
+    try {
+        String sql = "SELECT COUNT(*) AS count FROM participation WHERE id_evenement = ?";
+        PreparedStatement statement = cnx.prepareStatement(sql);
+        statement.setInt(1, eventId);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            count = rs.getInt("count");
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return count;
+}
+  
+  public int countLikes(int eventId) {
+    int count = 0;
+    try {
+        String sql = "SELECT COUNT(*) AS count FROM participation WHERE id_evenement = ? AND vote = 1";
+        PreparedStatement statement = cnx.prepareStatement(sql);
+        statement.setInt(1, eventId);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            count = rs.getInt("count");
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return count;
+}
+  
   
 } 
+
+    
+    
 
     
     

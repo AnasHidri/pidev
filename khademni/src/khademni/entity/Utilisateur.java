@@ -19,6 +19,12 @@ public class Utilisateur {
     
     public Utilisateur() {
     }
+
+    public Utilisateur(String nom, String prenom, String mail) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+    }
     
 /*
 public Utilisateur(int id, String nom, String prenom, String domaine,String mail,String password ) {
