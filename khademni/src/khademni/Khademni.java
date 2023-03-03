@@ -37,7 +37,9 @@ public class Khademni {
        //System.out.println( e.MaListe());
        //System.out.println(e.Stat());
       // System.out.println(e.getMostLikedEvents());
-        
+      
+        //System.out.println(e.countParticipations(40));
+       // System.out.println(e.countLikes(33));
         
         ParticipationService p=new ParticipationService();
         Participation participation= new Participation(33,2,"bbb");
@@ -53,7 +55,7 @@ public class Khademni {
       // int[] counts = p.getLikesAndDislikesCount(participation);
        //System.out.println("Likes: " + counts[0]);
      // System.out.println("Dislikes: " + counts[1]);
-     System.out.println(p.Participants(33));
+     //System.out.println(p.Participants(33));
     
     }
     

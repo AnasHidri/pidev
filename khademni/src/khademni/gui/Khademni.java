@@ -26,8 +26,8 @@ public class Khademni extends Application {
         try {
             //Parent root = FXMLLoader.load(getClass().getResource("AjoutEvenement.fxml"));
             //Parent root = FXMLLoader.load(getClass().getResource("ListeEvenement.fxml"));
-            Parent root = FXMLLoader.load(getClass().getResource("ListeEvenementAD.fxml"));
-            //Parent root = FXMLLoader.load(getClass().getResource("StatEvAD.fxml"));
+           // Parent root = FXMLLoader.load(getClass().getResource("ListeEvenementAD.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("StatEvAD.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Hello World!");

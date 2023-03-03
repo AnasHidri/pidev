@@ -233,6 +233,38 @@ public class EvenementService implements IEvenement<Evenement> {
     return list;
 }
   
+  public int countParticipations(int eventId) {
+    int count = 0;
+    try {
+        String sql = "SELECT COUNT(*) AS count FROM participation WHERE id_evenement = ?";
+        PreparedStatement statement = cnx.prepareStatement(sql);
+        statement.setInt(1, eventId);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            count = rs.getInt("count");
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return count;
+}
+  
+  public int countLikes(int eventId) {
+    int count = 0;
+    try {
+        String sql = "SELECT COUNT(*) AS count FROM participation WHERE id_evenement = ? AND vote = 1";
+        PreparedStatement statement = cnx.prepareStatement(sql);
+        statement.setInt(1, eventId);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            count = rs.getInt("count");
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return count;
+}
+  
   
 } 
 

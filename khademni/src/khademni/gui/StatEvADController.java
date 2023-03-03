@@ -6,13 +6,21 @@ package khademni.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import khademni.entity.Evenement;
 import khademni.services.EvenementService;
 
@@ -56,32 +64,43 @@ public class StatEvADController implements Initializable {
      private TableColumn date_deb_best;
           @FXML
      private TableColumn date_fin_best;
+          @FXML
+private PieChart pieChart;
+          
+           @FXML
+    private BarChart<String, Number> barChart;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        StatEv();
-        StatEvBest();
-    }    
-    
-    
-     @FXML
-    public void StatEv(){
        
-         EvenementService es= new EvenementService();
-         ObservableList<Evenement> list = es.Stat();
+       EvenementService es= new EvenementService();
+       ObservableList<Evenement> list = es.Stat();
          System.out.println("list ::: "+list);
-         titre_stat.setCellValueFactory(new PropertyValueFactory<>("titre"));
-         desc_stat.setCellValueFactory(new PropertyValueFactory<>("description"));
-         nom_soc_stat.setCellValueFactory(new PropertyValueFactory<>("nom_societe"));
-         lieu_stat.setCellValueFactory(new PropertyValueFactory<>("lieu"));
-         date_deb_stat.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
-         date_fin_stat.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
+       
+       XYChart.Series<String, Number> series = new XYChart.Series<>();
+series.setName("Les 3 meilleurs formations");
+
+int count = 0;
+for (Evenement evenement : list) {
+    if (count >= 3) { // only show top 3 formations
+        break;
+    }
+    String titre = evenement.getTitre();
+    int nombreParticipants = es.countParticipations(evenement.getId_evenement()); // appel à la fonction countParticipations
+    series.getData().add(new XYChart.Data<>(titre, nombreParticipants));
+    count++;
+}
+barChart.getData().add(series);
+
+      afficherStatistiques();
+    }
       
-         tab_ev_stat.setItems(list);
-     }
     
-     @FXML
+    
+     
+    
+    /* @FXML
     public void StatEvBest(){
        
          EvenementService es= new EvenementService();
@@ -95,6 +114,26 @@ public class StatEvADController implements Initializable {
          date_fin_best.setCellValueFactory(new PropertyValueFactory<>("date_fin"));
       
          tab_ev_best.setItems(list);
-     }
+     }*/
     
+  @FXML
+public void afficherStatistiques() {
+    EvenementService es = new EvenementService();
+    ObservableList<Evenement> evenements = es.getMostLikedEvents();
+    ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+    for (Evenement evenement : evenements) {
+        String titre = evenement.getTitre();
+        int likes = es.countLikes(evenement.getId_evenement());
+        PieChart.Data data = new PieChart.Data("", likes);
+        data.setName(titre + " : " + likes + " likes");
+        pieChartData.add(data);
+    }
+
+    pieChart.setData(pieChartData);
+    pieChart.setTitle("Statistiques des événements selon le Vote");
 }
+}
+
+    
+
