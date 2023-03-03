@@ -18,6 +18,15 @@ public class Offre {
     private String titre ,description,adresse_societe,domaine_offre;
     private Date date_debut,date_limite;
     private String etat;
+    private int count;
+
+   
+
+    public Offre(int id_offre, String domaine_offre, int count) {
+        this.id_offre = id_offre;
+        this.domaine_offre = domaine_offre;
+        this.count = count;
+    }
 
     public Offre() {
     }
@@ -87,7 +96,9 @@ public class Offre {
     public String getTitre() {
         return titre;
     }
-
+ public int getCount() {
+        return count;
+    }
     public String getDescription() {
         return description;
     }
@@ -110,6 +121,10 @@ public class Offre {
 
       public void setTitre(String titre) {
         this.titre = titre;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public void setDescription(String description) {

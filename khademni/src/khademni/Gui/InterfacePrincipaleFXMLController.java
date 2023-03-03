@@ -31,15 +31,20 @@ public class InterfacePrincipaleFXMLController implements Initializable {
     }    
     
     @FXML
-    private Button btnAdmin;
-
-    @FXML
+   
     private Button btnClient;
 
     @FXML
     private Button btnEmployeur;
 
+    @FXML
+    private Button btnAdmin;
+
   
+
+    @FXML
+    private Button btnStat;
+
   
 
     @FXML
@@ -59,6 +64,12 @@ public class InterfacePrincipaleFXMLController implements Initializable {
         SceneController SC= new SceneController();
          SC.Scene5(event);
     }
+      @FXML
+    void openStat(ActionEvent event) throws IOException {
+ SceneController SC= new SceneController();
+         SC.Scene8(event);
+    }
+     
     }
 
  

@@ -20,6 +20,7 @@ public interface IOffre {
     public void modifierOffre(Offre O);
     public void supprimerOffre(Offre O);
    public ObservableList<Offre> afficherOffre();
+  
 
 
 }

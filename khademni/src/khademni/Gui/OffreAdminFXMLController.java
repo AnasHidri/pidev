@@ -9,6 +9,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,7 +25,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javax.mail.Authenticator;
+import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import static khademni.Gui.EmployeurFXMLController.sendEmail;
 import khademni.entity.Candidature;
 import khademni.entity.Offre;
@@ -201,6 +209,17 @@ colDate_limite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
     alert.showAndWait();
      tvOffre.refresh();
   showOffre();
+   String senderEmail = "khademni.serviceClient@gmail.com"; 
+String senderPassword = "iptppxmbutpkhtee"; 
+String receiverEmail = "achour.rihab2000@gmail.com"; 
+String subject = "Une offre Refusée";
+String message = "Une nouvelle offre a été Refusée avec succès.";
+
+try {
+    sendEmail1(senderEmail, senderPassword, receiverEmail, subject, message);
+} catch (MessagingException ex) {
+    System.out.println("Erreur lors de l'envoi de l'email : " + ex.getMessage());
+}
   
 
 }    
@@ -229,6 +248,17 @@ colDate_limite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
     alert.showAndWait();
      tvOffre.refresh();
   showOffre();
+   String senderEmail = "khademni.serviceClient@gmail.com"; 
+String senderPassword = "iptppxmbutpkhtee"; 
+String receiverEmail = "achour.rihab2000@gmail.com"; 
+String subject = "Une offre Acceptée";
+String message = "Une nouvelle offre a été Acceptée avec succès.";
+
+try {
+    sendEmail(senderEmail, senderPassword, receiverEmail, subject, message);
+} catch (MessagingException ex) {
+    System.out.println("Erreur lors de l'envoi de l'email : " + ex.getMessage());
+}
 
     
 }@FXML
@@ -247,7 +277,58 @@ void filtrerOffre(ActionEvent event) {
     
     tvOffre.setItems(filteredList);
 }
-    
+ public static void sendEmail1(String senderEmail, String senderPassword, String receiverEmail, String subject, String message) throws MessagingException {
+   
+    Properties props = new Properties();
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.starttls.enable", "true");
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.port", "587");
+
+    Session session = Session.getInstance(props, new Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication("khademni.serviceClient@gmail.com", "iptppxmbutpkhtee");
+        }
+    });
+
+    Message email = new MimeMessage(session);
+    email.setFrom(new InternetAddress("khademni.serviceClient@gmail.com"));
+    email.setRecipients(Message.RecipientType.TO, InternetAddress.parse("achour.rihab2000@gmail.com"));
+
+    email.setSubject("offre");
+    email.setText("offre Refusée avec succes");
+
+    Transport.send(email);
+
+    System.out.println("Email sent successfully.");
+}
+
+       public static void sendEmail(String senderEmail, String senderPassword, String receiverEmail, String subject, String message) throws MessagingException {
+   
+    Properties props = new Properties();
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.starttls.enable", "true");
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.port", "587");
+
+    Session session = Session.getInstance(props, new Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication("khademni.serviceClient@gmail.com", "iptppxmbutpkhtee");
+        }
+    });
+
+    Message email = new MimeMessage(session);
+    email.setFrom(new InternetAddress("khademni.serviceClient@gmail.com"));
+    email.setRecipients(Message.RecipientType.TO, InternetAddress.parse("achour.rihab2000@gmail.com"));
+
+    email.setSubject("offre");
+    email.setText("offre Acceptée avec succes");
+
+    Transport.send(email);
+
+    System.out.println("Email sent successfully.");
+}
+
 }
  
 

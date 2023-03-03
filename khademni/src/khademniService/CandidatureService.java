@@ -58,7 +58,7 @@ String sql="update candidature set etat=? where id_offre=? ";
  public ObservableList<Candidature> afficherCandidatureEmployeur1() {
        ObservableList<Candidature> CandidatureList1 = FXCollections.observableArrayList();
         try {
-           String sql = "select  offre.titre from user,candidature,offre where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and offre.id_user="+2;
+           String sql = "select  offre.titre from user,candidature,offre where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+71;
            
             java.sql.Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
@@ -77,7 +77,7 @@ String sql="update candidature set etat=? where id_offre=? ";
     public ObservableList<Candidature> afficherCandidatureEmployeur2() {
        ObservableList<Candidature> CandidatureList2 = FXCollections.observableArrayList();
         try {
-           String sql = "select user.nom,user.prenom,user.email from user,candidature,offre where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and offre.id_user="+2;
+           String sql = "select user.nom,user.prenom,user.email from user,candidature,offre where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+71;
            
             java.sql.Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
@@ -99,7 +99,7 @@ String sql="update candidature set etat=? where id_offre=? ";
      public ObservableList<Candidature> afficherCandidatureEmployeur3() {
        ObservableList<Candidature> CandidatureList3 = FXCollections.observableArrayList();
         try {
-           String sql = "select  candidature.etat  from user,candidature,offre where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and offre.id_user="+2;
+           String sql = "select  candidature.etat  from user,candidature,offre where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+71;
            
             java.sql.Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);

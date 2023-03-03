@@ -59,7 +59,7 @@ public class OffreService implements IOffre   {
 
     @Override
     public void modifierOffre(Offre O) {
- String sql="update offre set  titre=?, description=?,adresse_societe=?,domaine_offre=?,date_debut=?,date_limite=? where  id_user= ? and id_offre=? ";
+ String sql="update offre set   titre=?, description=?,adresse_societe=?,domaine_offre=?,date_debut=?,date_limite=?  where  id_user= ? and id_offre=? ";
         try {
             PreparedStatement ste=myconn.prepareStatement(sql);
              
@@ -212,7 +212,7 @@ public class OffreService implements IOffre   {
         return OffreList;
     }
 
-    
+  
     
 
   
@@ -243,28 +243,7 @@ public ObservableList<Offre> getOffresByDate(LocalDate date_debut, LocalDate dat
         System.err.println(ex.getMessage());
         return null;
     
-        
-
-}
-/*
- public ObservableList<Offre> StatParDomaine() {
-    ObservableList<Offre> Stat = FXCollections.observableArrayList();
-    try {
-     String sql = "SELECT domaine, COUNT(*) AS nombre_offres FROM offre GROUP BY domaine";
-     PreparedStatement ps = myconn.prepareStatement(sql);
-     ResultSet s = ps.executeQuery();
-        while (s.next()) {
-            Offre o = new Offre(
-                s.getInt("id_offre"), 
-                s.getString("domaine_offre")
-            );
-            Stat.add(o);
-        }           
-    } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
     }
-    return Stat;
+      
 }
-
- */}   
 }

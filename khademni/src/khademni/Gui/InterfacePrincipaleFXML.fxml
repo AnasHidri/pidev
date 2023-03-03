@@ -27,7 +27,12 @@
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnEmployeur1" layoutX="122.0" layoutY="321.0" mnemonicParsing="false" onAction="#OpenAdmin" prefHeight="32.0" prefWidth="126.0" style="-fx-background-color: #991849;" text="Admin" textFill="#fcfafa">
+      <Button fx:id="btnAdmin" layoutX="122.0" layoutY="321.0" mnemonicParsing="false" onAction="#OpenAdmin" prefHeight="32.0" prefWidth="126.0" style="-fx-background-color: #991849;" text="Admin" textFill="#fcfafa">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnStat" layoutX="287.0" layoutY="32.0" mnemonicParsing="false" onAction="#openStat" prefHeight="45.0" prefWidth="179.0" style="-fx-background-color: #991849;" text="Statistique" textFill="#fffafa">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
