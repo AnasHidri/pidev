@@ -37,7 +37,10 @@ import java.sql.Date;
 import java.sql.SQLException;
 import static java.util.Collections.list;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -46,6 +49,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.*;
 import javax.mail.internet.*;
+import khademni.gui.Navbar_Navigation;
+import khademni.gui.PanierFXMLController;
 
 
 
@@ -93,7 +98,17 @@ public class ListeEvenementController implements Initializable {
        @FXML
        private Button filtre;
        
-        
+        @FXML
+      private ComboBox<String> liste_for;
+    
+    @FXML
+       private ComboBox<String> liste_ev;
+    @FXML
+            private ComboBox<String> liste_off;
+    @FXML
+            private ComboBox<String> pani;
+    @FXML
+            private Button prof;
         
         
        
@@ -103,6 +118,81 @@ public class ListeEvenementController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         ListEV();
+        
+         liste_for.getItems().addAll("Liste formation","Mes formations");
+            liste_ev.getItems().addAll("Liste evenement","Mes participations");
+            liste_off.getItems().addAll("Liste offre","Mes candidatures");
+            pani.getItems().addAll("Mon panier");
+            
+            
+                 
+liste_for.setOnAction(event -> {
+    String selectedPage = (String) liste_for.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Liste formation")) {
+        // navigate to Page 1
+    } else if (selectedPage.equals("Mes formations")) {
+        // navigate to Page 2
+    } 
+});
+
+liste_ev.setOnAction(event -> {
+    String selectedPage = (String) liste_ev.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Liste evenement")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiEvent/ListeEvenement.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } else if (selectedPage.equals("Mes participations")) {
+        Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiEvent/MesParticipations.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+});
+
+liste_off.setOnAction(event -> {
+    String selectedPage = (String) liste_off.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Liste offre")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiOffre/ListOffreClientFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } else if (selectedPage.equals("Mes candidatures")) {
+        Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiOffre/MesCandidatureClientFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+});
+
+pani.setOnAction(event -> {
+    String selectedPage = (String) pani.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Mon panier")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/gui/PanierFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+});
         
         // Ajouter un listener pour surveiller les modifications de texte
     recherche_text_par.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -329,26 +419,21 @@ public void filterEvents() {
     tab_ev_liste.setItems(filteredList);
 }
     
+       @FXML
+    private void Profile(ActionEvent event)  throws IOException {
    
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiUser/ProfileSettingsFXML.fxml"));
+         Stage stage = new Stage();
+         
+         stage.setScene(new Scene(loader.load()));
+         stage.show();
+    Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+    currentStage.hide();
+   
+   
+   
+}
 
 
-    // ...
-
-
-
-
-
-
-
-            
-            
-   /* btn_like.setOnAction(event -> {
-            likeCount++;
-            countLabel.setText("Likes: " + likeCount + " Dislikes: " + dislikeCount);
-        });
-        
-        dislikeBtn.setOnAction(event -> {
-            dislikeCount++;
-            countLabel.setText("Likes: " + likeCount + " Dislikes: " + dislikeCount);
-        });*/
+   
 }

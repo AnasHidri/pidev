@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
@@ -31,14 +32,14 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Label layoutX="55.0" layoutY="29.0" prefHeight="32.0" prefWidth="322.0" text="Paramètres de profil" textFill="WHITE">
+      <Label layoutX="47.0" layoutY="50.0" prefHeight="32.0" prefWidth="322.0" text="Paramètres de profil" textFill="WHITE">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
       <VBox layoutX="55.0" layoutY="81.0" prefHeight="162.0" prefWidth="430.0">
          <children>
-            <Label prefHeight="32.0" prefWidth="330.0" text="Informations personnelle  " textFill="WHITE">
+            <Label prefHeight="32.0" prefWidth="385.0" text="Informations personnelle  " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -232,11 +233,19 @@
             </HBox>
          </children>
       </VBox>
-      <Label fx:id="login" layoutX="366.0" layoutY="19.0" text="Yassine123" textFill="WHITE">
+      <Label fx:id="login" layoutX="366.0" layoutY="58.0" text="Yassine123" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="logout" layoutX="729.0" layoutY="16.0" mnemonicParsing="false" onAction="#logout" text="Logout" textFill="#f70606" />
+      <Button fx:id="logout" layoutX="731.0" layoutY="55.0" mnemonicParsing="false" onAction="#logout" text="Logout" textFill="#f70606" />
+         <AnchorPane id="AnchorPane" layoutX="-1.0" prefHeight="34.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" styleClass="navbar" stylesheets="@design.css">
+         <children>
+            <Button fx:id="prof" layoutX="691.0" layoutY="5.0" mnemonicParsing="false" onAction="#Profile" text="Profile" textFill="WHITE" />
+            <ComboBox fx:id="liste_for" layoutX="14.0" layoutY="5.0" prefHeight="26.0" prefWidth="114.0" promptText="Formation" />
+            <ComboBox fx:id="liste_ev" layoutX="148.0" layoutY="5.0" prefHeight="26.0" prefWidth="113.0" promptText="Evenement" />
+            <ComboBox fx:id="liste_off" layoutX="270.0" layoutY="4.0" prefHeight="26.0" prefWidth="104.0" promptText="Offre" />
+            <ComboBox fx:id="pani" layoutX="387.0" layoutY="5.0" prefHeight="26.0" prefWidth="89.0" promptText="Panier" />
+         </children></AnchorPane>
    </children>
 </AnchorPane>

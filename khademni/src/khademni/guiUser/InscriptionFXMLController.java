@@ -667,7 +667,7 @@ public class InscriptionFXMLController implements Initializable {
                                 try{
                                         // Charger la nouvelle vue
                                         System.out.println("avant");
-                                       FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiEvent/ListeEvenementAD.fxml"));
+                                       FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/gui/PanierFXML.fxml"));
                                                System.out.println("apres");
                                        Parent root = loader.load();
                                 

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiOffre.CandidatureEmployeurFXMLController">
+    <stylesheets>
+        <URL value="@offreclientfxml.css" />
+    </stylesheets>
+   <children>
+      <ImageView fitHeight="407.0" fitWidth="639.0" layoutX="-23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@khademni.png" />
+         </image>
+      </ImageView>
+      <Text fill="#e8b9b9" layoutX="32.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste Candidature :" wrappingWidth="246.17333984375">
+         <font>
+            <Font name="MV Boli" size="25.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnvalide" layoutX="172.0" layoutY="345.0" mnemonicParsing="false" onAction="#validerCandidat" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #832c8d;" text="Valider" textFill="#fcfcfc">
+         <font>
+            <Font name="MV Boli" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnRefuser" layoutX="364.0" layoutY="345.0" mnemonicParsing="false" onAction="#refusCandidat" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #832c8d;" text="Refuser" textFill="#fcfcfc">
+         <font>
+            <Font name="MV Boli" size="17.0" />
+         </font>
+      </Button>
+      <HBox layoutX="39.0" layoutY="68.0" prefHeight="265.0" prefWidth="539.0">
+         <children>
+            <TableView fx:id="tvCandidature1" prefHeight="265.0" prefWidth="121.0">
+              <columns>
+                <TableColumn fx:id="colTitre" prefWidth="103.0" text="Titre" />
+              </columns>
+            </TableView>
+            <TableView fx:id="tvCandidature2" cache="true" prefHeight="265.0" prefWidth="362.0">
+               <columns>
+                  <TableColumn fx:id="colNom" prefWidth="108.0" text="Nom" />
+                  <TableColumn fx:id="colPrenom" prefWidth="127.0" text="Prenom" />
+                  <TableColumn fx:id="colEmail" prefWidth="109.0" text="Email" />
+               </columns>
+            </TableView>
+            <TableView fx:id="tvCandidature3" prefHeight="258.0" prefWidth="108.0">
+              <columns>
+                <TableColumn fx:id="ColEtat" prefWidth="88.0" text="Etat" />
+              </columns>
+            </TableView>
+         </children>
+      </HBox>
+      <Button fx:id="btnretourne" layoutX="21.0" layoutY="345.0" mnemonicParsing="false" onAction="#retourne" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #832c8d;" text="&lt;----" textFill="#fcfcfc">
+         <font>
+            <Font name="MV Boli" size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
