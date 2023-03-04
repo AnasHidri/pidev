@@ -11,17 +11,28 @@ import java.io.IOException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
 
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import javax.mail.MessagingException;
+
 
 
 /**
@@ -41,6 +52,8 @@ public class FormateurFXMLController implements Initializable {
          
          @FXML
     private Button btnmail;
+         @FXML
+         private AnchorPane rootPane;
          
      /* 
      * Initializes the controller class.
@@ -98,64 +111,49 @@ public void SendMail() throws GeneralSecurityException{
         } catch (MessagingException | GeneralSecurityException e) {
             e.printStackTrace();
         }
-    
-    
-           /*  try {
-                 MailService.sendEmail("yassine.mahfoudh@esprit.tn", "test","bonjour");
-             } catch (MessagingException ex) {
-                 System.out.println("ex::"+ex.getMessage());
-             }*/
-         /*  ExecutorService executor = Executors.newSingleThreadExecutor();
-executor.execute(new Runnable() {
-    public void run() {
-        try {
-                 MailService.sendEmail("anashidri36@gmail.com", "test","bonjour");
-        } catch (MessagingException | GeneralSecurityException e) {
-            e.printStackTrace();
-        }
-    }
-});
-executor.shutdown();*/
            
 }
-    
-    /*
-    @FXML
-public void SendMail(){
-    String username = "ymahfoudh55@example.com";
-    String password = "Yassine240118";
-    String recipient = "yassine.mahfoudh@esprit.tn";
-    String subject = "Test";
-    String body = "Bonjour";
-    
-    Properties props = new Properties();
-    props.put("mail.smtp.auth", "true");
-    props.put("mail.smtp.starttls.enable", "true");
-    props.put("mail.smtp.host", "smtp.gmail.com");
-    props.put("mail.smtp.port", "587");
-    
-    Session session = Session.getInstance(props,
-      new javax.mail.Authenticator() {
-        protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication(username, password);
-        }
-      });
+   
 
-    try {
-        Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(username));
-        message.setRecipients(Message.RecipientType.TO,
-            InternetAddress.parse(recipient));
-        message.setSubject(subject);
-        message.setText(body);
-
-        Transport.send(message);
-
-        System.out.println("Message sent successfully!");
-
-    } catch (MessagingException e) {
-        throw new RuntimeException(e);
+@FXML
+    public void handleButtonClick(){
+        makeFadeOut("DashboardFXML.fxml");
+        //t.makeFadeOut(rootPane,pdf);
     }
-}
-    */
+    
+    
+    public void makeFadeOut(String path){
+        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setDuration(Duration.millis(1000));
+        fadeTransition.setNode(rootPane);
+        fadeTransition.setFromValue(1);
+        fadeTransition.setToValue(0);
+        fadeTransition.setOnFinished((t) -> {
+            try {
+                loadNextScene(path);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        } );
+        fadeTransition.play();
+    }
+    
+    
+    public void loadNextScene(String path) throws IOException{
+  
+         // Charger la nouvelle vue
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+        Parent root = loader.load();
+
+        
+         // Afficher la nouvelle vue dans la fenêtre principale
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+
+        
+    }
+
+
 }

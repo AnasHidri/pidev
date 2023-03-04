@@ -9,15 +9,17 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
+import javafx.animation.TranslateTransition;
+
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,12 +29,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.util.StringConverter;
 import javax.mail.MessagingException;
 import khademni.entity.Client;
 import khademni.entity.Employeur;
@@ -40,7 +46,6 @@ import khademni.entity.Formateur;
 import khademni.entity.Utilisateur;
 import khademni.utils.MyConnection;
 import khademni.services.UtilisateurService;
-import khademni.services.PanierService;
 
 /**
  * FXML Controller class
@@ -94,8 +99,6 @@ public class InscriptionFXMLController implements Initializable {
     @FXML
     private TextField tfemail_form;
     @FXML
-    private Button signup_btn_form;
-    @FXML
     private Hyperlink login_acc_form;
     @FXML
     private Hyperlink Formateur_signup;
@@ -124,6 +127,8 @@ public class InscriptionFXMLController implements Initializable {
     private Hyperlink Client_signup;
     @FXML
     private AnchorPane signup_form_client;
+    @FXML
+    private AnchorPane side;
     
         //login
 
@@ -134,7 +139,7 @@ public class InscriptionFXMLController implements Initializable {
     @FXML
     private TextField login_signin;
     @FXML
-    private TextField password_signin;
+    private PasswordField password_signin;
     
     @FXML
     private Button login_btn;
@@ -153,54 +158,148 @@ public class InscriptionFXMLController implements Initializable {
     private ComboBox tfdomaine_form;
       @FXML
     private ComboBox tfdomaine_cl;
+      
+         @FXML
+    private ComboBox tfrole;
+      
+      @FXML
+         private AnchorPane rootPane2;
+      
+      @FXML
+private ToggleButton show_password_toggle;
    
 
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        ShowPassword();
             tfdomaine_emp.getItems().addAll("Informatique","Cuisine","Management");
             tfdomaine_form.getItems().addAll("Informatique","Cuisine","Management");
             tfdomaine_cl.getItems().addAll("Informatique","Cuisine","Management");
+            tfrole.getItems().addAll("Employeur","Formateur","Client");
+            tfrole.setValue("Client");
+            
+              // Show the "Client" form initially
+    role_form.setVisible(true);
+    login_form.setVisible(false);
+    signup_form_employeur.setVisible(false);
+    signup_form_formateur.setVisible(false);
+    signup_form_client.setVisible(true);
+    side.setVisible(true);
+
+    
+            tfrole.setOnAction(this::handleRoleSelection);
+
     } 
     
+    private void handleRoleSelection(Event event) {
+        
+    String selectedRole = tfrole.getValue().toString();
+
+    switch (selectedRole) {
+        case "Employeur":
+            role_form.setVisible(true);
+            login_form.setVisible(false);
+            signup_form_employeur.setVisible(true);
+            signup_form_formateur.setVisible(false);
+            signup_form_client.setVisible(false);
+
+            
+            break;
+        case "Formateur":
+            role_form.setVisible(true);
+            login_form.setVisible(false);
+            signup_form_employeur.setVisible(false);
+            signup_form_formateur.setVisible(true);
+            signup_form_client.setVisible(false);            
+            break;
+        case "Client":
+            role_form.setVisible(true);
+            login_form.setVisible(false);
+            signup_form_employeur.setVisible(false);
+            signup_form_formateur.setVisible(false);
+            signup_form_client.setVisible(true);
+            break;
+        default:
+            break;
+    }
+}
+    
+    @FXML
+    public void changeForm(ActionEvent event){
+        if(event.getSource() == create_acc){
+            role_form.setVisible(true);
+            login_form.setVisible(false);
+            side.setVisible(true);
+            signup_form_client.setVisible(true);            
+            
+        }else if(event.getSource()==login_acc_emp){
+            login_form.setVisible(true);
+            signup_form_employeur.setVisible(false);
+            role_form.setVisible(false);
+            side.setVisible(false);
+
+
+        }
+        else if(event.getSource()==login_acc_form){
+            login_form.setVisible(true);
+            signup_form_formateur.setVisible(false);
+            role_form.setVisible(false);
+            side.setVisible(false);
+
+        }
+        else if(event.getSource()==login_acc_cl){
+            login_form.setVisible(true);
+            signup_form_client.setVisible(false);
+                        role_form.setVisible(false);
+                        side.setVisible(false);
+
+        }
+        
+    }
+    
+    
+    
+    public void ShowPassword(){
+                PasswordField passwordField = password_signin;
+ToggleButton showPasswordToggle = show_password_toggle;
+
+ImageView eyeIcon = new ImageView(new Image(getClass().getResourceAsStream("eye.png")));
+    eyeIcon.setFitHeight(17);
+    eyeIcon.setFitWidth(17);
+
+ImageView noeyeIcon = new ImageView(new Image(getClass().getResourceAsStream("noeye.png")));
+    noeyeIcon.setFitHeight(17);
+    noeyeIcon.setFitWidth(17);    
+
+        
+
+// Set the eye icon
+showPasswordToggle.setGraphic(eyeIcon);
+
+// Show or hide the password when the toggle button is clicked
+showPasswordToggle.setOnAction(event -> {
+    if (showPasswordToggle.isSelected()) {
+        passwordField.setPromptText(passwordField.getText());
+        passwordField.setText("");
+        showPasswordToggle.setGraphic(noeyeIcon);
+    } else {
+        passwordField.setText(passwordField.getPromptText());
+        passwordField.setPromptText("");
+        showPasswordToggle.setGraphic(eyeIcon);
+    }
+});
+    
+    }
     @FXML
     public void exit(){
         System.exit(0);
     }
     
     UtilisateurService us = new UtilisateurService();
-    Connection myconn =MyConnection.getInstance().getConnexion();
 
             
-    @FXML
-    public void changeForm(ActionEvent event){
-        if(event.getSource() == create_acc){
-            role_form.setVisible(true);
-            login_form.setVisible(false);
-        }else if(event.getSource()==login_acc_emp){
-            login_form.setVisible(true);
-            signup_form_employeur.setVisible(false);
-        }
-        else if(event.getSource()==login_acc_form){
-            login_form.setVisible(true);
-            signup_form_formateur.setVisible(false);
-        }
-        else if(event.getSource()==login_acc_cl){
-            login_form.setVisible(true);
-            signup_form_client.setVisible(false);
-        }
-        else if(event.getSource()==Employeur_signup){
-            signup_form_employeur.setVisible(true);
-            role_form.setVisible(false);
-        }else if(event.getSource()==Formateur_signup){
-            signup_form_formateur.setVisible(true);
-            role_form.setVisible(false);
-        }
-        else if(event.getSource()==Client_signup){
-            signup_form_client.setVisible(true);
-            role_form.setVisible(false);
-        }
-    }
+    
     
     public boolean ValidationEmail(String email){ 
         Pattern pattern = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9._]*@[a-zA-Z0-9._]+([.][a-zA-Z0-9]+)+");
@@ -220,13 +319,7 @@ public class InscriptionFXMLController implements Initializable {
         }
     }
     
-    private boolean userExist(String login ) throws SQLException {
-        String query = "SELECT * FROM user WHERE login = ?";
-        PreparedStatement statement = myconn.prepareStatement(query);
-        statement.setString(1, login);
-        ResultSet result = statement.executeQuery();
-        return result.next();
-    }
+    
     
     @FXML
     public void selectCertif() {
@@ -308,7 +401,7 @@ public class InscriptionFXMLController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("Le nom et le prenom doivent contenir que des lettres !!");
                 alert.showAndWait();    
-            }else if(userExist(login)){
+            }else if(us.userExist(login)){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                                 alert.setTitle("Travel Me :: Error Message");
                                 alert.setHeaderText(null);
@@ -346,7 +439,7 @@ public class InscriptionFXMLController implements Initializable {
                     }
                 }
 
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
         }
 
@@ -394,7 +487,7 @@ public class InscriptionFXMLController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("Le nom et le prenom doivent contenir que des lettres !!");
                 alert.showAndWait();    
-            }else if(userExist(login)){
+            }else if(us.userExist(login)){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                                 alert.setTitle("Travel Me :: Error Message");
                                 alert.setHeaderText(null);
@@ -432,7 +525,7 @@ public class InscriptionFXMLController implements Initializable {
                 signup_form_formateur.setVisible(false);
                     }
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
         }  
     }
@@ -481,7 +574,7 @@ public class InscriptionFXMLController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("Le nom et le prenom doivent contenir que des lettres !!");
                 alert.showAndWait();    
-            }else if(userExist(login)){
+            }else if(us.userExist(login)){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                                 alert.setTitle("Travel Me :: Error Message");
                                 alert.setHeaderText(null);
@@ -516,33 +609,97 @@ public class InscriptionFXMLController implements Initializable {
                 signup_form_client.setVisible(false);
                     }
                 }
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
         }  
     }
         
+   
+    
+    
+//    public void makeFadeOut(String path) {
+//    FadeTransition fadeTransition = new FadeTransition();
+//    fadeTransition.setDuration(Duration.millis(500));
+//    fadeTransition.setNode(rootPane2);
+//    fadeTransition.setFromValue(1);
+//    fadeTransition.setToValue(0);
+//    fadeTransition.setOnFinished((t) -> {
+//        try {
+//            loadNextScene(path);
+//        } catch (IOException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//    });
+//
+//    TranslateTransition translateTransition = new TranslateTransition();
+//    translateTransition.setDuration(Duration.millis(500));
+//    translateTransition.setNode(rootPane2);
+//    translateTransition.setFromY(0);
+//    translateTransition.setToY(-40);
+//    translateTransition.setCycleCount(3);
+//    translateTransition.setAutoReverse(true);
+//
+//    ParallelTransition parallelTransition = new ParallelTransition(fadeTransition, translateTransition);
+//    parallelTransition.play();
+//}
+   
+    public void makeFadeOut(String path) {
+    FadeTransition fadeTransition = new FadeTransition();
+    fadeTransition.setDuration(Duration.millis(500));
+    fadeTransition.setNode(rootPane2);
+    fadeTransition.setFromValue(1);
+    fadeTransition.setToValue(0);
+    fadeTransition.setOnFinished((t) -> {
+        try {
+            loadNextScene(path);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    });
 
-    @FXML
-    public void login() throws IOException{
-        if(login_signin.getText().equals("yassineadmin") && password_signin.getText().equals("adminadmin") )
-        {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                     alert.setTitle("Travel Me :: Success Message");
-                     alert.setHeaderText(null);
-                     alert.setContentText("Bienvenue Admin");
-                     try{
+    TranslateTransition translateTransition = new TranslateTransition();
+    translateTransition.setDuration(Duration.millis(500));
+    translateTransition.setNode(rootPane2);
+    translateTransition.setFromX(0);
+    translateTransition.setToX(40);
+    translateTransition.setCycleCount(3);
+    translateTransition.setAutoReverse(true);
+
+    ParallelTransition parallelTransition = new ParallelTransition(fadeTransition, translateTransition);
+    parallelTransition.play();
+}
+
+    
+    
+    public void loadNextScene(String path) throws IOException{
+  
          // Charger la nouvelle vue
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("UsersListFxml.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
         Parent root = loader.load();
 
         
          // Afficher la nouvelle vue dans la fenêtre principale
         Scene scene = new Scene(root);
-        Stage stage = (Stage) login_btn.getScene().getWindow();
+        Stage stage = (Stage) rootPane2.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
 
-        }catch(IOException e){
+        
+    }
+    
+
+    @FXML
+    public void login() throws IOException{
+        if(login_signin.getText().equals("yassineadmin") && password_signin.getText().equals("adminadmin") )
+        {
+                
+                     try{
+     
+        
+        makeFadeOut("UsersListFxml.fxml");
+
+
+        }catch(Exception e){
             System.out.println(e.getCause().getMessage());
         }                   
         }else {
@@ -553,30 +710,13 @@ public class InscriptionFXMLController implements Initializable {
                         Employeur emp = (Employeur) u;
                         //Employeur e = new Employeur(u.getId_user(),u.getNom(),u.getPrenom() , u.getLogin(), u.getPassword(), u.getRole(), u.getMail(), u.getDomaine(), u.get,rs.getString("etat"),rs.getString("image"));
                         Utilisateur.setCurrent_User(emp);
-                       /* System.out.println("current user id ::"+Utilisateur.Current_User.getId_user());
-                        System.out.println("current user id ::"+Utilisateur.Current_User.getLogin());
-                        System.out.println("current user :: "+Utilisateur.Current_User);
-                        System.out.println("current user is employeur et le nom de la soc est  :: "+emp.getNom_societe());
-                        */
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                alert.setTitle("Travel Me :: Success Message");
-                                alert.setHeaderText(null);
-                                alert.setContentText("Vous etes connecté");
-                                alert.showAndWait();
-                                login_btn.getScene().getWindow().hide();
+                      
                                 
-                                try{
-                                        // Charger la nouvelle vue
-                                       FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiUser/ProfileSettingsFXML.fxml"));
-                                       Parent root = loader.load();
-                                        // Afficher la nouvelle vue dans la fenêtre principale
-                                       Scene scene = new Scene(root);
-                                       Stage stage = (Stage) login_btn.getScene().getWindow();
-                                       stage.setScene(scene);
-                                       stage.show();
-                                       
+                                try{    
+                                            makeFadeOut("ProfileSettingsFXML.fxml");
 
-                                       }catch(IOException ex){
+
+                                       }catch(Exception ex){
                                            System.out.println(ex.getCause().getMessage());
                                        }
 
@@ -590,56 +730,14 @@ public class InscriptionFXMLController implements Initializable {
                         }else{
                         Formateur form = (Formateur) u;
 
-                        /*Formateur f = new Formateur(rs.getInt(1),rs.getString("nom"), rs.getString("prenom"),
-                                rs.getString("login"), rs.getString("password"), rs.getString("role"),
-                                rs.getString("mail"), rs.getString("domaine"), rs.getString("certif"),
-                                rs.getString("etat"),rs.getString("image"));
-                        
-                        */
+                  
                         Utilisateur.setCurrent_User(form);
-                        System.out.println("current user id ::"+Utilisateur.Current_User.getId_user());
-                        System.out.println("current user id ::"+Utilisateur.Current_User.getLogin());
-                        System.out.println("current user :: "+Utilisateur.Current_User);
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                alert.setTitle("Travel Me :: Success Message");
-                                alert.setHeaderText(null);
-                                alert.setContentText("Vous etes connecté");
-                                alert.showAndWait();
-                                login_btn.getScene().getWindow().hide();
-                                
+             
                                 try{
-                                        // Charger la nouvelle vue
-                                       FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileSettingsFXML.fxml"));
-                                       Parent root = loader.load();
-                                        // Afficher la nouvelle vue dans la fenêtre principale
-                                       Scene scene = new Scene(root);
-                                       Stage stage = (Stage) login_btn.getScene().getWindow();
-                                       stage.setScene(scene);
-                                       stage.show();
+                                      
+                                       makeFadeOut("ProfileSettingsFXML.fxml");
 
-
-//// Charger la nouvelle vue
-//FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileSettingsFXML.fxml"));
-//Parent root = loader.load();
-//// Créer une transition Fade
-//FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
-//fadeTransition.setFromValue(0);
-//fadeTransition.setToValue(1);
-//
-//
-//// Ajouter la transition Fade
-//fadeTransition.setOnFinished((event) -> {
-//    // Afficher la nouvelle vue dans la fenêtre principale
-//    Scene scene = new Scene(root);
-//    Stage stage = (Stage) login_btn.getScene().getWindow();
-//    stage.setScene(scene);
-//    stage.show();
-//});
-//
-//// Lancer la transition Fade
-//fadeTransition.play();
-
-                                       }catch(IOException ex){
+                                       }catch(Exception ex){
                                            System.out.println(ex.getCause().getMessage());
                                        }
                         }
@@ -648,38 +746,18 @@ public class InscriptionFXMLController implements Initializable {
                     }else if("Client".equals(u.getRole())){
                         
                             Client cl = (Client) u;
-                       // Client c = new Client(rs.getInt(1),rs.getString("nom"), rs.getString("prenom"), rs.getString("login"), rs.getString("password"), rs.getString("role"), rs.getString("mail"), rs.getString("domaine"), rs.getFloat("solde"),rs.getString("cv"),rs.getString("etat"),rs.getString("image"));
                         Utilisateur.setCurrent_User(cl);
-                        System.out.println("current user id ::"+Utilisateur.Current_User.getId_user());
-                    //    System.out.println("current user login ::"+(Client)Utilisateur.Current_User.getCv());
-                        System.out.println("current user cv ::"+Utilisateur.Current_User.getLogin());
-                        System.out.println("current user :: "+Utilisateur.Current_User);
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                        PanierService p= new PanierService();
-                        p.ajouterPanier(Utilisateur.Current_User.getId_user());
-                                alert.setTitle("Travel Me :: Success Message");
-                                alert.setHeaderText(null);
-                                alert.setContentText("Vous etes connecté");
-                                alert.showAndWait();
-                                login_btn.getScene().getWindow().hide();
-                                System.out.println("testtttt111");
-                                
+                        
+                        
                                 try{
-                                        // Charger la nouvelle vue
-                                        System.out.println("avant");
-                                       FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/gui/PanierFXML.fxml"));
-                                               System.out.println("apres");
-                                       Parent root = loader.load();
-                                
-                                        // Afficher la nouvelle vue dans la fenêtre principale
-                                       Scene scene = new Scene(root);
-                                       Stage stage = (Stage) login_btn.getScene().getWindow();
-                                       stage.setScene(scene);
-                                       stage.show();
-                                   
-                                       }catch(IOException ex){
+                                      
+                                       makeFadeOut("ProfileSettingsFXML.fxml");
+
+
+                                       }catch(Exception ex){
                                            System.out.println(ex.getCause().getMessage());
                                        }
+
 
                     }
                      
@@ -695,6 +773,8 @@ public class InscriptionFXMLController implements Initializable {
         }
          
     }
+
     
 
     
+

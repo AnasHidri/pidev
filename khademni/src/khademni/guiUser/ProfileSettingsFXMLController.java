@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,16 +29,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import khademni.entity.Client;
 import khademni.entity.Formateur;
 import khademni.entity.Utilisateur;
 import khademni.gui.Navbar_Navigation;
 import khademni.gui.PanierFXMLController;
 import khademni.services.UtilisateurService;
-
 
 /**
  * FXML Controller class
@@ -89,6 +91,9 @@ public class ProfileSettingsFXMLController implements Initializable {
     private Button openCertif;
     @FXML
     private Button logout;
+    @FXML
+         private AnchorPane rootPane;
+    
         @FXML
       private ComboBox<String> liste_for;
     
@@ -100,18 +105,19 @@ public class ProfileSettingsFXMLController implements Initializable {
             private ComboBox<String> pani;
     @FXML
             private Button prof;
-    
     /**
      * Initializes the controller class.
      */
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-               liste_for.getItems().addAll("Liste formation","Mes formations");
+           liste_for.getItems().addAll("Liste formation","Mes formations");
             liste_ev.getItems().addAll("Liste evenement","Mes participations");
             liste_off.getItems().addAll("Liste offre","Mes candidatures");
             pani.getItems().addAll("Mon panier");
-        
+            
+            
+            
 liste_for.setOnAction(event -> {
     String selectedPage = (String) liste_for.getSelectionModel().getSelectedItem();
 
@@ -179,8 +185,15 @@ pani.setOnAction(event -> {
         }
     } 
 });
+            
+            
+            
+       rootPane.setOpacity(0);
+       makeFadeInTransition();
+        
         setTextFields();
         displayImage();
+        
         if("Client".equals(Utilisateur.Current_User.getRole())){
             certif.setVisible(false);
             tfcertif.setVisible(false);
@@ -436,6 +449,15 @@ if (file.exists() && file.isFile()) {
     System.out.println("File does not exist or is not a file.");
 }
     }
+
+    private void makeFadeInTransition() {
+    FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setDuration(Duration.millis(1000));
+        fadeTransition.setNode(rootPane);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.play();
+    }
     
         @FXML
     private void Profile(ActionEvent event)  throws IOException {
@@ -451,6 +473,5 @@ if (file.exists() && file.isFile()) {
    
    
 }
-    
      
 }

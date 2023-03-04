@@ -3,7 +3,6 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
@@ -12,8 +11,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.ComboBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="secondary-color" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiUser.ProfileSettingsFXMLController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="500.0" prefWidth="800.0" styleClass="secondary-color" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiUser.ProfileSettingsFXMLController">
     <stylesheets>
         <URL value="@profilesettingsfxml.css" />
     </stylesheets>
@@ -32,14 +32,14 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Label layoutX="47.0" layoutY="50.0" prefHeight="32.0" prefWidth="322.0" text="Paramètres de profil" textFill="WHITE">
+      <Label layoutX="47.0" layoutY="58.0" prefHeight="32.0" prefWidth="322.0" text="Paramètres de profil" textFill="WHITE">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
       <VBox layoutX="55.0" layoutY="81.0" prefHeight="162.0" prefWidth="430.0">
          <children>
-            <Label prefHeight="32.0" prefWidth="385.0" text="Informations personnelle  " textFill="WHITE">
+            <Label prefHeight="32.0" prefWidth="330.0" text="Informations personnelle  " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -189,7 +189,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <HBox prefHeight="100.0" prefWidth="200.0" />
+      <HBox layoutY="8.0" prefHeight="100.0" prefWidth="200.0" />
       <VBox layoutX="527.0" layoutY="284.0" prefHeight="143.0" prefWidth="262.0">
          <children>
             <HBox prefHeight="78.0" prefWidth="253.0">
@@ -233,15 +233,15 @@
             </HBox>
          </children>
       </VBox>
-      <Label fx:id="login" layoutX="366.0" layoutY="58.0" text="Yassine123" textFill="WHITE">
+      <Label fx:id="login" layoutX="366.0" layoutY="66.0" text="Yassine123" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="logout" layoutX="731.0" layoutY="55.0" mnemonicParsing="false" onAction="#logout" text="Logout" textFill="#f70606" />
-         <AnchorPane id="AnchorPane" layoutX="-1.0" prefHeight="34.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" styleClass="navbar" stylesheets="@design.css">
+      <Button fx:id="logout" layoutX="731.0" layoutY="63.0" mnemonicParsing="false" onAction="#logout" text="Logout" textFill="#f70606" />
+         <AnchorPane id="AnchorPane" layoutX="-1.0" prefHeight="34.0" prefWidth="602.0" style="-fx-background-color: #ffffff;" styleClass="navbar" stylesheets="@design.css">
          <children>
-            <Button fx:id="prof" layoutX="691.0" layoutY="5.0" mnemonicParsing="false" onAction="#Profile" text="Profile" textFill="WHITE" />
+            <Button fx:id="prof" layoutX="537.0" layoutY="5.0" mnemonicParsing="false" onAction="#Profile" text="Profile" />
             <ComboBox fx:id="liste_for" layoutX="14.0" layoutY="5.0" prefHeight="26.0" prefWidth="114.0" promptText="Formation" />
             <ComboBox fx:id="liste_ev" layoutX="148.0" layoutY="5.0" prefHeight="26.0" prefWidth="113.0" promptText="Evenement" />
             <ComboBox fx:id="liste_off" layoutX="270.0" layoutY="4.0" prefHeight="26.0" prefWidth="104.0" promptText="Offre" />

@@ -4,20 +4,12 @@
  */
 package khademni.guiUser;
 
-
-import java.awt.Color;
 import java.net.URL;
 import java.util.HashMap;
-
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Label;
-import javafx.scene.shape.Circle;
-import javafx.util.Callback;
 import khademni.services.UtilisateurService;
 
 

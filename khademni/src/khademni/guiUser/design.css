@@ -42,7 +42,7 @@ and open the template in the editor.
      
 }
 .hypertext-design{
-    -fx-text-fill:#5185c5;
+    -fx-text-fill:#662d60;
     -fx-underline:false;
     -fx-border-color:transparent;
 }
@@ -50,4 +50,10 @@ and open the template in the editor.
     
     -fx-underline:true;
     
+}
+
+
+
+.text-field .text {
+    -fx-text-alignment: center;
 }

@@ -183,7 +183,7 @@ public class UtilisateurService implements IUtilisateurService {
         ObservableList<Utilisateur> users = FXCollections.observableArrayList();
 
         try {
-            String sql = "select * from user";
+            String sql = "select * from user where role != 'Admin' ";
             Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
@@ -295,5 +295,12 @@ public class UtilisateurService implements IUtilisateurService {
     
 }
            
-           
+      public boolean userExist(String login ) throws SQLException {
+        String query = "SELECT * FROM user WHERE login = ?";
+        PreparedStatement statement = myconn.prepareStatement(query);
+        statement.setString(1, login);
+        ResultSet result = statement.executeQuery();
+        return result.next();
+    }
+      
 }
