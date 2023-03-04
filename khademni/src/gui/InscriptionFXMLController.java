@@ -9,8 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
-import java.sql.Connection;
-import javafx.scene.input.MouseButton;
+
 
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -128,6 +127,8 @@ public class InscriptionFXMLController implements Initializable {
     private Hyperlink Client_signup;
     @FXML
     private AnchorPane signup_form_client;
+    @FXML
+    private AnchorPane side;
     
         //login
 
@@ -176,33 +177,88 @@ private ToggleButton show_password_toggle;
             tfdomaine_form.getItems().addAll("Informatique","Cuisine","Management");
             tfdomaine_cl.getItems().addAll("Informatique","Cuisine","Management");
             tfrole.getItems().addAll("Employeur","Formateur","Client");
+            tfrole.setValue("Client");
+            
+              // Show the "Client" form initially
+    role_form.setVisible(true);
+    login_form.setVisible(false);
+    signup_form_employeur.setVisible(false);
+    signup_form_formateur.setVisible(false);
+    signup_form_client.setVisible(true);
+    side.setVisible(true);
+
+    
             tfrole.setOnAction(this::handleRoleSelection);
 
     } 
     
     private void handleRoleSelection(Event event) {
+        
     String selectedRole = tfrole.getValue().toString();
 
     switch (selectedRole) {
         case "Employeur":
-            role_form.setVisible(false);
+            role_form.setVisible(true);
             login_form.setVisible(false);
             signup_form_employeur.setVisible(true);
+            signup_form_formateur.setVisible(false);
+            signup_form_client.setVisible(false);
+
+            
             break;
         case "Formateur":
-            role_form.setVisible(false);
+            role_form.setVisible(true);
             login_form.setVisible(false);
+            signup_form_employeur.setVisible(false);
             signup_form_formateur.setVisible(true);
+            signup_form_client.setVisible(false);            
             break;
         case "Client":
-            role_form.setVisible(false);
+            role_form.setVisible(true);
             login_form.setVisible(false);
+            signup_form_employeur.setVisible(false);
+            signup_form_formateur.setVisible(false);
             signup_form_client.setVisible(true);
             break;
         default:
             break;
     }
 }
+    
+    @FXML
+    public void changeForm(ActionEvent event){
+        if(event.getSource() == create_acc){
+            role_form.setVisible(true);
+            login_form.setVisible(false);
+            side.setVisible(true);
+            signup_form_client.setVisible(true);            
+            
+        }else if(event.getSource()==login_acc_emp){
+            login_form.setVisible(true);
+            signup_form_employeur.setVisible(false);
+            role_form.setVisible(false);
+            side.setVisible(false);
+
+
+        }
+        else if(event.getSource()==login_acc_form){
+            login_form.setVisible(true);
+            signup_form_formateur.setVisible(false);
+            role_form.setVisible(false);
+            side.setVisible(false);
+
+        }
+        else if(event.getSource()==login_acc_cl){
+            login_form.setVisible(true);
+            signup_form_client.setVisible(false);
+                        role_form.setVisible(false);
+                        side.setVisible(false);
+
+        }
+        
+    }
+    
+    
     
     public void ShowPassword(){
                 PasswordField passwordField = password_signin;
@@ -241,38 +297,9 @@ showPasswordToggle.setOnAction(event -> {
     }
     
     UtilisateurService us = new UtilisateurService();
-    Connection myconn =MyConnection.getInstance().getConnexion();
 
             
-    @FXML
-    public void changeForm(ActionEvent event){
-        if(event.getSource() == create_acc){
-            role_form.setVisible(true);
-            login_form.setVisible(false);
-        }else if(event.getSource()==login_acc_emp){
-            login_form.setVisible(true);
-            signup_form_employeur.setVisible(false);
-        }
-        else if(event.getSource()==login_acc_form){
-            login_form.setVisible(true);
-            signup_form_formateur.setVisible(false);
-        }
-        else if(event.getSource()==login_acc_cl){
-            login_form.setVisible(true);
-            signup_form_client.setVisible(false);
-        }
-        else if(event.getSource()==Employeur_signup){
-            signup_form_employeur.setVisible(true);
-            role_form.setVisible(false);
-        }else if(event.getSource()==Formateur_signup){
-            signup_form_formateur.setVisible(true);
-            role_form.setVisible(false);
-        }
-        else if(event.getSource()==Client_signup){
-            signup_form_client.setVisible(true);
-            role_form.setVisible(false);
-        }
-    }
+    
     
     public boolean ValidationEmail(String email){ 
         Pattern pattern = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9._]*@[a-zA-Z0-9._]+([.][a-zA-Z0-9]+)+");
