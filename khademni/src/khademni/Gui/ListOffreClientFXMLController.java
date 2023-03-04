@@ -43,6 +43,8 @@ public class ListOffreClientFXMLController implements Initializable {
     /**
      * Initializes the controller class.
      */
+        @FXML
+    private Button btnAnnuler;
     @FXML
     private Button btnPost;
     @FXML
@@ -200,7 +202,51 @@ try {
     System.out.println("Email sent successfully.");
 }
 
-    
+        @FXML
+    void AnnulerCandidature(ActionEvent event) {
+ Offre selectedOffre = tvOffre23.getSelectionModel().getSelectedItem();
+        System.out.println("id_o::"+selectedOffre.getId_offre());
+      //  selectedOffre.getId_offre.setText(String.valueOf(selectedOffre.getId_offre()));
+        Candidature C= new Candidature(selectedOffre.getId_offre(), 1,"en attente");
+        CandidatureService CV= new CandidatureService();
+        CV.supprimerCandidature(C);
+         String senderEmail = "khademni.serviceClient@gmail.com"; 
+String senderPassword = "iptppxmbutpkhtee"; 
+String receiverEmail = "achour.rihab2000@gmail.com"; 
+String subject = "Postulation Annuler";
+String message = "Une  offre a été Annuler.";
+
+try {
+    sendEmail1(senderEmail, senderPassword, receiverEmail, subject, message);
+} catch (MessagingException ex) {
+    System.out.println("Erreur lors de l'envoi de l'email : " + ex.getMessage());
+}
+    }
+    public static void sendEmail1(String senderEmail, String senderPassword, String receiverEmail, String subject, String message) throws MessagingException {
+   
+    Properties props = new Properties();
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.starttls.enable", "true");
+    props.put("mail.smtp.host", "smtp.gmail.com");
+    props.put("mail.smtp.port", "587");
+
+    Session session = Session.getInstance(props, new Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication("khademni.serviceClient@gmail.com", "iptppxmbutpkhtee");
+        }
+    });
+
+    Message email = new MimeMessage(session);
+    email.setFrom(new InternetAddress("khademni.serviceClient@gmail.com"));
+    email.setRecipients(Message.RecipientType.TO, InternetAddress.parse("achour.rihab2000@gmail.com"));
+
+    email.setSubject("Postulation");
+    email.setText("Postulation Annuler ");
+
+    Transport.send(email);
+
+    System.out.println("Email sent successfully.");
+}
 
 }
 

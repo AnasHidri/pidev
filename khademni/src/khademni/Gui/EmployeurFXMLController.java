@@ -166,8 +166,6 @@ colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
     public void AddOffre(ActionEvent event) {
         Offre o;
         OffreService os=new OffreService();
-     
-     
        String titre= tfTitre.getText();
       String des= tfDescription.getText(); 
      String soc= tfAdressse_societe.getText(); 
@@ -177,33 +175,13 @@ Date datedeb = (date_debut == null) ? null : Date.valueOf(date_debut);
 
 LocalDate date_limite = tfDate_Limite.getValue();
 Date datelim = (date_limite == null) ? null : Date.valueOf(date_limite);
-
-
-     
+LocalDate currentDate = LocalDate.now();
     if(titre.isEmpty() || des.isEmpty() || soc.isEmpty()|| off.isEmpty()) {
       System.out.println();
        Alert alert = new Alert(AlertType.INFORMATION);
     alert.setContentText("Tous les champs doivent être remplis");
     alert.showAndWait();
     } 
-    else 
-if (!titre.matches("[a-zA-Z]+")) {
-    // Show an error message to the user
-    Alert alert = new Alert(Alert.AlertType.ERROR);
-    alert.setContentText("Veuillez saisir un titre valide en lettres minuscules ou majuscules.");
-    alert.showAndWait();
-    return;
-}
-
-
-if (!soc.matches("[a-zA-Z]+")) {
-    // Show an error message to the user
-    Alert alert = new Alert(Alert.AlertType.ERROR);
-    alert.setContentText("Veuillez saisir une adresse valide en lettres minuscules ou majuscules.");
-    alert.showAndWait();
-    return;
-}
-
 else if(date_debut == null) {
     Alert alert = new Alert(AlertType.INFORMATION);
     alert.setContentText("Veuillez sélectionner une date de début pour l'offre.");
@@ -214,6 +192,11 @@ else if(date_limite == null) {
     alert.setContentText("Veuillez sélectionner une date limite pour l'offre.");
     alert.showAndWait();
 } 
+else if (!date_debut.equals(currentDate)) {
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setContentText("La date de début doit être égale à la date actuelle.");
+    alert.showAndWait();
+}
 
 else if(date_debut.isAfter(date_limite)) {
     Alert alert = new Alert(AlertType.INFORMATION);

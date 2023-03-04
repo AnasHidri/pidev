@@ -76,9 +76,6 @@ public class CandidatureEmployeurFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        // TODO
-        
-        
        showCandidature1();
        showCandidature2();
        showCandidature3();

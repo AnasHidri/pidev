@@ -45,7 +45,7 @@ public class CandidatureService implements ICandidature <Candidature>{
 
   
     public void RefuserCandidature(Candidature P) {
-String sql="update  user,candidature,offre set candidature.etat='Refusée'  where user.id_user = Offre.id_user and offre.id_offre = candidature.id_offre and offre.id_offre="+88;
+String sql="update  user,candidature,offre set candidature.etat='Refusée'  where user.id_user = Offre.id_user and offre.id_offre = candidature.id_offre and offre.id_offre="+87;
         try {
              java.sql.Statement ste = myconn.createStatement();
 
@@ -55,7 +55,7 @@ String sql="update  user,candidature,offre set candidature.etat='Refusée'  wher
             System.out.println(ex);
         }    }
      public void AccepterCandidature(Candidature P) {
- String sql="update user,candidature,offre set candidature.etat='Accepté' where user.id_user = Offre.id_user and offre.id_offre = candidature.id_offre and offre.id_offre="+88;
+ String sql="update user,candidature,offre set candidature.etat='Accepté' where user.id_user = Offre.id_user and offre.id_offre = candidature.id_offre and offre.id_offre="+87;
         try {
                 java.sql.Statement ste = myconn.createStatement();
 
@@ -69,7 +69,7 @@ String sql="update  user,candidature,offre set candidature.etat='Refusée'  wher
  public ObservableList<Candidature> afficherCandidatureEmployeur1() {
        ObservableList<Candidature> CandidatureList1 = FXCollections.observableArrayList();
         try {
-           String sql = "select offre.titre, offre.id_offre from user,candidature,offre where user.id_user=Offre.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+88 ;
+           String sql = "select offre.titre, offre.id_offre from user,candidature,offre where user.id_user=Offre.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+87 ;
            
             java.sql.Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
@@ -88,7 +88,7 @@ String sql="update  user,candidature,offre set candidature.etat='Refusée'  wher
     public ObservableList<Candidature> afficherCandidatureEmployeur2() {
        ObservableList<Candidature> CandidatureList2 = FXCollections.observableArrayList();
         try {
-           String sql = "select user.nom,user.prenom,user.email from user,candidature,offre where user.id_user=Offre.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+88;
+           String sql = "select user.nom,user.prenom,user.email from user,candidature,offre where user.id_user=Offre.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+87;
            
             java.sql.Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
@@ -110,7 +110,7 @@ String sql="update  user,candidature,offre set candidature.etat='Refusée'  wher
      public ObservableList<Candidature> afficherCandidatureEmployeur3() {
        ObservableList<Candidature> CandidatureList3 = FXCollections.observableArrayList();
         try {
-           String sql = "select  candidature.etat   from user,candidature,offre where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+88;
+           String sql = "select  candidature.etat   from user,candidature,offre where user.id_user=candidature.id_user and offre.id_offre=candidature.id_offre and offre.id_offre="+87;
            
             java.sql.Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
@@ -134,7 +134,7 @@ String sql="update  user,candidature,offre set candidature.etat='Refusée'  wher
      public ObservableList<Candidature> afficherCandidatureClient1() {
        ObservableList<Candidature> CandidatureClientList = FXCollections.observableArrayList();
         try {
-           String sql = "select offre.titre,offre.description,offre.adresse_societe,offre.domaine_offre,offre.date_debut,offre.date_limite from  offre,candidature where  offre.id_offre=candidature.id_offre and candidature.id_user="+1;
+           String sql = "select offre.titre,offre.description,offre.adresse_societe,offre.domaine_offre,offre.date_debut,offre.date_limite from  offre,candidature where  offre.id_offre=candidature.id_offre and candidature.id_user="+2;
             Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
@@ -156,7 +156,7 @@ String sql="update  user,candidature,offre set candidature.etat='Refusée'  wher
      public ObservableList<Candidature> afficherCandidatureClient2() {
        ObservableList<Candidature> CandidatureEtat = FXCollections.observableArrayList();
         try {
-           String sql = "select candidature.etat from offre,candidature where  offre.id_offre=candidature.id_offre and candidature.id_user="+1;
+           String sql = "select candidature.etat from offre,candidature where  offre.id_offre=candidature.id_offre and candidature.id_user="+2;
             Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
