@@ -295,5 +295,12 @@ public class UtilisateurService implements IUtilisateurService {
     
 }
            
-           
+      public boolean userExist(String login ) throws SQLException {
+        String query = "SELECT * FROM user WHERE login = ?";
+        PreparedStatement statement = myconn.prepareStatement(query);
+        statement.setString(1, login);
+        ResultSet result = statement.executeQuery();
+        return result.next();
+    }
+      
 }

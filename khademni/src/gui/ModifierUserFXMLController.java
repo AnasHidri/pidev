@@ -115,7 +115,6 @@ public class ModifierUserFXMLController implements Initializable {
        tfnom2.setText(u.getNom());
         tfprenom2.setText(u.getPrenom());
         tfrole2.setText(u.getRole());
-        cbetat.setValue(u.getEtat());
         tfmail2.setText(u.getMail());
     }
     

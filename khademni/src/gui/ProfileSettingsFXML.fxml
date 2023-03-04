@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="secondary-color" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProfileSettingsFXMLController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="500.0" prefWidth="800.0" styleClass="secondary-color" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProfileSettingsFXMLController">
     <stylesheets>
         <URL value="@profilesettingsfxml.css" />
     </stylesheets>

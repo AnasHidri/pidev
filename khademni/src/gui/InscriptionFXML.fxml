@@ -6,16 +6,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.InscriptionFXMLController">
+<AnchorPane id="rootPane" fx:id="rootPane2" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.InscriptionFXMLController">
             
     <!-- ************************************************************************************************************* -->
    
+   <!--
   <AnchorPane fx:id="role_form" layoutX="10.0" layoutY="10.0" prefHeight="502.0" prefWidth="798.0" visible="false">   
+      
     <children>
         <ImageView fx:id="ImageP" fitHeight="521.0" fitWidth="817.0" layoutX="-11.0" layoutY="-10.0">
          <image>
@@ -37,6 +40,10 @@
                         <Font name="Berlin Sans FB" size="25.0" />
                      </font>
                   </Label>
+                                 
+
+                                 
+                                 
                   <Hyperlink fx:id="Client_signup" layoutX="88.0" layoutY="337.0" onAction="#changeForm" styleClass="hyp" stylesheets="@design.css" text="Client">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
@@ -59,11 +66,48 @@
          </Label> 
          </children>
          </AnchorPane>
+     -->
+     
+     
+     
+     
+     <AnchorPane fx:id="role_form" prefHeight="512.0" prefWidth="816.0" visible="true">
+    <children>
+            <AnchorPane layoutX="390.0" layoutY="-10.0" prefHeight="530.0" prefWidth="426.0" styleClass="login-bg" stylesheets="@design.css">
+               <children>
+                  <Label layoutX="96.0" layoutY="220.0" text="Khademni">
+                     <font>
+                        <Font name="Baskerville Old Face" size="50.0" /> 
+                     </font>
+                  </Label>
+                  <Button layoutX="352.0" mnemonicParsing="false" onAction="#exit" prefHeight="26.0" prefWidth="57.0" styleClass="exit" stylesheets="@design.css" text="X" AnchorPane.leftAnchor="352.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="9.0">
+                     <graphic>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="-10.0" prefHeight="513.0" prefWidth="400.0">
+               <children>
+                  <Label layoutX="68.0" layoutY="14.0" prefHeight="54.0" prefWidth="162.0" text="S'inscrire" textFill="#662d60">
+                     <font>
+                        <Font name="Berlin Sans FB" size="39.0" />
+                     </font>
+                  </Label>
+                  
+                  
+                <ComboBox fx:id="tfrole" layoutX="78.0" layoutY="82.0" prefHeight="26.0" prefWidth="220.0" promptText="Choisir role" />
+
+                  
+               </children>
+            </AnchorPane>
+         </children>
+         </AnchorPane>
+         
     
         <!-- ************************************************************************************************************* -->
 
     
-    <AnchorPane fx:id="signup_form_employeur" prefHeight="512.0" prefWidth="816.0" visible="true">
+    <AnchorPane fx:id="signup_form_employeur" prefHeight="512.0" prefWidth="816.0" visible="false">
     <children>
             <AnchorPane layoutX="390.0" layoutY="-10.0" prefHeight="530.0" prefWidth="426.0" styleClass="login-bg" stylesheets="@design.css">
                <children>
@@ -90,6 +134,9 @@
                         <Font size="15.0" />
                      </font>
                   </TextField>
+                  
+
+                  
                   <Button fx:id="signup_btn_emp" layoutX="159.0" layoutY="428.0" mnemonicParsing="false" onAction="#saveEmployeur" prefHeight="24.0" prefWidth="83.0" styleClass="button-design" stylesheets="@design.css" text="S'inscrire" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
@@ -165,6 +212,9 @@
                         <Font size="15.0" />
                      </font>
                   </TextField>
+                  
+                  
+
                   <Button fx:id="signup_btn_form" layoutX="159.0" layoutY="428.0" mnemonicParsing="false" onAction="#saveFormateur" prefHeight="24.0" prefWidth="83.0" styleClass="button-design" stylesheets="@design.css" text="S'inscrire" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
@@ -312,26 +362,50 @@
                         <Font name="Berlin Sans FB" size="40.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="login_signin" layoutX="112.0" layoutY="250.0" prefHeight="28.0" prefWidth="220.0" promptText="Nom d'utilisateur ..." styleClass="textfield-design" stylesheets="@design.css">
+                  <TextField alignment="CENTER" layoutX="112.0" layoutY="250.0" prefHeight="28.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@design.css" AnchorPane.rightAnchor="68.0">
+    <font>
+        <Font size="15.0" />
+    </font>
+</TextField>
+                  <PasswordField alignment="CENTER" layoutX="112.0" layoutY="290.0" prefHeight="34.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@design.css">
                      <font>
                         <Font size="15.0" />
                      </font>
-                  </TextField>
-                  <PasswordField fx:id="password_signin" layoutX="112.0" layoutY="290.0" prefHeight="28.0" prefWidth="220.0" promptText="Mot de passe ..." styleClass="textfield-design" stylesheets="@design.css">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
+                     
                   </PasswordField>
                   <Button fx:id="login_btn" layoutX="167.0" layoutY="339.0" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="94.0" styleClass="button-design" stylesheets="@design.css" text="Connecter" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Hyperlink fx:id="create_acc" layoutX="144.0" layoutY="448.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Créer un nouveau compte ?">
+                  <Hyperlink fx:id="create_acc" layoutX="124.0" layoutY="448.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Créer un nouveau compte ?">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />
                      </font>
                   </Hyperlink>
+               <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="124.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@user-interface.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="124.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@padlock.png" />
+                  </image>
+               </ImageView>
+               <ToggleButton fx:id="show_password_toggle" layoutX="342.0" layoutY="294.0" prefHeight="26.0" prefWidth="26.0" styleClass="password-toggle-button" stylesheets="@design.css" />
+               <PasswordField fx:id="password_signin" layoutX="158.0" layoutY="290.0" prefHeight="34.0" prefWidth="175.0" promptText="Mot de passe ..." styleClass="textfield-design" stylesheets="@design.css">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </PasswordField>
+               <TextField fx:id="login_signins" layoutX="158.0" layoutY="250.0" prefHeight="34.0" prefWidth="175.0" promptText="Nom d'utilisateur ..." styleClass="textfield-design" stylesheets="@design.css">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </TextField>
+  
+               
                   <!--<Hyperlink fx:id="mdp_oub" layoutX="145.0" layoutY="427.0" styleClass="hypertext-design" stylesheets="@design.css" text="Mot de passe oublié ?">
                      <font>
                         <Font name="Microsoft Sans Serif" size="15.0" />

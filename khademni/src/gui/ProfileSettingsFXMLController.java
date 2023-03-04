@@ -13,6 +13,7 @@ import java.net.URL;
 import java.security.GeneralSecurityException;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,9 +26,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import khademni.entity.Client;
 import khademni.entity.Formateur;
 import khademni.entity.Utilisateur;
@@ -83,6 +86,8 @@ public class ProfileSettingsFXMLController implements Initializable {
     private Button openCertif;
     @FXML
     private Button logout;
+    @FXML
+         private AnchorPane rootPane;
     
     
     /**
@@ -91,8 +96,12 @@ public class ProfileSettingsFXMLController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       rootPane.setOpacity(0);
+       makeFadeInTransition();
+        
         setTextFields();
         displayImage();
+        
         if("Client".equals(Utilisateur.Current_User.getRole())){
             certif.setVisible(false);
             tfcertif.setVisible(false);
@@ -347,6 +356,15 @@ if (file.exists() && file.isFile()) {
     // The file does not exist or is not a file
     System.out.println("File does not exist or is not a file.");
 }
+    }
+
+    private void makeFadeInTransition() {
+    FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setDuration(Duration.millis(1000));
+        fadeTransition.setNode(rootPane);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.play();
     }
     
      
