@@ -53,10 +53,7 @@ public class ActivationFormateurFXMLController implements Initializable {
     private Button btn_modifier;
     @FXML
     private TextField Recherche_User;
-    @FXML
-    private Button btn_filter;
-    @FXML
-    private ComboBox<?> rolechoice;
+   
 
     /**
      * Initializes the controller class.
@@ -166,5 +163,4 @@ public void showUsers() {
                                            System.out.println(ex.getCause().getMessage());
                                        }
     }
-
 }

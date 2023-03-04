@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+import javafx.animation.FadeTransition;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
@@ -24,7 +25,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import khademni.entity.Utilisateur;
 import services.UtilisateurService;
 
@@ -58,6 +61,9 @@ public class UsersListFXMLController implements Initializable {
      
      @FXML
     private TextField Recherche_User;
+     
+     @FXML
+         private AnchorPane AnchorPane;
    
     
     UtilisateurService us = new UtilisateurService();
@@ -67,6 +73,7 @@ public class UsersListFXMLController implements Initializable {
     private ComboBox rolechoice;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+                makeFadeInTransition() ;
                 showUsers();
                 searchRec();
     rolechoice.getItems().addAll("Client","Formateur","Employeur");
@@ -92,7 +99,6 @@ private void filterByRole(ActionEvent event) {
      public void showUsers(){
        
          ObservableList<Utilisateur> list = us.afficherUtilisateurs() ;
-         System.out.println("list ::: "+list);
          nomUser.setCellValueFactory(new PropertyValueFactory<>("nom"));
          prenomUser.setCellValueFactory(new PropertyValueFactory<>("prenom"));
          roleUser.setCellValueFactory(new PropertyValueFactory<>("login"));
@@ -195,6 +201,16 @@ private void filterByRole(ActionEvent event) {
                                        }catch(IOException ex){
                                            System.out.println(ex.getCause().getMessage());
                                        }
+    }
+    
+    
+    private void makeFadeInTransition() {
+    FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setDuration(Duration.millis(1000));
+        fadeTransition.setNode(AnchorPane);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.play();
     }
     
 }

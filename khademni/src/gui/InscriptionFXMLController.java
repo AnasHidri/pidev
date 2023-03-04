@@ -614,25 +614,35 @@ showPasswordToggle.setOnAction(event -> {
         }  
     }
         
-    /*
-        public void makeFadeOut(String path){
-        FadeTransition fadeTransition = new FadeTransition();
-        fadeTransition.setDuration(Duration.millis(500));
-        fadeTransition.setNode(rootPane2);
-        fadeTransition.setFromValue(1);
-        fadeTransition.setToValue(0);
-        fadeTransition.setOnFinished((t) -> {
-            try {
-                loadNextScene(path);
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
-        } );
-            System.out.println("ok");
-        fadeTransition.play();
-    }*/
+   
     
     
+//    public void makeFadeOut(String path) {
+//    FadeTransition fadeTransition = new FadeTransition();
+//    fadeTransition.setDuration(Duration.millis(500));
+//    fadeTransition.setNode(rootPane2);
+//    fadeTransition.setFromValue(1);
+//    fadeTransition.setToValue(0);
+//    fadeTransition.setOnFinished((t) -> {
+//        try {
+//            loadNextScene(path);
+//        } catch (IOException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//    });
+//
+//    TranslateTransition translateTransition = new TranslateTransition();
+//    translateTransition.setDuration(Duration.millis(500));
+//    translateTransition.setNode(rootPane2);
+//    translateTransition.setFromY(0);
+//    translateTransition.setToY(-40);
+//    translateTransition.setCycleCount(3);
+//    translateTransition.setAutoReverse(true);
+//
+//    ParallelTransition parallelTransition = new ParallelTransition(fadeTransition, translateTransition);
+//    parallelTransition.play();
+//}
+   
     public void makeFadeOut(String path) {
     FadeTransition fadeTransition = new FadeTransition();
     fadeTransition.setDuration(Duration.millis(500));
@@ -650,15 +660,15 @@ showPasswordToggle.setOnAction(event -> {
     TranslateTransition translateTransition = new TranslateTransition();
     translateTransition.setDuration(Duration.millis(500));
     translateTransition.setNode(rootPane2);
-    translateTransition.setFromY(0);
-    translateTransition.setToY(-40);
+    translateTransition.setFromX(0);
+    translateTransition.setToX(40);
     translateTransition.setCycleCount(3);
     translateTransition.setAutoReverse(true);
 
     ParallelTransition parallelTransition = new ParallelTransition(fadeTransition, translateTransition);
     parallelTransition.play();
 }
-    
+
     
     
     public void loadNextScene(String path) throws IOException{

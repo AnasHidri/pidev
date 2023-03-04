@@ -183,7 +183,7 @@ public class UtilisateurService implements IUtilisateurService {
         ObservableList<Utilisateur> users = FXCollections.observableArrayList();
 
         try {
-            String sql = "select * from user";
+            String sql = "select * from user where role != 'Admin' ";
             Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
