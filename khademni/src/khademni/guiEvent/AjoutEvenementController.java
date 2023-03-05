@@ -4,6 +4,7 @@
  */
 package khademni.guiEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +17,10 @@ import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -27,6 +31,7 @@ import javafx.scene.control.TableView;
 //import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import khademni.entity.Evenement;
 import khademni.services.EvenementService;
 
@@ -62,6 +67,8 @@ public class AjoutEvenementController implements Initializable {
      private Button btn_supp_ev;
      @FXML
      private Button select_ev;
+      @FXML
+     private Button cons_part_emp;
      @FXML
      private TableView<Evenement> tab_ev;
      @FXML
@@ -191,6 +198,34 @@ public void AffichEV(){
         
     }
     
-    
+      
+    @FXML
+public void ConsulterParticipants(ActionEvent event) throws IOException {
+Evenement selectedEV = tab_ev.getSelectionModel().getSelectedItem();
+int eventId = selectedEV.getId_evenement(); // Récupérer l'identifiant de l'événement sélectionné
+System.out.println("id_e::" + eventId);
+
+try {
+// Charger la nouvelle vue
+FXMLLoader loader = new FXMLLoader(getClass().getResource("LesParticipantsEM.fxml"));
+Parent root = loader.load();
+
+
+    // Obtenir le contrôleur de la nouvelle vue
+    LesParticipantsEMController controleur = loader.getController();
+
+    // Passer les données de l'utilisateur actuel et l'identifiant de l'événement sélectionné au nouveau contrôleur
+    controleur.setTextFields(eventId);
+  
+
+    Scene scene = new Scene(root);
+    Stage stage = (Stage) cons_part_emp.getScene().getWindow();
+    stage.setScene(scene);
+    stage.show();
+
+} catch (IOException e) {
+    System.out.println(e.getCause().getMessage());
+}
+    }
     
 }

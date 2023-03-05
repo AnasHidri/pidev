@@ -3,47 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiUser/ModifierUserFXMLController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/QrcodeController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/api/PdfEv.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/StatEvADController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/entity/Participation.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/MesFormationFXMLController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/Khademni.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/services/ParticipationService.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/StatEvAD.fxml</file>
             <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/HistoriqueFXML.fxml</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/ListeEvenementAD.fxml</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiUser/ProfileSettingsFXMLController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/PanierFXMLController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/interfaces/IEvenement.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/ListeEvenementController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/services/EvenementService.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/AjoutEvenementController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/interfaces/IParticipation.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiUser/FormateurFXMLController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/Khademni.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/services/HistoriqueService.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiUser/ProfileSettingsFXML.fxml</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/AjoutEvenement.fxml</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/LesParticipationsAD.fxml</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/entity/Utilisateur.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/MesParticipationsController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/utils/MyConnection.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/services/UtilisateurService.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/interfaces/IPanier.java</file>
             <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/ListeEvenementADController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/design.css</file>
+            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/PanierGraphController.java</file>
+            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/LesParticipationsAD.fxml</file>
             <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/HistoriqueFXMLController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/entity/Evenement.java</file>
+            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/MesFormationFXML.fxml</file>
+            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/MesFormationFXMLController.java</file>
+            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/PanierFXMLController.java</file>
             <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/LesParticipationsADController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/MesParticipations.fxml</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/services/Ligne_CommandeService.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/ListeEvenement.fxml</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/Qrcode.fxml</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiUser/InscriptionFXMLController.java</file>
             <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/PanierFXML.fxml</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/services/PanierService.java</file>
+            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/PanierGraph.fxml</file>
+            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/Khademni.java</file>
         </group>
     </open-files>
 </project-private>

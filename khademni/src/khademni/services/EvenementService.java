@@ -268,7 +268,23 @@ public class EvenementService implements IEvenement<Evenement> {
     }
     return count;
 }
-  
+  public ObservableList<Evenement> getAllByIdUser() {
+    ObservableList<Evenement> evenements = FXCollections.observableArrayList();
+    try {
+        String sql = "SELECT * FROM evenement WHERE id_user ="+Utilisateur.Current_User.getId_user();
+        PreparedStatement ps = cnx.prepareStatement(sql);
+        //ps.setInt(1, idUser);
+        ResultSet s = ps.executeQuery();
+        while (s.next()) {
+            Evenement e = new Evenement(s.getInt(1), s.getInt(2), s.getDate(3), s.getDate(4),
+                    s.getString("titre"), s.getString("description"), s.getString("nom_societe"), s.getString("lieu"));
+            evenements.add(e);
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return evenements;
+}
   
 } 
 
