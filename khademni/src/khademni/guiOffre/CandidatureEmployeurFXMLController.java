@@ -8,16 +8,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -31,6 +37,8 @@ import static khademni.guiOffre.OffreAdminFXMLController.sendEmail1;
 import khademni.entity.Candidature;
 import khademni.entity.Offre;
 import khademni.entity.Utilisateur;
+import khademni.gui.Navbar_Navigation;
+import khademni.gui.PanierFXMLController;
 import khademni.services.CandidatureService;
 import khademni.services.OffreService;
 
@@ -87,6 +95,10 @@ public class CandidatureEmployeurFXMLController implements Initializable {
 
     @FXML
     private TextField Prenom;
+                   @FXML
+       private ComboBox<String> liste_ev;
+    @FXML
+            private ComboBox<String> liste_off;
 
     @FXML
     /**
@@ -95,7 +107,54 @@ public class CandidatureEmployeurFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+liste_ev.getItems().addAll("Ajout evenement","Les Participants");
+            liste_off.getItems().addAll("Les candidatures","Ajout offre");
+            
+liste_ev.setOnAction(event -> {
+    String selectedPage = (String) liste_ev.getSelectionModel().getSelectedItem();
 
+    if (selectedPage.equals("Ajout evenement")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiEvent/AjoutEvenement.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } else if (selectedPage.equals("Les Participants")) {
+        Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiEvent/LesParticipantsEM.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+
+}) ;
+
+liste_off.setOnAction(event -> {
+    String selectedPage = (String) liste_off.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Les candidatures")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiOffre/CandidatureEmployeurFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } else if (selectedPage.equals("Ajout offre")) {
+        Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiOffre/EmployeurFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+
+});
 }     
     
  public void showCandidature1(int id_offre){
@@ -273,4 +332,18 @@ public static void sendEmail(String senderEmail, String senderPassword, String r
         SceneController SC =new SceneController();
         SC.Scene5(event);
     }
+    @FXML
+    private void Profile(ActionEvent event)  throws IOException {
+   
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiUser/ProfileSettingsFXML.fxml"));
+         Stage stage = new Stage();
+         
+         stage.setScene(new Scene(loader.load()));
+         stage.show();
+    Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+    currentStage.hide();
+   
+   
+   
+}
 }

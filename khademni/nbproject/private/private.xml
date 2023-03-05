@@ -3,18 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/HistoriqueFXML.fxml</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/ListeEvenementADController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/PanierGraphController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/LesParticipationsAD.fxml</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/HistoriqueFXMLController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/MesFormationFXML.fxml</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/MesFormationFXMLController.java</file>
+            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiOffre/ListOffreClientFXMLController.java</file>
+            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiOffre/MesCandidatureClientFXMLController.java</file>
+            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiOffre/ListOffreClientFXML.fxml</file>
             <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/PanierFXMLController.java</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiEvent/LesParticipationsADController.java</file>
             <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/PanierFXML.fxml</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/PanierGraph.fxml</file>
-            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/gui/Khademni.java</file>
+            <file>file:/D:/KRAYA/1ercycleing/pidev/pidev/khademni/src/khademni/guiOffre/MesCandidatureClientFXML.fxml</file>
         </group>
     </open-files>
 </project-private>
