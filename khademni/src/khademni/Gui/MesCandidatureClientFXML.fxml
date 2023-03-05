@@ -23,19 +23,18 @@
       </Button>
       <HBox layoutX="7.0" layoutY="33.0" prefHeight="319.0" prefWidth="728.0">
          <children>
-            <TableView fx:id="tvMesCandidature" prefHeight="319.0" prefWidth="631.0">
+            <TableView fx:id="tvMesCandidature" prefHeight="319.0" prefWidth="572.0">
                <columns>
                   <TableColumn fx:id="colTitre" prefWidth="77.0" text="Titre" />
                   <TableColumn fx:id="colDescription" minWidth="0.0" prefWidth="133.0" text="Description" />
-                  <TableColumn fx:id="colDomaine" prefWidth="116.0" text="Domaine D'offre" />
-                  <TableColumn fx:id="colAdresse" prefWidth="112.0" text="Adresse Societe" />
-                  <TableColumn fx:id="colDateDebut" prefWidth="84.0" text="Date debut" />
-                  <TableColumn fx:id="colDateLimite" prefWidth="108.0" text="Date limite" />
+                  <TableColumn fx:id="colDomaine" prefWidth="142.0" text="Domaine D'offre" />
+                  <TableColumn fx:id="colAdresse" prefWidth="115.0" text="Adresse Societe" />
+                  <TableColumn fx:id="colDateDebut" prefWidth="103.0" text="Date debut" />
                </columns>
             </TableView>
-            <TableView fx:id="tvMesCandidature1" prefHeight="319.0" prefWidth="86.0">
+            <TableView fx:id="tvMesCandidature1" prefHeight="319.0" prefWidth="138.0">
               <columns>
-                <TableColumn fx:id="colEtat" prefWidth="85.0" text="Etat" />
+                <TableColumn fx:id="colEtat" prefWidth="137.0" text="Etat" />
               </columns>
             </TableView>
          </children>

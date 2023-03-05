@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package khademni.Gui;
 
 import java.io.IOException;
@@ -49,11 +45,7 @@ public class OffreAdminFXMLController implements Initializable {
     private Button btnvalide;
   @FXML
     private TextField tfSearch;
-    @FXML
-    private DatePicker tfDate_Debut;
 
-    @FXML
-    private DatePicker tfDate_limite;
  @FXML
     private TableColumn<?, ?> colEtat;
 
@@ -94,8 +86,6 @@ public class OffreAdminFXMLController implements Initializable {
     @FXML
     private TableView<Offre> tvOffre;
 
-       @FXML
-    private Button btnafficher;
    
   
 
@@ -148,31 +138,12 @@ colDescription.setCellValueFactory(new PropertyValueFactory <>("description"));
 colAdresse_societe.setCellValueFactory(new PropertyValueFactory <>("adresse_societe"));
 colDomaine_offre.setCellValueFactory(new PropertyValueFactory <>("domaine_offre"));
 colDate_debut.setCellValueFactory(new PropertyValueFactory <>("date_debut"));
-colDate_limite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
     colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
 
        tvOffre.setItems(list);
 }
     
 
-    @FXML
-    void toutOffres(ActionEvent event) {
-  OffreService os =new OffreService(); 
-
-ObservableList<Offre> list = os.afficherattenteOffre();
-
-
-colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
-colDescription.setCellValueFactory(new PropertyValueFactory <>("description"));
-colAdresse_societe.setCellValueFactory(new PropertyValueFactory <>("adresse_societe"));
-colDomaine_offre.setCellValueFactory(new PropertyValueFactory <>("domaine_offre"));
-colDate_debut.setCellValueFactory(new PropertyValueFactory <>("date_debut"));
-colDate_limite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
-    colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
-
-       tvOffre.setItems(list);
-
-    }
 
     @FXML
     void retourneInter(ActionEvent event) throws IOException {
@@ -252,21 +223,6 @@ try {
 }
 
     
-}@FXML
-void filtrerOffre(ActionEvent event) {
-    LocalDate date_debut = tfDate_Debut.getValue();
-    LocalDate date_limite = tfDate_limite.getValue();
-    
-    Date datedeb = Date.valueOf(date_debut);
-    Date datelim = Date.valueOf(date_limite);
-    
-    OffreService os = new OffreService(); 
-    ObservableList<Offre> filteredList = os.getOffresByDate(
-        datedeb.toLocalDate(),
-        datelim.toLocalDate()
-    );
-    
-    tvOffre.setItems(filteredList);
 }
  public static void sendEmail1(String senderEmail, String senderPassword, String receiverEmail, String subject, String message) throws MessagingException {
    
@@ -322,12 +278,5 @@ void filtrerOffre(ActionEvent event) {
 
 }
  
-
-
-
-
-
-
-
 
 

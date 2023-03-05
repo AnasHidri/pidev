@@ -12,20 +12,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import khademni.entity.Candidature;
 import khademni.entity.Offre;
+import khademniService.CandidatureService;
 
 /**
  * FXML Controller class
  *
  * @author CYBERLAND
  */
-public class ModifierOffreFXMLController implements Initializable {
+public class DetailsOffreFXMLController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
-      @FXML
-    private Button btnEmployeur1;
+  
    @FXML
     private TextField tfId_offre;
     @FXML
@@ -47,22 +48,23 @@ public class ModifierOffreFXMLController implements Initializable {
     private TextField tfTitre;
 
    
-    @FXML
-    void SetTFOffre( Offre o) {
-
-        tfId_offre.setText(String.valueOf(o.getId_offre()));
-       tfTitre.setText(o.getTitre());
-        tfDescription.setText(o.getDescription());
-        tfAdressse_societe.setText(o.getAdresse_societe());
-        tfDomaine_offre.setText(o.getDomaine_offre());
-       // tfDate_debut.setValue(LocalDate.parse(String.valueOf(o.getDate_debut())));
-       // tfDate_Limite.setValue(LocalDate.parse(String.valueOf(o.getDate_limite())));
-    }
-    
+  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
     
-    
+      /* public void setTextFields2 (Offre O){
+        tfId_offre.setText(String.valueOf(O.getId_offre()));
+       tfTitre.setText(O.getTitre());
+        tfDescription.setText(O.getDescription());
+        tfAdressse_societe.setText(O.getDescription());
+        tfDomaine_offre.setText(O.getDomaine_offre());
+
+       
+       }
+     */
+
 }
+
+

@@ -42,7 +42,7 @@
             <Font name="System Bold Italic" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="Btn1" layoutX="33.0" layoutY="347.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #832c8d;" text="&lt;----" textFill="#fcfcfc">
+      <Button fx:id="Btn1" layoutX="33.0" layoutY="347.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #832c8d;" text="" textFill="#fcfcfc">
          <font>
             <Font name="System Bold Italic" size="17.0" />
          </font>

@@ -12,6 +12,7 @@ package khademni.interfaces;
  **/
 
 import javafx.collections.ObservableList;
+import khademni.entity.Offre;
 
 
 
@@ -20,7 +21,4 @@ public interface ICandidature <Candidature>{
 
     public void supprimerCandidature(Candidature c);
 
-    public ObservableList<Candidature> afficherCandidatureClient1();
-public ObservableList<Candidature> afficherCandidatureClient2();
-    
 } 

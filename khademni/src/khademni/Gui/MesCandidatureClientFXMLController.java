@@ -16,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import khademni.entity.Candidature;
+import khademni.entity.Offre;
 import khademniService.CandidatureService;
 
 /**
@@ -55,7 +56,7 @@ public class MesCandidatureClientFXMLController implements Initializable {
     private TableColumn<?, ?> colEtat;
 
     @FXML
-    private TableView<Candidature> tvMesCandidature;
+    private TableView<Offre> tvMesCandidature;
     @FXML
     private TableView<Candidature> tvMesCandidature1;
     
@@ -68,7 +69,7 @@ public class MesCandidatureClientFXMLController implements Initializable {
     
          public void showOffre1(){
   CandidatureService cs =new CandidatureService(); 
-ObservableList<Candidature> mesCandidatures = cs.afficherCandidatureClient1();
+ObservableList<Offre> mesCandidatures = cs.afficherOffreClient1();
 
 
 colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
@@ -76,7 +77,6 @@ colDescription.setCellValueFactory(new PropertyValueFactory <>("description"));
 colAdresse.setCellValueFactory(new PropertyValueFactory <>("adresse_societe"));
 colDomaine.setCellValueFactory(new PropertyValueFactory <>("domaine_offre"));
 colDateDebut.setCellValueFactory(new PropertyValueFactory <>("date_debut"));
-colDateLimite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
 
 
        tvMesCandidature.setItems(mesCandidatures);

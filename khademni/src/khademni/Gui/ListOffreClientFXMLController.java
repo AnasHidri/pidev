@@ -6,6 +6,8 @@ package khademni.Gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
@@ -13,12 +15,18 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -51,23 +59,23 @@ public class ListOffreClientFXMLController implements Initializable {
     private Button btnretourne;
       @FXML
     private Button btnmescandid;
+    
     @FXML
-    private TableColumn<?, ?> colAdresse;
+    private Button btnDetails;
+  
 
     @FXML
-    private TableColumn<?, ?> colDateDebut;
-
-    @FXML
-    private TableColumn<?, ?> colDateLimite;
-
-    @FXML
+    
     private TableColumn<?, ?> colDescription;
 
     @FXML
-    private TableColumn<?, ?> colDomaine;
-
-    @FXML
     private TableColumn<?, ?> colTitre;
+    @FXML
+    private TableColumn<?, ?> colAdresse;
+    @FXML
+    private TableColumn<?, ?> colDateDebut;
+    @FXML
+    private TableColumn<?, ?> colDomaine;
         @FXML
     private TextField tfRecherche;
 
@@ -81,7 +89,7 @@ public class ListOffreClientFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-  showOffre();
+     showOffre();
     }    
       @FXML
     void Recherche(ActionEvent event) {
@@ -97,7 +105,6 @@ public class ListOffreClientFXMLController implements Initializable {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-
                 String searchKey = newValue.toLowerCase();
 
                 if (predicateOffreData.getTitre().toLowerCase().contains(searchKey)) {
@@ -126,13 +133,11 @@ public class ListOffreClientFXMLController implements Initializable {
 
 ObservableList<Offre> list23 = os.afficherAccepterOffre();
 
-
 colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
 colDescription.setCellValueFactory(new PropertyValueFactory <>("description"));
 colAdresse.setCellValueFactory(new PropertyValueFactory <>("adresse_societe"));
 colDomaine.setCellValueFactory(new PropertyValueFactory <>("domaine_offre"));
 colDateDebut.setCellValueFactory(new PropertyValueFactory <>("date_debut"));
-colDateLimite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
     
        tvOffre23.setItems(list23);   
 }
@@ -142,13 +147,14 @@ colDateLimite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
          Offre selectedOffre = tvOffre23.getSelectionModel().getSelectedItem();
         System.out.println("id_o::"+selectedOffre.getId_offre());
         Candidature C= new Candidature(selectedOffre.getId_offre(), 2,"en attente");
+        
         CandidatureService CV= new CandidatureService();
         CV.ajouterCandidature(C);
        String senderEmail = "khademni.serviceClient@gmail.com"; 
-String senderPassword = "iptppxmbutpkhtee"; 
-String receiverEmail = "achour.rihab2000@gmail.com"; 
-String subject = "Une offre Postuler";
-String message = "Une nouvelle offre a été Postuler avec succès.";
+       String senderPassword = "iptppxmbutpkhtee"; 
+       String receiverEmail = "achour.rihab2000@gmail.com"; 
+       String subject = "Une offre Postuler";
+       String message = "Une nouvelle offre a été Postuler avec succès.";
 
 try {
     sendEmail(senderEmail, senderPassword, receiverEmail, subject, message);
@@ -157,6 +163,8 @@ try {
 }
         
     }
+    
+    
   
     
       @FXML

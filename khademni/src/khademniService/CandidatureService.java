@@ -12,6 +12,8 @@ import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import khademni.entity.Candidature;
+import khademni.entity.Offre;
+import khademni.entity.User;
 import khademni.interfaces.ICandidature;
 import khademni.utils.MyConnection;
 
@@ -45,18 +47,17 @@ public class CandidatureService implements ICandidature <Candidature>{
 
   
     public void RefuserCandidature(Candidature P,int id) {
-String sql="update  user,candidature,offre set candidature.etat='Refusée'  where user.id_user = Offre.id_user and offre.id_offre = candidature.id_offre and offre.id_offre = "+id;
+String sql="update  user,candidature,offre set candidature.etat='Refusée'  where user.id_user = candidature.id_user and offre.id_offre = candidature.id_offre and user.id_user = "+2;
         try {
           PreparedStatement ps = myconn.prepareStatement(sql);
 
             ps.executeUpdate(sql);
-                          
             System.out.println("Candidature Refusé");
         } catch (SQLException ex) {
             System.out.println(ex);
         }    }
      public void AccepterCandidature(Candidature P,int id) {
- String sql="update user,candidature,offre set candidature.etat='Accepté' where user.id_user = Offre.id_user and offre.id_offre = candidature.id_offre and offre.id_offre = "+id;
+ String sql="update user,candidature,offre set candidature.etat='Accepté'   where user.id_user = candidature.id_user and offre.id_offre = candidature.id_offre and  user.id_user = "+2;
         try {
                PreparedStatement ps = myconn.prepareStatement(sql);
 
@@ -67,8 +68,8 @@ String sql="update  user,candidature,offre set candidature.etat='Refusée'  wher
         }
        }
        
- public ObservableList<Candidature> afficherCandidatureEmployeur1(int id) {
-       ObservableList<Candidature> CandidatureList1 = FXCollections.observableArrayList();
+ public ObservableList<Offre> afficherOffreEmployeur1(int id) {
+       ObservableList<Offre> OffreList1 = FXCollections.observableArrayList();
         try {
            String sql = "select offre.titre, offre.id_offre from user,candidature,offre where user.id_user=Offre.id_user and offre.id_offre=candidature.id_offre and offre.id_offre = "+id;
            
@@ -76,47 +77,48 @@ String sql="update  user,candidature,offre set candidature.etat='Refusée'  wher
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
         
-           Candidature ce= new Candidature(s.getString("titre"),s.getInt(2));
-            CandidatureList1.add (ce);
+           Offre O= new Offre(s.getInt(2),s.getString("titre"));
+            OffreList1.add (O);
             }
 
         }catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return CandidatureList1;
+        return OffreList1;
     }
      
-   public ObservableList<Candidature> afficherCandidatureEmployeur2(int id) {
-    ObservableList<Candidature> CandidatureList2 = FXCollections.observableArrayList();
+   public ObservableList<User> afficherUserEmployeur2(int id) {
+    ObservableList<User> UserList2 = FXCollections.observableArrayList();
     try {
-        String sql = "SELECT user.nom, user.prenom, user.email FROM user, candidature, offre WHERE user.id_user = offre.id_user AND offre.id_offre = candidature.id_offre AND offre.id_offre = "+id;
+        String sql = "SELECT  user.nom, user.prenom, user.email FROM user, candidature, offre WHERE user.id_user = candidature.id_user AND offre.id_offre = candidature.id_offre AND offre.id_offre = "+id;
                    
   Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
    
         while (s.next()) {
-            Candidature Candidat = new Candidature(
+            User U = new User(
                     s.getString("nom"),
                     s.getString("prenom"),
                     s.getString("email"));
-            CandidatureList2.add(Candidat);
+            UserList2.add(U);
         }
     } catch (SQLException ex) {
         System.out.println(ex.getMessage());
     }
-    return CandidatureList2;
+    return UserList2;
 }
 
 public ObservableList<Candidature> afficherCandidatureEmployeur3(int id) {
     ObservableList<Candidature> CandidatureList3 = FXCollections.observableArrayList();
     try {
-        String sql = "SELECT candidature.etat FROM user, candidature, offre WHERE user.id_user = candidature.id_user AND offre.id_offre = candidature.id_offre AND offre.id_offre = "+id;
+        String sql = "SELECT candidature.etat ,candidature.id_offre FROM user, candidature, offre WHERE user.id_user = offre.id_user AND offre.id_offre = candidature.id_offre AND offre.id_offre = "+id;
                   
   Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
       
         while (s.next()) {
-            Candidature ce = new Candidature(s.getString("etat"));
+            Candidature ce = new Candidature(s.getInt("id_offre"),s.getString("etat"));
+            System.out.println("canddd::"+ce);
             CandidatureList3.add(ce);
         }
     } catch (SQLException ex) {
@@ -128,36 +130,36 @@ public ObservableList<Candidature> afficherCandidatureEmployeur3(int id) {
       
       
       
-     public ObservableList<Candidature> afficherCandidatureClient1() {
-       ObservableList<Candidature> CandidatureClientList = FXCollections.observableArrayList();
+     public ObservableList<Offre> afficherOffreClient1() {
+       ObservableList<Offre> CandidatureOffreList = FXCollections.observableArrayList();
         try {
            String sql = "select offre.titre,offre.description,offre.adresse_societe,offre.domaine_offre,offre.date_debut,offre.date_limite from  offre,candidature where  offre.id_offre=candidature.id_offre and candidature.id_user="+2;
             Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
            
-          Candidature c = new Candidature(s.getString("titre"),
+          Offre O = new Offre(s.getString("titre"),
             s.getString("description"),
                   s.getString("adresse_societe"),
             s.getString("domaine_offre"),
-        s.getDate(5),
-        s.getDate(6));
+        s.getDate(5));
+  
        
-      CandidatureClientList.add(c);
+      CandidatureOffreList.add(O);
             }
         }catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return CandidatureClientList;
+        return CandidatureOffreList;
     }
-     public ObservableList<Candidature> afficherCandidatureClient2() {
+     public ObservableList<Candidature> afficherCandidatureClient2( ) {
        ObservableList<Candidature> CandidatureEtat = FXCollections.observableArrayList();
         try {
-           String sql = "select candidature.etat from offre,candidature where  offre.id_offre=candidature.id_offre and candidature.id_user="+2;
+           String sql = "select candidature.etat ,Candidature.id_offre from offre,candidature where  offre.id_offre=candidature.id_offre and candidature.id_user="+2;
             Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
-                Candidature c = new Candidature(s.getString("etat"));
+                Candidature c = new Candidature(s.getInt("id_offre"),s.getString("etat"));
               CandidatureEtat.add(c);
             
 

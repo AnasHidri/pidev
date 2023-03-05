@@ -30,6 +30,7 @@ import static khademni.Gui.OffreAdminFXMLController.sendEmail;
 import static khademni.Gui.OffreAdminFXMLController.sendEmail1;
 import khademni.entity.Candidature;
 import khademni.entity.Offre;
+import khademni.entity.User;
 import khademniService.CandidatureService;
 import khademniService.OffreService;
 
@@ -57,10 +58,10 @@ public class CandidatureEmployeurFXMLController implements Initializable {
     private TableColumn<?, ?> colTitre;
 
     @FXML
-    private TableView<Candidature> tvCandidature1;
+    private TableView<Offre> tvCandidature1;
 
     @FXML
-    private TableView<Candidature> tvCandidature2;
+    private TableView<User> tvCandidature2;
 
     @FXML
     private TableView<Candidature> tvCandidature3;
@@ -99,7 +100,7 @@ public class CandidatureEmployeurFXMLController implements Initializable {
     
  public void showCandidature1(int id_offre){
   CandidatureService cs =new CandidatureService(); 
-ObservableList<Candidature> listeCandidature1 = cs.afficherCandidatureEmployeur1(id_offre);
+ObservableList<Offre> listeCandidature1 = cs.afficherOffreEmployeur1(id_offre);
 
 colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
 
@@ -108,7 +109,7 @@ colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
 
   public void showCandidature2(int id_offre) {
     CandidatureService cs = new CandidatureService();
-    ObservableList<Candidature> listeCandidature2 = cs.afficherCandidatureEmployeur2(id_offre);
+    ObservableList<User> listeCandidature2 = cs.afficherUserEmployeur2(id_offre);
     
     colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
     colPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
@@ -146,7 +147,9 @@ public void showCandidature3(int id_offre) {
     void refusCandidat(ActionEvent event) {
     Candidature selectedCandidature = tvCandidature3.getSelectionModel().getSelectedItem();
        int offreId = selectedCandidature.getId_offre();
-
+System.out.println("id_u::"+selectedCandidature.getId_offre());
+     int userId = selectedCandidature.getId_user();
+System.out.println("id_o::"+selectedCandidature.getId_user());
      Candidature C =new Candidature();
   CandidatureService cs= new CandidatureService();
     if (selectedCandidature == null) {
@@ -155,12 +158,12 @@ public void showCandidature3(int id_offre) {
         alert.showAndWait();
         return;}
           
-cs.RefuserCandidature(selectedCandidature,selectedCandidature.getId_offre());    
+cs.RefuserCandidature(selectedCandidature,selectedCandidature.getId_offre());   
+cs.afficherCandidatureClient2();
    Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setContentText("Candidature Refusé!");
     alert.showAndWait();
      tvCandidature3.refresh();
- // showCandidature3();
     String senderEmail = "khademni.serviceClient@gmail.com"; 
 String senderPassword = "iptppxmbutpkhtee"; 
 String receiverEmail = "achour.rihab2000@gmail.com"; 
@@ -205,6 +208,10 @@ try {
     void validerCandidat(ActionEvent event) {
  Candidature selectedCandidature = tvCandidature3.getSelectionModel().getSelectedItem();
        int offreId = selectedCandidature.getId_offre();
+       System.out.println("id_o::"+selectedCandidature.getId_offre());
+
+        int userId = selectedCandidature.getId_user();
+System.out.println("id_u::"+selectedCandidature.getId_user());
      Candidature C =new Candidature();
   CandidatureService cs= new CandidatureService();
     if (selectedCandidature == null) {
@@ -214,12 +221,13 @@ try {
         return;
           
     }cs.AccepterCandidature(selectedCandidature,selectedCandidature.getId_offre());
-    
+    cs.afficherCandidatureClient2();
+     
    Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setContentText("Candidature Acceptée!");
     alert.showAndWait();
      tvCandidature3.refresh();
-  //showCandidature3(id_offre);
+
    String senderEmail = "khademni.serviceClient@gmail.com"; 
 String senderPassword = "iptppxmbutpkhtee"; 
 String receiverEmail = "achour.rihab2000@gmail.com"; 
