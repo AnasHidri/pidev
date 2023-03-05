@@ -16,7 +16,10 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -25,9 +28,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import khademni.entity.Offre;
 import khademni.services.OffreService;
-
 
 /**
  * FXML Controller class
@@ -60,9 +63,6 @@ public class EmployeurFXMLController implements Initializable {
     private TableColumn<?, ?> colDate_debut;
 
     @FXML
-    private TableColumn<?, ?> colDate_limite;
-
-    @FXML
     private TableColumn<?, ?> colDescription;
 
     @FXML
@@ -78,8 +78,7 @@ public class EmployeurFXMLController implements Initializable {
     @FXML
     private TextField tfAdressse_societe;
 
-    @FXML
-    private DatePicker tfDate_Limite;
+  
 
     @FXML
     private DatePicker tfDate_debut;
@@ -95,9 +94,7 @@ public class EmployeurFXMLController implements Initializable {
 
     @FXML
     private TableView<Offre> tvOffre;
-   
-
- 
+  
     @FXML
     private TextField tfRecherche;
     @FXML
@@ -157,13 +154,12 @@ colDescription.setCellValueFactory(new PropertyValueFactory <>("description"));
 colAdresse_societe.setCellValueFactory(new PropertyValueFactory <>("adresse_societe"));
 colDomaine_offre.setCellValueFactory(new PropertyValueFactory <>("domaine_offre"));
 colDate_debut.setCellValueFactory(new PropertyValueFactory <>("date_debut"));
-colDate_limite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
 colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
 
     
        tvOffre.setItems(list1);
 }  
-   @FXML
+ @FXML
     public void AddOffre(ActionEvent event) {
         Offre o;
         OffreService os=new OffreService();
@@ -174,8 +170,6 @@ colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
     LocalDate date_debut = tfDate_debut.getValue();
 Date datedeb = (date_debut == null) ? null : Date.valueOf(date_debut);
 
-LocalDate date_limite = tfDate_Limite.getValue();
-Date datelim = (date_limite == null) ? null : Date.valueOf(date_limite);
 LocalDate currentDate = LocalDate.now();
     if(titre.isEmpty() || des.isEmpty() || soc.isEmpty()|| off.isEmpty()) {
       System.out.println();
@@ -188,25 +182,16 @@ else if(date_debut == null) {
     alert.setContentText("Veuillez sélectionner une date de début pour l'offre.");
     alert.showAndWait();
 } 
-else if(date_limite == null) {
-    Alert alert = new Alert(AlertType.INFORMATION);
-    alert.setContentText("Veuillez sélectionner une date limite pour l'offre.");
-    alert.showAndWait();
-} 
+
 else if (!date_debut.equals(currentDate)) {
     Alert alert = new Alert(AlertType.INFORMATION);
     alert.setContentText("La date de début doit être égale à la date actuelle.");
     alert.showAndWait();
 }
 
-else if(date_debut.isAfter(date_limite)) {
-    Alert alert = new Alert(AlertType.INFORMATION);
-    alert.setContentText("La date de début doit être inférieur à la date Limite.");
-    alert.showAndWait();
-} 
 
 else {
-            o =new Offre(2, titre, des, soc, off, datedeb, datelim);
+            o =new Offre(2, titre, des, soc, off, datedeb);
 
          os.ajouterOffre(o);
           Alert alert = new Alert(AlertType.INFORMATION);
@@ -285,14 +270,13 @@ try {
     String domaine_offre = tfDomaine_offre.getText(); 
     LocalDate date_debut =tfDate_debut.getValue();
     Date datedeb= Date.valueOf(date_debut);
-    LocalDate date_limite =tfDate_Limite.getValue();
-    Date datelim= Date.valueOf(date_limite);
+  
     selectedOffre.setTitre(titre);
     selectedOffre.setDescription(description);
     selectedOffre.setAdresse_societe(adresse_societe);
     selectedOffre.setDomaine_offre(domaine_offre);
     selectedOffre.setDate_debut(datedeb);
-    selectedOffre.setDate_limite(datelim); 
+  
     
      if (selectedOffre.getEtat().equals("refuser")) {
     selectedOffre.setEtat("en attente");
@@ -326,12 +310,34 @@ try {
   
     }
 
-      @FXML
-    void ListeCandidature(ActionEvent event) throws IOException {
-  SceneController SC= new SceneController();
-         SC.Scene7(event);
+     @FXML
+void ListeCandidature(ActionEvent event)  {
+    Offre selectedOff = tvOffre.getSelectionModel().getSelectedItem();
+    if (selectedOff == null) {
+        // Show an alert if no item is selected
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Aucune offre sélectionnée");
+        alert.setHeaderText(null);
+        alert.setContentText("Veuillez sélectionner une offre avant de continuer.");
+        alert.showAndWait();
+        return;
     }
-
+    
+    int offreId = selectedOff.getId_offre();
+    
+    try{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/Gui/CandidatureEmployeurFXML.fxml"));
+        Parent root = loader.load();
+        CandidatureEmployeurFXMLController controleur = loader.getController(); 
+        controleur.setTextFields(offreId);
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) btnListe.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    } catch(IOException e){
+        System.out.println(e.getCause().getMessage());
+    }
+}
 
 public static void sendEmail(String senderEmail, String senderPassword, String receiverEmail, String subject, String message) throws MessagingException {
    
@@ -352,9 +358,7 @@ public static void sendEmail(String senderEmail, String senderPassword, String r
     email.setRecipients(Message.RecipientType.TO, InternetAddress.parse("achour.rihab2000@gmail.com"));
 
     email.setSubject("offre");
-    //email.setText("offre ajoutée avec succes");
-    //email.setText("offre Supprimée avec succes");
-   // email.setText("offre modifiée avec succes");
+
 
     Transport.send(email);
 

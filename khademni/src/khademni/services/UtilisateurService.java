@@ -303,4 +303,19 @@ public class UtilisateurService implements IUtilisateurService {
         return result.next();
     }
       
+      public int countUsers() {
+    int count = 0;
+    try {
+        String sql = "SELECT COUNT(*) As count FROM user";
+        PreparedStatement statement = myconn.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            count = rs.getInt("count");
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return count;
+}
+      
 }

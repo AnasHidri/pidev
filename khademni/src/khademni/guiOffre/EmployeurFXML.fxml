@@ -58,19 +58,13 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="385.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Limite" wrappingWidth="124.984375">
-         <font>
-            <Font name="System Bold Italic" size="18.0" />
-         </font>
-      </Text>
-      <TableView fx:id="tvOffre" layoutX="10.0" layoutY="285.0" prefHeight="184.0" prefWidth="751.0">
+      <TableView fx:id="tvOffre" layoutX="10.0" layoutY="285.0" prefHeight="184.0" prefWidth="659.0">
          <columns>
             <TableColumn fx:id="colTitre" minWidth="0.0" prefWidth="118.0" text="Titre" />
             <TableColumn fx:id="colDescription" prefWidth="104.0" text="Description" />
             <TableColumn fx:id="colAdresse_societe" minWidth="3.0" prefWidth="105.0" text="Adresse société" />
             <TableColumn fx:id="colDomaine_offre" minWidth="0.0" prefWidth="140.0" text="Domaine D'offre" />
             <TableColumn fx:id="colDate_debut" minWidth="0.0" prefWidth="101.0" text="Date debut" />
-            <TableColumn fx:id="colDate_limite" minWidth="0.0" prefWidth="102.0" text="Date Limite" />
             <TableColumn fx:id="colEtat" minWidth="0.0" text="Etat" />
          </columns>
       </TableView>
@@ -92,8 +86,8 @@
       </Button>
       <TextField fx:id="tfEtat" layoutX="573.0" layoutY="47.0" visible="false" />
       <TextField fx:id="tfRecherche" layoutX="14.0" layoutY="236.0" onAction="#RechercheOffre" prefHeight="25.0" prefWidth="179.0" promptText="Recherche" />
-      <DatePicker fx:id="tfDate_debut" layoutX="524.0" layoutY="130.0" />
-      <DatePicker fx:id="tfDate_Limite" layoutX="524.0" layoutY="185.0" />
+      <DatePicker fx:id="tfDate_debut" layoutX="544.0" layoutY="130.0" prefHeight="25.0" prefWidth="160.0" />
+     
       <Button fx:id="btnListe" layoutX="573.0" layoutY="228.0" mnemonicParsing="false" onAction="#ListeCandidature" prefHeight="41.0" prefWidth="174.0" style="-fx-background-color: #832c8d;" text="Liste Candidature" textFill="#fcfcfc">
          <font>
             <Font name="MV Boli" size="17.0" />

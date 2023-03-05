@@ -16,7 +16,7 @@ public class Offre {
     private int id_offre ;
     private int id_user;
     private String titre ,description,adresse_societe,domaine_offre;
-    private Date date_debut,date_limite;
+    private Date date_debut;
     private String etat;
     private int count;
 
@@ -30,25 +30,32 @@ public class Offre {
 
     public Offre() {
     }
-
-    public Offre(int id_offre, String domaine_offre) {
+  public Offre(int id_offre, String titre) {
         this.id_offre = id_offre;
-        this.domaine_offre = domaine_offre;
+        this.titre = titre;
     }
 
-    public Offre(int id_user, String titre, String description, String adresse_societe, String domaine_offre, Date date_debut, Date date_limite) {
+    public Offre(String titre, String description, String adresse_societe, String domaine_offre, Date date_debut) {
+        this.titre = titre;
+        this.description = description;
+        this.adresse_societe = adresse_societe;
+        this.domaine_offre = domaine_offre;
+        this.date_debut = date_debut;
+    }
+  
+
+    public Offre(int id_user, String titre, String description, String adresse_societe, String domaine_offre, Date date_debut) {
         this.id_user = id_user;
         this.titre = titre;
         this.description = description;
         this.adresse_societe = adresse_societe;
         this.domaine_offre = domaine_offre;
         this.date_debut = date_debut;
-        this.date_limite = date_limite;
       
 
     }
 
-    public Offre(int id_offre, int id_user, String titre, String description, String adresse_societe, String domaine_offre, Date date_debut, Date date_limite) {
+    public Offre(int id_offre, int id_user, String titre, String description, String adresse_societe, String domaine_offre, Date date_debut) {
         this.id_offre = id_offre;
         this.id_user = id_user;
         this.titre = titre;
@@ -56,11 +63,10 @@ public class Offre {
         this.adresse_societe = adresse_societe;
         this.domaine_offre = domaine_offre;
         this.date_debut = date_debut;
-        this.date_limite = date_limite;
          
     }
 
-    public Offre(int id_offre, int id_user, String titre, String description, String adresse_societe, String domaine_offre, Date date_debut, Date date_limite, String etat) {
+    public Offre(int id_offre, int id_user, String titre, String description, String adresse_societe, String domaine_offre, Date date_debut, String etat) {
         this.id_offre = id_offre;
         this.id_user = id_user;
         this.titre = titre;
@@ -68,18 +74,16 @@ public class Offre {
         this.adresse_societe = adresse_societe;
         this.domaine_offre = domaine_offre;
         this.date_debut = date_debut;
-        this.date_limite = date_limite;
         this.etat = etat;
     }
 
     
-    public Offre(String titre, String description, String adresse_societe, String domaine_offre, Date date_debut, Date date_limite,String etat) {
+    public Offre(String titre, String description, String adresse_societe, String domaine_offre, Date date_debut,String etat) {
         this.titre = titre;
         this.description = description;
         this.adresse_societe = adresse_societe;
         this.domaine_offre = domaine_offre;
         this.date_debut = date_debut;
-        this.date_limite = date_limite;
           }
 
    
@@ -115,9 +119,7 @@ public class Offre {
         return date_debut;
     }
 
-    public Date getDate_limite() {
-        return date_limite;
-    }
+  
 
       public void setTitre(String titre) {
         this.titre = titre;
@@ -143,9 +145,7 @@ public class Offre {
         this.date_debut = date_debut;
     }
 
-    public void setDate_limite(Date date_limite) {
-        this.date_limite = date_limite;
-    }
+   
 
     public String getEtat() {
         return etat;
@@ -165,7 +165,6 @@ public class Offre {
         hash = 59 * hash + Objects.hashCode(this.adresse_societe);
         hash = 59 * hash + Objects.hashCode(this.domaine_offre);
         hash = 59 * hash + Objects.hashCode(this.date_debut);
-        hash = 59 * hash + Objects.hashCode(this.date_limite);
         hash = 59 * hash + Objects.hashCode(this.etat);
         return hash;
     }
@@ -202,19 +201,19 @@ public class Offre {
         }
         if (!Objects.equals(this.date_debut, other.date_debut)) {
             return false;
-        }
-        if (!Objects.equals(this.date_limite, other.date_limite)) {
-            return false;
+      
         }
         return Objects.equals(this.etat, other.etat);
+    }
+
+    @Override
+    public String toString() {
+        return "Offre{" + "id_offre=" + id_offre + ", id_user=" + id_user + ", titre=" + titre + ", description=" + description + ", adresse_societe=" + adresse_societe + ", domaine_offre=" + domaine_offre + ", date_debut=" + date_debut + ", etat=" + etat + ", count=" + count + '}';
     }
     
 
    
-    @Override
-    public String toString() {
-        return "Offre{" + "id_offre=" + id_offre + ", id_user=" + id_user + ", titre=" + titre + ", description=" + description + ", adresse_societe=" + adresse_societe + ", domaine_offre=" + domaine_offre + ", date_debut=" + date_debut + ", date_limite=" + date_limite + ", etat=" + etat + '}';
-    }
+  
 
     
 

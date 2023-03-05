@@ -286,6 +286,53 @@ public class EvenementService implements IEvenement<Evenement> {
     return evenements;
 }
   
+    public int countEvenements() {
+    int count = 0;
+    try {
+        String sql = "SELECT COUNT(*) AS count FROM evenement ";
+        PreparedStatement statement = cnx.prepareStatement(sql);
+        
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            count = rs.getInt("count");
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return count;
+}
+ /* public int countFormations() {
+    int count = 0;
+    try {
+        String sql = "SELECT COUNT(*) AS count FROM formation ";
+        PreparedStatement statement = cnx.prepareStatement(sql);
+        
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            count = rs.getInt("count");
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return count;
+}
+  
+   public int countOffres() {
+    int count = 0;
+    try {
+        String sql = "SELECT COUNT(*) AS count FROM offre ";
+        PreparedStatement statement = cnx.prepareStatement(sql);
+        
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            count = rs.getInt("count");
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return count;
+}*/
+  
 } 
 
     

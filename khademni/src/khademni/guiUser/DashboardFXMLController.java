@@ -4,23 +4,22 @@
  */
 package khademni.guiUser;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
-import javafx.stage.Stage;
-import khademni.gui.Navbar_Navigation;
-import khademni.gui.PanierFXMLController;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import khademni.entity.Evenement;
+import khademni.services.EvenementService;
 import khademni.services.UtilisateurService;
-
 
 /**
  * FXML Controller class
@@ -28,41 +27,49 @@ import khademni.services.UtilisateurService;
  * @author ASUS
  */
 public class DashboardFXMLController implements Initializable {
-
-    @FXML
+@FXML
     private PieChart pieChart;
-         @FXML
-      private ComboBox<String> liste_for;
-    
-    @FXML
-       private ComboBox<String> liste_ev;
-    @FXML
-            private ComboBox<String> liste_off;
-    @FXML
-            private ComboBox<String> pani;
+@FXML    private PieChart pieChartEvent;
+
+
+   @FXML
+    private ComboBox statcombo;
      @FXML
-            private ComboBox<String> stat;
-    @FXML
-            private Button prof;
+    private AnchorPane statU;
     
-        private UtilisateurService utilisateurService = new UtilisateurService();
+    @FXML
+    private AnchorPane Stattt;
+    @FXML
+    private AnchorPane statForm;
+    @FXML
+    private AnchorPane statEv;
+    @FXML
+    private AnchorPane statOf;
+    @FXML
+    private AnchorPane statPanier;
+    @FXML
+    private Label nbU;
+    @FXML
+    private Label nbO;
+    @FXML
+    private Label nbF;
+    @FXML
+    private Label nbE;
+
+            private UtilisateurService utilisateurService = new UtilisateurService();
 
         
     public void populateChart() {
-        
-        
-
-        
         HashMap<String, Integer> counts = new HashMap<>();
         utilisateurService.afficherUtilisateurs().stream()
                 .filter(user -> !user.getRole().equals("Admin"))
                 .forEach(user -> counts.put(user.getRole(), counts.getOrDefault(user.getRole(), 0) + 1));
         pieChart.getData().clear();
         pieChart.setLegendVisible(false);
-            pieChart.setStartAngle(90);
-            pieChart.setLabelsVisible(true);
-          pieChart.setClockwise(false);
-    pieChart.setAnimated(true);
+        pieChart.setStartAngle(90);
+        pieChart.setLabelsVisible(true);
+        pieChart.setClockwise(false);
+        pieChart.setAnimated(true);
 
 
         counts.forEach((role, count) -> pieChart.getData().add(new PieChart.Data(role+" : "+count, count)));
@@ -71,117 +78,110 @@ public class DashboardFXMLController implements Initializable {
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         liste_for.getItems().addAll("Liste formation");
-            liste_ev.getItems().addAll("Liste evenement");
-            liste_off.getItems().addAll("Liste offre");
-            pani.getItems().addAll("Liste user", "Liste activation");
-            stat.getItems().addAll("Meilleur formations", "Role utilisateur", "Meilleur evenement");
-            
-            
-           liste_for.setOnAction(event -> {
-    String selectedPage = (String) liste_for.getSelectionModel().getSelectedItem();
-
-    if (selectedPage.equals("Liste formation")) {
-        // navigate to Page 1
+          statcombo.getItems().addAll("Utilisateurs","Emplois","Formations","Panier","Evenements");
+          populateChart();
+          afficherStatistiques();
+                    setLabels();
+                    statcombo.setOnAction(this::handleRoleSelection);
+                  
     }
-});
-
-liste_ev.setOnAction(event -> {
-    String selectedPage = (String) liste_ev.getSelectionModel().getSelectedItem();
-
-    if (selectedPage.equals("Liste evenement")) {
-           Navbar_Navigation SC = new Navbar_Navigation();
-       String ch= "/khademni/guiEvent/ListeEvenementAD.fxml";
-        try {
-            SC.naviger((ActionEvent) event, ch);
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-    } 
-});
-
-liste_off.setOnAction(event -> {
-    String selectedPage = (String) liste_off.getSelectionModel().getSelectedItem();
-
-    if (selectedPage.equals("Liste offre")) {
-           Navbar_Navigation SC = new Navbar_Navigation();
-       String ch= "/khademni/guiOffre/OffreAdminFXML.fxml";
-        try {
-            SC.naviger((ActionEvent) event, ch);
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-    } 
-});
-
-pani.setOnAction(event -> {
-    String selectedPage = (String) pani.getSelectionModel().getSelectedItem();
-
-    if (selectedPage.equals("Liste user")) {
-           Navbar_Navigation SC = new Navbar_Navigation();
-       String ch= "/khademni/guiUser/UsersListFXML.fxml";
-        try {
-            SC.naviger((ActionEvent) event, ch);
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-    } else if (selectedPage.equals("Liste activation")) {
-        Navbar_Navigation SC = new Navbar_Navigation();
-       String ch= "/khademni/guiUser/ActivationFormateurFXML.fxml";
-        try {
-            SC.naviger((ActionEvent) event, ch);
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-    } 
-});
+    
+    private void handleRoleSelection(Event event) {
         
+    String selectedStat = statcombo.getValue().toString();
 
-stat.setOnAction(event -> {
-    String selectedPage = (String) stat.getSelectionModel().getSelectedItem();
-
-    if (selectedPage.equals("Meilleur formations")) {
-           Navbar_Navigation SC = new Navbar_Navigation();
-       String ch= "/khademni/gui/PanierGraph.fxml";
-        try {
-            SC.naviger((ActionEvent) event, ch);
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-    } else if (selectedPage.equals("Role utilisateur")) {
-        Navbar_Navigation SC = new Navbar_Navigation();
-       String ch= "/khademni/guiUser/DashboardFXML.fxml";
-        try {
-            SC.naviger((ActionEvent) event, ch);
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-    } else if (selectedPage.equals("Meilleur evenement")) {
-        Navbar_Navigation SC = new Navbar_Navigation();
-       String ch= "/khademni/guiEvent/StatEvAD.fxml";
-        try {
-            SC.naviger((ActionEvent) event, ch);
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-    } 
-});
-        populateChart();
+    switch (selectedStat) {
+        case "Utilisateurs":
+            statU.setVisible(true); 
+            statForm.setVisible(false); 
+            statEv.setVisible(false); 
+            statOf.setVisible(false); 
+            statPanier.setVisible(false); 
+            break;
+        case "Emplois":
+            statU.setVisible(false); 
+            statForm.setVisible(false); 
+            statEv.setVisible(false); 
+            statOf.setVisible(true); 
+            statPanier.setVisible(false); 
+            break;
+        case "Formations":
+            statU.setVisible(false); 
+            statForm.setVisible(true); 
+            statEv.setVisible(false); 
+            statOf.setVisible(false); 
+            statPanier.setVisible(false); 
+            break;
+            case "Evenements":
+            statU.setVisible(false); 
+            statForm.setVisible(false); 
+            statEv.setVisible(true); 
+            statOf.setVisible(false); 
+            statPanier.setVisible(false); 
+            break;
+            case "Panier":
+            statU.setVisible(false); 
+            statForm.setVisible(false); 
+            statEv.setVisible(false); 
+            statOf.setVisible(false); 
+            statPanier.setVisible(true); 
+            break;
+        default:
+            break;
     }
- 
-       @FXML
-    private void Profile(ActionEvent event)  throws IOException {
-   
-     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiUser/ProfileSettingsFXML.fxml"));
-         Stage stage = new Stage();
-         
-         stage.setScene(new Scene(loader.load()));
-         stage.show();
-    Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-    currentStage.hide();
-   
-   
-   
 }
+    
+    @FXML
+public void afficherStatistiques() {
+    ObservableList<Evenement> evenements = es.getMostLikedEvents();
+    ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 
+    for (Evenement evenement : evenements) {
+        String titre = evenement.getTitre();
+        int likes = es.countLikes(evenement.getId_evenement());
+        PieChart.Data data = new PieChart.Data("", likes);
+        data.setName(titre + " : " + likes + " likes");
+        pieChartData.add(data);
+    }
+
+    pieChartEvent.setData(pieChartData);
+    pieChartEvent.setTitle("Statistiques des événements selon le Vote");
+}
+/*
+@FXML
+        public void affichStat2(){
+       ObservableList<Evenement> list = es.Stat();
+         System.out.println("list ::: "+list);
+       
+       XYChart.Series<String, Number> series = new XYChart.Series<>();
+series.setName("Les 3 meilleurs evenements");
+
+int count = 0;
+for (Evenement evenement : list) {
+    if (count >= 3) { // only show top 3 formations
+        break;
+    }
+    String titre = evenement.getTitre();
+    int nombreParticipants = es.countParticipations(evenement.getId_evenement()); // appel à la fonction countParticipations
+    series.getData().add(new XYChart.Data<>(titre, nombreParticipants));
+    count++;
+}
+barChart.getData().add(series);
+
+      afficherStatistiques();
+        }
+*/
+
+    
+    EvenementService es = new EvenementService();
+    
+    public void setLabels(){
+        
+        nbU.setText(utilisateurService.countUsers()+"");
+        nbE.setText(es.countEvenements()+"");
+        nbF.setText(utilisateurService.countUsers()+"");
+        nbO.setText(utilisateurService.countUsers()+"");
+    }
+  
+    
 }

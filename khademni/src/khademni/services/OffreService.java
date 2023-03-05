@@ -1,4 +1,4 @@
-  /*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -33,11 +33,12 @@ public class OffreService implements IOffre   {
     @Override
 
  public void ajouterOffre(Offre O){
-         try {
-          Utilisateur utilisateur = new Utilisateur();
+                    Utilisateur utilisateur = new Utilisateur();
            System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
+         try {
+              
             String sql = "INSERT INTO offre(id_user,titre,description,adresse_societe,domaine_offre,date_debut,date_limite)"
-                    + "VALUES (?,?,?,?,?,?,?)";
+                    + "VALUES (?,?,?,?,?,?)";
             
             PreparedStatement ste = myconn.prepareStatement(sql);
            
@@ -47,7 +48,6 @@ public class OffreService implements IOffre   {
             ste.setString(4, O.getAdresse_societe());
             ste.setString(5, O.getDomaine_offre());
             ste.setDate(6, O.getDate_debut());
-            ste.setDate(7, O.getDate_limite());
          
 
             ste.executeUpdate();
@@ -61,10 +61,10 @@ public class OffreService implements IOffre   {
 
     @Override
     public void modifierOffre(Offre O) {
+               Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
  String sql="update offre set   titre=?, description=?,adresse_societe=?,domaine_offre=?,date_debut=?,date_limite=?  where  id_user= ? and id_offre=? ";
         try {
-                     Utilisateur utilisateur = new Utilisateur();
-           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
             PreparedStatement ste=myconn.prepareStatement(sql);
              
                 ste.setString(1,O.getTitre());
@@ -72,9 +72,8 @@ public class OffreService implements IOffre   {
                 ste.setString(3, O.getAdresse_societe());
                 ste.setString(4, O.getDomaine_offre());
                 ste.setDate(5, O.getDate_debut());
-                ste.setDate(6, O.getDate_limite());
-                ste.setInt(7, utilisateur.Current_User.getId_user());
-                 ste.setInt(8, O.getId_offre());
+                ste.setInt(6, utilisateur.Current_User.getId_user());
+                 ste.setInt(7, O.getId_offre());
             ste.executeUpdate();
             System.out.println("Offre modifiée");
         } catch (SQLException ex) {
@@ -119,7 +118,6 @@ public class OffreService implements IOffre   {
                        s.getString("domaine_offre"),
                        s.getDate(7),
                         
-                       s.getDate(8),
                        s.getString("etat"));
 
                        OffreList.add(o);
@@ -160,7 +158,6 @@ public class OffreService implements IOffre   {
                        s.getString("domaine_offre"),
                        s.getDate("date_debut"),
                         
-                       s.getDate("date_limite"),
                        s.getString("etat"));
 
                        OffreList.add(o);
@@ -203,7 +200,7 @@ public class OffreService implements IOffre   {
                        s.getString("domaine_offre"),
                        s.getDate(7),
                         
-                       s.getDate(8),
+                
                        s.getString("etat"));
 
                        OffreList.add(o);
@@ -220,33 +217,4 @@ public class OffreService implements IOffre   {
 
   
 
-public ObservableList<Offre> getOffresByDate(LocalDate date_debut, LocalDate date_limite) {
-    ObservableList<Offre> offres = FXCollections.observableArrayList();
-    try {
-        String sql = "SELECT * FROM offre WHERE date_debut >= ? AND date_limite <= ? AND offre.etat='en attente'";
-        PreparedStatement ste = myconn.prepareStatement(sql);
-        ste.setDate(1, Date.valueOf(date_debut));
-        ste.setDate(2, Date.valueOf(date_limite));
-        ResultSet s = ste.executeQuery();
-        while (s.next()) {
-            Offre o = new Offre(s.getInt(1),
-                   s.getInt(2),
-                   s.getString("titre"),
-                   s.getString("description"),
-                   s.getString("adresse_societe"),
-                   s.getString("domaine_offre"),
-                   s.getDate(7),
-                        
-                       s.getDate(8),
-                   s.getString("etat"));
-            offres.add(o);
-        }
-        return offres;
-    } catch (SQLException ex) {
-        System.err.println(ex.getMessage());
-        return null;
-    
-    }
-      
-}
 }

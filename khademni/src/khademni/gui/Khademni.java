@@ -27,7 +27,9 @@ public class Khademni extends Application {
           // Parent root = FXMLLoader.load(getClass().getResource("/khademni/guiUser/InscriptionFXML.fxml"));
         //  Parent root = FXMLLoader.load(getClass().getResource("/khademni/guiEvent/AjoutEvenement.fxml"));
             // Parent root = FXMLLoader.load(getClass().getResource("MesFormationFXML.fxml"));
-            Parent root = FXMLLoader.load(getClass().getResource("HistoriqueFXML.fxml"));
+                     Parent root = FXMLLoader.load(getClass().getResource("/khademni/guiUser/DashboardFXML.fxml"));
+
+           //Parent root = FXMLLoader.load(getClass().getResource("HistoriqueFXML.fxml"));
             Scene scene = new Scene(root);
                 
             primaryStage.setTitle("Khademni !");
