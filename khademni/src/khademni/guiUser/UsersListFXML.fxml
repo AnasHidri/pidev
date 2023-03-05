@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ComboBox?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="login-bg" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiUser.UsersListFXMLController">
     <children> 
@@ -19,11 +20,20 @@
       </TableView>
       <Button layoutX="502.0" layoutY="366.0" mnemonicParsing="false" onAction="#SupprimerUtilisateur" styleClass="button-design" stylesheets="@design.css" text="Supprimer" textFill="WHITE" />
       <Button fx:id="btn_modifier" layoutX="433.0" layoutY="366.0" mnemonicParsing="false" onAction="#ModifierUser" styleClass="button-design" stylesheets="@design.css" text="Modifier" textFill="WHITE" />
-      <Button layoutX="500.0" layoutY="2.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="72.0" styleClass="exit" stylesheets="@design.css" text="LogOut" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="2.0" />
+      <Button layoutX="502.0" layoutY="47.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="72.0" styleClass="exit" stylesheets="@design.css" text="LogOut" AnchorPane.leftAnchor="502.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="47.0" />
       <TextField fx:id="Recherche_User" layoutX="24.0" layoutY="362.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css">   
       </TextField>
-      <Button layoutX="318.0" layoutY="47.0" mnemonicParsing="false" onAction="#showUsers" styleClass="button-design" stylesheets="@design.css" text="Tous les roles" textFill="WHITE" />
-      <Button fx:id="btn_filter" layoutX="339.0" layoutY="15.0" mnemonicParsing="false" onAction="#filterByRole" styleClass="button-design" stylesheets="@design.css" text="Filtrer" textFill="WHITE" />
-      <ComboBox fx:id="rolechoice" layoutX="109.0" layoutY="28.0" prefWidth="150.0" promptText="Choisir role" />
+      <Button layoutX="362.0" layoutY="47.0" mnemonicParsing="false" onAction="#showUsers" styleClass="button-design" stylesheets="@design.css" text="Tous les roles" textFill="WHITE" />
+      <Button fx:id="btn_filter" layoutX="277.0" layoutY="47.0" mnemonicParsing="false" onAction="#filterByRole" styleClass="button-design" stylesheets="@design.css" text="Filtrer" textFill="WHITE" />
+      <ComboBox fx:id="rolechoice" layoutX="84.0" layoutY="47.0" prefWidth="150.0" promptText="Choisir role" />
+      <AnchorPane id="AnchorPane" layoutX="-1.0" prefHeight="34.0" prefWidth="602.0" style="-fx-background-color: #ffffff;" styleClass="navbar" stylesheets="@design.css">
+         <children>
+            <Button fx:id="prof" layoutX="544.0" layoutY="5.0" mnemonicParsing="false" onAction="#Profile" text="Profile" />
+            <ComboBox fx:id="liste_for" layoutY="5.0" prefHeight="26.0" prefWidth="114.0" promptText="Formation" />
+            <ComboBox fx:id="liste_ev" layoutX="121.0" layoutY="5.0" prefHeight="26.0" prefWidth="113.0" promptText="Evenement" />
+            <ComboBox fx:id="liste_off" layoutX="242.0" layoutY="5.0" prefHeight="26.0" prefWidth="90.0" promptText="Offre" />
+            <ComboBox fx:id="pani" layoutX="347.0" layoutY="5.0" prefHeight="26.0" prefWidth="81.0" promptText="User" />
+            <ComboBox fx:id="stat" layoutX="438.0" layoutY="5.0" prefHeight="26.0" prefWidth="98.0" promptText="Statistique" />
+         </children></AnchorPane>
    </children>
 </AnchorPane>

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="644.0" styleClass="login-bg" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiEvent.ListeEvenementADController">
    <children>
@@ -19,5 +20,15 @@
       </TableView>
       <Button fx:id="cons_part" layoutX="164.0" layoutY="306.0" mnemonicParsing="false" onAction="#ConsulterParticipants" text="Consulter Les Participants" />
       <Button fx:id="btn_stat" layoutX="451.0" layoutY="306.0" mnemonicParsing="false" onAction="#StatEvPart" text="Statistique" />
+      
+        <AnchorPane id="AnchorPane" layoutX="-1.0" prefHeight="34.0" prefWidth="602.0" style="-fx-background-color: #ffffff;" styleClass="navbar" stylesheets="@design.css">
+         <children>
+            <Button fx:id="prof" layoutX="544.0" layoutY="5.0" mnemonicParsing="false" onAction="#Profile" text="Profile" />
+            <ComboBox fx:id="liste_for" layoutY="5.0" prefHeight="26.0" prefWidth="114.0" promptText="Formation" />
+            <ComboBox fx:id="liste_ev" layoutX="121.0" layoutY="5.0" prefHeight="26.0" prefWidth="113.0" promptText="Evenement" />
+            <ComboBox fx:id="liste_off" layoutX="242.0" layoutY="5.0" prefHeight="26.0" prefWidth="90.0" promptText="Offre" />
+            <ComboBox fx:id="pani" layoutX="347.0" layoutY="5.0" prefHeight="26.0" prefWidth="81.0" promptText="User" />
+            <ComboBox fx:id="stat" layoutX="438.0" layoutY="5.0" prefHeight="26.0" prefWidth="98.0" promptText="Statistique" />
+         </children></AnchorPane>
    </children>
 </AnchorPane>

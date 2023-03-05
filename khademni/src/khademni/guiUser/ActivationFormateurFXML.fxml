@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.control.ComboBox?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="login-bg" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiUser.ActivationFormateurFXMLController">
     <children> 
@@ -19,13 +20,22 @@
         </columns>
       </TableView>
       <Button fx:id="btn_activer" layoutX="468.0" layoutY="359.0" mnemonicParsing="false" onAction="#Activer" prefHeight="26.0" prefWidth="81.0" styleClass="button-design" stylesheets="@design.css" text="Activer " textFill="WHITE" />
-      <Button layoutX="500.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" styleClass="exit" stylesheets="@design.css" text="LogOut" onAction="#logout"  AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="2.0" />
-      <TextField fx:id="Recherche_User" layoutX="24.0" layoutY="362.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css" >   
+      <Button layoutX="509.0" layoutY="39.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="72.0" styleClass="exit" stylesheets="@design.css" text="LogOut" AnchorPane.leftAnchor="509.0" AnchorPane.rightAnchor="19.0" AnchorPane.topAnchor="39.0" />
+      <TextField fx:id="Recherche_User" layoutX="24.0" layoutY="362.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css">   
       </TextField>
-      <Label layoutX="40.0" layoutY="21.0" text="Les comptes des formateurs inactif" textFill="WHITE">
+      <Label layoutX="41.0" layoutY="36.0" text="Les comptes des formateurs inactif" textFill="WHITE">
          <font>
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
+       <AnchorPane id="AnchorPane" layoutX="-1.0" prefHeight="34.0" prefWidth="602.0" style="-fx-background-color: #ffffff;" styleClass="navbar" stylesheets="@design.css">
+         <children>
+            <Button fx:id="prof" layoutX="544.0" layoutY="5.0" mnemonicParsing="false" onAction="#Profile" text="Profile" />
+            <ComboBox fx:id="liste_for" layoutY="5.0" prefHeight="26.0" prefWidth="114.0" promptText="Formation" />
+            <ComboBox fx:id="liste_ev" layoutX="121.0" layoutY="5.0" prefHeight="26.0" prefWidth="113.0" promptText="Evenement" />
+            <ComboBox fx:id="liste_off" layoutX="242.0" layoutY="5.0" prefHeight="26.0" prefWidth="90.0" promptText="Offre" />
+            <ComboBox fx:id="pani" layoutX="347.0" layoutY="5.0" prefHeight="26.0" prefWidth="81.0" promptText="User" />
+            <ComboBox fx:id="stat" layoutX="438.0" layoutY="5.0" prefHeight="26.0" prefWidth="98.0" promptText="Statistique" />
+         </children></AnchorPane>
    </children>
 </AnchorPane>

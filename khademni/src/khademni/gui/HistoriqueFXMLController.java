@@ -138,7 +138,7 @@ pani.setOnAction(event -> {
 stat.setOnAction(event -> {
     String selectedPage = (String) stat.getSelectionModel().getSelectedItem();
 
-    if (selectedPage.equals("Meilleur formation")) {
+    if (selectedPage.equals("Meilleur formations")) {
            Navbar_Navigation SC = new Navbar_Navigation();
        String ch= "/khademni/gui/PanierGraph.fxml";
         try {

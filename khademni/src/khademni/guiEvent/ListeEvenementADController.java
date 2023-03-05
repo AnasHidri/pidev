@@ -18,12 +18,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import khademni.entity.Evenement;
 import khademni.api.PdfEv;
+import khademni.gui.Navbar_Navigation;
+import khademni.gui.PanierFXMLController;
 import khademni.services.EvenementService;
 
 /**
@@ -57,11 +60,118 @@ public class ListeEvenementADController implements Initializable {
       private Button btn_stat;
       @FXML
       private Button cons_part;
+                   @FXML
+      private ComboBox<String> liste_for;
     
+    @FXML
+       private ComboBox<String> liste_ev;
+    @FXML
+            private ComboBox<String> liste_off;
+    @FXML
+            private ComboBox<String> pani;
+     @FXML
+            private ComboBox<String> stat;
+    @FXML
+            private Button prof;
   
       
       @Override
     public void initialize(URL url, ResourceBundle rb) {
+         liste_for.getItems().addAll("Liste formation");
+            liste_ev.getItems().addAll("Liste evenement");
+            liste_off.getItems().addAll("Liste offre");
+            pani.getItems().addAll("Liste user", "Liste activation");
+            stat.getItems().addAll("Meilleur formations", "Role utilisateur", "Meilleur evenement");
+            
+            
+           liste_for.setOnAction(event -> {
+    String selectedPage = (String) liste_for.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Liste formation")) {
+        // navigate to Page 1
+    }
+});
+
+liste_ev.setOnAction(event -> {
+    String selectedPage = (String) liste_ev.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Liste evenement")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiEvent/ListeEvenementAD.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    } 
+});
+
+liste_off.setOnAction(event -> {
+    String selectedPage = (String) liste_off.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Liste offre")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiOffre/OffreAdminFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    } 
+});
+
+pani.setOnAction(event -> {
+    String selectedPage = (String) pani.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Liste user")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiUser/UsersListFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    } else if (selectedPage.equals("Liste activation")) {
+        Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiUser/ActivationFormateurFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    } 
+});
+        
+
+stat.setOnAction(event -> {
+    String selectedPage = (String) stat.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Meilleur formations")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/gui/PanierGraph.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    } else if (selectedPage.equals("Role utilisateur")) {
+        Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiUser/DashboardFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    } else if (selectedPage.equals("Meilleur evenement")) {
+        Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiEvent/StatEvAD.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    } 
+});
         // TODO
         ListEV();
     }    
@@ -142,4 +252,19 @@ Parent root = loader.load();
                       }
     }
     
+    
+        @FXML
+    private void Profile(ActionEvent event)  throws IOException {
+   
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiUser/ProfileSettingsFXML.fxml"));
+         Stage stage = new Stage();
+         
+         stage.setScene(new Scene(loader.load()));
+         stage.show();
+    Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+    currentStage.hide();
+   
+   
+   
+}
 }
