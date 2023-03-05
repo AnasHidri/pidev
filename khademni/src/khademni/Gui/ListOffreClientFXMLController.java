@@ -141,8 +141,7 @@ colDateLimite.setCellValueFactory(new PropertyValueFactory <>("date_limite"));
     void AddCandidature(ActionEvent event) throws IOException {
          Offre selectedOffre = tvOffre23.getSelectionModel().getSelectedItem();
         System.out.println("id_o::"+selectedOffre.getId_offre());
-      //  selectedOffre.getId_offre.setText(String.valueOf(selectedOffre.getId_offre()));
-        Candidature C= new Candidature(selectedOffre.getId_offre(), 1,"en attente");
+        Candidature C= new Candidature(selectedOffre.getId_offre(), 2,"en attente");
         CandidatureService CV= new CandidatureService();
         CV.ajouterCandidature(C);
        String senderEmail = "khademni.serviceClient@gmail.com"; 
@@ -170,6 +169,7 @@ try {
     
      @FXML
     void MesCandidature(ActionEvent event) throws IOException {
+                
  SceneController SC = new SceneController();
     SC.Scene6(event);
     }
@@ -206,8 +206,7 @@ try {
     void AnnulerCandidature(ActionEvent event) {
  Offre selectedOffre = tvOffre23.getSelectionModel().getSelectedItem();
         System.out.println("id_o::"+selectedOffre.getId_offre());
-      //  selectedOffre.getId_offre.setText(String.valueOf(selectedOffre.getId_offre()));
-        Candidature C= new Candidature(selectedOffre.getId_offre(), 1,"en attente");
+        Candidature C= new Candidature(selectedOffre.getId_offre(), 2,"en attente");
         CandidatureService CV= new CandidatureService();
         CV.supprimerCandidature(C);
          String senderEmail = "khademni.serviceClient@gmail.com"; 

@@ -16,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -70,61 +71,96 @@ public class CandidatureEmployeurFXMLController implements Initializable {
 
     @FXML
     private Button btnvalide;
+    @FXML
+    private TextField id_offre1;
+       @FXML
+    private TextField Titre;
+       @FXML
+    private TextField Email;
+
+    @FXML
+    private TextField Etat;
+
+    @FXML
+    private TextField Nom;
+
+    @FXML
+    private TextField Prenom;
+
+    @FXML
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-       showCandidature1();
-       showCandidature2();
-       showCandidature3();
-    }    
+
+
+}     
     
- public void showCandidature1(){
+ public void showCandidature1(int id_offre){
   CandidatureService cs =new CandidatureService(); 
-ObservableList<Candidature> listeCandidature1 = cs.afficherCandidatureEmployeur1();
+ObservableList<Candidature> listeCandidature1 = cs.afficherCandidatureEmployeur1(id_offre);
 
 colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
 
        tvCandidature1.setItems(listeCandidature1);
 } 
 
-  public void showCandidature2(){
-  CandidatureService cs =new CandidatureService(); 
-ObservableList<Candidature> listeCandidature2 = cs.afficherCandidatureEmployeur2();
+  public void showCandidature2(int id_offre) {
+    CandidatureService cs = new CandidatureService();
+    ObservableList<Candidature> listeCandidature2 = cs.afficherCandidatureEmployeur2(id_offre);
+    
+    colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+    colPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+    colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+    
+    tvCandidature2.setItems(listeCandidature2);
+}
 
-colNom.setCellValueFactory(new PropertyValueFactory <>("nom"));
-colPrenom.setCellValueFactory(new PropertyValueFactory <>("prenom"));
-colEmail.setCellValueFactory(new PropertyValueFactory<> ("email"));    
-       tvCandidature2.setItems(listeCandidature2);
-} 
- public void showCandidature3(){
-  CandidatureService cs =new CandidatureService(); 
-ObservableList<Candidature> listeCandidature3 = cs.afficherCandidatureEmployeur3();
+public void showCandidature3(int id_offre) {
+    CandidatureService cs = new CandidatureService();
+    ObservableList<Candidature> listeCandidature3 = cs.afficherCandidatureEmployeur3(id_offre);
 
-ColEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
+    ColEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
 
-       tvCandidature3.setItems(listeCandidature3);
-} 
+    tvCandidature3.setItems(listeCandidature3);
+}
+
+
+  private int OffreId;
+      
+     public void SetOffreId(int OffreId) {
+    this.OffreId = OffreId;
+}
+    public void setTextFields(int OffreId){
+        id_offre1.setText(OffreId+"");
+         showCandidature1(OffreId);
+
+       showCandidature2(OffreId);
+       
+       showCandidature3(OffreId);
+    }
+ 
+ 
    @FXML
     void refusCandidat(ActionEvent event) {
     Candidature selectedCandidature = tvCandidature3.getSelectionModel().getSelectedItem();
+       int offreId = selectedCandidature.getId_offre();
+
      Candidature C =new Candidature();
   CandidatureService cs= new CandidatureService();
     if (selectedCandidature == null) {
          Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setContentText("Veuillez sélectionner une Candidature à Refusé !");
         alert.showAndWait();
-        return;
+        return;}
           
-    }cs.RefuserCandidature(selectedCandidature);
-    
+cs.RefuserCandidature(selectedCandidature,selectedCandidature.getId_offre());    
    Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setContentText("Candidature Refusé!");
     alert.showAndWait();
      tvCandidature3.refresh();
-  showCandidature3();
+ // showCandidature3();
     String senderEmail = "khademni.serviceClient@gmail.com"; 
 String senderPassword = "iptppxmbutpkhtee"; 
 String receiverEmail = "achour.rihab2000@gmail.com"; 
@@ -168,6 +204,7 @@ try {
     @FXML
     void validerCandidat(ActionEvent event) {
  Candidature selectedCandidature = tvCandidature3.getSelectionModel().getSelectedItem();
+       int offreId = selectedCandidature.getId_offre();
      Candidature C =new Candidature();
   CandidatureService cs= new CandidatureService();
     if (selectedCandidature == null) {
@@ -176,13 +213,13 @@ try {
         alert.showAndWait();
         return;
           
-    }cs.RefuserCandidature(selectedCandidature);
+    }cs.AccepterCandidature(selectedCandidature,selectedCandidature.getId_offre());
     
    Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setContentText("Candidature Acceptée!");
     alert.showAndWait();
      tvCandidature3.refresh();
-  showCandidature3();
+  //showCandidature3(id_offre);
    String senderEmail = "khademni.serviceClient@gmail.com"; 
 String senderPassword = "iptppxmbutpkhtee"; 
 String receiverEmail = "achour.rihab2000@gmail.com"; 

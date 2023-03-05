@@ -16,7 +16,10 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -25,6 +28,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import khademni.entity.Offre;
 import khademniService.OffreService;
 
@@ -325,11 +329,27 @@ try {
   
     }
 
-      @FXML
-    void ListeCandidature(ActionEvent event) throws IOException {
-  SceneController SC= new SceneController();
-         SC.Scene7(event);
-    }
+       @FXML
+    void ListeCandidature(ActionEvent event)  {
+         Offre selectedOff = tvOffre.getSelectionModel().getSelectedItem();
+         int offreId = selectedOff.getId_offre();
+try{
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/Gui/CandidatureEmployeurFXML.fxml"));
+        
+        Parent root = loader.load();
+        
+        CandidatureEmployeurFXMLController controleur = loader.getController(); 
+           controleur.setTextFields(offreId);
+       
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) btnListe.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+
+        }catch(IOException e){
+            System.out.println(e.getCause().getMessage());
+        }}
 
 
 public static void sendEmail(String senderEmail, String senderPassword, String receiverEmail, String subject, String message) throws MessagingException {
@@ -419,4 +439,3 @@ public static void sendEmail1(String senderEmail, String senderPassword, String 
     
     
 }
-

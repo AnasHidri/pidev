@@ -10,18 +10,16 @@ package khademni.interfaces;
  *
  * @author CYBERLAND
  **/
-import java.util.List;
+
 import javafx.collections.ObservableList;
+
 
 
 public interface ICandidature <Candidature>{
     public void ajouterCandidature(Candidature P);
-    public void RefuserCandidature(Candidature P);
-      public void AccepterCandidature(Candidature P);
-    public void supprimerCandidature(Candidature P);
-    public ObservableList<Candidature> afficherCandidatureEmployeur1();
-    public ObservableList<Candidature> afficherCandidatureEmployeur2();
-       public ObservableList<Candidature> afficherCandidatureEmployeur3();
+
+    public void supprimerCandidature(Candidature c);
+
     public ObservableList<Candidature> afficherCandidatureClient1();
 public ObservableList<Candidature> afficherCandidatureClient2();
     

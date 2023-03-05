@@ -29,8 +29,8 @@ public class Khademni {
          CandidatureService Cs = new CandidatureService();
       Candidature C =new Candidature(88,1,"en attente");
           // Cs.ajouterCandidature(C);
-   // System.out.println(Cs.afficherCandidatureEmployeur2());
-    //   System.out.println(Cs.afficherCandidatureEmployeur2());
+   System.out.println(Cs.afficherCandidatureEmployeur1(89));
+      System.out.println(Cs.afficherCandidatureEmployeur2(89));
 
       // System.out.println(Cs.afficherCandidatureEmployeur3());
        Cs.AccepterCandidature(C);
