@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -90,6 +91,7 @@ public class ListOffreClientFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
      showOffre();
+     loadOffre("cuisine");
     }    
       @FXML
     void Recherche(ActionEvent event) {
@@ -126,6 +128,28 @@ public class ListOffreClientFXMLController implements Initializable {
         tvOffre23.setItems(sortList);
     
     }
+
+    private void loadOffre(String domaine_offre) {
+        OffreService OS=new OffreService(); 
+    ObservableList<Offre> listef = OS.afficherOffre();
+    ObservableList<Offre> filteredList = FXCollections.observableArrayList();
+    ObservableList<Offre> otherList = FXCollections.observableArrayList();
+    for (int i = 0; i < listef.size(); i++) {
+        Offre Offre = (Offre) listef.get(i);
+        if (Offre.getDomaine_offre().equals(domaine_offre)) {
+            filteredList.add(Offre);
+        } else {
+            otherList.add(Offre);
+        }
+    }
+    filteredList.addAll(otherList);
+    colTitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
+    colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+    colAdresse.setCellValueFactory(new PropertyValueFactory<>("adresse_societe"));
+    colDomaine.setCellValueFactory(new PropertyValueFactory<>("domaine_offre"));
+    colDateDebut.setCellValueFactory(new PropertyValueFactory<>("date_debut"));
+    tvOffre23.setItems(filteredList);
+}
 
     
      public void showOffre(){
