@@ -40,6 +40,7 @@ public class Khademni {
       
         //System.out.println(e.countParticipations(40));
        // System.out.println(e.countLikes(33));
+       System.out.println(e.getAllByIdUser(1));
         
         ParticipationService p=new ParticipationService();
         Participation participation= new Participation(33,2,"bbb");
