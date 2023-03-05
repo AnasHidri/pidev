@@ -181,7 +181,7 @@ private ToggleButton show_password_toggle;
             tfdomaine_form.getItems().addAll("Informatique","Cuisine","Management");
             tfdomaine_cl.getItems().addAll("Informatique","Cuisine","Management");
             tfrole.getItems().addAll("Employeur","Formateur","Client");
-tfrole.setValue("Client");
+            tfrole.setValue("Client");
            
 
 

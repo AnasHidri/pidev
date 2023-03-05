@@ -29,6 +29,8 @@ public class Khademni {
         Formateur f1 = new Formateur("yassine", "mahfoudh", "yass11", "1234", "FORMATEUR", "yas@gm.com", "BI", "certif JAVA");
         Client c1 = new Client("yassine", "mahfoudh", "yass11", "1234", "CLIENT", "yas@gm.com", "BI", 1000,"cv FRANCAIS");
         
+        System.out.println("us.countUsers();"+us.countUsers());
+        
        //us.ajouterEmployeur(e2);
        //us.ajouterClient(c1);
 

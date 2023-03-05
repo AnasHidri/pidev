@@ -68,3 +68,11 @@ and open the template in the editor.
 .text-field .text {
     -fx-text-alignment: center;
 }
+
+.chart-title {
+    -fx-text-fill: white;
+}
+
+.chart-pie-label {
+    -fx-fill: white;
+}
