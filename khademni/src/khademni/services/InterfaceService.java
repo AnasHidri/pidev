@@ -5,6 +5,7 @@
 package khademni.services;
 
 import java.util.List;
+import javafx.collections.ObservableList;
 import khademni.entity.Formation;
 
 /**
@@ -13,8 +14,10 @@ import khademni.entity.Formation;
  */
 public interface InterfaceService<T>  {
       public void ajouterFormation(Formation f);
-    //public void modifierFormation(String titre,Formation f);
-    //public void supprimerFormation(Formation f);
+      public void modifierFormation(Formation f);
+      public void supprimerFormation(Formation f);
+      public ObservableList<Formation> afficherFormation();
+
     //public void afficherFormation(Formation f);    
     //public List<T> getAll();
 

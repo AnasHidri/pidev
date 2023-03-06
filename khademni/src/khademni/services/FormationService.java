@@ -10,9 +10,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import khademni.entity.Formation;
 import khademni.utils.MyConnection;
 
@@ -25,15 +29,16 @@ public class FormationService implements InterfaceService {
     Connection myconn =MyConnection.getInstance().getConnexion();
    
     @Override
-    public void ajouterFormation(Formation t) {
+    public void ajouterFormation(Formation f) {
         try {
-            String sql = "insert into formation(titre, description, domaine_formation, prix)"
-                    + "values (?,?,?,?)";
+            String sql = "insert into formation(id_user,titre, description, domaine_formation, prix)"
+                    + "values (?,?,?,?,?)";
             PreparedStatement ste = myconn.prepareStatement(sql);
-            ste.setString(1, t.getTitre());
-            ste.setString(2, t.getDescription());
-            ste.setString(3, t.getDomaine_formation());
-            ste.setFloat(4, t.getPrix());
+            ste.setInt(1, 1);
+            ste.setString(2, f.getTitre());
+            ste.setString(3, f.getDescription());
+            ste.setString(4, f.getDomaine_formation());
+            ste.setDouble(5, f.getPrix());
             ste.executeUpdate();
             System.out.println("Formation ajoutée");
         } catch (SQLException ex) {
@@ -41,27 +46,34 @@ public class FormationService implements InterfaceService {
         }
 
     }
-/*    
+    
     @Override
-    public void supprimerFormation(Formation f1) {
-        String sql = "delete from formation where id_formation=?";
+    public void supprimerFormation(Formation f) {
         try {
+            String sql = "delete from formation where id_formation=?";
             PreparedStatement ste = myconn.prepareStatement(sql);
-            ste.setInt(1, f1.getId_formation());
+                ste.setInt(1,f.getId_formation());
+                
             ste.executeUpdate();
+            System.out.println("Formation supprimé !");            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }    
     }
-    }
 
-    public void modifierFormation(String titre,Formation f) {
-        String sql = "update Formation set titre=? where id_formation=?";
+    @Override
+    public void modifierFormation(Formation f) {
         try {
+            String sql = "update Formation set titre=?, description=?, domaine_formation=?, prix=? where id_formation=?";
             PreparedStatement ste = myconn.prepareStatement(sql);
-            ste.setString(1,titre);
-            ste.setInt(2,f.getId_formation());
+                ste.setString(1,f.getTitre());
+                ste.setString(2,f.getDescription());
+                ste.setString(3,f.getDomaine_formation());
+                ste.setDouble(4,f.getPrix());
+                ste.setInt(5,f.getId_formation());
+                
             ste.executeUpdate();
+            System.out.println("Formation Modifié avec succés !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -69,41 +81,47 @@ public class FormationService implements InterfaceService {
 
 
     @Override
-    public List<Formation> afficherFormation() {
-        List<Formation> formations = new ArrayList<>();
+    public ObservableList<Formation> afficherFormation() {
+        
+        ObservableList<Formation> formations = FXCollections.observableArrayList();
+        
         try {
-            String sql = "select * from formation";
-            PreparedStatement ste = myconn.prepareStatement(sql);
-            // Statement ste = myconn.createStatement();
-            ResultSet s = ste.executeQuery(sql);
-            while (s.next()) {
-
-                Formation f = new Formation("description", "titre","domaine_formation",10);
-                formations.add(f);
-
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return formations;    
-    }
-
-
-    @Override
-    public List<Formation> getAll() {
-        List<Formation> formations = new ArrayList<>();
-        try {
-            String sql = "select * from formation";
+            String sql ="select * from formation";
             Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
-
-                Formation f = new Formation("descritpion","titre","domaine_formation",0);
+                
+                Formation f = new Formation(s.getInt(1), s.getString("description"), s.getString("titre"), s.getString("domaine_formation"), s.getDouble("prix"));
                 formations.add(f);
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());    
         }
-        return formations;    }
-*/   
+                        System.out.println("listeee::"+formations);
+
+        return formations;
+    }
+    
+    public ObservableList<Formation> getFormationsByFormateur(int idU) {
+        
+        ObservableList<Formation> formations = FXCollections.observableArrayList();
+        
+        try {
+            String sql ="select * from formation where id_user=?";
+            PreparedStatement ste = myconn.prepareStatement(sql);
+            ste.setInt(1, idU);
+            ResultSet s = ste.executeQuery();
+            
+            while (s.next()) {
+                
+                Formation f = new Formation(s.getInt(1), s.getString("description"), s.getString("titre"), s.getString("domaine_formation"), s.getDouble("prix"));
+                formations.add(f);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());    
+        }
+                        System.out.println("listeee::"+formations);
+
+        return formations;
+    }
 }

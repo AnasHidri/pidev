@@ -4,21 +4,35 @@
  */
 package khademni.entity;
 
+
 /**
  *
  * @author hmoud
  */
 public class Formation {
-    private int id_formation ;
-    private String description,titre, domaine_formation;
-    private float prix;
 
-    public Formation(String description, String titre, String domaine_formation, float prix) {
+    
+    private int id_formation,id_user ;
+    private String description,titre, domaine_formation;
+    private double prix;
+
+    public Formation(int id_user, String titre, String domaine_formation, double prix,  String description) {
+        this.id_user=id_user;
         this.description = description;
         this.titre = titre;
         this.domaine_formation = domaine_formation;
         this.prix = prix;
     }
+
+    public Formation(int id_formation, String description, String titre, String domaine_formation, double prix) {
+        this.id_formation = id_formation;
+        this.description = description;
+        this.titre = titre;
+        this.domaine_formation = domaine_formation;
+        this.prix = prix;
+    }
+    
+    
 
     
     
@@ -65,17 +79,18 @@ public class Formation {
         this.domaine_formation = domaine_formation;
     }
 
-    public float getPrix() {
+    public double getPrix() {
         return prix;
     }
 
-    public void setPrix(float prix) {
+    public void setPrix(double prix) {
         this.prix = prix;
     }
+    
 
-   /* @Override
+    @Override
     public String toString() {
-        return "Formation{" + "id_formation=" + id_formation + ", id_user=" + id_user + ", description=" + description + ", titre=" + titre + ", domaine_formation=" + domaine_formation + ", prix=" + prix + '}';
+        return "Formation{" + "id_formation= " + id_formation + ", description=" + description + ", titre=" + titre + ", domaine_formation=" + domaine_formation + ", prix=" + prix + '}';
     }
-       */ 
+    
 }

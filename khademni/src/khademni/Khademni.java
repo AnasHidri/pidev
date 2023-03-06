@@ -4,10 +4,8 @@
  */
 package khademni;
 
-import java.sql.Connection;
 import khademni.entity.Formation;
 import khademni.services.FormationService;
-import khademni.utils.MyConnection;
 
 /**
  *
@@ -19,15 +17,21 @@ public class Khademni {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Connection myconn =MyConnection.getInstance().getConnexion();
         FormationService fs=new FormationService();
-        Formation f1=new Formation("aa", "bb", "cc", (float) 12.5);
-        fs.ajouterFormation(f1);
-      //fs.supprimerFormation(f1);
-      //fs.modifierFormation("bb", f1);
-      //fs.afficherFormation();
-      //System.out.println(fs.getAll());
-
+        Formation f1=new Formation(1,"azouur", "zerzer", 15, "sfd");
+        
+        
+       // fs.ajouterFormation(f1);
+        
+          //fs.supprimerFormation(f1);
+        
+        //fs.modifierFormation(f1);
+        
+        
+        //System.out.println(fs.afficherFormation());
+        
+       // System.out.println("byForm :: "+fs.getFormationsByFormateur(1));
+        
     }
     
 }

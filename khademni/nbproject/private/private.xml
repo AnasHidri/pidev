@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/hmoud/OneDrive/Desktop/khademni/src/khademni/gui/ModifierCController.java</file>
+            <file>file:/C:/Users/hmoud/OneDrive/Desktop/khademni/src/khademni/gui/addcours.fxml</file>
+            <file>file:/C:/Users/hmoud/OneDrive/Desktop/khademni/src/khademni/gui/CoursController.java</file>
+            <file>file:/C:/Users/hmoud/OneDrive/Desktop/khademni/src/khademni/gui/AddcoursController.java</file>
+            <file>file:/C:/Users/hmoud/OneDrive/Desktop/khademni/src/khademni/gui/Khademni.java</file>
+            <file>file:/C:/Users/hmoud/OneDrive/Desktop/khademni/src/khademni/services/CoursService.java</file>
+            <file>file:/C:/Users/hmoud/OneDrive/Desktop/khademni/src/khademni/gui/modifierC.fxml</file>
+            <file>file:/C:/Users/hmoud/OneDrive/Desktop/khademni/src/khademni/services/FormationService.java</file>
+            <file>file:/C:/Users/hmoud/OneDrive/Desktop/khademni/src/khademni/gui/ModifierController.java</file>
+        </group>
     </open-files>
 </project-private>
