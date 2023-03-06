@@ -3,104 +3,192 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.ComboBox?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="500.0" prefWidth="800.0" styleClass="secondary-color" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiUser.ProfileSettingsFXMLController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiUser.ProfileSettingsFXMLController">
     <stylesheets>
         <URL value="@profilesettingsfxml.css" />
     </stylesheets>
    <children>
-      <VBox layoutX="524.0" layoutY="43.0" prefHeight="136.0" prefWidth="191.0">
-         <padding>
-            <Insets right="10.0" />
-         </padding>
+      <ImageView fitHeight="540.0" fitWidth="949.0" layoutX="-105.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Background.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="idClient" layoutX="30.0" layoutY="28.0" prefHeight="56.0" prefWidth="761.0" style="-fx-background-color: #B2CABF;" visible="false">
          <children>
-            <ImageView fx:id="imageView" fitHeight="144.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
-            </ImageView>
-         </children>
-      </VBox>
-      <Button fx:id="modifier_btn" alignment="CENTER" contentDisplay="RIGHT" layoutX="171.0" layoutY="273.0" mnemonicParsing="false" onAction="#ModifierInfo" prefHeight="14.0" prefWidth="98.0" text="Modifier" textAlignment="CENTER" textFill="#f4fafa">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Label layoutX="47.0" layoutY="58.0" prefHeight="32.0" prefWidth="322.0" text="Paramètres de profil" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Label>
-      <VBox layoutX="55.0" layoutY="81.0" prefHeight="162.0" prefWidth="430.0">
-         <children>
-            <Label prefHeight="32.0" prefWidth="330.0" text="Informations personnelle  " textFill="WHITE">
+            <Button fx:id="prof1" layoutX="642.0" layoutY="13.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#fcf8f8">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="liste_for1" layoutX="312.0" layoutY="13.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="liste_off1" layoutX="43.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Offre" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="liste_ev1" layoutX="166.0" layoutY="13.0" prefHeight="25.0" prefWidth="133.0" promptText="Evenement" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="pani1" layoutX="523.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Panier" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="30.0" layoutY="84.0" prefHeight="417.0" prefWidth="761.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Label fx:id="login" layoutX="501.0" layoutY="187.0" text="Yassine123" textFill="#5965f3" visible="false">
+               <font>
+                  <Font size="14.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="438.0">
+            <VBox layoutX="21.0" layoutY="10.0" prefHeight="189.0" prefWidth="303.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="125.0" text="Nom " textFill="WHITE">
+                  <Label prefHeight="30.0" prefWidth="261.0" text="Informations personnelle  " textFill="#5965f3">
                      <font>
-                        <Font size="17.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Pane prefHeight="26.0" prefWidth="125.0" />
-                  <TextField fx:id="tfnom" prefHeight="26.0" prefWidth="167.0" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" top="5.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="430.0">
-               <children>
-                  <Label prefHeight="26.0" prefWidth="138.0" text="Prénom" textFill="WHITE">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="26.0" prefWidth="128.0" />
-                  <TextField fx:id="tfprenom" prefHeight="26.0" prefWidth="186.0" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-            </HBox>
-            <HBox fx:id="cc" alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="430.0">
-               <children>
-                  <Label prefHeight="26.0" prefWidth="183.0" text="Domaine" textFill="WHITE">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="26.0" prefWidth="128.0" />
-                  <TextField fx:id="tfdomaine" prefHeight="26.0" prefWidth="208.0" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-            </HBox>
-            <VBox prefHeight="213.0" prefWidth="430.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="430.0">
+                  <HBox prefHeight="74.0" prefWidth="200.0" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="438.0">
                      <children>
-                        <Label prefHeight="26.0" prefWidth="305.0" text="E-mail" textFill="WHITE">
+                        <Label prefHeight="26.0" prefWidth="125.0" text="Nom " textFill="#5965f3">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Label>
-                        <Pane prefHeight="26.0" prefWidth="120.0">
+                        <Pane prefHeight="26.0" prefWidth="37.0" />
+                        <TextField fx:id="tfnom" prefHeight="26.0" prefWidth="131.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="430.0">
+                     <children>
+                        <Label prefHeight="26.0" prefWidth="138.0" text="Prénom" textFill="#5965f3">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="26.0" prefWidth="23.0" />
+                        <TextField fx:id="tfprenom" prefHeight="26.0" prefWidth="129.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox fx:id="cc" alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="430.0">
+                     <children>
+                        <Label prefHeight="26.0" prefWidth="132.0" text="Domaine" textFill="#5965f3">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="26.0" prefWidth="30.0" />
+                        <TextField fx:id="tfdomaine" prefHeight="26.0" prefWidth="129.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </HBox>
+                  <VBox prefHeight="213.0" prefWidth="430.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="430.0">
+                           <children>
+                              <Label prefHeight="36.0" prefWidth="150.0" text="E-mail" textFill="#5965f3">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="26.0" prefWidth="12.0">
+                                 <padding>
+                                    <Insets top="1.0" />
+                                 </padding>
+                              </Pane>
+                              <TextField fx:id="tfmail" prefHeight="26.0" prefWidth="125.0">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </VBox>
+            <Button fx:id="modifier_btn" alignment="CENTER" contentDisplay="RIGHT" layoutX="314.0" layoutY="110.0" mnemonicParsing="false" onAction="#ModifierInfo" prefHeight="14.0" prefWidth="98.0" style="-fx-background-color: #FFFFFF;" text="Modifier" textAlignment="CENTER" textFill="#5965f3">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <VBox layoutX="14.0" layoutY="199.0" prefHeight="103.0" prefWidth="422.0">
+               <children>
+                  <Label prefHeight="32.0" prefWidth="330.0" text="Changer le mot de passe " textFill="#5965f3">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="463.0">
+                     <children>
+                        <Label prefHeight="26.0" prefWidth="259.0" text="Mot de passe actuel" textFill="#5965f3">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="26.0" prefWidth="128.0">
                            <padding>
                               <Insets top="1.0" />
                            </padding>
                         </Pane>
-                        <TextField fx:id="tfmail" prefHeight="26.0" prefWidth="266.0" />
+                        <TextField fx:id="tfactuel" prefHeight="26.0" prefWidth="239.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="463.0">
+                     <children>
+                        <Label prefHeight="26.0" prefWidth="273.0" text="Nouveau mot de passe " textFill="#5965f3">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="26.0" prefWidth="128.0">
+                           <padding>
+                              <Insets top="1.0" />
+                           </padding>
+                        </Pane>
+                        <TextField fx:id="tfnouv" prefHeight="26.0" prefWidth="250.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="463.0">
+                     <children>
+                        <Label prefHeight="26.0" prefWidth="274.0" text="Confirmer mot de passe " textFill="#5965f3">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="26.0" prefWidth="30.0">
+                           <padding>
+                              <Insets top="1.0" />
+                           </padding>
+                        </Pane>
+                        <TextField fx:id="tfconfirm" prefHeight="26.0" prefWidth="200.0" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" top="5.0" />
@@ -111,141 +199,131 @@
                   <Insets top="5.0" />
                </padding>
             </VBox>
-         </children>
-      </VBox>
-      <VBox layoutX="55.0" layoutY="302.0" prefHeight="103.0" prefWidth="422.0">
-         <children>
-            <Label prefHeight="32.0" prefWidth="330.0" text="Changer le mot de passe " textFill="WHITE">
+            <Button fx:id="modifier_btn2" alignment="CENTER" contentDisplay="RIGHT" layoutX="98.0" layoutY="368.0" mnemonicParsing="false" onAction="#ModifierPassword" prefHeight="26.0" prefWidth="209.0" style="-fx-background-color: #5965f3;" text="Modifier mot de passe" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
-               <padding>
-                  <Insets top="5.0" />
-               </padding>
-            </Label>
-            <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="463.0">
+            </Button>
+            <Button fx:id="logout" layoutX="693.0" layoutY="2.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #FFFFFF;" text="Logout" textFill="#5965f3">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <VBox layoutX="475.0" layoutY="235.0" prefHeight="169.0" prefWidth="278.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="259.0" text="Mot de passe actuel" textFill="WHITE">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="26.0" prefWidth="128.0">
-                     <padding>
-                        <Insets top="1.0" />
-                     </padding>
-                  </Pane>
-                  <TextField fx:id="tfactuel" prefHeight="26.0" prefWidth="239.0" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" top="5.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="463.0">
-               <children>
-                  <Label prefHeight="26.0" prefWidth="273.0" text="Nouveau mot de passe " textFill="WHITE">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="26.0" prefWidth="128.0">
-                     <padding>
-                        <Insets top="1.0" />
-                     </padding>
-                  </Pane>
-                  <TextField fx:id="tfnouv" prefHeight="26.0" prefWidth="250.0" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" top="5.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="463.0">
-               <children>
-                  <Label prefHeight="26.0" prefWidth="274.0" text="Confirmer mot de passe " textFill="WHITE">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="26.0" prefWidth="30.0">
-                     <padding>
-                        <Insets top="1.0" />
-                     </padding>
-                  </Pane>
-                  <TextField fx:id="tfconfirm" prefHeight="26.0" prefWidth="200.0" />
-               </children>
-               <padding>
-                  <Insets bottom="10.0" top="5.0" />
-               </padding>
-            </HBox>
-         </children>
-         <padding>
-            <Insets top="5.0" />
-         </padding>
-      </VBox>
-      <Button fx:id="selecimg" layoutX="578.0" layoutY="209.0" mnemonicParsing="false" onAction="#selectImage" text="Select image" textFill="WHITE" />
-      <TextField fx:id="tfimg" layoutX="620.0" layoutY="328.0" visible="false" />
-      <Button fx:id="modifier_btn2" alignment="CENTER" contentDisplay="RIGHT" layoutX="119.0" layoutY="461.0" mnemonicParsing="false" onAction="#ModifierPassword" prefHeight="31.0" prefWidth="178.0" text="Modifier mot de passe" textAlignment="CENTER" textFill="#f4fafa">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <HBox layoutY="8.0" prefHeight="100.0" prefWidth="200.0" />
-      <VBox layoutX="527.0" layoutY="284.0" prefHeight="143.0" prefWidth="262.0">
-         <children>
-            <HBox prefHeight="78.0" prefWidth="253.0">
-               <children>
-                  <Button fx:id="cv" mnemonicParsing="false" onAction="#selectCv" text="Choisir cv" textFill="WHITE" />
-                  <TextField fx:id="tfcv" disable="true" prefHeight="26.0" prefWidth="172.0">
-                     <HBox.margin>
-                        <Insets left="12.0" />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-            </HBox>
-            <HBox prefHeight="74.0" prefWidth="244.0">
-               <children>
-                  <HBox prefHeight="49.0" prefWidth="254.0">
+                  <HBox prefHeight="78.0" prefWidth="253.0">
                      <children>
-                        <Button fx:id="openCV" mnemonicParsing="false" onAction="#openCV" prefHeight="26.0" prefWidth="146.0" text="Voir cv" textFill="WHITE" />
+                        <Button fx:id="cv" mnemonicParsing="false" onAction="#selectCv" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: #5965f3;" text="Choisir cv" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="tfcv" disable="true" prefHeight="26.0" prefWidth="172.0">
+                           <HBox.margin>
+                              <Insets left="12.0" />
+                           </HBox.margin>
+                        </TextField>
                      </children>
                   </HBox>
+                  <HBox prefHeight="74.0" prefWidth="244.0">
+                     <children>
+                        <HBox prefHeight="33.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="openCV" mnemonicParsing="false" onAction="#openCV" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #5965f3;" text="Voir cv" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold Italic" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="90.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="78.0" prefWidth="253.0">
+                     <children>
+                        <Button fx:id="certif" mnemonicParsing="false" onAction="#selectCv" prefHeight="30.0" prefWidth="173.0" style="-fx-background-color: #5965f3;" text="Choisir certificat" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="tfcertif" disable="true" prefHeight="26.0" prefWidth="172.0">
+                           <HBox.margin>
+                              <Insets left="12.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="78.0" prefWidth="253.0">
+                     <children>
+                        <Button fx:id="openCertif" mnemonicParsing="false" onAction="#openCertif" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #5965f3;" text="Voir certif" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="90.0" />
+                     </VBox.margin>
+                  </HBox>
                </children>
-            </HBox>
-            <HBox prefHeight="78.0" prefWidth="253.0">
+            </VBox>
+            <VBox layoutX="451.0" layoutY="23.0" prefHeight="136.0" prefWidth="191.0">
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
                <children>
-                  <Button fx:id="certif" mnemonicParsing="false" onAction="#selectCv" prefHeight="26.0" prefWidth="144.0" text="Choisir certificat" textFill="WHITE" />
-                  <TextField fx:id="tfcertif" disable="true" prefHeight="26.0" prefWidth="172.0">
-                     <HBox.margin>
-                        <Insets left="12.0" />
-                     </HBox.margin>
-                  </TextField>
+                  <ImageView fx:id="imageView" fitHeight="112.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true" />
                </children>
-            </HBox>
-            <HBox prefHeight="78.0" prefWidth="253.0">
-               <children>
-                  <Button fx:id="openCertif" mnemonicParsing="false" onAction="#openCertif" prefHeight="26.0" prefWidth="144.0" text="Voir certif" textFill="WHITE" />
-                  <TextField disable="true" prefHeight="26.0" prefWidth="172.0">
-                     <HBox.margin>
-                        <Insets left="12.0" />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-            </HBox>
+            </VBox>
+            <Button fx:id="selecimg" layoutX="641.0" layoutY="90.0" mnemonicParsing="false" onAction="#selectImage" prefHeight="30.0" prefWidth="105.0" style="-fx-background-color: #FFFFFF;" text="Select Image" textFill="#5965f3">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Button>
          </children>
-      </VBox>
-      <Label fx:id="login" layoutX="366.0" layoutY="66.0" text="Yassine123" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Button fx:id="logout" layoutX="731.0" layoutY="63.0" mnemonicParsing="false" onAction="#logout" text="Logout" textFill="#f70606" />
-         <AnchorPane id="AnchorPane" layoutX="-1.0" prefHeight="34.0" prefWidth="602.0" style="-fx-background-color: #ffffff;" styleClass="navbar" stylesheets="@design.css">
+      </AnchorPane>
+      <TextField fx:id="tfimg" layoutX="660.0" layoutY="368.0" visible="false" />
+      <AnchorPane fx:id="idEmployeur" layoutX="30.0" layoutY="30.0" prefHeight="53.0" prefWidth="761.0" style="-fx-background-color: #B2CABF;" visible="false">
          <children>
-            <Button fx:id="prof" layoutX="537.0" layoutY="5.0" mnemonicParsing="false" onAction="#Profile" text="Profile" />
-            <ComboBox fx:id="liste_for" layoutX="14.0" layoutY="5.0" prefHeight="26.0" prefWidth="114.0" promptText="Formation" />
-            <ComboBox fx:id="liste_ev" layoutX="148.0" layoutY="5.0" prefHeight="26.0" prefWidth="113.0" promptText="Evenement" />
-            <ComboBox fx:id="liste_off" layoutX="270.0" layoutY="4.0" prefHeight="26.0" prefWidth="104.0" promptText="Offre" />
-            <ComboBox fx:id="pani" layoutX="387.0" layoutY="5.0" prefHeight="26.0" prefWidth="89.0" promptText="Panier" />
-         </children></AnchorPane>
+            <ComboBox fx:id="liste_off" layoutX="239.0" layoutY="14.0" prefHeight="31.0" prefWidth="197.0" promptText="Offre" style="-fx-background-color: #5965f3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="liste_ev" layoutX="27.0" layoutY="14.0" prefHeight="31.0" prefWidth="197.0" promptText="Evenement" style="-fx-background-color: #5965f3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <Button fx:id="prof" layoutX="607.0" layoutY="11.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="140.0" style="-fx-background-color: #5965f3;" text="Profile" textFill="#fcf7f7">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="idAdmin" layoutX="30.0" layoutY="28.0" prefHeight="56.0" prefWidth="761.0" style="-fx-background-color: #B2CABF;">
+         <children>
+            <Button fx:id="prof2" layoutX="651.0" layoutY="9.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#fcf8f8">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="liste_for" layoutX="517.0" layoutY="9.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="liste_off2" layoutX="399.0" layoutY="9.0" prefHeight="31.0" prefWidth="112.0" promptText="Offre" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="liste_ev2" layoutX="258.0" layoutY="9.0" prefHeight="25.0" prefWidth="133.0" promptText="Evenement" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="pani" layoutX="139.0" layoutY="9.0" prefHeight="31.0" prefWidth="112.0" promptText="User" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <Button fx:id="stat" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#stat" prefHeight="31.0" prefWidth="112.0" style="-fx-background-color: #5965F3;" text="Dashboard" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+        <AnchorPane fx:id="idFormateur" prefHeight="56.0" prefWidth="671.0" style="-fx-background-color: #B2CABF;" visible="false">
+                     <children>
+                        <Button fx:id="prof3" layoutX="518.0" layoutY="13.0" mnemonicParsing="false" onAction="#Profile" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#fcf8f8">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                        <ComboBox fx:id="liste_for3" layoutX="312.0" layoutY="13.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+                       
+                     </children>
+                  </AnchorPane>
    </children>
 </AnchorPane>

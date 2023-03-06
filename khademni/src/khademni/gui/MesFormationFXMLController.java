@@ -71,8 +71,23 @@ liste_for.setOnAction(event -> {
 
     if (selectedPage.equals("Liste formation")) {
         // navigate to Page 1
+         Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiFormation/formationC.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     } else if (selectedPage.equals("Mes formations")) {
         // navigate to Page 2
+          // navigate to Page 1
+         Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/gui/MesFormations.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     } 
 });
 

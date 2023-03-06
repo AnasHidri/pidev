@@ -212,6 +212,14 @@ public class PanierService implements IPanier {
     } catch (SQLException ex) {
         System.out.println(ex.getMessage());
     }
+    
+        try (PreparedStatement ste2 = cnx.prepareStatement("update ligne_commande,panier,user set ligne_commande.status=? where user.id_user="+utilisateur.Current_User.getId_user()+ " and ligne_commande.id_panier=panier.id_panier and panier.id_user=user.id_user")) {
+        ste2.setInt(1, 1);
+        ste2.executeUpdate();
+        System.out.println("Panier vider.");
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
 
     // send email notification
     final String username = "anashidri36@gmail.com";

@@ -5,12 +5,12 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="466.0" prefWidth="783.0"  xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.PanierFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="466.0" prefWidth="783.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.PanierFXMLController">
     <children>
                 <ImageView fitHeight="479.0" fitWidth="821.0" layoutX="-5.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -28,7 +28,7 @@
             </TableView>
             <Button layoutX="631.0" layoutY="366.0" mnemonicParsing="false" onAction="#supprimer" style="-fx-background-color: #5965F3;" styleClass="button-design" stylesheets="@design.css" text="Supprimer" textFill="WHITE" />
             <Button layoutX="562.0" layoutY="366.0" mnemonicParsing="false" onAction="#payer" style="-fx-background-color: #5965F3;" styleClass="button-design" stylesheets="@design.css" text="Payer" textFill="WHITE" />
-            <TextField fx:id="prixtotal" editable="false" layoutX="24.0" layoutY="362.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css">
+            <TextField fx:id="prixtotal" editable="false" layoutX="24.0" layoutY="362.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css" text="Totale :">
          
       </TextField>
              <AnchorPane prefHeight="56.0" prefWidth="671.0" style="-fx-background-color: #B2CABF;">

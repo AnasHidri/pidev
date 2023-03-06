@@ -92,7 +92,7 @@ public class EmployeurFXMLController implements Initializable {
     private TextField tfDescription;
 
     @FXML
-    private TextField tfDomaine_offre;
+    private ComboBox<String> tfDomaine_offre;
 
     @FXML
     private TextField tfTitre;
@@ -114,7 +114,7 @@ public class EmployeurFXMLController implements Initializable {
      @Override
     public void initialize(URL location, ResourceBundle resources) {
      showOffre1();
-     
+     tfDomaine_offre.getItems().addAll("Web Programming", "Game Developement", "Digital Marketing" , "Video and Animation" , "Data Engineering");
 liste_ev.getItems().addAll("Ajout evenement","Les Participants");
             liste_off.getItems().addAll("Les candidatures","Ajout offre");
             
@@ -225,7 +225,7 @@ colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
        String titre= tfTitre.getText();
       String des= tfDescription.getText(); 
      String soc= tfAdressse_societe.getText(); 
-     String off=  tfDomaine_offre.getText();
+     String off=  (String) tfDomaine_offre.getSelectionModel().getSelectedItem();
     LocalDate date_debut = tfDate_debut.getValue();
 Date datedeb = (date_debut == null) ? null : Date.valueOf(date_debut);
 
@@ -326,14 +326,14 @@ try {
     String titre = tfTitre.getText();  
     String description = tfDescription.getText();
     String adresse_societe = tfAdressse_societe.getText();
-    String domaine_offre = tfDomaine_offre.getText(); 
+        String off=  (String) tfDomaine_offre.getSelectionModel().getSelectedItem();
     LocalDate date_debut =tfDate_debut.getValue();
     Date datedeb= Date.valueOf(date_debut);
   
     selectedOffre.setTitre(titre);
     selectedOffre.setDescription(description);
     selectedOffre.setAdresse_societe(adresse_societe);
-    selectedOffre.setDomaine_offre(domaine_offre);
+    selectedOffre.setDomaine_offre(off);
     selectedOffre.setDate_debut(datedeb);
   
     

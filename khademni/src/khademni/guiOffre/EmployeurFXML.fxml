@@ -27,7 +27,6 @@
                </font>
             </Button>
             <TextField fx:id="tfTitre" layoutX="161.0" layoutY="79.0" />
-            <TextField fx:id="tfDomaine_offre" layoutX="546.0" layoutY="79.0" />
             <TextField fx:id="tfAdressse_societe" layoutX="175.0" layoutY="174.0" />
             <Text fill="#5965f3" layoutX="84.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre" wrappingWidth="53.984375">
                <font>
@@ -100,6 +99,7 @@
                   </Button>
                </children>
             </AnchorPane>
+            <ComboBox fx:id="tfDomaine_offre" layoutX="546.0" layoutY="79.0" prefWidth="150.0" />
          </children>
       </AnchorPane>
    </children>

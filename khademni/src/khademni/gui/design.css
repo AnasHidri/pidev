@@ -21,7 +21,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-radius:10px;
     -fx-border-color:linear-gradient(to bottom right,#2f466b,#662d60);
     -fx-border-radius:10px;
-    -fx-text-inner-color:#FFFF;
+    -fx-text-inner-color:#000000;
 }
 .button-design{
      -fx-background-color:linear-gradient(to bottom right,#2f466b,#662d60);

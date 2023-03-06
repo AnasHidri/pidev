@@ -177,9 +177,9 @@ private ToggleButton show_password_toggle;
     public void initialize(URL url, ResourceBundle rb) {
 
         ShowPassword();
-            tfdomaine_emp.getItems().addAll("Informatique","Cuisine","Management");
-            tfdomaine_form.getItems().addAll("Informatique","Cuisine","Management");
-            tfdomaine_cl.getItems().addAll("Informatique","Cuisine","Management");
+            tfdomaine_emp.getItems().addAll("Web Programming", "Game Developement", "Digital Marketing" , "Video and Animation" , "Data Engineering");
+            tfdomaine_form.getItems().addAll("Web Programming", "Game Developement", "Digital Marketing" , "Video and Animation" , "Data Engineering");
+            tfdomaine_cl.getItems().addAll("Web Programming", "Game Developement", "Digital Marketing" , "Video and Animation" , "Data Engineering");
             tfrole.getItems().addAll("Employeur","Formateur","Client");
             tfrole.setValue("Client");
            
@@ -727,7 +727,7 @@ showPasswordToggle.setOnAction(event -> {
                      
                                
                                 try{    
-                                            makeFadeOut("ProfileSettingsFXML.fxml");
+                                            makeFadeOut("EmployeurFXML.fxml");
 
 
                                        }catch(Exception ex){
@@ -749,7 +749,7 @@ showPasswordToggle.setOnAction(event -> {
              
                                 try{
                                      
-                                       makeFadeOut("ProfileSettingsFXML.fxml");
+                                       makeFadeOut("/khademni/guiFormation/add.fxml");
 
                                        }catch(Exception ex){
                                            System.out.println(ex.getCause().getMessage());
@@ -765,7 +765,7 @@ showPasswordToggle.setOnAction(event -> {
                        
                                 try{
                                      
-                                       makeFadeOut("/khademni/guiFormation/formationC.fxml");
+                                       makeFadeOut("/khademni/guiEvent/ListeEvenement.fxml");
 
 
                                        }catch(Exception ex){

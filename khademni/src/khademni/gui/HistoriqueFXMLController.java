@@ -80,6 +80,7 @@ public class HistoriqueFXMLController implements Initializable {
 
     if (selectedPage.equals("Liste formation")) {
         // navigate to Page 1
+        
     }
 });
 
