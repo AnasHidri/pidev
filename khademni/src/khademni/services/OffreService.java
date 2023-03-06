@@ -215,6 +215,20 @@ public class OffreService implements IOffre   {
   
     
 
-  
+   public int countOffres() {
+    int count = 0;
+    try {
+        String sql = "SELECT COUNT(*) AS count FROM offre ";
+        PreparedStatement statement = myconn.prepareStatement(sql);
+       
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            count = rs.getInt("count");
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return count;
+    }
 
 }

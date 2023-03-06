@@ -4,6 +4,8 @@
  */
 package khademni.guiOffre;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
@@ -156,8 +158,24 @@ liste_off.setOnAction(event -> {
 
 });
 }     
+
+    @FXML
+    private void Profile(ActionEvent event)  throws IOException {
+   
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiUser/ProfileSettingsFXML.fxml"));
+         Stage stage = new Stage();
+         
+         stage.setScene(new Scene(loader.load()));
+         stage.show();
+    Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+    currentStage.hide();
+   
+   
+   
+}
     
- public void showCandidature1(int id_offre){
+    
+    public void showCandidature1(int id_offre){
   CandidatureService cs =new CandidatureService(); 
 ObservableList<Offre> listeCandidature1 = cs.afficherOffreEmployeur1(id_offre);
 
@@ -172,7 +190,7 @@ colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
     
     colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
     colPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-    colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+    colEmail.setCellValueFactory(new PropertyValueFactory<>("mail"));
     
     tvCandidature2.setItems(listeCandidature2);
 }
@@ -332,18 +350,37 @@ public static void sendEmail(String senderEmail, String senderPassword, String r
         SceneController SC =new SceneController();
         SC.Scene5(event);
     }
-    @FXML
-    private void Profile(ActionEvent event)  throws IOException {
-   
-     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiUser/ProfileSettingsFXML.fxml"));
-         Stage stage = new Stage();
-         
-         stage.setScene(new Scene(loader.load()));
-         stage.show();
-    Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-    currentStage.hide();
-   
-   
-   
+    
+     @FXML
+    void OpenCV(ActionEvent event) {
+        
+   CandidatureService Sc=new CandidatureService();
+   Utilisateur selectedCandidature = tvCandidature2.getSelectionModel().getSelectedItem();
+       int UserId = selectedCandidature.getId_user();
+ String cvPath = Sc.findCVById(UserId) ;// get file path from the database
+
+// Create a new file object with the file path
+File file = new File(cvPath);
+
+// Check if the file exists and is a file
+if (file.exists() && file.isFile()) {
+    // Get the desktop object
+    Desktop desktop = Desktop.getDesktop();
+
+    try {
+        // Open the file using the desktop object
+        desktop.open(file);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+} else {
+    // The file does not exist or is not a file
+    System.out.println("File does not exist or is not a file.");
 }
+    }
+    
+    
 }
+    
+   
+    

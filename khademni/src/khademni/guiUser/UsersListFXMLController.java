@@ -190,18 +190,24 @@ stat.setOnAction(event -> {
 
     } 
     
-    @FXML
-private void filterByRole(ActionEvent event) {
+ @FXML
+    private void filterByRole(ActionEvent event) {
     String selectedRole = (String) rolechoice.getSelectionModel().getSelectedItem();
 
     FilteredList<Utilisateur> filteredData = tableviewUser.getItems().filtered(user -> true);
 
     Predicate<Utilisateur> rolePredicate = user -> user.getRole().equals(selectedRole);
 
-    filteredData.setPredicate(rolePredicate);
-    
-         tableviewUser.setItems(filteredData);
-        System.out.println("okkkk");
+    Predicate<Utilisateur> etatPredicate;
+    if (selectedRole.equals("Formateur")) {
+        etatPredicate = user -> user.getEtat().equals("actif");
+    } else {
+        etatPredicate = user -> true;
+    }
+
+    filteredData.setPredicate(rolePredicate.and(etatPredicate));
+   
+    tableviewUser.setItems(filteredData);
 }
 
     
@@ -337,5 +343,21 @@ private void filterByRole(ActionEvent event) {
    
    
 }
+    
+     @FXML
+    private void stat(ActionEvent event)  throws IOException {
+   
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiUser/DashboardFXML.fxml"));
+         Stage stage = new Stage();
+         
+         stage.setScene(new Scene(loader.load()));
+         stage.show();
+    Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+    currentStage.hide();
+   
+   
+   
+}
+    
     
 }

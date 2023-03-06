@@ -95,16 +95,17 @@ String sql="update  user,candidature,offre set candidature.etat='Refusée'  wher
    public ObservableList<Utilisateur> afficherUserEmployeur2(int id) {
     ObservableList<Utilisateur> UserList2 = FXCollections.observableArrayList();
     try {
-        String sql = "SELECT  user.nom, user.prenom, user.email FROM user, candidature, offre WHERE user.id_user = candidature.id_user AND offre.id_offre = candidature.id_offre AND offre.id_offre = "+id;
+        String sql = "SELECT  user.id_user,user.nom, user.prenom, user.mail FROM user, candidature, offre WHERE user.id_user = candidature.id_user AND offre.id_offre = candidature.id_offre AND offre.id_offre = "+id;
                    
   Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
    
         while (s.next()) {
             Utilisateur U = new Utilisateur(
+                    s.getInt("id_user"),
                     s.getString("nom"),
                     s.getString("prenom"),
-                    s.getString("email"));
+                    s.getString("mail"));
             UserList2.add(U);
         }
     } catch (SQLException ex) {
@@ -229,7 +230,28 @@ String sql="update candidature set etat='Accepter' where user.id_user=candidatur
 
  
 
-   
+ 
+public String  findCVById(int id_user) {
+      String ch="";
+    try {
+       Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
+    String sql = "SELECT cv FROM user, candidature, offre WHERE user.id_user = candidature.id_user AND offre.id_offre = candidature.id_offre AND user.id_user = " + id_user;
+    Statement ste = myconn.createStatement();
+    ResultSet rs = ste.executeQuery(sql);
+    if (rs.next()) {
+       ch=rs.getString("cv");
+       
+    } else {
+        System.out.println("No user found with ID: " + id_user);
+    }
+} catch (SQLException ex) {
+    System.out.println(ex.getMessage());
+}
+           
+return ch;
+
+}  
 
     
 }

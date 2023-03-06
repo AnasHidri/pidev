@@ -5,6 +5,7 @@
 package khademni.guiUser;
 
 import khademni.api.MailService;
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -29,12 +30,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -57,7 +61,7 @@ public class InscriptionFXMLController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
+   
     //employeur
     @FXML
     private TextField tfnom_emp;
@@ -75,14 +79,14 @@ public class InscriptionFXMLController implements Initializable {
     private ComboBox tfdomaine_emp;
     @FXML
     private TextField tfemail_emp;
-    
+   
     @FXML
     private Hyperlink login_acc_emp;
     @FXML
     private Hyperlink Employeur_signup;
     @FXML
     private AnchorPane signup_form_employeur;
-    
+   
         //formateur
     @FXML
     private TextField tfnom_form;
@@ -129,7 +133,7 @@ public class InscriptionFXMLController implements Initializable {
     private AnchorPane signup_form_client;
     @FXML
     private AnchorPane side;
-    
+   
         //login
 
     @FXML
@@ -140,11 +144,11 @@ public class InscriptionFXMLController implements Initializable {
     private TextField login_signin;
     @FXML
     private PasswordField password_signin;
-    
+   
     @FXML
     private Button login_btn;
-    
-    
+   
+   
         //role form
     @FXML
     private AnchorPane role_form;
@@ -158,13 +162,13 @@ public class InscriptionFXMLController implements Initializable {
     private ComboBox tfdomaine_form;
       @FXML
     private ComboBox tfdomaine_cl;
-      
+     
          @FXML
     private ComboBox tfrole;
-      
+     
       @FXML
          private AnchorPane rootPane2;
-      
+     
       @FXML
 private ToggleButton show_password_toggle;
    
@@ -178,7 +182,11 @@ private ToggleButton show_password_toggle;
             tfdomaine_cl.getItems().addAll("Informatique","Cuisine","Management");
             tfrole.getItems().addAll("Employeur","Formateur","Client");
             tfrole.setValue("Client");
-            
+           
+
+
+
+           
               // Show the "Client" form initially
     role_form.setVisible(true);
     login_form.setVisible(false);
@@ -187,13 +195,13 @@ private ToggleButton show_password_toggle;
     signup_form_client.setVisible(true);
     side.setVisible(true);
 
-    
+   
             tfrole.setOnAction(this::handleRoleSelection);
 
-    } 
-    
+    }
+   
     private void handleRoleSelection(Event event) {
-        
+       
     String selectedRole = tfrole.getValue().toString();
 
     switch (selectedRole) {
@@ -204,7 +212,7 @@ private ToggleButton show_password_toggle;
             signup_form_formateur.setVisible(false);
             signup_form_client.setVisible(false);
 
-            
+           
             break;
         case "Formateur":
             role_form.setVisible(true);
@@ -224,7 +232,7 @@ private ToggleButton show_password_toggle;
             break;
     }
 }
-    
+   
     @FXML
     public void changeForm(ActionEvent event){
         if(event.getSource() == create_acc){
@@ -232,7 +240,7 @@ private ToggleButton show_password_toggle;
             login_form.setVisible(false);
             side.setVisible(true);
             signup_form_client.setVisible(true);            
-            
+           
         }else if(event.getSource()==login_acc_emp){
             login_form.setVisible(true);
             signup_form_employeur.setVisible(false);
@@ -255,11 +263,11 @@ private ToggleButton show_password_toggle;
                         side.setVisible(false);
 
         }
-        
+       
     }
-    
-    
-    
+   
+   
+   
     public void ShowPassword(){
                 PasswordField passwordField = password_signin;
 ToggleButton showPasswordToggle = show_password_toggle;
@@ -272,7 +280,7 @@ ImageView noeyeIcon = new ImageView(new Image(getClass().getResourceAsStream("no
     noeyeIcon.setFitHeight(17);
     noeyeIcon.setFitWidth(17);    
 
-        
+       
 
 // Set the eye icon
 showPasswordToggle.setGraphic(eyeIcon);
@@ -289,22 +297,22 @@ showPasswordToggle.setOnAction(event -> {
         showPasswordToggle.setGraphic(eyeIcon);
     }
 });
-    
+   
     }
     @FXML
     public void exit(){
         System.exit(0);
     }
-    
+   
     UtilisateurService us = new UtilisateurService();
 
-            
-    
-    
-    public boolean ValidationEmail(String email){ 
+           
+   
+   
+    public boolean ValidationEmail(String email){
         Pattern pattern = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9._]*@[a-zA-Z0-9._]+([.][a-zA-Z0-9]+)+");
         Matcher match = pattern.matcher(email);
-        
+       
         if(match.find() && match.group().equals(email))
         {
             return true;
@@ -314,13 +322,13 @@ showPasswordToggle.setOnAction(event -> {
             alert.setHeaderText(null);
             alert.setContentText("Le format d'email n'est valide");
             alert.showAndWait();
-            
+           
             return false;
         }
     }
-    
-    
-    
+   
+   
+   
     @FXML
     public void selectCertif() {
         FileChooser fileChooser = new FileChooser();
@@ -334,7 +342,7 @@ showPasswordToggle.setOnAction(event -> {
             System.out.println("filepath::"+tfcertif_form.getText());
         }
     }
-    
+   
     @FXML
     public void selectCv() {
         FileChooser fileChooser = new FileChooser();
@@ -348,7 +356,7 @@ showPasswordToggle.setOnAction(event -> {
             System.out.println("filepath::"+tfcv_cl.getText());
         }
     }
-    
+   
     public void SendMail(String destination, String subject, String body) throws GeneralSecurityException{        
     try {
                 // MailService.sendEmail("ymahfoudh55@gmail.com", "test","bonjour");
@@ -357,7 +365,7 @@ showPasswordToggle.setOnAction(event -> {
             e.printStackTrace();
         }
     }
-    
+   
     @FXML
     private void saveEmployeur(ActionEvent event) throws IOException, GeneralSecurityException {
             String nom = tfnom_emp.getText();
@@ -371,9 +379,9 @@ showPasswordToggle.setOnAction(event -> {
             String role="Employeur";
             String confirm_pasword=tfconfirm_password_emp.getText();
 
-            
+           
             try {
-            
+           
             if(       nom.isEmpty()
                     | prenom.isEmpty()
                     | login.isEmpty()
@@ -389,7 +397,7 @@ showPasswordToggle.setOnAction(event -> {
                 alert.setContentText("Tous les champs sont obligatoire !!");
                 alert.showAndWait();
             }else if(confirm_pasword.length() < 8 | !confirm_pasword.equals(password) ){
-                
+               
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Khademni :: Error Message");
                 alert.setHeaderText(null);
@@ -413,8 +421,8 @@ showPasswordToggle.setOnAction(event -> {
                 Employeur emp = new Employeur(nom, prenom, login, password, role, mail, domaine, nom_soc);
                 us.ajouterEmployeur(emp);
                     System.out.println("emp ajouté");
-                
-                    
+               
+                   
                         SendMail(emp.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni.\n  Votre login : "+emp.getLogin()+"\n votre mot de passe : "+emp.getPassword());
                         SendMail("khademni.serviceClient@gmail.com", "Nouvelle inscription", "Bonjour, un nouvel utilisateur  sous le login : "+emp.getLogin()+" ,est inscrit sur l'application avec le role employeur.");
                      
@@ -423,7 +431,7 @@ showPasswordToggle.setOnAction(event -> {
                 alert.setHeaderText(null);
                 alert.setContentText("Vous Etes Inscrit !!");
                 alert.showAndWait();
-                
+               
                 tfnom_emp.setText(null);
                 tfprenom_emp.setText(null);
                 tflogin_emp.setText(null);
@@ -432,10 +440,12 @@ showPasswordToggle.setOnAction(event -> {
                 tfemail_emp.setText(null);
                 tfdomaine_emp.setPromptText("Choisir role");
                 tfconfirm_password_emp.setText(null);
-            
-                
+           
+               
                 login_form.setVisible(true);
                 signup_form_employeur.setVisible(false);
+                side.setVisible(false);
+                role_form.setVisible(false);
                     }
                 }
 
@@ -445,7 +455,7 @@ showPasswordToggle.setOnAction(event -> {
 
            
     }
-    
+   
     @FXML
     private void saveFormateur(ActionEvent event) throws IOException, GeneralSecurityException {
         String nom = tfnom_form.getText();
@@ -457,9 +467,9 @@ showPasswordToggle.setOnAction(event -> {
             String domaine = (String) tfdomaine_form.getSelectionModel().getSelectedItem();
             String role="Formateur";
             String confirm_pasword=tfconfirm_password_form.getText();
-            
+           
             try {
-            
+           
             if(       nom.isEmpty()
                     | prenom.isEmpty()
                     | login.isEmpty()
@@ -475,7 +485,7 @@ showPasswordToggle.setOnAction(event -> {
                 alert.setContentText("Tous les champs sont obligatoire !!");
                 alert.showAndWait();
             }else if(confirm_pasword.length() < 8 | !confirm_pasword.equals(password) ){
-                
+               
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Khademni :: Error Message");
                 alert.setHeaderText(null);
@@ -498,19 +508,19 @@ showPasswordToggle.setOnAction(event -> {
                 if(ValidationEmail(mail)){
                 Formateur f = new Formateur(nom, prenom, login, password, role, mail, domaine,certif);
                 us.ajouterFormateur(f);
-                
-                
-                
+               
+               
+               
                 SendMail(f.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni.\n Veuillez attendez l'activation de votre compte par l'administrateur pour y acceder.\n Votre login : "+f.getLogin()+"\n votre mot de passe : "+f.getPassword());
                 SendMail("khademni.serviceClient@gmail.com", "Nouvelle inscription", "Bonjour, un nouvel utilisateur  sous le login : "+f.getLogin()+" ,est inscrit sur l'application avec le role formateur. Veuillez activer son compte.");
-                
-                                
+               
+                               
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Khademni :: BIENVENNUE");
                 alert.setHeaderText(null);
                 alert.setContentText("Vous Etes Inscrit !!");
                 alert.showAndWait();
-                
+               
                 tfnom_form.setText(null);
              tfprenom_form.setText(null);
             tflogin_form.setText(null);
@@ -519,19 +529,21 @@ showPasswordToggle.setOnAction(event -> {
             tfemail_form.setText(null);
                 tfdomaine_form.setPromptText("Choisir role");
             tfconfirm_password_form.setText(null);
-            
-                
+           
+               
                 login_form.setVisible(true);
                 signup_form_formateur.setVisible(false);
+                side.setVisible(false);
+                role_form.setVisible(false);
                     }
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
         }  
     }
-    
-    
-    
+   
+   
+   
     @FXML
     private void saveClient(ActionEvent event) throws IOException, GeneralSecurityException {
         String nom = tfnom_cl.getText();
@@ -544,9 +556,9 @@ showPasswordToggle.setOnAction(event -> {
             String role="Client";
             float solde=1000;
             String confirm_pasword=tfconfirm_password_cl.getText();
-            
+           
             try {
-            
+           
             if(      nom.isEmpty()
                     | prenom.isEmpty()
                     | login.isEmpty()
@@ -562,7 +574,7 @@ showPasswordToggle.setOnAction(event -> {
                 alert.setContentText("Tous les champs sont obligatoire !!");
                 alert.showAndWait();
             }else if(confirm_pasword.length() < 8 | !confirm_pasword.equals(password) ){
-                
+               
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Khademni :: Error Message");
                 alert.setHeaderText(null);
@@ -585,17 +597,17 @@ showPasswordToggle.setOnAction(event -> {
                 if(ValidationEmail(mail)){
                 Client c = new Client(nom, prenom, login, password, role, mail, domaine,solde,cv);
                 us.ajouterClient(c);
-                
+               
                 SendMail(c.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni.\n Votre login : "+c.getLogin()+"\n votre mot de passe : "+c.getPassword());
                 SendMail("khademni.serviceClient@gmail.com", "Nouvelle inscription", "Bonjour, un nouvel utilisateur  sous le login : "+c.getLogin()+" ,est inscrit sur l'application avec le role client.");
-                                
+                               
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Khademni :: BIENVENNUE");
                 alert.setHeaderText(null);
                 alert.setContentText("Vous Etes Inscrit !!");
                 alert.showAndWait();
-                
-                
+               
+               
             tfnom_cl.setText(null);
             tfprenom_cl.setText(null);
             tflogin_cl.setText(null);
@@ -604,19 +616,21 @@ showPasswordToggle.setOnAction(event -> {
             tfemail_cl.setText(null);
             tfdomaine_cl.setPromptText("Choisir role");
             tfconfirm_password_cl.setText(null);
-                
+               
                 login_form.setVisible(true);
                 signup_form_client.setVisible(false);
+                side.setVisible(false);
+                role_form.setVisible(false);
                     }
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
         }  
     }
-        
+       
    
-    
-    
+   
+   
 //    public void makeFadeOut(String path) {
 //    FadeTransition fadeTransition = new FadeTransition();
 //    fadeTransition.setDuration(Duration.millis(500));
@@ -669,39 +683,39 @@ showPasswordToggle.setOnAction(event -> {
     parallelTransition.play();
 }
 
-    
-    
+   
+   
     public void loadNextScene(String path) throws IOException{
-  
+ 
          // Charger la nouvelle vue
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
         Parent root = loader.load();
 
-        
+       
          // Afficher la nouvelle vue dans la fenêtre principale
         Scene scene = new Scene(root);
         Stage stage = (Stage) rootPane2.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
 
-        
+       
     }
-    
+   
 
     @FXML
     public void login() throws IOException{
         if(login_signin.getText().equals("yassineadmin") && password_signin.getText().equals("adminadmin") )
         {
-                
+               
                      try{
      
-        
+       
         makeFadeOut("UsersListFxml.fxml");
 
 
         }catch(Exception e){
             System.out.println(e.getCause().getMessage());
-        }                   
+        }                  
         }else {
             Utilisateur u = us.findUserByLogin(login_signin.getText(),password_signin.getText());
                 if(u!=null){
@@ -710,8 +724,8 @@ showPasswordToggle.setOnAction(event -> {
                         Employeur emp = (Employeur) u;
                         //Employeur e = new Employeur(u.getId_user(),u.getNom(),u.getPrenom() , u.getLogin(), u.getPassword(), u.getRole(), u.getMail(), u.getDomaine(), u.get,rs.getString("etat"),rs.getString("image"));
                         Utilisateur.setCurrent_User(emp);
-                      
-                                
+                     
+                               
                                 try{    
                                             makeFadeOut("ProfileSettingsFXML.fxml");
 
@@ -730,28 +744,28 @@ showPasswordToggle.setOnAction(event -> {
                         }else{
                         Formateur form = (Formateur) u;
 
-                  
+                 
                         Utilisateur.setCurrent_User(form);
              
                                 try{
-                                      
+                                     
                                        makeFadeOut("ProfileSettingsFXML.fxml");
 
                                        }catch(Exception ex){
                                            System.out.println(ex.getCause().getMessage());
                                        }
                         }
-                                
+                               
 
                     }else if("Client".equals(u.getRole())){
-                        
+                       
                             Client cl = (Client) u;
                         Utilisateur.setCurrent_User(cl);
-                        
-                        
+                       
+                       
                                 try{
-                                      
-                                       makeFadeOut("ProfileSettingsFXML.fxml");
+                                     
+                                       makeFadeOut("/khademni/guiOffre/InterfacePrincipaleFXML.fxml");
 
 
                                        }catch(Exception ex){
@@ -768,13 +782,11 @@ showPasswordToggle.setOnAction(event -> {
                 alert.setContentText("Wrong Email/Password !!");
                 alert.showAndWait();  
                 }
-          
-      }     
+         
+      }    
         }
          
     }
 
-    
-
-    
+   
 

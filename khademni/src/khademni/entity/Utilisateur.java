@@ -25,6 +25,13 @@ public class Utilisateur {
         this.prenom = prenom;
         this.mail = mail;
     }
+
+    public Utilisateur(int id_user, String nom, String prenom, String mail) {
+        this.id_user = id_user;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+    }
     
 /*
 public Utilisateur(int id, String nom, String prenom, String domaine,String mail,String password ) {

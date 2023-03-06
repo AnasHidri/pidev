@@ -385,7 +385,7 @@ void ListeCandidature(ActionEvent event)  {
     int offreId = selectedOff.getId_offre();
     
     try{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/Gui/CandidatureEmployeurFXML.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiOffre/CandidatureEmployeurFXML.fxml"));
         Parent root = loader.load();
         CandidatureEmployeurFXMLController controleur = loader.getController(); 
         controleur.setTextFields(offreId);

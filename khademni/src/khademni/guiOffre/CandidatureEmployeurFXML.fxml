@@ -33,7 +33,7 @@
             <Font name="MV Boli" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="btnRefuser" layoutX="364.0" layoutY="345.0" mnemonicParsing="false" onAction="#refusCandidat" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #832c8d;" text="Refuser" textFill="#fcfcfc">
+      <Button fx:id="btnRefuser" layoutX="271.0" layoutY="345.0" mnemonicParsing="false" onAction="#refusCandidat" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #832c8d;" text="Refuser" textFill="#fcfcfc">
          <font>
             <Font name="MV Boli" size="17.0" />
          </font>
@@ -65,6 +65,11 @@
          </font>
       </Button>
       <TextField fx:id="id_offre1" layoutX="278.0" layoutY="25.0" prefHeight="25.0" prefWidth="122.0" visible="false" />
+      <Button fx:id="btnCV" layoutX="378.0" layoutY="345.0" mnemonicParsing="false" onAction="#OpenCV" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #832c8d;" text="Voir Cv" textFill="#fcfcfc">
+         <font>
+            <Font name="MV Boli" size="17.0" />
+         </font>
+      </Button>
       <AnchorPane id="AnchorPane" layoutX="-1.0" prefHeight="34.0" prefWidth="602.0" style="-fx-background-color: #ffffff;" styleClass="navbar" stylesheets="@design.css">
          <children>
             <Button fx:id="prof" layoutX="544.0" layoutY="5.0" mnemonicParsing="false" onAction="#Profile" text="Profile" />
@@ -72,6 +77,6 @@
             <ComboBox fx:id="liste_ev" layoutX="14.0" layoutY="7.0" prefHeight="26.0" prefWidth="113.0" promptText="Evenement" />
             <ComboBox fx:id="liste_off" layoutX="145.0" layoutY="7.0" prefHeight="26.0" prefWidth="90.0" promptText="Offre" />
      
-         </children></AnchorPane>  
+         </children></AnchorPane>
    </children>
 </AnchorPane>
