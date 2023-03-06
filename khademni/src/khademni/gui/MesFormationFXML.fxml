@@ -10,40 +10,40 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="463.0" prefWidth="794.0" styleClass="login-bg" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.MesFormationFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="login-bg" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.MesFormationFXMLController">
      
     
     <children>
-                 <ImageView fitHeight="479.0" fitWidth="821.0" layoutX="-5.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
+                 <ImageView fitHeight="517.0" fitWidth="903.0" layoutX="-59.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@background2.jpg" />
+            <Image url="@background.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="17.0" layoutY="31.0" style="-fx-background-color: #FFFFFF;">
+      <AnchorPane layoutX="40.0" layoutY="83.0" prefHeight="401.0" prefWidth="761.0" style="-fx-background-color: #FFFFFF;">
          <children>
-                     <AnchorPane prefHeight="56.0" prefWidth="671.0" style="-fx-background-color: #B2CABF;">
-               <children>
-                  <Button fx:id="prof1" layoutX="518.0" layoutY="13.0" mnemonicParsing="false" onAction="#Profile" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#fcf8f8">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <ComboBox fx:id="liste_for" layoutX="312.0" layoutY="13.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
-                  <ComboBox fx:id="liste_off" layoutX="43.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Offre" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
-                  <ComboBox fx:id="liste_ev" layoutX="166.0" layoutY="13.0" prefHeight="25.0" prefWidth="133.0" promptText="Evenement" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
-                  <ComboBox fx:id="pani" layoutX="642.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Panier" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
-               </children>
-            </AnchorPane>
-            <TableView fx:id="tableviewUser" layoutX="10.0" layoutY="60.0" prefHeight="290.0" prefWidth="725.0">
+            <TableView fx:id="tableviewUser" layoutX="40.0" layoutY="104.0" prefHeight="236.0" prefWidth="674.0">
               <columns>
                   <TableColumn fx:id="titreform" prefWidth="371.999963760376" text="Tire formation" />
                 <TableColumn fx:id="description" prefWidth="353.6000671386719" text="Prix" />
               </columns>
             </TableView>
            
-            <TextField fx:id="prixtotal" editable="false" layoutX="25.0" layoutY="357.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css">
+            <TextField fx:id="prixtotal" editable="false" layoutX="121.0" layoutY="41.0" prefHeight="27.0" prefWidth="459.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css">
          
       </TextField>
+         </children>
+      </AnchorPane>
+               <AnchorPane layoutX="40.0" layoutY="21.0" prefHeight="61.0" prefWidth="762.0" style="-fx-background-color: #B2CABF;">
+         <children>
+            <Button fx:id="prof1" layoutX="518.0" layoutY="13.0" mnemonicParsing="false" onAction="#Profile" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#fcf8f8">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="liste_for" layoutX="312.0" layoutY="13.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="liste_off" layoutX="43.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Offre" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="liste_ev" layoutX="166.0" layoutY="13.0" prefHeight="25.0" prefWidth="133.0" promptText="Evenement" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="pani" layoutX="642.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Panier" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
          </children>
       </AnchorPane>
    

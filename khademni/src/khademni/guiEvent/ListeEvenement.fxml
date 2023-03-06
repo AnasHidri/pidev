@@ -19,7 +19,7 @@
             <Image url="@background2.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="40.0" layoutY="16.0" prefHeight="472.0" prefWidth="808.0" style="-fx-background-color: #FFFFFF;">
+      <AnchorPane layoutX="51.0" layoutY="22.0" prefHeight="472.0" prefWidth="808.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <TableView fx:id="tab_ev_liste" layoutX="59.0" layoutY="172.0" prefHeight="248.0" prefWidth="715.0">
               <columns>

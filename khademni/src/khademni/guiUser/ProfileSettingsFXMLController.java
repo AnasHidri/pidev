@@ -105,6 +105,38 @@ public class ProfileSettingsFXMLController implements Initializable {
             private ComboBox<String> pani;
     @FXML
             private Button prof;
+    @FXML
+    private AnchorPane idClient;
+    @FXML
+    private Button prof1;
+    @FXML
+    private ComboBox<?> liste_for1;
+    @FXML
+    private ComboBox<?> liste_off1;
+    @FXML
+    private ComboBox<?> liste_ev1;
+    @FXML
+    private ComboBox<?> pani1;
+    @FXML
+    private HBox cc;
+    @FXML
+    private AnchorPane idEmployeur;
+    @FXML
+    private AnchorPane idAdmin;
+    @FXML
+    private Button prof2;
+    @FXML
+    private ComboBox<?> liste_off2;
+    @FXML
+    private ComboBox<?> liste_ev2;
+    @FXML
+    private Button stat;
+    @FXML
+    private AnchorPane idFormateur;
+    @FXML
+    private Button prof3;
+    @FXML
+    private ComboBox<?> liste_for3;
     /**
      * Initializes the controller class.
      */
@@ -198,10 +230,22 @@ pani.setOnAction(event -> {
             certif.setVisible(false);
             tfcertif.setVisible(false);
             openCertif.setVisible(false);
+            idClient.setVisible(true);
+            
         }else if("Formateur".equals(Utilisateur.Current_User.getRole())){
             cv.setVisible(false);
             tfcv.setVisible(false);
             openCV.setVisible(false);
+            idFormateur.setVisible(true);
+
+        }else if("Employeur".equals(Utilisateur.Current_User.getRole())){
+            certif.setVisible(false);
+            tfcertif.setVisible(false);
+            cv.setVisible(false);
+            tfcv.setVisible(false);
+            openCV.setVisible(false);
+            openCertif.setVisible(false);
+            idEmployeur.setVisible(true);
 
         }else{
             certif.setVisible(false);
@@ -210,8 +254,7 @@ pani.setOnAction(event -> {
             tfcv.setVisible(false);
             openCV.setVisible(false);
             openCertif.setVisible(false);
-
-
+            idAdmin.setVisible(true);
         }
         
         
@@ -371,7 +414,6 @@ pani.setOnAction(event -> {
     }
     
     
-    @FXML
     public void selectCertif() throws SQLException {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter pdfFilter = new FileChooser.ExtensionFilter(
