@@ -75,6 +75,10 @@ public class Cours {
     public String toString() {
         return "Cours{" + "id_cours=" + id_cours + ", file=" + file + ", titre=" + titre + ", description=" + description + '}';
     }
+
+    public String getCoursByFormation() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
 }

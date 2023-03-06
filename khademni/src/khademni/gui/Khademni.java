@@ -27,13 +27,14 @@ public class Khademni extends Application {
         
         try {
           //Parent root = FXMLLoader.load(getClass().getResource("add.fxml"));
-          //Parent root = FXMLLoader.load(getClass().getResource("Formation.fxml"));
+          Parent root = FXMLLoader.load(getClass().getResource("Formation.fxml"));
           //Parent root = FXMLLoader.load(getClass().getResource("modifier.fxml"));
           //Parent root = FXMLLoader.load(getClass().getResource("formationC.fxml"));
-          Parent root = FXMLLoader.load(getClass().getResource("graph.fxml"));
+          //Parent root = FXMLLoader.load(getClass().getResource("graph.fxml"));
           //Parent root = FXMLLoader.load(getClass().getResource("addcours.fxml"));
           //Parent root = FXMLLoader.load(getClass().getResource("cours.fxml"));
           //Parent root = FXMLLoader.load(getClass().getResource("modifierC.fxml"));
+          //Parent root = FXMLLoader.load(getClass().getResource("AfficherCoursFXML.fxml"));
           
             Scene scene = new Scene(root);
             

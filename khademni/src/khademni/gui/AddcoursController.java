@@ -5,6 +5,7 @@
 package khademni.gui;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.time.LocalDate;
@@ -14,7 +15,10 @@ import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -24,6 +28,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import khademni.entity.Cours;
+import khademni.entity.Formation;
 import khademni.services.CoursService;
 import khademni.utils.MyConnection;
 
@@ -34,23 +39,24 @@ import khademni.utils.MyConnection;
  */
 public class AddcoursController implements Initializable {
     
-    @FXML
-    private Button chooseFileButton;
 
     @FXML
     private TextField filePathTextField;
+    
+     @FXML
+    private TextField id_f;
     
     @FXML
     private TextField txttitre;
     @FXML
     private TextArea txtdescription;
 
-    @FXML
-    private Button addButton;
 
     private File selectedFile;
     
     CoursService cs = new CoursService();
+    @FXML
+    private Button btnAjouter;
     
     @FXML
     void chooseFile() {  
@@ -66,6 +72,11 @@ public class AddcoursController implements Initializable {
             filePathTextField.setText(selectedFile.getPath());
         }
     }
+    
+     public void setTextFields(Formation f){
+        id_f.setText(String.valueOf(f.getId_formation()));
+          
+    }
 
     @FXML
     void addFile() {
@@ -79,11 +90,25 @@ public class AddcoursController implements Initializable {
         String description = txtdescription.getText();
         // Récupérer la date courante
         LocalDate currentDate = LocalDate.now();
+        // recuperer id formation 
+        int idf=Integer.valueOf(id_f.getText());
         // Créer un objet Cours avec les informations du fichier
-        
-        Cours cours = new Cours(0, fileName, titre, description);
+        Cours cours = new Cours(idf, filePathTextField.getText(), titre, description);
         // Sauvegarder le cours dans la base de données
-        cs.ajouterCours(cours);
+        cs.ajouterCours(cours, idf);
+        /*
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FormationController.fxml"));
+            Parent root = loader.load();
+            
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) btnAjouter.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+        */
         // Afficher un message de confirmation
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Ajout de cours");
@@ -95,10 +120,13 @@ public class AddcoursController implements Initializable {
         alert.setTitle("Ajout de cours");
         alert.setHeaderText("Erreur : Aucun fichier sélectionné !");
         alert.showAndWait();
+        
+        
     }
 }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         filePathTextField.setText("No file selected");
     }  
 }

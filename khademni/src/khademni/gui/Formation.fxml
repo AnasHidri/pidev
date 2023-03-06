@@ -34,26 +34,12 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </Label>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="65.0" prefWidth="277.0" style="-fx-background-color: #375f7e;" text="Ajouter" textFill="WHITE">
-               <font>
-                  <Font name="Serif Bold" size="20.0" />
-               </font>
-               
-               <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin>
-            </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="58.0" prefWidth="283.0" style="-fx-background-color: #375f7e;" text="Formations" textFill="WHITE">
-               <font>
-                  <Font name="Serif Bold" size="20.0" />
-               </font>
-             
-               
-            </Button>
             <Button fx:id="btnModifier" alignment="CENTER" mnemonicParsing="false" onAction="#modifierFormation" prefHeight="78.0" prefWidth="306.0" style="-fx-background-color: #375f7e;" text="Modifier" textFill="WHITE">
                <font>
                   <Font name="Serif Bold" size="20.0" />
                </font></Button>
+            <Button fx:id="btnCours" mnemonicParsing="false" onAction="#ajouterCours" prefHeight="53.0" prefWidth="282.0" text="Ajouter Cours" />
+            <Button fx:id="AfficherC" mnemonicParsing="false" text="Afficher cours" onAction="#afficherCours"  />
          </children>
       </VBox>
       <GridPane layoutX="239.0" layoutY="230.0" prefHeight="290.0" prefWidth="542.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -85,7 +71,6 @@
                      <HBox.margin>
                         <Insets bottom="2.5" />
                      </HBox.margin></Button>
-                  <Button fx:id="btnAfficher" mnemonicParsing="false" onAction="#Afficher" text="Button" />
                </children>
             </HBox>
          </children>

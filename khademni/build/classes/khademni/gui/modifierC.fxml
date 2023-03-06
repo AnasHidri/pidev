@@ -4,16 +4,34 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.ModifierCController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #375f7e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.ModifierCController">
    <children>
-      <Label layoutX="119.0" layoutY="105.0" text="Titre" />
-      <Label layoutX="117.0" layoutY="167.0" text="Description" />
-      <TextField fx:id="txttitre" layoutX="212.0" layoutY="110.0" />
-      <TextField fx:id="txtdescription" layoutX="212.0" layoutY="163.0" />
-      <Button fx:id="btnConfirmer" layoutX="232.0" layoutY="265.0" mnemonicParsing="false" onAction="#confirmer" prefHeight="34.0" prefWidth="134.0" text="Confirmer" />
+      <Label layoutX="112.0" layoutY="126.0" text="Titre" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Label layoutX="112.0" layoutY="232.0" text="Description" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <TextField fx:id="txttitre" layoutX="212.0" layoutY="123.0" />
+      <TextField fx:id="txtdescription" layoutX="212.0" layoutY="229.0" />
+      <Button fx:id="btnConfirmer" layoutX="235.0" layoutY="301.0" mnemonicParsing="false" onAction="#confirmer" prefHeight="34.0" prefWidth="134.0" style="-fx-background-color: #417193;" text="Confirmer" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
       <TextField fx:id="id" layoutX="370.0" layoutY="80.0" visible="false" />
-      <Label layoutX="117.0" layoutY="209.0" prefHeight="18.0" prefWidth="61.0" text="File" />
-      <TextField fx:id="txtFile" layoutX="213.0" layoutY="206.0" />
+      <Label layoutX="112.0" layoutY="179.0" prefHeight="18.0" prefWidth="61.0" text="File" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <TextField fx:id="txtFile" layoutX="212.0" layoutY="176.0" />
+      <Label layoutX="181.0" layoutY="34.0" text="Modifier votre cours" textFill="WHITE">
+         <font>
+            <Font name="Serif Bold" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -34,7 +34,10 @@
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <TextField fx:id="txtrech" prefHeight="34.0" prefWidth="474.0" />
-                  <Button fx:id="btnpanier" mnemonicParsing="false" onAction="#AjouterPanier" prefHeight="34.0" prefWidth="303.0" text="Ajouter au Panier" />
+                  <Button fx:id="btnpanier" mnemonicParsing="false" onAction="#AjouterPanier" prefHeight="34.0" prefWidth="303.0" style="-fx-background-color: #417193;" text="Ajouter au Panier" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
                </children>
             </HBox>
          </children>
@@ -45,5 +48,10 @@
          </font>
       </Label>
       <TextField fx:id="id" layoutX="53.0" layoutY="116.0" visible="false" />
+      <Button fx:id="btnCours" layoutX="27.0" layoutY="400.0" mnemonicParsing="false" onAction="#voirCours" prefHeight="30.0" prefWidth="98.0" style="-fx-background-color: #417193;" text="Voir Cours" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

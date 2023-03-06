@@ -4,16 +4,27 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="462.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.CoursController">
+<AnchorPane id="AnchorPane" prefHeight="462.0" prefWidth="730.0" style="-fx-background-color: #375f7e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.CoursController">
    <children>
-      <TableView fx:id="table" layoutX="186.0" layoutY="153.0" prefHeight="215.0" prefWidth="387.0">
+      <TableView fx:id="table" layoutX="135.0" layoutY="200.0" prefHeight="206.0" prefWidth="315.0">
         <columns>
           <TableColumn fx:id="titreclm" prefWidth="139.99998474121094" text="Titre" />
-          <TableColumn fx:id="desclm" prefWidth="246.4000244140625" text="Description" />
+          <TableColumn fx:id="desclm" prefWidth="32.79999694824218" text="Description" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
-      <Button fx:id="btnSupprimer" layoutX="547.0" layoutY="82.0" mnemonicParsing="false" onAction="#Supprimer" text="Supprimer" />
-      <Button fx:id="btnModifier" layoutX="173.0" layoutY="70.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
+      <Button fx:id="btnSupprimer" layoutX="505.0" layoutY="95.0" mnemonicParsing="false" onAction="#Supprimer" style="-fx-background-color: #417193;" text="Supprimer" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <Button fx:id="btnModifier" layoutX="135.0" layoutY="95.0" mnemonicParsing="false" onAction="#Modifier" style="-fx-background-color: #417193;" text="Modifier" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <Button fx:id="btnAfficherPDF" layoutX="525.0" layoutY="319.0" mnemonicParsing="false" onAction="#afficherPDF" text="Afficher PDF" />
    </children>
 </AnchorPane>

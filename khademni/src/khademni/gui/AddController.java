@@ -23,6 +23,7 @@ import khademni.entity.Formation;
 import khademni.services.FormationService;
 import khademni.utils.MyConnection;
 import java.sql.SQLException;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.converter.DoubleStringConverter;
@@ -42,7 +43,7 @@ public class AddController {
     private TextArea txtdescription;
 
     @FXML
-    private TextField txtdomaine;
+    private ComboBox txtdomaine;
 
     @FXML
     private TextField txtprix;
@@ -50,26 +51,28 @@ public class AddController {
     @FXML
     private TextField txttitre;
     
-    @FXML
-    private AnchorPane AnchorPane;
     
     Connection myconn =MyConnection.getInstance().getConnexion();
     FormationService fs = new FormationService();
+    @FXML
+    private Button btnCours;
     
 
-    @FXML
     public void initialize() {
+                txtdomaine.getItems().addAll("Web Programming", "Game Developement", "Digital Marketing" , "Video and Animation" , "Data Engineering");
+
+        
         // Définit les contraintes de validation pour chaque champ de saisie
         txttitre.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\sa-zA-Z*")) {
                 txttitre.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
             }
         });
-        txtdomaine.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\sa-zA-Z*")) {
-                txtdomaine.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
-            }
-        });
+//        txtdomaine.textProperty().addListener((observable, oldValue, newValue) -> {
+//            if (!newValue.matches("\\sa-zA-Z*")) {
+//                txtdomaine.setText(newValue.replaceAll("[^\\sa-zA-Z]", ""));
+//            }
+//        });
         txtprix.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 txtprix.setText(newValue.replaceAll("[^\\d]", ""));
@@ -80,7 +83,8 @@ public class AddController {
     @FXML
     private void confirmer() {
         // Vérifie que tous les champs ont été remplis
-        if (txttitre.getText().isEmpty() || txtdomaine.getText().isEmpty() || txtprix.getText().isEmpty() || txtdescription.getText().isEmpty()) {
+        String domaine=(String) txtdomaine.getSelectionModel().getSelectedItem();
+        if (txttitre.getText().isEmpty() || domaine.isEmpty() || txtprix.getText().isEmpty() || txtdescription.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
@@ -90,7 +94,6 @@ public class AddController {
         }
 
         String titre = txttitre.getText();
-        String domaine = txtdomaine.getText();
         double prix = Double.parseDouble(txtprix.getText());
         String description = txtdescription.getText();
         Formation f = new Formation(1,titre, domaine, prix, description);
@@ -105,7 +108,7 @@ public class AddController {
 
         // Réinitialise les champs de saisie
         txttitre.setText("");
-        txtdomaine.setText("");
+        txtdomaine.setPromptText("Choisir domaine");
         txtprix.setText("");
         txtdescription.setText("");
     }   

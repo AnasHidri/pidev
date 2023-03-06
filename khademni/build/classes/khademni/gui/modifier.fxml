@@ -79,7 +79,10 @@
       <TextField fx:id="txtdomaine" layoutX="372.0" layoutY="273.0" />
       <TextField fx:id="txtprix" layoutX="373.0" layoutY="322.0" />
       <TextArea fx:id="txtdescription" layoutX="404.0" layoutY="367.0" prefHeight="113.0" prefWidth="199.0" />
-      <Button fx:id="btnConfirmer" layoutX="566.0" layoutY="265.0" mnemonicParsing="false" onAction="#confirmer" text="Confirmer" />
+      <Button fx:id="btnConfirmer" layoutX="566.0" layoutY="265.0" mnemonicParsing="false" onAction="#confirmer" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #417193;" text="Confirmer" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
       <TextField fx:id="id" layoutX="527.0" layoutY="178.0" visible="false" />
    </children>
 </AnchorPane>

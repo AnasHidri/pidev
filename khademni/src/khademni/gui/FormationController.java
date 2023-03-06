@@ -38,7 +38,7 @@ public class FormationController implements Initializable {
 
 
     @FXML
-    private Button btnAfficher;
+    private Button btnModifier;
     
     @FXML
     private Button btnSupprimer;
@@ -65,6 +65,8 @@ public class FormationController implements Initializable {
 
     
     private Connection myconn =MyConnection.getInstance().getConnexion();
+    @FXML
+    private Button btnCours;
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -107,30 +109,6 @@ public class FormationController implements Initializable {
         }
         table.setItems(filteredList);
     }
-
-
-    
-    @FXML
-   public  void Afficher() {
-       /* try {
-            formationList = FXCollections.observableArrayList();
-            String titre = txtrech.getText();            
-            String sql =("SELECT * FROM formation WHERE titre LIKE '%" + titre + "%'");
-            Statement ste = myconn.createStatement();
-            ResultSet s = ste.executeQuery(sql);
-
-            while (s.next()) {
-                formationList.add(new Formation(s.getString("titre"),s.getString("domaine_formation"),s.getDouble("prix"), s.getString("description")));
-            }
-
-            myconn.close();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-
-        table.setItems(formationList);*/
-    }
-
     @FXML
     void Supprimer(ActionEvent event) { 
         Formation f = table.getSelectionModel().getSelectedItem();
@@ -150,7 +128,7 @@ public class FormationController implements Initializable {
             controleur.setTextFields(f);
             
             Scene scene = new Scene(root);
-            Stage stage = (Stage) btnAfficher.getScene().getWindow();
+            Stage stage = (Stage) btnModifier.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
             loadFormations();
@@ -158,4 +136,48 @@ public class FormationController implements Initializable {
             System.out.println(e.getCause().getMessage());
         }
 }
+
+    @FXML
+    private void ajouterCours(ActionEvent event) {
+        Formation f = table.getSelectionModel().getSelectedItem();
+        try {
+            
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("addcours.fxml"));
+            Parent root = loader.load();
+            
+             AddcoursController controleur = loader.getController();
+            
+            controleur.setTextFields(f);
+            
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) btnCours.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println(e.getCause().getMessage());
+        }
+    }
+    
+    
+    @FXML
+    public void afficherCours(){
+        Formation f = table.getSelectionModel().getSelectedItem();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherCoursFXML.fxml"));
+            Parent root = loader.load();
+            
+            AfficherCoursFXMLController controleur = loader.getController();
+            
+            controleur.setTextFields(f);
+            
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) btnModifier.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+            loadFormations();
+        } catch (IOException e) {
+            System.out.println(e.getCause().getMessage());
+        }
+    }
 }
