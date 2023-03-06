@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -9,55 +10,58 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.ComboBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="651.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiOffre.ListOffreClientFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiOffre.ListOffreClientFXMLController">
     <stylesheets>
         <URL value="@listoffreclientfxml.css" />
     </stylesheets>
    <children>
-      <ImageView fitHeight="635.0" fitWidth="912.0" layoutX="-225.0" layoutY="-23.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="500.0" fitWidth="898.0" layoutX="-76.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@khademni.png" />
+            <Image url="@Background.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="btnPost" layoutX="140.0" layoutY="339.0" mnemonicParsing="false" onAction="#AddCandidature" prefHeight="41.0" prefWidth="135.0" style="-fx-background-color: #832c8d;" text="Postuler" textFill="#fcfcfc">
-         <font>
-            <Font name="MV Boli" size="17.0" />
-         </font>
-      </Button>
-      <TableView fx:id="tvOffre23" layoutX="14.0" layoutY="111.0" prefHeight="184.0" prefWidth="671.0">
-         <columns>
-            <TableColumn fx:id="colTitre" prefWidth="150.0" text="Titre" />
-            <TableColumn fx:id="colDescription" minWidth="0.0" prefWidth="123.0" text="Description" />
-            <TableColumn fx:id="colDomaine" prefWidth="141.0" text="Domaine D'offre" />
-            <TableColumn fx:id="colAdresse" prefWidth="139.0" text="Adresse Societe" />
-            <TableColumn fx:id="colDateDebut" prefWidth="117.0" text="Date debut" />
-         </columns>
-      </TableView>
-      <TextField fx:id="tfRecherche" layoutX="17.0" layoutY="54.0" onAction="#Recherche" prefHeight="34.0" prefWidth="653.0" promptText="Recherche" />
-      <Button fx:id="btnretourne" layoutX="21.0" layoutY="339.0" mnemonicParsing="false" onAction="#retourneinterPrin" prefHeight="41.0" prefWidth="106.0" style="-fx-background-color: #832c8d;" text="&lt;----" textFill="#fcfcfc">
-         <font>
-            <Font name="MV Boli" size="17.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnmescandid" layoutX="516.0" layoutY="339.0" mnemonicParsing="false" onAction="#MesCandidature" prefHeight="41.0" prefWidth="169.0" style="-fx-background-color: #832c8d;" text="Mes Candidatures" textFill="#fcfcfc">
-         <font>
-            <Font name="MV Boli" size="17.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnAnnuler" layoutX="291.0" layoutY="339.0" mnemonicParsing="false" onAction="#AnnulerCandidature" prefHeight="41.0" prefWidth="207.0" style="-fx-background-color: #832c8d;" text="Annuler la Postulation" textFill="#fcfcfc">
-         <font>
-            <Font name="MV Boli" size="17.0" />
-         </font>
-      </Button>
-        <AnchorPane id="AnchorPane" layoutX="-1.0" prefHeight="34.0" prefWidth="602.0" style="-fx-background-color: #ffffff;" styleClass="navbar" stylesheets="@design.css">
+          <AnchorPane layoutX="30.0" layoutY="39.0" prefHeight="56.0" prefWidth="761.0" style="-fx-background-color: #B2CABF;">
          <children>
-            <Button fx:id="prof" layoutX="537.0" layoutY="5.0" mnemonicParsing="false" onAction="#Profile" text="Profile" />
-            <ComboBox fx:id="liste_for" layoutX="14.0" layoutY="5.0" prefHeight="26.0" prefWidth="114.0" promptText="Formation" />
-            <ComboBox fx:id="liste_ev" layoutX="148.0" layoutY="5.0" prefHeight="26.0" prefWidth="113.0" promptText="Evenement" />
-            <ComboBox fx:id="liste_off" layoutX="270.0" layoutY="4.0" prefHeight="26.0" prefWidth="104.0" promptText="Offre" />
-            <ComboBox fx:id="pani" layoutX="387.0" layoutY="5.0" prefHeight="26.0" prefWidth="89.0" promptText="Panier" />
-         </children></AnchorPane>
+            <Button fx:id="prof1" layoutX="531.0" layoutY="13.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#fcf8f8">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="liste_for1" layoutX="312.0" layoutY="13.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="liste_off1" layoutX="43.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Offre" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="liste_ev1" layoutX="166.0" layoutY="13.0" prefHeight="25.0" prefWidth="133.0" promptText="Evenement" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="pani" layoutX="642.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Panier" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="30.0" layoutY="95.0" prefHeight="360.0" prefWidth="761.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <TextField fx:id="tfRecherche" layoutX="111.0" layoutY="27.0" onAction="#Recherche" prefHeight="25.0" prefWidth="500.0" promptText="Recherche" style="-fx-background-color: #FFFFFF;" styleClass="textfield-design" stylesheets="@design.css" />
+            <Button fx:id="btnPost" layoutX="36.0" layoutY="275.0" mnemonicParsing="false" onAction="#AddCandidature" prefHeight="25.0" prefWidth="135.0" style="-fx-background-color: #5965F3;" text="Postuler" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnAnnuler" layoutX="257.0" layoutY="275.0" mnemonicParsing="false" onAction="#AnnulerCandidature" prefHeight="25.0" prefWidth="207.0" style="-fx-background-color: #5965F3;" text="Annuler la Postulation" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+            <TableView fx:id="tvOffre23" layoutX="36.0" layoutY="84.0" prefHeight="172.0" prefWidth="670.0">
+               <columns>
+                  <TableColumn fx:id="colTitre" prefWidth="125.0" text="Titre" />
+                  <TableColumn fx:id="colDescription" minWidth="0.0" prefWidth="139.0" text="Description" />
+                  <TableColumn fx:id="colDomaine" prefWidth="145.0" text="Domaine D'offre" />
+                  <TableColumn fx:id="colAdresse" prefWidth="144.0" text="Nom Société" />
+                  <TableColumn fx:id="colDateDebut" prefWidth="117.0" text="Date debut" />
+               </columns>
+            </TableView>
+            <Button fx:id="btnmescandid" layoutX="537.0" layoutY="275.0" mnemonicParsing="false" onAction="#MesCandidature" prefHeight="35.0" prefWidth="169.0" style="-fx-background-color: #5965F3;" text="Mes Candidatures" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

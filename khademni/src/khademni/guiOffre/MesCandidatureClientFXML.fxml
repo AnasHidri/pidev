@@ -1,30 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.ComboBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="421.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiOffre.MesCandidatureClientFXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiOffre.MesCandidatureClientFXMLController">
    <children>
-      <ImageView fitHeight="635.0" fitWidth="912.0" layoutX="-170.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="514.0" fitWidth="913.0" layoutX="-113.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@khademni.png" />
+            <Image url="@../guiEvent/Background.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="btnretourne" layoutX="48.0" layoutY="410.0" mnemonicParsing="false" onAction="#retourneOffre" prefHeight="41.0" prefWidth="106.0" style="-fx-background-color: #832c8d;" text="&lt;----" textFill="#fcfcfc">
-         <font>
-            <Font name="MV Boli" size="17.0" />
-         </font>
-      </Button>
-      <HBox layoutX="7.0" layoutY="75.0" prefHeight="324.0" prefWidth="728.0">
+      <AnchorPane layoutX="20.0" layoutY="56.0" prefHeight="56.0" prefWidth="761.0" style="-fx-background-color: #B2CABF;">
          <children>
-            <TableView fx:id="tvMesCandidature" prefHeight="319.0" prefWidth="572.0">
+            <Button fx:id="prof1" layoutX="531.0" layoutY="13.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#fcf8f8">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="liste_for1" layoutX="312.0" layoutY="13.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="liste_off1" layoutX="43.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Offre" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="liste_ev1" layoutX="166.0" layoutY="13.0" prefHeight="25.0" prefWidth="133.0" promptText="Evenement" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="pani" layoutX="642.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Panier" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="20.0" layoutY="112.0" prefHeight="360.0" prefWidth="761.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <TableView fx:id="tvMesCandidature" layoutX="34.0" layoutY="54.0" prefHeight="222.0" prefWidth="570.0">
                <columns>
                   <TableColumn fx:id="colTitre" prefWidth="77.0" text="Titre" />
                   <TableColumn fx:id="colDescription" minWidth="0.0" prefWidth="133.0" text="Description" />
@@ -33,21 +40,15 @@
                   <TableColumn fx:id="colDateDebut" prefWidth="103.0" text="Date debut" />
                </columns>
             </TableView>
-            <TableView fx:id="tvMesCandidature1" prefHeight="404.0" prefWidth="138.0">
-              <columns>
-                <TableColumn fx:id="colEtat" prefWidth="137.0" text="Etat" />
-              </columns>
+            <TableView fx:id="tvMesCandidature1" layoutX="603.0" layoutY="54.0" prefHeight="222.0" prefWidth="138.0">
+               <columns>
+                  <TableColumn fx:id="colEtat" prefWidth="137.0" text="Etat" />
+               </columns>
             </TableView>
+         
+              
+          
          </children>
-      </HBox>
-      
-        <AnchorPane id="AnchorPane" layoutX="-1.0" prefHeight="34.0" prefWidth="602.0" style="-fx-background-color: #ffffff;" styleClass="navbar" stylesheets="@design.css">
-         <children>
-            <Button fx:id="prof" layoutX="537.0" layoutY="5.0" mnemonicParsing="false" onAction="#Profile" text="Profile" />
-            <ComboBox fx:id="liste_for" layoutX="14.0" layoutY="5.0" prefHeight="26.0" prefWidth="114.0" promptText="Formation" />
-            <ComboBox fx:id="liste_ev" layoutX="148.0" layoutY="5.0" prefHeight="26.0" prefWidth="113.0" promptText="Evenement" />
-            <ComboBox fx:id="liste_off" layoutX="270.0" layoutY="4.0" prefHeight="26.0" prefWidth="104.0" promptText="Offre" />
-            <ComboBox fx:id="pani" layoutX="387.0" layoutY="5.0" prefHeight="26.0" prefWidth="89.0" promptText="Panier" />
-         </children></AnchorPane>
+      </AnchorPane>
    </children>
 </AnchorPane>

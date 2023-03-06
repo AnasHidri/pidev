@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.ComboBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="825.0" style="-fx-background-color: #375f7e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiFormation.FormationController">
+   <children>
+      <VBox prefHeight="530.0" prefWidth="825.0" style="-fx-background-color: #375f7e;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="197.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Downloads/asloba-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" prefHeight="42.0" prefWidth="274.0" text="Bonjour Mr le Formateur " textFill="WHITE">
+               <font>
+                  <Font name="Serif Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="btnModifier" alignment="CENTER" mnemonicParsing="false" onAction="#modifierFormation" prefHeight="78.0" prefWidth="306.0" style="-fx-background-color: #375f7e;" text="Modifier" textFill="WHITE">
+               <font>
+                  <Font name="Serif Bold" size="20.0" />
+               </font></Button>
+            <Button fx:id="btnCours" mnemonicParsing="false" onAction="#ajouterCours" prefHeight="53.0" prefWidth="282.0" text="Ajouter Cours" />
+            <Button fx:id="AfficherC" mnemonicParsing="false" text="Afficher cours" onAction="#afficherCours"  />
+         </children>
+      </VBox>
+      <GridPane layoutX="239.0" layoutY="230.0" prefHeight="290.0" prefWidth="542.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="134.60001220703126" minHeight="10.0" prefHeight="32.600006103515625" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="251.00001525878906" minHeight="10.0" prefHeight="245.39999389648438" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TableView fx:id="table" prefHeight="248.0" prefWidth="566.0" GridPane.rowIndex="1">
+              <columns>
+                  <TableColumn fx:id="titreclm" prefWidth="67.99999237060547" text="Titre" />
+                  <TableColumn fx:id="dmnclm" prefWidth="134.39996337890625" text="Domaine" />
+                  <TableColumn fx:id="prclm" prefWidth="98.4000244140625" text="Prix" />
+                  <TableColumn fx:id="desclm" prefWidth="253.60000610351562" text="Description" />
+              </columns>
+               
+            </TableView>
+            <HBox prefHeight="38.0" prefWidth="588.0">
+               <children>
+                  <TextField fx:id="txtrech" prefHeight="37.0" prefWidth="386.0" style="-fx-border-color: #375f7e; -fx-background-color: #ffff;">
+                     <HBox.margin>
+                        <Insets bottom="2.5" right="5.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button fx:id="btnSupprimer" mnemonicParsing="false" onAction="#Supprimer" prefHeight="39.0" prefWidth="214.0" style="-fx-background-color: #375f7e;" text="Supprimer">
+                     <HBox.margin>
+                        <Insets bottom="2.5" />
+                     </HBox.margin></Button>
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+      <Pane layoutX="267.0" layoutY="76.0" prefHeight="84.0" prefWidth="558.0" style="-fx-background-color: #417193;" AnchorPane.leftAnchor="267.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="42.0" layoutY="21.0" text="/home/formations" textFill="WHITE">
+               <font>
+                  <Font name="Serif Regular" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="14.0" layoutY="35.0" prefHeight="42.0" prefWidth="215.0" text="Mes Formations" textFill="WHITE">
+               <font>
+                  <Font name="Serif Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+          <AnchorPane prefHeight="56.0" prefWidth="671.0" style="-fx-background-color: #B2CABF;">
+                     <children>
+                        <Button fx:id="prof1" layoutX="518.0" layoutY="13.0" mnemonicParsing="false" onAction="#Profile" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#fcf8f8">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                        <ComboBox fx:id="liste_for" layoutX="312.0" layoutY="13.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+                      
+                     </children>
+                  </AnchorPane>
+   </children>
+</AnchorPane>

@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import javafx.animation.FadeTransition;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
@@ -187,10 +188,14 @@ stat.setOnAction(event -> {
                 showUsers();
                 searchRec();
     rolechoice.getItems().addAll("Client","Formateur","Employeur");
+     makeFadeInTransition() ;
+                showUsers();
+                searchRec();
+    rolechoice.getItems().addAll("Client","Formateur","Employeur");
 
-    } 
-    
- @FXML
+    }
+   
+    @FXML
     private void filterByRole(ActionEvent event) {
     String selectedRole = (String) rolechoice.getSelectionModel().getSelectedItem();
 
@@ -210,35 +215,47 @@ stat.setOnAction(event -> {
     tableviewUser.setItems(filteredData);
 }
 
-    
+
+   
     @FXML
-     public void showUsers(){
-       
-         ObservableList<Utilisateur> list = us.afficherUtilisateurs() ;
-         nomUser.setCellValueFactory(new PropertyValueFactory<>("nom"));
-         prenomUser.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-         roleUser.setCellValueFactory(new PropertyValueFactory<>("login"));
-         emailUser.setCellValueFactory(new PropertyValueFactory<>("mail"));        
-         tableviewUser.setItems(list); 
-     }
+public void showUsers() {
+    ObservableList<Utilisateur> list = us.afficherUtilisateurs();
+
+    ObservableList<Utilisateur> filteredList = FXCollections.observableArrayList();
+
+    for (Utilisateur user : list) {
+        if (user.getRole().equals("Formateur") && user.getEtat().equals("actif")) {
+            filteredList.add(user);
+        } else if (!user.getRole().equals("Formateur")) {
+            filteredList.add(user);
+        }
+    }
+
+    nomUser.setCellValueFactory(new PropertyValueFactory<>("nom"));
+    prenomUser.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+    roleUser.setCellValueFactory(new PropertyValueFactory<>("login"));
+    emailUser.setCellValueFactory(new PropertyValueFactory<>("mail"));
+
+    tableviewUser.setItems(filteredList);
+}
      
      @FXML
     private void ModifierUser(ActionEvent event) throws IOException {
         Utilisateur user = tableviewUser.getSelectionModel().getSelectedItem();
-        
+       
         try{
          // Charger la nouvelle vue
             System.out.println("user.id::::"+user.getId_user());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierUserFXML.fxml"));
         Parent root = loader.load();
-        
+       
        // Obtenir le contrôleur de la nouvelle vue
         ModifierUserFXMLController controleur = loader.getController();
-              
+             
         // Passer les donnees de l'utilisateur actuel au nouveau controleur
         controleur.setTextFields(user);
 
-        
+       
          // Afficher la nouvelle vue dans la fenêtre principale
         Scene scene = new Scene(root);
         Stage stage = (Stage) btn_modifier.getScene().getWindow();
@@ -251,7 +268,7 @@ stat.setOnAction(event -> {
         }
        
     }
-    
+   
     @FXML
     private void SupprimerUtilisateur(ActionEvent event) {
         Utilisateur user = tableviewUser.getSelectionModel().getSelectedItem();
@@ -264,11 +281,23 @@ stat.setOnAction(event -> {
                 alert.showAndWait();  
 
     }
-    
-    
+   
+   
     private void searchRec() {
-    ObservableList<Utilisateur> list = us.afficherUtilisateurs();
-    FilteredList<Utilisateur> filteredData = new FilteredList<>(list, p -> true);
+ObservableList<Utilisateur> list = us.afficherUtilisateurs();
+
+    ObservableList<Utilisateur> filteredList = FXCollections.observableArrayList();
+
+    for (Utilisateur user : list) {
+        if (user.getRole().equals("Formateur") && user.getEtat().equals("actif")) {
+            filteredList.add(user);
+        } else if (!user.getRole().equals("Formateur")) {
+            filteredList.add(user);
+        }
+    }    
+   
+   
+    FilteredList<Utilisateur> filteredData = new FilteredList<>(filteredList, p -> true);
 
     // Set the items of your TableView to the filtered data
     tableviewUser.setItems(filteredData);
@@ -291,7 +320,7 @@ stat.setOnAction(event -> {
                 return true; // Match on the prenom column
             } else if (user.getMail().toLowerCase().contains(lowerCaseFilter)) {
                 return true; // Match on the email column
-            } else if (user.getRole().toLowerCase().contains(lowerCaseFilter)) {
+            } else if (user.getLogin().toLowerCase().contains(lowerCaseFilter)) {
                 return true; // Match on the role column
             } else {
                 return false; // No match
@@ -318,8 +347,8 @@ stat.setOnAction(event -> {
                                            System.out.println(ex.getCause().getMessage());
                                        }
     }
-    
-    
+   
+   
     private void makeFadeInTransition() {
     FadeTransition fadeTransition = new FadeTransition();
         fadeTransition.setDuration(Duration.millis(1000));
@@ -328,6 +357,7 @@ stat.setOnAction(event -> {
         fadeTransition.setToValue(1);
         fadeTransition.play();
     }
+   
     
        @FXML
     private void Profile(ActionEvent event)  throws IOException {
@@ -343,8 +373,7 @@ stat.setOnAction(event -> {
    
    
 }
-    
-     @FXML
+           @FXML
     private void stat(ActionEvent event)  throws IOException {
    
      FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiUser/DashboardFXML.fxml"));

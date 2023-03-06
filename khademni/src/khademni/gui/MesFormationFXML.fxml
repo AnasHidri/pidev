@@ -5,30 +5,47 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="login-bg" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.MesFormationFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="463.0" prefWidth="794.0" styleClass="login-bg" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.MesFormationFXMLController">
      
     
     <children>
-         <AnchorPane id="AnchorPane" layoutX="-1.0" prefHeight="34.0" prefWidth="602.0" style="-fx-background-color: #ffffff;" styleClass="navbar" stylesheets="@design.css">
+                 <ImageView fitHeight="479.0" fitWidth="821.0" layoutX="-5.0" layoutY="-16.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@background2.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="17.0" layoutY="31.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Button fx:id="prof" layoutX="537.0" layoutY="5.0" mnemonicParsing="false" onAction="#Profile" text="Profile" />
-            <ComboBox fx:id="liste_for" layoutX="14.0" layoutY="5.0" prefHeight="26.0" prefWidth="114.0" promptText="Formation" />
-            <ComboBox fx:id="liste_ev" layoutX="148.0" layoutY="5.0" prefHeight="26.0" prefWidth="113.0" promptText="Evenement" />
-            <ComboBox fx:id="liste_off" layoutX="270.0" layoutY="4.0" prefHeight="26.0" prefWidth="104.0" promptText="Offre" />
-            <ComboBox fx:id="pani" layoutX="387.0" layoutY="5.0" prefHeight="26.0" prefWidth="89.0" promptText="Panier" />
-         </children></AnchorPane>
-      <TableView fx:id="tableviewUser" layoutX="14.0" layoutY="66.0" prefHeight="290.0" prefWidth="572.0">
-        <columns>
-            <TableColumn fx:id="titreform" prefWidth="298.39996337890625" text="Tire formation" />
-          <TableColumn fx:id="description" prefWidth="268.79998779296875" text="Prix" />
-        </columns>
-      </TableView>
-     
-      <TextField fx:id="prixtotal" editable="false" layoutX="24.0" layoutY="362.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css">
+                     <AnchorPane prefHeight="56.0" prefWidth="671.0" style="-fx-background-color: #B2CABF;">
+               <children>
+                  <Button fx:id="prof1" layoutX="518.0" layoutY="13.0" mnemonicParsing="false" onAction="#Profile" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#fcf8f8">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <ComboBox fx:id="liste_for" layoutX="312.0" layoutY="13.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+                  <ComboBox fx:id="liste_off" layoutX="43.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Offre" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+                  <ComboBox fx:id="liste_ev" layoutX="166.0" layoutY="13.0" prefHeight="25.0" prefWidth="133.0" promptText="Evenement" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+                  <ComboBox fx:id="pani" layoutX="642.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Panier" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+               </children>
+            </AnchorPane>
+            <TableView fx:id="tableviewUser" layoutX="10.0" layoutY="60.0" prefHeight="290.0" prefWidth="725.0">
+              <columns>
+                  <TableColumn fx:id="titreform" prefWidth="371.999963760376" text="Tire formation" />
+                <TableColumn fx:id="description" prefWidth="353.6000671386719" text="Prix" />
+              </columns>
+            </TableView>
+           
+            <TextField fx:id="prixtotal" editable="false" layoutX="25.0" layoutY="357.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css">
          
       </TextField>
+         </children>
+      </AnchorPane>
    
    
    </children>

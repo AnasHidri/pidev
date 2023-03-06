@@ -5,35 +5,55 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="login-bg" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiUser.UsersListFXMLController">
-    <children> 
-      <TableView fx:id="tableviewUser" layoutX="27.0" layoutY="87.0" prefHeight="269.0" prefWidth="559.0">
-        <columns>
-            <TableColumn fx:id="nomUser" prefWidth="92.79998588562012" text="Nom" />
-          <TableColumn fx:id="prenomUser" prefWidth="132.79998779296875" text="Prenom" />
-            <TableColumn fx:id="roleUser" prefWidth="163.1999969482422" text="Login" />
-            <TableColumn fx:id="emailUser" prefWidth="171.19989013671875" text="EMAIL" />
-        </columns>
-      </TableView>
-      <Button layoutX="502.0" layoutY="366.0" mnemonicParsing="false" onAction="#SupprimerUtilisateur" styleClass="button-design" stylesheets="@design.css" text="Supprimer" textFill="WHITE" />
-      <Button fx:id="btn_modifier" layoutX="433.0" layoutY="366.0" mnemonicParsing="false" onAction="#ModifierUser" styleClass="button-design" stylesheets="@design.css" text="Modifier" textFill="WHITE" />
-      <Button layoutX="502.0" layoutY="47.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="72.0" styleClass="exit" stylesheets="@design.css" text="LogOut" AnchorPane.leftAnchor="502.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="47.0" />
-      <TextField fx:id="Recherche_User" layoutX="24.0" layoutY="362.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css">   
+<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="833.0" styleClass="login-bg" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiUser.UsersListFXMLController">
+    <children>
+         <ImageView fitHeight="503.0" fitWidth="838.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@background2.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="4.0" layoutY="39.0" prefHeight="423.0" prefWidth="830.0" style="-fx-background-color: #FFFFFF;">
+         <children> 
+            <TableView fx:id="tableviewUser" layoutX="14.0" layoutY="102.0" prefHeight="255.0" prefWidth="800.0">
+              <columns>
+                  <TableColumn fx:id="nomUser" prefWidth="146.39999771118164" text="Nom" />
+                <TableColumn fx:id="prenomUser" prefWidth="176.00001525878906" text="Prenom" />
+                  <TableColumn fx:id="roleUser" prefWidth="213.60003662109375" text="Login" />
+                  <TableColumn fx:id="emailUser" prefWidth="264.79998779296875" text="EMAIL" />
+              </columns>
+            </TableView>
+            <Button layoutX="675.0" layoutY="376.0" mnemonicParsing="false" onAction="#SupprimerUtilisateur" style="-fx-background-color: #5965F3;" styleClass="button-design" stylesheets="@design.css" text="Supprimer" textFill="WHITE" />
+            <Button fx:id="btn_modifier" layoutX="551.0" layoutY="376.0" mnemonicParsing="false" onAction="#ModifierUser" style="-fx-background-color: #5965F3;" styleClass="button-design" stylesheets="@design.css" text="Modifier" textFill="WHITE" />
+            <Button layoutX="690.0" layoutY="73.0" mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="112.0" styleClass="exit" stylesheets="@design.css" text="LogOut" />
+            <TextField fx:id="Recherche_User" layoutX="58.0" layoutY="375.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css">   
       </TextField>
-      <Button layoutX="362.0" layoutY="47.0" mnemonicParsing="false" onAction="#showUsers" styleClass="button-design" stylesheets="@design.css" text="Tous les roles" textFill="WHITE" />
-      <Button fx:id="btn_filter" layoutX="277.0" layoutY="47.0" mnemonicParsing="false" onAction="#filterByRole" styleClass="button-design" stylesheets="@design.css" text="Filtrer" textFill="WHITE" />
-      <ComboBox fx:id="rolechoice" layoutX="84.0" layoutY="47.0" prefWidth="150.0" promptText="Choisir role" />
-<AnchorPane id="AnchorPane" layoutX="-1.0" prefHeight="34.0" prefWidth="602.0" style="-fx-background-color: #ffffff;" styleClass="navbar" stylesheets="@design.css">
-         <children>
-            <Button fx:id="prof" layoutX="544.0" layoutY="5.0" mnemonicParsing="false" onAction="#Profile" text="Profile" />
-            <ComboBox fx:id="liste_for" layoutX="409.0" layoutY="5.0" prefHeight="26.0" prefWidth="114.0" promptText="Formation" />
-            <ComboBox fx:id="liste_ev" layoutX="187.0" layoutY="5.0" prefHeight="26.0" prefWidth="113.0" promptText="Evenement" />
-            <ComboBox fx:id="liste_off" layoutX="309.0" layoutY="5.0" prefHeight="26.0" prefWidth="90.0" promptText="Offre" />
-            <ComboBox fx:id="pani" layoutX="97.0" layoutY="4.0" prefHeight="26.0" prefWidth="81.0" promptText="User" />
-            <Button fx:id="stat" layoutX="6.0" layoutY="4.0" mnemonicParsing="false" onAction="#stat" prefHeight="26.0" prefWidth="82.0" text="Dashboard" />
-         </children></AnchorPane>
+            <Button layoutX="439.0" layoutY="73.0" mnemonicParsing="false" onAction="#showUsers" style="-fx-background-color: #5965F3;" styleClass="button-design" stylesheets="@design.css" text="Tous les roles" textFill="WHITE" />
+            <Button fx:id="btn_filter" layoutX="357.0" layoutY="73.0" mnemonicParsing="false" onAction="#filterByRole" style="-fx-background-color: #5965F3;" styleClass="button-design" stylesheets="@design.css" text="Filtrer" textFill="WHITE" />
+            <ComboBox fx:id="rolechoice" layoutX="115.0" layoutY="73.0" prefWidth="150.0" promptText="Choisir role" style="-fx-background-color: #5965F3;" />
+          <AnchorPane layoutX="34.0" layoutY="14.0" prefHeight="49.0" prefWidth="762.0" style="-fx-background-color: #B2CABF;">
+                           <children>
+                              <Button fx:id="prof" layoutX="651.0" layoutY="9.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#fcf8f8">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                              <ComboBox fx:id="liste_for" layoutX="517.0" layoutY="9.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
+                              <ComboBox fx:id="liste_off" layoutX="399.0" layoutY="9.0" prefHeight="31.0" prefWidth="112.0" promptText="Offre" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
+                              <ComboBox fx:id="liste_ev" layoutX="258.0" layoutY="9.0" prefHeight="25.0" prefWidth="133.0" promptText="Evenement" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
+                              <ComboBox fx:id="pani" layoutX="139.0" layoutY="9.0" prefHeight="31.0" prefWidth="112.0" promptText="User" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
+                              <Button fx:id="stat" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#stat" prefHeight="31.0" prefWidth="112.0" style="-fx-background-color: #5965F3;" text="Dashboard" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

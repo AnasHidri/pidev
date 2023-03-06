@@ -27,6 +27,7 @@ import khademni.entity.Utilisateur;
 public class Ligne_CommandeService implements ILigne_commande {
 
      Connection cnx;
+     
 
     public Ligne_CommandeService() {
         cnx = MyConnection.getInstance().getConnexion();
@@ -34,6 +35,7 @@ public class Ligne_CommandeService implements ILigne_commande {
     @Override
     public void ajouterCommande(Ligne_commande p) {
          String titre_formation="";
+         int id_p =0;
               float prix_formation=0;
           try {
              
@@ -51,14 +53,29 @@ public class Ligne_CommandeService implements ILigne_commande {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-          
+              try {
+             
+                         Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
+           
+            String sql = "select id_panier from panier where id_user="+utilisateur.Current_User.getId_user();
+            
+           java.sql.Statement ste = cnx.createStatement();
+            ResultSet s = ste.executeQuery(sql);
+            while (s.next()) {
+
+             id_p=s.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
          try {
              
              
             String sql = "insert into ligne_commande(id_panier,id_formation,prix,titre,status)"
                     + "values (?,?,?,?,?)";
             PreparedStatement ste = cnx.prepareStatement(sql);
-            ste.setInt(1, p.getId_panier());
+            ste.setInt(1,  id_p);
             ste.setInt(2, p.getId_formation());
              ste.setFloat(3, prix_formation);
              ste.setString(4,titre_formation);

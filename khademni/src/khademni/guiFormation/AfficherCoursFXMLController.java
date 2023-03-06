@@ -1,15 +1,16 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package khademni.guiOffre;
+package khademni.guiFormation;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,57 +18,38 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import khademni.entity.Candidature;
-import khademni.entity.Offre;
+import khademni.entity.Cours;
+import khademni.entity.Formation;
 import khademni.gui.Navbar_Navigation;
 import khademni.gui.PanierFXMLController;
-import khademni.services.CandidatureService;
+import khademni.services.CoursService;
 
 /**
  * FXML Controller class
  *
- * @author CYBERLAND
+ * @author hmoud
  */
-public class MesCandidatureClientFXMLController implements Initializable {
+public class AfficherCoursFXMLController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private Label cours;
+    @FXML
+    private TextArea decription;
+    @FXML
+    private Button affC;
+    @FXML
+    private Label formaion;
+    @FXML
+    private TextField id_f;
     
+    CoursService cs = new CoursService();
     @FXML
-    private TableColumn<?, ?> colAdresse;
-
+    private TextField path;
     @FXML
-    private TableColumn<?, ?> colDateDebut;
-
-    @FXML
-    private TableColumn<?, ?> colDateLimite;
-    @FXML
-    private TableColumn<?, ?> colId_Offre;
- 
-    @FXML
-    private Button btnretourne;
-
-    @FXML
-    private TableColumn<?, ?> colDescription;
-
-    @FXML
-    private TableColumn<?, ?> colDomaine;
-
-    @FXML
-    private TableColumn<?, ?> colTitre;
- @FXML
-    private TableColumn<?, ?> colEtat;
-
-    @FXML
-    private TableView<Offre> tvMesCandidature;
-    @FXML
-    private TableView<Candidature> tvMesCandidature1;
-                @FXML
       private ComboBox<String> liste_for;
     
     @FXML
@@ -78,18 +60,16 @@ public class MesCandidatureClientFXMLController implements Initializable {
             private ComboBox<String> pani;
     @FXML
             private Button prof;
-    
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        showOffre1();
-         showOffre2();
-         
-          liste_for.getItems().addAll("Liste formation","Mes formations");
+           liste_for.getItems().addAll("Liste formation","Mes formations");
             liste_ev.getItems().addAll("Liste evenement","Mes participations");
             liste_off.getItems().addAll("Liste offre","Mes candidatures");
             pani.getItems().addAll("Mon panier");
-            
             
             liste_for.setOnAction(event -> {
     String selectedPage = (String) liste_for.getSelectionModel().getSelectedItem();
@@ -158,39 +138,33 @@ pani.setOnAction(event -> {
         }
     } 
 });
+        // TODO
     }    
     
-         public void showOffre1(){
-  CandidatureService cs =new CandidatureService(); 
-ObservableList<Offre> mesCandidatures = cs.afficherOffreClient1();
-
-
-colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
-colDescription.setCellValueFactory(new PropertyValueFactory <>("description"));
-colAdresse.setCellValueFactory(new PropertyValueFactory <>("adresse_societe"));
-colDomaine.setCellValueFactory(new PropertyValueFactory <>("domaine_offre"));
-colDateDebut.setCellValueFactory(new PropertyValueFactory <>("date_debut"));
-
-
-       tvMesCandidature.setItems(mesCandidatures);
-}  
-             public void showOffre2(){
-  CandidatureService cs =new CandidatureService(); 
-ObservableList<Candidature> mesCandidatures = cs.afficherCandidatureClient2();
-
-colEtat.setCellValueFactory(new PropertyValueFactory <>("etat"));
-
-       tvMesCandidature1.setItems(mesCandidatures);
-}  
-   
-    @FXML
-    void retourneOffre(ActionEvent event) throws IOException {
-SceneController SC = new SceneController();
-    SC.Scene5(event);
+    
+    public void setTextFields(Formation f){
+        
+        id_f.setText(String.valueOf(f.getId_formation()));
+        Cours c=cs.getCoursByFormationId(f.getId_formation());
+        formaion.setText(f.getTitre());  
+        String d=c.getDescription();
+       decription.setText(d);
+       cours.setText(c.getTitre());
+       path.setText(c.getFile());
+       
     }
     
-    
-         @FXML
+    @FXML
+    public void openCours(){
+          try {
+              File file = new File(path.getText());
+            Desktop.getDesktop().open(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+      
+        @FXML
     private void Profile(ActionEvent event)  throws IOException {
    
      FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiUser/ProfileSettingsFXML.fxml"));
@@ -204,6 +178,4 @@ SceneController SC = new SceneController();
    
    
 }
-    
-    
 }

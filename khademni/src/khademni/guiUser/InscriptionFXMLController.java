@@ -765,7 +765,7 @@ showPasswordToggle.setOnAction(event -> {
                        
                                 try{
                                      
-                                       makeFadeOut("/khademni/guiOffre/InterfacePrincipaleFXML.fxml");
+                                       makeFadeOut("/khademni/guiFormation/formationC.fxml");
 
 
                                        }catch(Exception ex){
