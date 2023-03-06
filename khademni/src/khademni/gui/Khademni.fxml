@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="507.0" prefWidth="915.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.gui.Controller">
+   <children>
+      <Button fx:id="btnafficher" layoutX="644.0" layoutY="435.0" mnemonicParsing="false" onAction="#afficher" prefHeight="40.0" prefWidth="105.0" text="Afficher">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnajouter" layoutX="62.0" layoutY="435.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="40.0" prefWidth="105.0" text="Ajouter" textFill="#43dc14">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnsupprimer" layoutX="383.0" layoutY="435.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="40.0" prefWidth="106.0" text="Supprimer" textFill="RED">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="67.0" layoutY="14.0" prefHeight="40.0" prefWidth="124.0" text="ID Formation">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="61.0" prefHeight="34.0" prefWidth="124.0" text="Titre*" textAlignment="CENTER">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="107.0" prefHeight="40.0" prefWidth="124.0" text="Domaine Formation*">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="62.0" layoutY="200.0" prefHeight="40.0" prefWidth="124.0" text="Description*">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtid" layoutX="200.0" layoutY="21.0" prefHeight="26.0" prefWidth="124.0" />
+      <TextField fx:id="txttitre" layoutX="200.0" layoutY="65.0" prefHeight="26.0" prefWidth="124.0" />
+      <TextField fx:id="txtdomaine" layoutX="200.0" layoutY="114.0" prefHeight="26.0" prefWidth="124.0" />
+      <TextArea fx:id="txtdescription" layoutX="195.0" layoutY="200.0" prefHeight="200.0" prefWidth="252.0" />
+      <Accordion layoutX="613.0" layoutY="145.0" />
+      <TableView fx:id="table" layoutX="502.0" layoutY="110.0" prefHeight="260.0" prefWidth="389.0">
+        <columns>
+          <TableColumn fx:id="idcolomn" prefWidth="116.80001831054688" text="ID Formation" />
+          <TableColumn fx:id="titrecolomn" prefWidth="94.4000244140625" text="Titre" />
+            <TableColumn fx:id="domainecolomn" prefWidth="91.99993896484375" text="Domaine" />
+            <TableColumn fx:id="prixcolomn" prefWidth="84.7999267578125" text="Prix" />
+        </columns>
+      </TableView>
+      <Label layoutX="67.0" layoutY="145.0" prefHeight="34.0" prefWidth="124.0" text="Prix*">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtprix" layoutX="200.0" layoutY="153.0" prefHeight="26.0" prefWidth="124.0" />
+      <Label alignment="CENTER" layoutX="501.0" layoutY="33.0" prefHeight="63.0" prefWidth="390.0" text="Liste des formations" underline="true">
+         <font>
+            <Font name="Calibri" size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
