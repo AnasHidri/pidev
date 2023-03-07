@@ -178,7 +178,7 @@ pani.setOnAction(event -> {
         @FXML
     private void Profile(ActionEvent event)  throws IOException {
    
-     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiUser/ProfileSettingsFXML.fxml"));
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/gui/HistoriqueFXML.fxml"));
          Stage stage = new Stage();
          
          stage.setScene(new Scene(loader.load()));

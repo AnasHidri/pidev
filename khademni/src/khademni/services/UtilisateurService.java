@@ -103,6 +103,7 @@ public class UtilisateurService implements IUtilisateurService {
             ste.setString(9, c.getCv());
             ste.executeUpdate();
             System.out.println("Client ajouté");
+        
             
              
         } catch (SQLException ex) {
@@ -126,6 +127,7 @@ public class UtilisateurService implements IUtilisateurService {
             System.out.println("Utilisateur modifié");
         } catch (SQLException ex) {
             System.out.println(ex);
+            
         }
     }
     public void modifierProfil(Utilisateur u) {

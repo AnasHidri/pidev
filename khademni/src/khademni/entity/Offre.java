@@ -18,15 +18,11 @@ public class Offre {
     private String titre ,description,adresse_societe,domaine_offre;
     private Date date_debut;
     private String etat;
-    private int count;
+   
 
    
 
-    public Offre(int id_offre, String domaine_offre, int count) {
-        this.id_offre = id_offre;
-        this.domaine_offre = domaine_offre;
-        this.count = count;
-    }
+   
 
     public Offre() {
     }
@@ -100,9 +96,7 @@ public class Offre {
     public String getTitre() {
         return titre;
     }
- public int getCount() {
-        return count;
-    }
+
     public String getDescription() {
         return description;
     }
@@ -125,10 +119,7 @@ public class Offre {
         this.titre = titre;
     }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
-
+ 
     public void setDescription(String description) {
         this.description = description;
     }
@@ -208,7 +199,7 @@ public class Offre {
 
     @Override
     public String toString() {
-        return "Offre{" + "id_offre=" + id_offre + ", id_user=" + id_user + ", titre=" + titre + ", description=" + description + ", adresse_societe=" + adresse_societe + ", domaine_offre=" + domaine_offre + ", date_debut=" + date_debut + ", etat=" + etat + ", count=" + count + '}';
+        return "Offre{" + "id_offre=" + id_offre + ", id_user=" + id_user + ", titre=" + titre + ", description=" + description + ", adresse_societe=" + adresse_societe + ", domaine_offre=" + domaine_offre + ", date_debut=" + date_debut + ", etat=" + etat +  '}';
     }
     
 

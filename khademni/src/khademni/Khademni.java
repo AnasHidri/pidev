@@ -26,8 +26,9 @@ public class Khademni {
         
         Connection myconn =MyConnection.getInstance().getConnexion();
         
-        PanierService p = new PanierService();
-        Panier panier = new Panier(10,100);
+       // PanierService p = new PanierService();
+        //Panier panier = new Panier(10,100);
+        
        //p.ajouterPanier(panier);
       // p.modifierPanier(panier);
       // Ligne_CommandeService cm= new Ligne_CommandeService();

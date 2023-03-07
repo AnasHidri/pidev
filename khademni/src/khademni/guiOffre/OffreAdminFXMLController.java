@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -31,6 +32,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import khademni.entity.Offre;
+import khademni.gui.Navbar_Navigation;
+import khademni.gui.PanierFXMLController;
 import khademni.services.OffreService;
 
 /**
@@ -88,6 +91,20 @@ public class OffreAdminFXMLController implements Initializable {
 
     @FXML
     private TableView<Offre> tvOffre;
+         @FXML
+      private ComboBox<String> liste_for;
+    
+    @FXML
+       private ComboBox<String> liste_ev;
+    @FXML
+            private ComboBox<String> liste_off;
+    @FXML
+            private ComboBox<String> pani;
+     @FXML
+            private Button stat;
+    @FXML
+            private Button prof;
+
 
    
   
@@ -95,7 +112,69 @@ public class OffreAdminFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          showOffre();
-        
+           liste_for.getItems().addAll("Liste formation");
+            liste_ev.getItems().addAll("Liste evenement");
+            liste_off.getItems().addAll("Liste offre");
+            pani.getItems().addAll("Liste user", "Liste activation");
+            
+               
+           liste_for.setOnAction(event -> {
+    String selectedPage = (String) liste_for.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Liste formation")) {
+        // navigate to Page 1
+    }
+});
+
+liste_ev.setOnAction(event -> {
+    String selectedPage = (String) liste_ev.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Liste evenement")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiEvent/ListeEvenementAD.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    } 
+});
+
+liste_off.setOnAction(event -> {
+    String selectedPage = (String) liste_off.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Liste offre")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiOffre/OffreAdminFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    } 
+});
+
+pani.setOnAction(event -> {
+    String selectedPage = (String) pani.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Liste user")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiUser/UsersListFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    } else if (selectedPage.equals("Liste activation")) {
+        Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiUser/ActivationFormateurFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    } 
+});
 
     }   
     @FXML
@@ -282,7 +361,7 @@ try {
             @FXML
     private void Profile(ActionEvent event)  throws IOException {
    
-     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiUser/ProfileSettingsFXML.fxml"));
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/gui/HistoriqueFXML.fxml"));
          Stage stage = new Stage();
          
          stage.setScene(new Scene(loader.load()));

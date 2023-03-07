@@ -48,6 +48,7 @@ import khademni.entity.Client;
 import khademni.entity.Employeur;
 import khademni.entity.Formateur;
 import khademni.entity.Utilisateur;
+import khademni.services.PanierService;
 import khademni.utils.MyConnection;
 import khademni.services.UtilisateurService;
 
@@ -710,7 +711,7 @@ showPasswordToggle.setOnAction(event -> {
                      try{
      
        
-        makeFadeOut("UsersListFxml.fxml");
+        makeFadeOut("/khademni/guiUser/UsersListFxml.fxml");
 
 
         }catch(Exception e){
@@ -727,7 +728,7 @@ showPasswordToggle.setOnAction(event -> {
                      
                                
                                 try{    
-                                            makeFadeOut("EmployeurFXML.fxml");
+                                            makeFadeOut("/khademni/guiOffre/EmployeurFXML.fxml");
 
 
                                        }catch(Exception ex){
@@ -758,9 +759,11 @@ showPasswordToggle.setOnAction(event -> {
                                
 
                     }else if("Client".equals(u.getRole())){
-                       
+                      
                             Client cl = (Client) u;
                         Utilisateur.setCurrent_User(cl);
+                            PanierService ps = new PanierService();
+                            ps.ajouterPanier(Utilisateur.Current_User.getId_user());
                        
                        
                                 try{

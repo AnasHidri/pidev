@@ -74,22 +74,16 @@ public class ModifierUserFXMLController implements Initializable {
          String nom=tfnom2.getText();
          String prenom=tfprenom2.getText();
          String role=tfrole2.getText();
-         String etat=cbetat.getValue().toString();
-         System.out.println("cbetat.getValue().toString()"+cbetat.getValue().toString());
+        
+  
          String mail=tfmail2.getText();
          String domaine ="";
          String password ="";
          
-         Utilisateur user =new Utilisateur(id,nom,prenom,"",role,etat,mail,domaine,password);
+         Utilisateur user =new Utilisateur(id,nom,prenom,"",role,"",mail,domaine,password);
            us.modifierUtilisateur(user);
            
-           if("actif".equals(etat)){
-             try {
-                 SendMail(mail, "Khadamni, Activation du compte ", "Bonjour, votre compte est activé par l'admin, vous pouvez y accéder.");
-             } catch (GeneralSecurityException ex) {
-                 System.out.println(ex.getMessage());
-             }
-           }
+           
            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Khademni :: Success Message");

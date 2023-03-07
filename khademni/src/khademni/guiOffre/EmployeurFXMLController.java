@@ -207,7 +207,7 @@ liste_off.setOnAction(event -> {
     
 public void showOffre1(){
   OffreService os =new OffreService(); 
-ObservableList<Offre> list1 = os.afficherOffre();
+ObservableList<Offre> list1 = os.afficherOffreById();
 colTitre.setCellValueFactory(new PropertyValueFactory <>("titre"));
 colDescription.setCellValueFactory(new PropertyValueFactory <>("description"));
 colAdresse_societe.setCellValueFactory(new PropertyValueFactory <>("adresse_societe"));
@@ -251,7 +251,7 @@ else if (!date_debut.equals(currentDate)) {
 
 else {
             o =new Offre(2, titre, des, soc, off, datedeb);
-
+                System.out.println(o);
          os.ajouterOffre(o);
           Alert alert = new Alert(AlertType.INFORMATION);
     alert.setContentText("Offre Ajoutée");
@@ -266,7 +266,7 @@ String subject = "Une offre Ajoutée";
 String message = "Une nouvelle offre a été Ajoutée avec succès.";
 
 try {
-    sendEmail(senderEmail, senderPassword, receiverEmail, subject, message);
+    sendEmail1(senderEmail, senderPassword, receiverEmail, subject, message);
 } catch (MessagingException ex) {
     System.out.println("Erreur lors de l'envoi de l'email : " + ex.getMessage());
 }
@@ -362,7 +362,7 @@ String subject = "Une offre Modifiée";
 String message = "Une nouvelle offre a été Modifiée avec succès.";
 
 try {
-    sendEmail3(senderEmail, senderPassword, receiverEmail, subject, message);
+    sendEmail1(senderEmail, senderPassword, receiverEmail, subject, message);
 } catch (MessagingException ex) {
     System.out.println("Erreur lors de l'envoi de l'email : " + ex.getMessage());
 }
@@ -398,31 +398,7 @@ void ListeCandidature(ActionEvent event)  {
     }
 }
 
-public static void sendEmail(String senderEmail, String senderPassword, String receiverEmail, String subject, String message) throws MessagingException {
-   
-    Properties props = new Properties();
-    props.put("mail.smtp.auth", "true");
-    props.put("mail.smtp.starttls.enable", "true");
-    props.put("mail.smtp.host", "smtp.gmail.com");
-    props.put("mail.smtp.port", "587");
 
-    Session session = Session.getInstance(props, new Authenticator() {
-        protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication("khademni.serviceClient@gmail.com", "iptppxmbutpkhtee");
-        }
-    });
-
-    Message email = new MimeMessage(session);
-    email.setFrom(new InternetAddress("khademni.serviceClient@gmail.com"));
-    email.setRecipients(Message.RecipientType.TO, InternetAddress.parse("achour.rihab2000@gmail.com"));
-
-    email.setSubject("offre");
-
-
-    Transport.send(email);
-
-    System.out.println("Email sent successfully.");
-}
 public static void sendEmail1(String senderEmail, String senderPassword, String receiverEmail, String subject, String message) throws MessagingException {
    
     Properties props = new Properties();
@@ -443,7 +419,7 @@ public static void sendEmail1(String senderEmail, String senderPassword, String 
 
     email.setSubject("offre");
     //email.setText("offre ajoutée avec succes");
-    email.setText("offre Supprimée avec succes");
+    email.setText("Traitement fait avec success");
    // email.setText("offre modifiée avec succes");
 
     Transport.send(email);
@@ -451,34 +427,7 @@ public static void sendEmail1(String senderEmail, String senderPassword, String 
     System.out.println("Email sent successfully.");
 }
 
-    
-    
-    public static void sendEmail3(String senderEmail, String senderPassword, String receiverEmail, String subject, String message) throws MessagingException {
    
-    Properties props = new Properties();
-    props.put("mail.smtp.auth", "true");
-    props.put("mail.smtp.starttls.enable", "true");
-    props.put("mail.smtp.host", "smtp.gmail.com");
-    props.put("mail.smtp.port", "587");
-
-    Session session = Session.getInstance(props, new Authenticator() {
-        protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication("khademni.serviceClient@gmail.com", "iptppxmbutpkhtee");
-        }
-    });
-
-    Message email = new MimeMessage(session);
-    email.setFrom(new InternetAddress("khademni.serviceClient@gmail.com"));
-    email.setRecipients(Message.RecipientType.TO, InternetAddress.parse("achour.rihab2000@gmail.com"));
-
-    email.setSubject("offre");
-    
-   email.setText("offre modifiée avec succes");
-
-    Transport.send(email);
-
-    System.out.println("Email sent successfully.");
-}
 
      @FXML
     private void Profile(ActionEvent event)  throws IOException {

@@ -39,7 +39,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import static khademni.guiOffre.EmployeurFXMLController.sendEmail;
+import static khademni.guiOffre.EmployeurFXMLController.sendEmail1;
 import khademni.entity.Candidature;
 import khademni.entity.Offre;
 import khademni.gui.Navbar_Navigation;

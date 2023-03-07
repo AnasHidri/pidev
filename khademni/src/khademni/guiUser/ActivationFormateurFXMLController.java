@@ -66,7 +66,7 @@ public class ActivationFormateurFXMLController implements Initializable {
     @FXML
             private ComboBox<String> pani;
      @FXML
-            private ComboBox<String> stat;
+            private Button stat;
     @FXML
             private Button prof;
 
@@ -80,7 +80,7 @@ public class ActivationFormateurFXMLController implements Initializable {
             liste_ev.getItems().addAll("Liste evenement");
             liste_off.getItems().addAll("Liste offre");
             pani.getItems().addAll("Liste user", "Liste activation");
-            stat.getItems().addAll("Meilleur formations", "Role utilisateur", "Meilleur evenement");
+          
             
             
            liste_for.setOnAction(event -> {
@@ -142,35 +142,7 @@ pani.setOnAction(event -> {
 });
         
 
-stat.setOnAction(event -> {
-    String selectedPage = (String) stat.getSelectionModel().getSelectedItem();
 
-    if (selectedPage.equals("Meilleur formations")) {
-           Navbar_Navigation SC = new Navbar_Navigation();
-       String ch= "/khademni/gui/PanierGraph.fxml";
-        try {
-            SC.naviger((ActionEvent) event, ch);
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-    } else if (selectedPage.equals("Role utilisateur")) {
-        Navbar_Navigation SC = new Navbar_Navigation();
-       String ch= "/khademni/guiUser/DashboardFXML.fxml";
-        try {
-            SC.naviger((ActionEvent) event, ch);
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-    } else if (selectedPage.equals("Meilleur evenement")) {
-        Navbar_Navigation SC = new Navbar_Navigation();
-       String ch= "/khademni/guiEvent/StatEvAD.fxml";
-        try {
-            SC.naviger((ActionEvent) event, ch);
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-    } 
-});
         
                 showUsers();
     }  
@@ -279,7 +251,7 @@ public void showUsers() {
        @FXML
     private void Profile(ActionEvent event)  throws IOException {
    
-     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiUser/ProfileSettingsFXML.fxml"));
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/gui/HistoriqueFXML.fxml"));
          Stage stage = new Stage();
          
          stage.setScene(new Scene(loader.load()));

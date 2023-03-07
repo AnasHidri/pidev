@@ -37,7 +37,7 @@ public class OffreService implements IOffre   {
            System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
          try {
               
-            String sql = "INSERT INTO offre(id_user,titre,description,adresse_societe,domaine_offre,date_debut,date_limite)"
+            String sql = "INSERT INTO offre(id_user,titre,description,adresse_societe,domaine_offre,date_debut)"
                     + "VALUES (?,?,?,?,?,?)";
             
             PreparedStatement ste = myconn.prepareStatement(sql);
@@ -105,7 +105,38 @@ public class OffreService implements IOffre   {
         ObservableList<Offre> OffreList = FXCollections.observableArrayList();
 
         try {
-            String sql = "select * from offre  ";
+            String sql = "select * from offre";
+            Statement ste = myconn.createStatement();
+            ResultSet s = ste.executeQuery(sql);
+            while (s.next()) {
+
+                Offre o = new Offre(s.getInt(1),
+                       s.getInt(2),
+                       s.getString("titre"),
+                       s.getString("description"),
+                       s.getString("adresse_societe"),
+                       s.getString("domaine_offre"),
+                       s.getDate(7),
+                        
+                       s.getString("etat"));
+
+                       OffreList.add(o);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return OffreList;
+    }
+    
+    
+    public ObservableList<Offre> afficherOffreById() {
+       
+        ObservableList<Offre> OffreList = FXCollections.observableArrayList();
+             Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
+        try {
+            String sql = "select * from offre where id_user= "+utilisateur.Current_User.getId_user();
             Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {

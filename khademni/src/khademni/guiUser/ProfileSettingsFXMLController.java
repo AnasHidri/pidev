@@ -94,7 +94,6 @@ public class ProfileSettingsFXMLController implements Initializable {
     @FXML
          private AnchorPane rootPane;
     
-        @FXML
       private ComboBox<String> liste_for;
     
     @FXML
@@ -110,13 +109,13 @@ public class ProfileSettingsFXMLController implements Initializable {
     @FXML
     private Button prof1;
     @FXML
-    private ComboBox<?> liste_for1;
+    private ComboBox liste_for1;
     @FXML
-    private ComboBox<?> liste_off1;
+    private ComboBox liste_off1;
     @FXML
-    private ComboBox<?> liste_ev1;
+    private ComboBox liste_ev1;
     @FXML
-    private ComboBox<?> pani1;
+    private ComboBox pani1;
     @FXML
     private HBox cc;
     @FXML
@@ -137,21 +136,23 @@ public class ProfileSettingsFXMLController implements Initializable {
     private Button prof3;
     @FXML
     private ComboBox<?> liste_for3;
+    @FXML
+    private ComboBox<?> liste_for2;
     /**
      * Initializes the controller class.
      */
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-           liste_for.getItems().addAll("Liste formation","Mes formations");
-            liste_ev.getItems().addAll("Liste evenement","Mes participations");
-            liste_off.getItems().addAll("Liste offre","Mes candidatures");
-            pani.getItems().addAll("Mon panier");
+           liste_for1.getItems().addAll("Liste formation","Mes formations");
+            liste_ev1.getItems().addAll("Liste evenement","Mes participations");
+            liste_off1.getItems().addAll("Liste offre","Mes candidatures");
+            pani1.getItems().addAll("Mon panier");
             
             
             
-liste_for.setOnAction(event -> {
-    String selectedPage = (String) liste_for.getSelectionModel().getSelectedItem();
+liste_for1.setOnAction(event -> {
+    String selectedPage = (String) liste_for1.getSelectionModel().getSelectedItem();
 
     if (selectedPage.equals("Liste formation")) {
         // navigate to Page 1
@@ -160,8 +161,8 @@ liste_for.setOnAction(event -> {
     } 
 });
 
-liste_ev.setOnAction(event -> {
-    String selectedPage = (String) liste_ev.getSelectionModel().getSelectedItem();
+liste_ev1.setOnAction(event -> {
+    String selectedPage = (String) liste_ev1.getSelectionModel().getSelectedItem();
 
     if (selectedPage.equals("Liste evenement")) {
            Navbar_Navigation SC = new Navbar_Navigation();
@@ -182,8 +183,8 @@ liste_ev.setOnAction(event -> {
     } 
 });
 
-liste_off.setOnAction(event -> {
-    String selectedPage = (String) liste_off.getSelectionModel().getSelectedItem();
+liste_off1.setOnAction(event -> {
+    String selectedPage = (String) liste_off1.getSelectionModel().getSelectedItem();
 
     if (selectedPage.equals("Liste offre")) {
            Navbar_Navigation SC = new Navbar_Navigation();
@@ -204,8 +205,8 @@ liste_off.setOnAction(event -> {
     } 
 });
 
-pani.setOnAction(event -> {
-    String selectedPage = (String) pani.getSelectionModel().getSelectedItem();
+pani1.setOnAction(event -> {
+    String selectedPage = (String) pani1.getSelectionModel().getSelectedItem();
 
     if (selectedPage.equals("Mon panier")) {
            Navbar_Navigation SC = new Navbar_Navigation();

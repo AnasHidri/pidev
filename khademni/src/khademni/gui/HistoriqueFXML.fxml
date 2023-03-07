@@ -42,7 +42,7 @@
       </AnchorPane>
      <AnchorPane layoutX="32.0" layoutY="31.0" prefHeight="70.0" prefWidth="848.0" style="-fx-background-color: #B2CABF;">
          <children>
-            <Button fx:id="prof" layoutX="721.0" layoutY="19.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#fcf8f8">
+            <Button fx:id="prof" layoutX="721.0" layoutY="19.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #5965F3;" text="Historique" textFill="#fcf8f8">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

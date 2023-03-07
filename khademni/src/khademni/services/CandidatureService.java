@@ -141,7 +141,7 @@ public ObservableList<Candidature> afficherCandidatureEmployeur3(int id) {
            System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
        ObservableList<Offre> CandidatureOffreList = FXCollections.observableArrayList();
         try {
-           String sql = "select offre.titre,offre.description,offre.adresse_societe,offre.domaine_offre,offre.date_debut,offre.date_limite from  offre,candidature where  offre.id_offre=candidature.id_offre and candidature.id_user="+utilisateur.Current_User.getId_user();
+           String sql = "select offre.titre,offre.description,offre.adresse_societe,offre.domaine_offre,offre.date_debut from  offre,candidature where  offre.id_offre=candidature.id_offre and candidature.id_user="+utilisateur.Current_User.getId_user();
             Statement ste = myconn.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {

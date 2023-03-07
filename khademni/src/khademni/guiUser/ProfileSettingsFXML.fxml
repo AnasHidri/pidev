@@ -303,7 +303,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <ComboBox fx:id="liste_for" layoutX="517.0" layoutY="9.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="liste_for2" layoutX="517.0" layoutY="9.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
             <ComboBox fx:id="liste_off2" layoutX="399.0" layoutY="9.0" prefHeight="31.0" prefWidth="112.0" promptText="Offre" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
             <ComboBox fx:id="liste_ev2" layoutX="258.0" layoutY="9.0" prefHeight="25.0" prefWidth="133.0" promptText="Evenement" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
             <ComboBox fx:id="pani" layoutX="139.0" layoutY="9.0" prefHeight="31.0" prefWidth="112.0" promptText="User" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />

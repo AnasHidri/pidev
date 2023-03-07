@@ -59,7 +59,7 @@ and open the template in the editor.
     -fx-underline:true;
    
 }
-.comboBox .list-cell {
+.comboBox  {
     -fx-text-fill: white; /* changer la couleur du texte en rouge */
     -fx-font-size: 15px;
       -fx-font-weight: bold;/* changer la taille de police à 14px */

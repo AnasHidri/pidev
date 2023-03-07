@@ -85,8 +85,30 @@ public class EvenementService implements IEvenement<Evenement> {
     @Override
     public ObservableList<Evenement> getAll() {
         ObservableList<Evenement> evenements = FXCollections.observableArrayList();
+
         try {
             String sql = "select * from evenement";
+            Statement ste = cnx.createStatement();
+            ResultSet s = ste.executeQuery(sql);
+            while (s.next()) {
+
+                Evenement e = new Evenement(s.getInt(1),s.getInt(2), s.getDate(3),s.getDate(4),
+                   s.getString("titre"), s.getString("description"), s.getString("nom_societe"), s.getString("lieu"));
+                evenements.add(e);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return evenements;
+    }
+    
+        public ObservableList<Evenement> getAllById() {
+        ObservableList<Evenement> evenements = FXCollections.observableArrayList();
+           Utilisateur utilisateur = new Utilisateur();
+           System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
+        try {
+            String sql = "select * from evenement where id_user= "+utilisateur.Current_User.getId_user();
             Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {

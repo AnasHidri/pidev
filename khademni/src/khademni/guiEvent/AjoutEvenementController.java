@@ -236,7 +236,7 @@ public void AffichEV(){
        
      
     EvenementService es = new EvenementService();
-    ObservableList<Evenement> list = es.getAll();
+    ObservableList<Evenement> list = es.getAllById();
     //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     titre_ev_aff.setCellValueFactory(new PropertyValueFactory<>("titre"));
