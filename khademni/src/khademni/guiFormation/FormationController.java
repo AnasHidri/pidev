@@ -73,18 +73,9 @@ public class FormationController implements Initializable {
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-         liste_for.getItems().addAll("Liste formation","Mes formations");
+        
           
 
-liste_for.setOnAction(event -> {
-    String selectedPage = (String) liste_for.getSelectionModel().getSelectedItem();
-
-    if (selectedPage.equals("Liste formation")) {
-        // navigate to Page 1
-    } else if (selectedPage.equals("Mes formations")) {
-        // navigate to Page 2
-    } 
-});
         
        // Ajouter un écouteur de changement de texte au champ de texte
         txtrech.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -213,7 +204,7 @@ liste_for.setOnAction(event -> {
        @FXML
         private void LesFormations(ActionEvent event)  throws IOException {
    
-     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiFormation/Formation.fxml"));
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiFormation/add.fxml"));
          Stage stage = new Stage();
          
          stage.setScene(new Scene(loader.load()));
@@ -228,7 +219,7 @@ liste_for.setOnAction(event -> {
               @FXML
         private void MesFormations(ActionEvent event)  throws IOException {
    
-     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/gui/MesFormationFXML.fxml"));
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiFormation/Formation.fxml"));
          Stage stage = new Stage();
          
          stage.setScene(new Scene(loader.load()));

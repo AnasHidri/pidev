@@ -146,7 +146,7 @@ public class AddcoursController implements Initializable {
      @FXML
         private void LesFormations(ActionEvent event)  throws IOException {
    
-     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiFormation/Formation.fxml"));
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiFormation/add.fxml"));
          Stage stage = new Stage();
          
          stage.setScene(new Scene(loader.load()));

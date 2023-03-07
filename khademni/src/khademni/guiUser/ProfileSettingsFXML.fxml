@@ -282,6 +282,8 @@
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Button>
+            <Label fx:id="sold" layoutX="310.0" layoutY="15.0" text="Solde :" visible="false" />
+            <Label fx:id="idsolde" layoutX="363.0" layoutY="15.0" text="Solde :" visible="false" />
          </children>
       </AnchorPane>
       <TextField fx:id="tfimg" layoutX="660.0" layoutY="368.0" visible="false" />
@@ -314,7 +316,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="30.0" layoutY="29.0" prefHeight="56.0" prefWidth="761.0" style="-fx-background-color: #B2CABF;" visible="false">
+      <AnchorPane fx:id="idFormateur" layoutX="30.0" layoutY="29.0" prefHeight="56.0" prefWidth="761.0" style="-fx-background-color: #B2CABF;" visible="false">
          <children>
             <Button fx:id="prof11" layoutX="461.0" layoutY="13.0" mnemonicParsing="false" onAction="#Profile" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#fcf8f8">
                <font>

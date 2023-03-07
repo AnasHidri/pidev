@@ -138,6 +138,15 @@ public class ProfileSettingsFXMLController implements Initializable {
     private ComboBox<?> liste_for3;
     @FXML
     private ComboBox<?> liste_for2;
+    @FXML
+    private Label idsolde;
+    @FXML
+    private Label sold;
+    @FXML
+    private Button btnLesFormations1;
+    @FXML
+    private Button btnMesFormations;
+    
     /**
      * Initializes the controller class.
      */
@@ -245,6 +254,10 @@ pani1.setOnAction(event -> {
             tfcertif.setVisible(false);
             openCertif.setVisible(false);
             idClient.setVisible(true);
+            idsolde.setVisible(true);
+            sold.setVisible(true);
+
+            
             
         }else if("Formateur".equals(Utilisateur.Current_User.getRole())){
             cv.setVisible(false);
@@ -285,9 +298,11 @@ pani1.setOnAction(event -> {
         tfmail.setText(Utilisateur.Current_User.getMail());
         login.setText(Utilisateur.Current_User.getLogin());
         tfimg.setText(Utilisateur.Current_User.getImage());
+       
         if (Utilisateur.Current_User instanceof Client) {
             Client client = (Client) Utilisateur.Current_User;
             tfcv.setText(client.getCv());
+            idsolde.setText(client.getSolde()+"");
         }else if(Utilisateur.Current_User instanceof Formateur){
             Formateur formateur = (Formateur) Utilisateur.Current_User;
             tfcertif.setText(formateur.getCertif());
@@ -562,7 +577,7 @@ if (file.exists() && file.isFile()) {
               @FXML
         private void MesFormations(ActionEvent event)  throws IOException {
    
-     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/gui/MesFormationFXML.fxml"));
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiFormation/Formation.fxml"));
          Stage stage = new Stage();
          
          stage.setScene(new Scene(loader.load()));
