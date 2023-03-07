@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -98,10 +100,15 @@ public class UsersListFXMLController implements Initializable {
             
            liste_for.setOnAction(event -> {
     String selectedPage = (String) liste_for.getSelectionModel().getSelectedItem();
-
-    if (selectedPage.equals("Liste formation")) {
-        // navigate to Page 1
-    }
+if (selectedPage.equals("Liste formation")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiFormation/AdminF.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
 });
 
 liste_ev.setOnAction(event -> {

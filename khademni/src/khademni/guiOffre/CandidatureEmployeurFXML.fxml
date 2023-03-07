@@ -13,76 +13,71 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="470.0" prefWidth="710.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiOffre.CandidatureEmployeurFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiOffre.CandidatureEmployeurFXMLController">
     <stylesheets>
         <URL value="@offreclientfxml.css" />
     </stylesheets>
    <children>
-            <ImageView fitHeight="555.0" fitWidth="828.0" layoutX="-93.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="511.0" fitWidth="901.0" layoutX="-93.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Background.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="32.0" layoutY="24.0" prefHeight="421.0" prefWidth="645.0" style="-fx-background-color: #FFFFFF;">
+      <AnchorPane layoutX="64.0" layoutY="95.0" prefHeight="379.0" prefWidth="690.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Button fx:id="btnvalide" layoutX="172.0" layoutY="345.0" mnemonicParsing="false" onAction="#validerCandidat" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #5965f3;" text="Valider" textFill="#fcfcfc">
+            <Button fx:id="btnvalide" layoutX="93.0" layoutY="297.0" mnemonicParsing="false" onAction="#validerCandidat" prefHeight="38.0" prefWidth="140.0" style="-fx-background-color: #5965f3;" styleClass="button-design" stylesheets="@design.css" text="Valider" textFill="#fcfcfc">
                <font>
-                  <Font name="MV Boli" size="17.0" />
+                  <Font name="System Bold Italic" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="btnRefuser" layoutX="271.0" layoutY="345.0" mnemonicParsing="false" onAction="#refusCandidat" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #5965f3;" text="Refuser" textFill="#fcfcfc">
+            <Button fx:id="btnRefuser" layoutX="260.0" layoutY="297.0" mnemonicParsing="false" onAction="#refusCandidat" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: #5965f3;" styleClass="button-design" stylesheets="@design.css" text="Refuser" textFill="#fcfcfc">
                <font>
-                  <Font name="MV Boli" size="17.0" />
+                  <Font name="System Bold Italic" size="17.0" />
                </font>
             </Button>
-            <HBox layoutX="25.0" layoutY="133.0" prefHeight="180.0" prefWidth="577.0">
+            <HBox layoutX="32.0" layoutY="67.0" prefHeight="199.0" prefWidth="640.0">
                <children>
-                  <TableView fx:id="tvCandidature1" prefHeight="263.0" prefWidth="124.0">
+                  <TableView fx:id="tvCandidature1" prefHeight="199.0" prefWidth="195.0">
                     <columns>
-                      <TableColumn fx:id="colTitre" prefWidth="125.0" text="Titre" />
+                      <TableColumn fx:id="colTitre" prefWidth="170.0" text="Titre" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="tvCandidature2" cache="true" prefHeight="236.0" prefWidth="342.0">
+                  <TableView fx:id="tvCandidature2" cache="true" prefHeight="199.0" prefWidth="382.0">
                      <columns>
                         <TableColumn fx:id="colNom" prefWidth="108.0" text="Nom" />
                         <TableColumn fx:id="colPrenom" prefWidth="127.0" text="Prenom" />
-                        <TableColumn fx:id="colEmail" prefWidth="109.0" text="Email" />
+                        <TableColumn fx:id="colEmail" prefWidth="146.0" text="Email" />
                      </columns>
                   </TableView>
-                  <TableView fx:id="tvCandidature3" prefHeight="258.0" prefWidth="108.0">
+                  <TableView fx:id="tvCandidature3" prefHeight="199.0" prefWidth="134.0">
                     <columns>
                       <TableColumn fx:id="ColEtat" prefWidth="107.0" text="Etat" />
                     </columns>
                   </TableView>
                </children>
             </HBox>
-            <Button fx:id="btnretourne" layoutX="21.0" layoutY="345.0" mnemonicParsing="false" onAction="#retourne" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #5965f3;" text="&lt;----" textFill="#fcfcfc">
-               <font>
-                  <Font name="MV Boli" size="17.0" />
-               </font>
-            </Button>
             <TextField fx:id="id_offre1" layoutX="278.0" layoutY="25.0" prefHeight="25.0" prefWidth="122.0" visible="false" />
-            <Button fx:id="btnCV" layoutX="378.0" layoutY="345.0" mnemonicParsing="false" onAction="#OpenCV" prefHeight="41.0" prefWidth="85.0" style="-fx-background-color: #5965f3;" text="Voir Cv" textFill="#fcfcfc">
+            <Button fx:id="btnCV" layoutX="431.0" layoutY="297.0" mnemonicParsing="false" onAction="#OpenCV" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: #5965f3;" styleClass="button-design" stylesheets="@design.css" text="Voir CV" textFill="#fcfcfc">
                <font>
-                  <Font name="MV Boli" size="17.0" />
+                  <Font name="System Bold Italic" size="17.0" />
                </font>
             </Button>
-                 <AnchorPane prefHeight="52.0" prefWidth="616.0" style="-fx-background-color: #F6EAF1;">
-               <children>
-                  <ComboBox fx:id="liste_off" layoutX="180.0" layoutY="14.0" prefHeight="26.0" prefWidth="148.0" promptText="Offre" style="-fx-background-color: #5965f3;" styleClass="comboBox" stylesheets="@design.css" />
-                  <ComboBox fx:id="liste_ev" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="148.0" promptText="Evenement" style="-fx-background-color: #5965f3;" styleClass="comboBox" stylesheets="@design.css" />
-                  <Button fx:id="prof" layoutX="394.0" layoutY="10.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="140.0" style="-fx-background-color: #5965f3;" text="Profile" textFill="#fcf7f7">
-                     <font>
-                        <Font name="System Bold Italic" size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <Text fill="#5961ff" layoutX="25.0" layoutY="75.52099609375" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste Candidature :" wrappingWidth="246.17333984375">
+            <Text fill="#5961ff" layoutX="32.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste Candidature :" wrappingWidth="246.17333984375">
                <font>
-                  <Font name="MV Boli" size="25.0" />
+                  <Font name="System Bold Italic" size="20.0" />
                </font>
             </Text>
+         </children>
+      </AnchorPane>
+           <AnchorPane layoutX="64.0" layoutY="43.0" prefHeight="52.0" prefWidth="690.0" style="-fx-background-color: #B2CABF;">
+         <children>
+            <ComboBox fx:id="liste_off" layoutX="35.0" layoutY="11.0" prefHeight="31.0" prefWidth="171.0" promptText="Offre" style="-fx-background-color: #5965f3;" styleClass="comboBox" stylesheets="@design.css" />
+            <Button fx:id="prof" layoutX="507.0" layoutY="11.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="140.0" style="-fx-background-color: #5965f3;" text="Profile" textFill="#362d2d">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="liste_ev" layoutX="217.0" layoutY="11.0" prefHeight="31.0" prefWidth="171.0" promptText="Evenement" style="-fx-background-color: #5965f3;" styleClass="comboBox" stylesheets="@design.css" />
          </children>
       </AnchorPane>
    </children>

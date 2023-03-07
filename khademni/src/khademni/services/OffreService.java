@@ -230,8 +230,8 @@ public class OffreService implements IOffre   {
                        s.getString("adresse_societe"),
                        s.getString("domaine_offre"),
                        s.getDate(7),
-                        
-                
+                       
+               
                        s.getString("etat"));
 
                        OffreList.add(o);

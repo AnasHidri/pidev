@@ -13,14 +13,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="854.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiOffre.OffreAdminFXMLController">
    <children>
-      <ImageView fitHeight="579.0" fitWidth="862.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="518.0" fitWidth="881.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@background2.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="28.0" layoutY="14.0" prefHeight="485.0" prefWidth="815.0" style="-fx-background-color: #FFFFFF;">
+      <AnchorPane layoutX="38.0" layoutY="87.0" prefHeight="398.0" prefWidth="779.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Button fx:id="btnRefuser" layoutX="354.0" layoutY="416.0" mnemonicParsing="false" onAction="#RefuserOffre" prefHeight="41.0" prefWidth="121.0" style="-fx-background-color: #5965F3;" text="Refuser" textFill="#070000">
+            <Button fx:id="btnRefuser" layoutX="165.0" layoutY="332.0" mnemonicParsing="false" onAction="#RefuserOffre" prefHeight="41.0" prefWidth="183.0" style="-fx-background-color: #5965F3;" styleClass="button-design" stylesheets="@design.css" text="Refuser" textFill="#070000">
                <font>
                   <Font name="MV Boli" size="17.0" />
                </font>
@@ -28,28 +28,23 @@
                   <Insets right="30.0" />
                </padding>
             </Button>
-            <Button fx:id="btnRetourne" layoutX="194.0" layoutY="415.0" mnemonicParsing="false" onAction="#retourneInter" prefHeight="41.0" prefWidth="68.0" style="-fx-background-color: #5965F3;" text="&lt;----" textFill="#1e0202">
-               <font>
-                  <Font name="MV Boli" size="17.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="433.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="294.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@refuser.png" />
                </image>
             </ImageView>
-            <TableView fx:id="tvOffre" layoutX="47.0" layoutY="135.0" prefHeight="262.0" prefWidth="743.0">
+            <TableView fx:id="tvOffre" layoutX="15.0" layoutY="83.0" prefHeight="229.0" prefWidth="745.0">
                <columns>
-                  <TableColumn fx:id="colTitre" minWidth="0.0" prefWidth="103.0" text="Titre" />
-                  <TableColumn fx:id="colDescription" prefWidth="109.0" text="Description" />
-                  <TableColumn fx:id="colAdresse_societe" minWidth="3.0" prefWidth="107.0" text="Adresse société" />
-                  <TableColumn fx:id="colDomaine_offre" minWidth="0.0" prefWidth="149.0" text="Domaine D'offre" />
-                  <TableColumn fx:id="colDate_debut" minWidth="0.0" prefWidth="121.0" text="Date debut" />
-                  <TableColumn fx:id="colEtat" minWidth="0.0" prefWidth="96.0" text="Etat" />
+                  <TableColumn fx:id="colTitre" minWidth="0.0" prefWidth="127.0" text="Titre" />
+                  <TableColumn fx:id="colDescription" prefWidth="199.0" text="Description" />
+                  <TableColumn fx:id="colAdresse_societe" minWidth="3.0" prefWidth="108.0" text="Nom Société" />
+                  <TableColumn fx:id="colDomaine_offre" minWidth="0.0" prefWidth="118.0" text="Domaine D'offre" />
+                  <TableColumn fx:id="colDate_debut" minWidth="0.0" prefWidth="96.0" text="Date debut" />
+                  <TableColumn fx:id="colEtat" minWidth="0.0" prefWidth="96.00006103515625" text="Etat" />
                </columns>
             </TableView>
-            <TextField fx:id="tfSearch" layoutX="161.0" layoutY="80.0" onAction="#Search" prefHeight="34.0" prefWidth="542.0" promptText="Recherche" />
-            <Button fx:id="btnvalide" layoutX="571.0" layoutY="415.0" mnemonicParsing="false" onAction="#validerOffre" prefHeight="41.0" prefWidth="121.0" style="-fx-background-color: #5965F3;" text="Valider" textFill="#1e0202">
+            <TextField fx:id="tfSearch" layoutX="82.0" layoutY="30.0" onAction="#Search" prefHeight="34.0" prefWidth="542.0" promptText="Recherche" styleClass="textfield-design" stylesheets="@design.css" />
+            <Button fx:id="btnvalide" layoutX="419.0" layoutY="332.0" mnemonicParsing="false" onAction="#validerOffre" prefHeight="41.0" prefWidth="183.0" style="-fx-background-color: #5965F3;" styleClass="button-design" stylesheets="@design.css" text="Valider" textFill="#1e0202">
                <font>
                   <Font name="MV Boli" size="17.0" />
                </font>
@@ -57,29 +52,29 @@
                   <Insets right="30.0" />
                </padding>
             </Button>
-            <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="653.0" layoutY="422.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="550.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@valider.png" />
                </image>
             </ImageView>
-            <AnchorPane layoutX="29.0" layoutY="14.0" prefHeight="56.0" prefWidth="761.0" style="-fx-background-color: #B2CABF;">
-               <children>
-                  <Button fx:id="prof" layoutX="651.0" layoutY="9.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #5965F3;" text="Historique" textFill="#fcf8f8">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <ComboBox fx:id="liste_for" layoutX="517.0" layoutY="9.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
-                  <ComboBox fx:id="liste_off" layoutX="399.0" layoutY="9.0" prefHeight="31.0" prefWidth="112.0" promptText="Offre" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
-                  <ComboBox fx:id="liste_ev" layoutX="258.0" layoutY="9.0" prefHeight="25.0" prefWidth="133.0" promptText="Evenement" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
-                  <ComboBox fx:id="pani" layoutX="139.0" layoutY="9.0" prefHeight="31.0" prefWidth="112.0" promptText="User" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
-                  <Button fx:id="stat" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#stat" prefHeight="31.0" prefWidth="112.0" style="-fx-background-color: #5965F3;" text="Dashboard" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="38.0" layoutY="31.0" prefHeight="56.0" prefWidth="779.0" style="-fx-background-color: #B2CABF;">
+         <children>
+            <Button fx:id="prof" layoutX="667.0" layoutY="13.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#2f2828">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="liste_for" layoutX="520.0" layoutY="13.0" prefHeight="31.0" prefWidth="139.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
+            <ComboBox fx:id="liste_off" layoutX="399.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Offre" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
+            <ComboBox fx:id="liste_ev" layoutX="260.0" layoutY="13.0" prefHeight="25.0" prefWidth="133.0" promptText="Evenement" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
+            <ComboBox fx:id="pani" layoutX="140.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="User" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
+            <Button fx:id="stat" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#stat" prefHeight="31.0" prefWidth="112.0" style="-fx-background-color: #5965F3;" text="Dashboard" textFill="#2f2828">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
 

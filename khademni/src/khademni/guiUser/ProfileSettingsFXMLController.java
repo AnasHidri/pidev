@@ -144,20 +144,25 @@ public class ProfileSettingsFXMLController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-           liste_for1.getItems().addAll("Liste formation","Mes formations");
+           liste_for1.getItems().addAll("Liste formation");
             liste_ev1.getItems().addAll("Liste evenement","Mes participations");
             liste_off1.getItems().addAll("Liste offre","Mes candidatures");
-            pani1.getItems().addAll("Mon panier");
+            pani1.getItems().addAll("Mon panier","Mes formations");
             
             
             
 liste_for1.setOnAction(event -> {
     String selectedPage = (String) liste_for1.getSelectionModel().getSelectedItem();
 
-    if (selectedPage.equals("Liste formation")) {
+   if (selectedPage.equals("Liste formation")) {
         // navigate to Page 1
-    } else if (selectedPage.equals("Mes formations")) {
-        // navigate to Page 2
+         Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiFormation/formationC.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     } 
 });
 
@@ -211,6 +216,14 @@ pani1.setOnAction(event -> {
     if (selectedPage.equals("Mon panier")) {
            Navbar_Navigation SC = new Navbar_Navigation();
        String ch= "/khademni/gui/PanierFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } else if (selectedPage.equals("Mes formations")) {
+        Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/gui/MesFormationFXML.fxml";
         try {
             SC.naviger((ActionEvent) event, ch);
         } catch (IOException ex) {
@@ -520,6 +533,36 @@ if (file.exists() && file.isFile()) {
     private void stat(ActionEvent event)  throws IOException {
    
      FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiUser/DashboardFXML.fxml"));
+         Stage stage = new Stage();
+         
+         stage.setScene(new Scene(loader.load()));
+         stage.show();
+    Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+    currentStage.hide();
+   
+   
+   
+}
+    
+     @FXML
+        private void LesFormations(ActionEvent event)  throws IOException {
+   
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiFormation/Formation.fxml"));
+         Stage stage = new Stage();
+         
+         stage.setScene(new Scene(loader.load()));
+         stage.show();
+    Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+    currentStage.hide();
+   
+   
+   
+}
+        
+              @FXML
+        private void MesFormations(ActionEvent event)  throws IOException {
+   
+     FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/gui/MesFormationFXML.fxml"));
          Stage stage = new Stage();
          
          stage.setScene(new Scene(loader.load()));

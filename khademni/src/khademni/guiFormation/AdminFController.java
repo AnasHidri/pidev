@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package khademni.gui;
+package khademni.guiFormation;
+
+
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,35 +21,31 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import khademni.entity.Historique;
-import khademni.entity.Ligne_commande;
-import khademni.entity.Panier;
-import khademni.services.HistoriqueService;
-
+import khademni.entity.Formation;
+import khademni.gui.Navbar_Navigation;
+import khademni.gui.PanierFXMLController;
+import khademni.services.FormationService;
 
 /**
  * FXML Controller class
  *
- * @author mikea
+ * @author hmoud
  */
-public class HistoriqueFXMLController implements Initializable {
+public class AdminFController implements Initializable {
 
-       @FXML
-        private TableView<Historique> tableviewUser;
-              @FXML
-        private TableView<String> tableviewUser2;
     @FXML
-    private TableColumn<?, ?> dateaction;
-        @FXML
-    private TableColumn<?, ?> action;
-              @FXML
-    private TableColumn<String, String> username;
-         @FXML 
-     private TextField recherche;
-            @FXML
+    private TableView<Formation> table;
+    @FXML
+    private TableColumn<Formation, String> titreclm;
+    @FXML
+    private TableColumn<Formation, String> dmnclm;
+    @FXML
+    private TableColumn<Formation, Double> prclm;
+    @FXML
+    private TableColumn<Formation, String> desclm;
+                @FXML
       private ComboBox<String> liste_for;
     
     @FXML
@@ -61,14 +57,15 @@ public class HistoriqueFXMLController implements Initializable {
  
     @FXML
             private Button prof;
-    
-    HistoriqueService hs= new HistoriqueService();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            liste_for.getItems().addAll("Liste formation");
+        
+        
+          liste_for.getItems().addAll("Liste formation");
             liste_ev.getItems().addAll("Liste evenement");
             liste_off.getItems().addAll("Liste offre");
             pani.getItems().addAll("Liste user", "Liste activation");
@@ -139,47 +136,26 @@ pani.setOnAction(event -> {
     } 
 });
         
-
-
-        showRec();
         
-          recherche.textProperty().addListener((observable, oldValue, newValue) -> {
-        // Call the chercher method with the updated search term
-        chercher(null);
-    });
-        // TODO
+        loadFormations();}
+    FormationService fs = new FormationService() ;
+    
+    
+    
+
+        
+        private void loadFormations() {
+
+        ObservableList<Formation> listef = fs.afficherFormation();
+        titreclm.setCellValueFactory(new PropertyValueFactory<>("titre"));
+        dmnclm.setCellValueFactory(new PropertyValueFactory<>("domaine_formation"));
+        prclm.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        desclm.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+        table.setItems(listef);
+    
     }  
-    
-     @FXML
-    public void showRec(){
-       
-         ObservableList<Historique> list = hs.afficherHistorique() ;
-         System.out.println("list ::: "+list);
-         dateaction.setCellValueFactory(new PropertyValueFactory<>("date_action"));
-         action.setCellValueFactory(new PropertyValueFactory<>("action"));
-    
-           tableviewUser.setItems(list);
-
-                    ObservableList<String> list2 = hs.afficherHistoriqueWithUser() ;
-           
-
-        username.setCellValueFactory(cellData -> {
-             // Return the value from the observable list at the row index of the cell
-             int rowIndex = tableviewUser2.getItems().indexOf(cellData.getValue());
-             return new SimpleStringProperty(list2.get(rowIndex));
-         });
-        
-        // Set the items for the table view to the observable list
-        tableviewUser2.setItems(list2);
          
-         
-     }
-    
-     public void chercher (ActionEvent event){
-     //to be continued  
-     
-     }
-     
         @FXML
     private void Profile(ActionEvent event)  throws IOException {
    

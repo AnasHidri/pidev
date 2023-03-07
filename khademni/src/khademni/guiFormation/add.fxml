@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -9,102 +8,67 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="702.0" prefWidth="847.0" style="-fx-background-color: #375f7e;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiFormation.AddController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiFormation.AddController">
    <children>
-      <VBox layoutY="81.0" prefHeight="582.0" prefWidth="270.0" style="-fx-background-color: #375f7e;">
+      <ImageView fitHeight="500.0" fitWidth="900.0" layoutX="-89.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Background.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="72.0" layoutY="42.0" prefHeight="72.0" prefWidth="671.0" style="-fx-background-color: #B2CABF;">
          <children>
-            <ImageView fitHeight="188.0" fitWidth="267.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../Downloads/asloba-removebg-preview.png" />
-               </image>
-            </ImageView>
-            <Label text="Bonjour Mr le formateur" textFill="WHITE">
+            <Button fx:id="prof1" layoutX="460.0" layoutY="13.0" mnemonicParsing="false" onAction="#Profile" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#fcf8f8">
                <font>
-                  <Font name="Serif Bold" size="24.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin>
-            </Label>
-            <Button mnemonicParsing="false" prefHeight="132.0" prefWidth="260.0" style="-fx-background-color: #375f7e;" text="Ajouter" textFill="WHITE">
-               <font>
-                  <Font name="Serif Bold" size="20.0" />
-               </font>
-               
-               <VBox.margin>
-                  <Insets top="80.0" />
-               </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="156.0" prefWidth="258.0" style="-fx-background-color: #375f7e;" text="Formations">
-              
-               <font>
-                  <Font name="Serif Bold" size="20.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="118.0" prefWidth="258.0" style="-fx-background-color: #375f7e;" text="Modifier">
+            <Button fx:id="btnLesFormations" layoutX="75.0" layoutY="13.0" mnemonicParsing="false" onAction="#LesFormations" prefHeight="31.0" prefWidth="141.0" style="-fx-background-color: #5965F3;" text=" Les Formations" textFill="#fcf8f8">
                <font>
-                  <Font name="Serif Bold" size="20.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
-               
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
+            </Button>
+            <Button fx:id="btnMesFormations" layoutX="250.0" layoutY="13.0" mnemonicParsing="false" onAction="#MesFormations" prefHeight="31.0" prefWidth="171.0" style="-fx-background-color: #5965F3;" text="Mes Formations" textFill="#fcf8f8">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
             </Button>
          </children>
-      </VBox>
-      <Pane layoutX="247.0" layoutY="139.0" prefHeight="109.0" prefWidth="476.0" style="-fx-background-color: #417193;">
+      </AnchorPane>
+      <AnchorPane layoutX="72.0" layoutY="104.0" prefHeight="356.0" prefWidth="671.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Label layoutX="14.0" layoutY="55.0" text="Ajouter une formation" textFill="WHITE">
+            <Label layoutX="43.0" layoutY="26.0" prefHeight="26.0" prefWidth="171.0" text="Titre Formation :" textFill="#5965f3">
                <font>
-                  <Font name="Serif Bold" size="24.0" />
+                  <Font name="System Bold Italic" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="23.0" prefHeight="18.0" prefWidth="130.0" text="/home/formations" textFill="WHITE" />
+            <TextField fx:id="txttitre" layoutX="210.0" layoutY="26.0" prefHeight="30.0" prefWidth="288.0" />
+            <Label layoutX="76.0" layoutY="121.0" prefHeight="30.0" prefWidth="146.0" text="Domaine :" textFill="#5965f3">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="99.0" layoutY="66.0" prefHeight="19.0" prefWidth="82.0" text="Prix :" textFill="#5965f3">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtprix" layoutX="210.0" layoutY="68.0" prefHeight="30.0" prefWidth="288.0" />
+            <Label layoutX="55.0" layoutY="194.0" prefHeight="38.0" prefWidth="146.0" text="Description :" textFill="#5965f3">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="txtdescription" layoutX="210.0" layoutY="163.0" prefHeight="101.0" prefWidth="288.0" />
+            <Button fx:id="btnConfirmer" layoutX="511.0" layoutY="297.0" mnemonicParsing="false" onAction="#confirmer" prefHeight="30.0" prefWidth="113.0" style="-fx-background-color: #5965F3;" text="Confirmer" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="txtdomaine" layoutX="211.0" layoutY="121.0" prefHeight="30.0" prefWidth="288.0" />
          </children>
-      </Pane>
-      <Label layoutX="323.0" layoutY="242.0" prefHeight="62.0" prefWidth="146.0" text="Titre Formation" textFill="WHITE">
-         <font>
-            <Font name="Serif Bold" size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txttitre" layoutX="470.0" layoutY="261.0" style="-fx-border-color: #ffff;" />
-      <Label layoutX="323.0" layoutY="297.0" prefHeight="62.0" prefWidth="146.0" text="Domaine" textFill="WHITE">
-         <font>
-            <Font name="Serif Bold" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="323.0" layoutY="359.0" prefHeight="62.0" prefWidth="146.0" text="Prix" textFill="WHITE">
-         <font>
-            <Font name="Serif Bold" size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="txtprix" layoutX="469.0" layoutY="377.0" prefHeight="26.0" prefWidth="151.0" style="-fx-border-color: #fff;" />
-      <Label layoutX="263.0" layoutY="490.0" prefHeight="62.0" prefWidth="146.0" text="Description" textFill="WHITE">
-         <font>
-            <Font name="Serif Bold" size="18.0" />
-         </font>
-      </Label>
-      <TextArea fx:id="txtdescription" layoutX="416.0" layoutY="422.0" prefHeight="200.0" prefWidth="317.0" />
-      <Button fx:id="btnConfirmer" layoutX="416.0" layoutY="628.0" mnemonicParsing="false" onAction="#confirmer" prefHeight="48.0" prefWidth="178.0" style="-fx-background-color: #417193;" text="Confirmer" textFill="WHITE">
-         <font>
-            <Font name="Serif Bold" size="20.0" />
-         </font>
-      </Button>
-      <ComboBox fx:id="txtdomaine" layoutX="469.0" layoutY="316.0" prefWidth="150.0" />
-       <AnchorPane prefHeight="56.0" prefWidth="671.0" style="-fx-background-color: #B2CABF;">
-                     <children>
-                        <Button fx:id="prof1" layoutX="518.0" layoutY="13.0" mnemonicParsing="false" onAction="#Profile" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#fcf8f8">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Button>
-                        <ComboBox fx:id="liste_for" layoutX="312.0" layoutY="13.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
-                       
-                     </children>
-                  </AnchorPane>
+      </AnchorPane>
    </children>
 </AnchorPane>

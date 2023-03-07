@@ -12,94 +12,89 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiOffre.EmployeurFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiOffre.EmployeurFXMLController">
    <children>
-       <ImageView fitHeight="536.0" fitWidth="889.0" layoutX="-122.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+       <ImageView fitHeight="510.0" fitWidth="919.0" layoutX="-107.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Background.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="16.0" layoutY="22.0" prefHeight="460.0" prefWidth="734.0" style="-fx-background-color: #FFFFFF;">
+      <AnchorPane layoutX="40.0" layoutY="82.0" prefHeight="412.0" prefWidth="720.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Button fx:id="btnAdd" layoutX="192.0" layoutY="228.0" mnemonicParsing="false" onAction="#AddOffre" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #5965f3;" text="Ajouter" textFill="#fcfcfc">
+            <Button fx:id="btnAdd" layoutX="503.0" layoutY="109.0" mnemonicParsing="false" onAction="#AddOffre" prefHeight="25.0" prefWidth="98.0" style="-fx-background-color: #5965f3;" styleClass="button-design" stylesheets="@design.css" text="Ajouter" textFill="#fcfcfc">
                <font>
-                  <Font name="MV Boli" size="17.0" />
+                  <Font name="System Bold Italic" size="15.0" />
                </font>
             </Button>
-            <TextField fx:id="tfTitre" layoutX="161.0" layoutY="79.0" />
-            <TextField fx:id="tfAdressse_societe" layoutX="175.0" layoutY="174.0" />
-            <Text fill="#5965f3" layoutX="84.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre" wrappingWidth="53.984375">
+            <TextField fx:id="tfTitre" layoutX="147.0" layoutY="16.0" prefHeight="25.0" prefWidth="167.0" />
+            <TextField fx:id="tfAdressse_societe" layoutX="150.0" layoutY="60.0" prefHeight="25.0" prefWidth="160.0" />
+            <Text fill="#5965f3" layoutX="55.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre :" wrappingWidth="53.984375">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Text>
-            <Text fill="#5965f3" layoutX="49.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="124.984375">
+            <Text fill="#5965f3" layoutX="147.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="124.984375">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Text>
-            <Text fill="#5965f3" layoutX="21.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse Societe" wrappingWidth="159.984375">
+            <Text fill="#5965f3" layoutX="29.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom Société :" wrappingWidth="159.984375">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Text>
-            <Text fill="#5965f3" layoutX="372.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Domaine D'offre" wrappingWidth="159.984375">
+            <Text fill="#5965f3" layoutX="334.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Domaine D'offre :" wrappingWidth="159.984375">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Text>
-            <Text fill="#5965f3" layoutX="383.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date début" wrappingWidth="124.984375">
+            <Text fill="#5965f3" layoutX="334.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date début" wrappingWidth="124.984375">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Text>
-            <TableView fx:id="tvOffre" layoutX="42.0" layoutY="284.0" prefHeight="167.0" prefWidth="659.0">
+            <TableView fx:id="tvOffre" layoutX="14.0" layoutY="196.0" prefHeight="156.0" prefWidth="697.0">
                <columns>
-                  <TableColumn fx:id="colTitre" minWidth="0.0" prefWidth="118.0" text="Titre" />
-                  <TableColumn fx:id="colDescription" prefWidth="104.0" text="Description" />
-                  <TableColumn fx:id="colAdresse_societe" minWidth="3.0" prefWidth="105.0" text="Adresse société" />
-                  <TableColumn fx:id="colDomaine_offre" minWidth="0.0" prefWidth="140.0" text="Domaine D'offre" />
-                  <TableColumn fx:id="colDate_debut" minWidth="0.0" prefWidth="101.0" text="Date debut" />
-                  <TableColumn fx:id="colEtat" minWidth="0.0" text="Etat" />
+                  <TableColumn fx:id="colTitre" minWidth="0.0" prefWidth="147.0" text="Titre" />
+                  <TableColumn fx:id="colDescription" prefWidth="114.0" text="Description" />
+                  <TableColumn fx:id="colAdresse_societe" minWidth="3.0" prefWidth="121.0" text="Nom société" />
+                  <TableColumn fx:id="colDomaine_offre" minWidth="0.0" prefWidth="136.0" text="Domaine D'offre" />
+                  <TableColumn fx:id="colDate_debut" minWidth="0.0" prefWidth="104.0" text="Date debut" />
+                  <TableColumn fx:id="colEtat" minWidth="0.0" prefWidth="74.0" text="Etat" />
                </columns>
             </TableView>
-            <TextField fx:id="tfDescription" layoutX="175.0" layoutY="122.0" />
-            <Button fx:id="btnupdate" layoutX="313.0" layoutY="228.0" mnemonicParsing="false" onAction="#update" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #5965f3;" text="Modifier" textFill="#fcfcfc">
+            <TextField fx:id="tfDescription" layoutX="286.0" layoutY="101.0" prefHeight="53.0" prefWidth="149.0" />
+            <Button fx:id="btnupdate" layoutX="74.0" layoutY="362.0" mnemonicParsing="false" onAction="#update" prefHeight="36.0" prefWidth="167.0" style="-fx-background-color: #5965f3;" styleClass="button-design" stylesheets="@design.css" text="Modifier" textFill="#fcfcfc">
                <font>
-                  <Font name="MV Boli" size="17.0" />
+                  <Font name="System Bold Italic" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="btnDelete" layoutX="431.0" layoutY="229.0" mnemonicParsing="false" onAction="#DeleteOffre" prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #5965f3;" text="Supprimer" textFill="#fcfcfc">
+            <Button fx:id="btnDelete" layoutX="279.0" layoutY="362.0" mnemonicParsing="false" onAction="#DeleteOffre" prefHeight="36.0" prefWidth="167.0" style="-fx-background-color: #5965f3;" styleClass="button-design" stylesheets="@design.css" text="Supprimer" textFill="#fcfcfc">
                <font>
-                  <Font name="MV Boli" size="17.0" />
-               </font>
-            </Button>
-            <Button fx:id="btnIntPr" layoutX="25.0" layoutY="6.0" mnemonicParsing="false" onAction="#IntP" prefHeight="41.0" prefWidth="65.0" style="-fx-background-color: #5965f3;" text="&lt;----" textFill="#fcfcfc">
-               <font>
-                  <Font name="MV Boli" size="17.0" />
+                  <Font name="System Bold Italic" size="15.0" />
                </font>
             </Button>
             <TextField fx:id="tfEtat" layoutX="570.0" layoutY="47.0" visible="false" />
-            <TextField fx:id="tfRecherche" layoutX="11.0" layoutY="236.0" onAction="#RechercheOffre" prefHeight="25.0" prefWidth="179.0" promptText="Recherche" />
-            <DatePicker fx:id="tfDate_debut" layoutX="541.0" layoutY="130.0" prefHeight="25.0" prefWidth="160.0" />
+            <TextField fx:id="tfRecherche" layoutX="119.0" layoutY="164.0" onAction="#RechercheOffre" prefHeight="25.0" prefWidth="430.0" promptText="Recherche" styleClass="textfield-design" stylesheets="@design.css" />
+            <DatePicker fx:id="tfDate_debut" layoutX="503.0" layoutY="60.0" prefHeight="25.0" prefWidth="167.0" />
            
-            <Button fx:id="btnListe" layoutX="546.0" layoutY="228.0" mnemonicParsing="false" onAction="#ListeCandidature" prefHeight="42.0" prefWidth="167.0" style="-fx-background-color: #5965f3;" text="Liste Candidature" textFill="#fcfcfc">
+            <Button fx:id="btnListe" layoutX="487.0" layoutY="362.0" mnemonicParsing="false" onAction="#ListeCandidature" prefHeight="36.0" prefWidth="167.0" style="-fx-background-color: #5965f3;" styleClass="button-design" stylesheets="@design.css" text="Liste Candidature" textFill="#fcfcfc">
                <font>
-                  <Font name="MV Boli" size="17.0" />
+                  <Font name="System Bold Italic" size="15.0" />
                </font>
             </Button>
-        <AnchorPane layoutX="130.0" prefHeight="53.0" prefWidth="541.0" style="-fx-background-color: #F6EAF1;">
-               <children>
-                  <ComboBox fx:id="liste_off" layoutX="180.0" layoutY="14.0" prefHeight="26.0" prefWidth="148.0" promptText="Offre" style="-fx-background-color: #5965f3;" styleClass="comboBox" stylesheets="@design.css" />
-                  <ComboBox fx:id="liste_ev" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="148.0" promptText="Evenement" style="-fx-background-color: #5965f3;" styleClass="comboBox" stylesheets="@design.css" />
-                  <Button fx:id="prof" layoutX="392.0" layoutY="14.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="140.0" style="-fx-background-color: #5965f3;" text="Profile" textFill="#fcf7f7">
-                     <font>
-                        <Font name="System Bold Italic" size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <ComboBox fx:id="tfDomaine_offre" layoutX="546.0" layoutY="79.0" prefWidth="150.0" />
+            <ComboBox fx:id="tfDomaine_offre" layoutX="503.0" layoutY="15.0" prefHeight="25.0" prefWidth="167.0" promptText="Choisir" />
+         </children>
+      </AnchorPane>
+  <AnchorPane layoutX="40.0" layoutY="22.0" prefHeight="61.0" prefWidth="720.0" style="-fx-background-color: #B2CABF;">
+         <children>
+            <ComboBox fx:id="liste_off" layoutX="80.0" layoutY="16.0" prefHeight="31.0" prefWidth="179.0" promptText="Offre" style="-fx-background-color: #5965f3;" styleClass="comboBox" stylesheets="@design.css" />
+            <Button fx:id="prof" layoutX="538.0" layoutY="15.0" mnemonicParsing="false" onAction="#Profile" prefHeight="31.0" prefWidth="160.0" style="-fx-background-color: #5965f3;" text="Profile" textFill="#362d2d">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="liste_ev" layoutX="277.0" layoutY="16.0" prefHeight="31.0" prefWidth="179.0" promptText="Evenement" style="-fx-background-color: #5965f3;" styleClass="comboBox" stylesheets="@design.css" />
          </children>
       </AnchorPane>
    </children>

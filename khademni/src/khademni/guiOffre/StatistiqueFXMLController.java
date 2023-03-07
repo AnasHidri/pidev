@@ -24,24 +24,21 @@ public class StatistiqueFXMLController implements Initializable {
     
         private OffreService os = new OffreService();
 
+        @FXML
     public void PieChart() {
         HashMap<String, Integer> counts = new HashMap<>();
         os.afficherAccepterOffre().stream()
-
-        .filter(offre -> !offre.getDomaine_offre().equals("Domaine_offre"))
-        .forEach(offre -> counts.put(offre.getDomaine_offre(), counts.getOrDefault(offre.getDomaine_offre(), 0) + 1));
+                .forEach(offre -> counts.put(offre.getDomaine_offre(), counts.getOrDefault(offre.getId_offre(), 0) + 1));
         pieChart.getData().clear();
         pieChart.setLegendVisible(false);
-        pieChart.setStartAngle(10);
+        pieChart.setStartAngle(90);
         pieChart.setLabelsVisible(true);
-         pieChart.setClockwise(false);
-    pieChart.setAnimated(true);
+        pieChart.setClockwise(false);
+        pieChart.setAnimated(true);
 
-
-        counts.forEach((domaine, count) -> pieChart.getData().add(new PieChart.Data(domaine+" : "+count, count)));
-        
+        counts.forEach((domaine_offre, count) -> pieChart.getData().add(new PieChart.Data(domaine_offre+" : "+count, count)));
+       
     }
-  
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

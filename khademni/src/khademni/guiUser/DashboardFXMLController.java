@@ -9,6 +9,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,6 +30,8 @@ import javafx.stage.Stage;
 import khademni.entity.Evenement;
 import khademni.entity.Formation;
 import khademni.entity.Ligne_commande;
+import khademni.gui.Navbar_Navigation;
+import khademni.gui.PanierFXMLController;
 import khademni.services.EvenementService;
 import khademni.services.FormationService;
 import khademni.services.Ligne_CommandeService;
@@ -81,6 +85,20 @@ public class DashboardFXMLController implements Initializable {
     private BarChart<String, Number> barChartPanier;
     @FXML
     private PieChart pieChartOffre;
+    
+          @FXML
+      private ComboBox<String> liste_for;
+    
+    @FXML
+       private ComboBox<String> liste_ev;
+    @FXML
+            private ComboBox<String> liste_off;
+    @FXML
+            private ComboBox<String> pani;
+     @FXML
+            private Button stat;
+    @FXML
+            private Button prof;
    
    
 
@@ -112,6 +130,76 @@ public class DashboardFXMLController implements Initializable {
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+           liste_for.getItems().addAll("Liste formation");
+            liste_ev.getItems().addAll("Liste evenement");
+            liste_off.getItems().addAll("Liste offre");
+            pani.getItems().addAll("Liste user", "Liste activation");
+        
+                 liste_for.setOnAction(event -> {
+    String selectedPage = (String) liste_for.getSelectionModel().getSelectedItem();
+
+  if (selectedPage.equals("Liste formation")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiFormation/AdminF.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
+});
+
+liste_ev.setOnAction(event -> {
+    String selectedPage = (String) liste_ev.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Liste evenement")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiEvent/ListeEvenementAD.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    } 
+});
+
+liste_off.setOnAction(event -> {
+    String selectedPage = (String) liste_off.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Liste offre")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiOffre/OffreAdminFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    } 
+});
+
+pani.setOnAction(event -> {
+    String selectedPage = (String) pani.getSelectionModel().getSelectedItem();
+
+    if (selectedPage.equals("Liste user")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiUser/UsersListFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    } else if (selectedPage.equals("Liste activation")) {
+        Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiUser/ActivationFormateurFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(PanierFXMLController.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    } 
+});
+        
           statcombo.getItems().addAll("Utilisateurs","Emplois","Formations","Panier","Evenements");
           populateChart();
           afficherStatistiquesEvent1();

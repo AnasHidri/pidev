@@ -25,7 +25,7 @@ public class Khademni extends Application {
         try {
             //Parent root = FXMLLoader.load(getClass().getResource("PanierGraph.fxml"));
            Parent root = FXMLLoader.load(getClass().getResource("/khademni/guiUser/InscriptionFXML.fxml"));
-        //  Parent root = FXMLLoader.load(getClass().getResource("/khademni/guiEvent/AjoutEvenement.fxml"));
+           //  Parent root = FXMLLoader.load(getClass().getResource("/khademni/guiOffre/StatistiqueFXML.fxml"));
             // Parent root = FXMLLoader.load(getClass().getResource("MesFormationFXML.fxml"));
                   //   Parent root = FXMLLoader.load(getClass().getResource("/khademni/guiUser/DashboardFXML.fxml"));
 

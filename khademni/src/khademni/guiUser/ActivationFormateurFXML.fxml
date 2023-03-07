@@ -13,50 +13,53 @@
 
 <AnchorPane id="AnchorPane" prefHeight="464.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiUser.ActivationFormateurFXMLController">
     <children>
-        <ImageView fitHeight="579.0" fitWidth="862.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="518.0" fitWidth="880.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@background2.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="33.0" layoutY="14.0" prefHeight="464.0" prefWidth="804.0" style="-fx-background-color: #FFFFFF;">
-         <children> 
-            <TableView fx:id="tableviewUser" layoutY="110.0" prefHeight="270.0" prefWidth="803.0">
+      <AnchorPane layoutX="40.0" layoutY="88.0" prefHeight="385.0" prefWidth="761.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <TableView fx:id="tableviewUser" layoutX="28.0" layoutY="111.0" prefHeight="189.0" prefWidth="719.0">
               <columns>
                   <TableColumn fx:id="nomUser" prefWidth="154.39997100830078" text="Nom" />
                   <TableColumn fx:id="prenomUser" prefWidth="171.20001220703125" text="Prenom" />
                   <TableColumn fx:id="etatUser" prefWidth="226.39999389648438" text="Etat" />
-                  <TableColumn fx:id="emailUser" prefWidth="251.20001220703125" text="EMAIL" />
+                  <TableColumn fx:id="emailUser" prefWidth="164.0" text="EMAIL" />
               </columns>
             </TableView>
-            <Button fx:id="btn_activer" layoutX="424.0" layoutY="408.0" mnemonicParsing="false" onAction="#Activer" prefHeight="26.0" prefWidth="81.0" styleClass="button-design" stylesheets="@design.css" text="Activer " textFill="WHITE" />
-            <Button layoutX="692.0" layoutY="77.0" mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="112.0" styleClass="exit" stylesheets="@design.css" text="LogOut" />
-            <Label layoutX="13.0" layoutY="74.0" text="Les comptes des formateurs inactif" textFill="#5965f3">
+            <Button fx:id="btn_activer" layoutX="605.0" layoutY="307.0" mnemonicParsing="false" onAction="#Activer" prefHeight="26.0" prefWidth="142.0" styleClass="button-design" stylesheets="@design.css" text="Activer " textFill="WHITE" />
+            <Button layoutX="673.0" layoutY="11.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="88.0" style="-fx-background-color: #FFFFFF;" stylesheets="@design.css" text="LogOut" textFill="#5965f3">
                <font>
-                  <Font name="System Bold" size="21.0" />
+                  <Font name="System Bold Italic" size="15.0" />
+               </font></Button>
+            <Label layoutX="28.0" layoutY="79.0" prefHeight="27.0" prefWidth="329.0" text="Les comptes des formateurs inactif :" textFill="#5965f3">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
-       <AnchorPane layoutX="13.0" prefHeight="56.0" prefWidth="761.0" style="-fx-background-color: #B2CABF;">
-                     <children>
-                        <Button fx:id="prof" layoutX="651.0" layoutY="9.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #5965F3;" text="Historique" textFill="#fcf8f8">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Button>
-                        <ComboBox fx:id="liste_for" layoutX="517.0" layoutY="9.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
-                        <ComboBox fx:id="liste_off" layoutX="399.0" layoutY="9.0" prefHeight="31.0" prefWidth="112.0" promptText="Offre" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
-                        <ComboBox fx:id="liste_ev" layoutX="258.0" layoutY="9.0" prefHeight="25.0" prefWidth="133.0" promptText="Evenement" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
-                        <ComboBox fx:id="pani" layoutX="139.0" layoutY="9.0" prefHeight="31.0" prefWidth="112.0" promptText="User" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@design.css" />
-                        <Button fx:id="stat" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#stat" prefHeight="31.0" prefWidth="112.0" style="-fx-background-color: #5965F3;" text="Dashboard" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-            <TextField fx:id="Recherche_User" layoutX="193.0" layoutY="407.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css">   
+            <TextField fx:id="Recherche_User" layoutX="62.0" layoutY="26.0" prefHeight="27.0" prefWidth="515.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css">  
       </TextField>
          </children>
          
+      </AnchorPane>
+      <AnchorPane fx:id="idAdmin" layoutX="40.0" layoutY="38.0" prefHeight="56.0" prefWidth="761.0" style="-fx-background-color: #B2CABF;">
+         <children>
+            <Button fx:id="prof2" layoutX="651.0" layoutY="9.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#1b1313">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="liste_for" layoutX="517.0" layoutY="9.0" prefHeight="31.0" prefWidth="132.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="liste_off" layoutX="399.0" layoutY="9.0" prefHeight="31.0" prefWidth="112.0" promptText="Offre" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="liste_ev" layoutX="258.0" layoutY="9.0" prefHeight="25.0" prefWidth="133.0" promptText="Evenement" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <ComboBox fx:id="pani" layoutX="139.0" layoutY="9.0" prefHeight="31.0" prefWidth="112.0" promptText="User" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+            <Button fx:id="stat" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#stat" prefHeight="31.0" prefWidth="112.0" style="-fx-background-color: #5965F3;" text="Dashboard" textFill="#1b1212">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
       </AnchorPane>
    </children>
 </AnchorPane>

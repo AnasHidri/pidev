@@ -85,10 +85,10 @@ public class MesCandidatureClientFXMLController implements Initializable {
         showOffre1();
          showOffre2();
          
-          liste_for.getItems().addAll("Liste formation","Mes formations");
+          liste_for.getItems().addAll("Liste formation");
             liste_ev.getItems().addAll("Liste evenement","Mes participations");
             liste_off.getItems().addAll("Liste offre","Mes candidatures");
-            pani.getItems().addAll("Mon panier");
+            pani.getItems().addAll("Mon panier","Mes formations");
             
             
             liste_for.setOnAction(event -> {
@@ -151,6 +151,14 @@ pani.setOnAction(event -> {
     if (selectedPage.equals("Mon panier")) {
            Navbar_Navigation SC = new Navbar_Navigation();
        String ch= "/khademni/gui/PanierFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } else if (selectedPage.equals("Mes formations")) {
+        Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/gui/MesFormationFXML.fxml";
         try {
             SC.naviger((ActionEvent) event, ch);
         } catch (IOException ex) {

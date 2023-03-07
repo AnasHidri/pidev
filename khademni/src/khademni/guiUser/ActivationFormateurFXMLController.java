@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.security.GeneralSecurityException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
@@ -87,8 +89,14 @@ public class ActivationFormateurFXMLController implements Initializable {
     String selectedPage = (String) liste_for.getSelectionModel().getSelectedItem();
 
     if (selectedPage.equals("Liste formation")) {
-        // navigate to Page 1
-    }
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiFormation/AdminF.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
 });
 
 liste_ev.setOnAction(event -> {

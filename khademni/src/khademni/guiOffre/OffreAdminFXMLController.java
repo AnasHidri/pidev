@@ -6,6 +6,8 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -120,10 +122,15 @@ public class OffreAdminFXMLController implements Initializable {
                
            liste_for.setOnAction(event -> {
     String selectedPage = (String) liste_for.getSelectionModel().getSelectedItem();
-
-    if (selectedPage.equals("Liste formation")) {
-        // navigate to Page 1
-    }
+if (selectedPage.equals("Liste formation")) {
+           Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiFormation/AdminF.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
 });
 
 liste_ev.setOnAction(event -> {

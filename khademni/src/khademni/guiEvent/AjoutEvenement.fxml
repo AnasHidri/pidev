@@ -99,7 +99,7 @@
          <children>
             <ComboBox fx:id="liste_off" layoutX="180.0" layoutY="14.0" prefHeight="26.0" prefWidth="148.0" promptText="Offre" style="-fx-background-color: #5965f3;" styleClass="comboBox" stylesheets="@design.css" />
             <ComboBox fx:id="liste_ev" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="148.0" promptText="Evenement" style="-fx-background-color: #5965f3;" styleClass="comboBox" stylesheets="@design.css" />
-            <Button fx:id="prof" layoutX="556.0" layoutY="17.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="140.0" style="-fx-background-color: #5965f3;" text="Profile" textFill="#fcf7f7">
+            <Button fx:id="prof" layoutX="556.0" layoutY="17.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="140.0" style="-fx-background-color: #5965f3;" text="Profile" textFill="#251e1e">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>

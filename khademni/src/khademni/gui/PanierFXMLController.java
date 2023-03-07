@@ -60,10 +60,10 @@ public class PanierFXMLController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            liste_for.getItems().addAll("Liste formation","Mes formations");
+            liste_for.getItems().addAll("Liste formation");
             liste_ev.getItems().addAll("Liste evenement","Mes participations");
             liste_off.getItems().addAll("Liste offre","Mes candidatures");
-            pani.getItems().addAll("Mon panier");
+            pani.getItems().addAll("Mon panier","Mes formations");
        showRec();
        
            // Add a listener to the recherche TextField
@@ -89,7 +89,7 @@ liste_for.setOnAction(event -> {
         // navigate to Page 2
           // navigate to Page 1
          Navbar_Navigation SC = new Navbar_Navigation();
-       String ch= "/khademni/gui/MesFormations.fxml";
+       String ch= "/khademni/gui/MesFormationFXML.fxml";
         try {
             SC.naviger((ActionEvent) event, ch);
         } catch (IOException ex) {
@@ -148,6 +148,16 @@ pani.setOnAction(event -> {
     if (selectedPage.equals("Mon panier")) {
            Navbar_Navigation SC = new Navbar_Navigation();
        String ch= "/khademni/gui/PanierFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } else if (selectedPage.equals("Mes formations")) {
+        // navigate to Page 2
+          // navigate to Page 1
+         Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/gui/MesFormationFXML.fxml";
         try {
             SC.naviger((ActionEvent) event, ch);
         } catch (IOException ex) {

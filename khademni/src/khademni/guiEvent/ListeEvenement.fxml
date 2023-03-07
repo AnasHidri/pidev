@@ -12,50 +12,82 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="515.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiEvent.ListeEvenementController">
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiEvent.ListeEvenementController">
    <children>
-         <ImageView fitHeight="525.0" fitWidth="876.0" layoutX="-2.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fitHeight="517.0" fitWidth="929.0" layoutX="-23.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@background2.jpg" />
+            <Image url="@background.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="51.0" layoutY="22.0" prefHeight="472.0" prefWidth="808.0" style="-fx-background-color: #FFFFFF;">
+     <AnchorPane layoutX="60.0" layoutY="32.0" prefHeight="56.0" prefWidth="765.0" style="-fx-background-color: #B2CABF;">
+                     <children>
+                        <Button fx:id="prof1" layoutX="645.0" layoutY="14.0" mnemonicParsing="false" onAction="#Profile" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#392f2f">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                        <ComboBox fx:id="liste_for" layoutX="312.0" layoutY="13.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+                        <ComboBox fx:id="liste_off" layoutX="43.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Offre" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+                        <ComboBox fx:id="liste_ev" layoutX="166.0" layoutY="13.0" prefHeight="25.0" prefWidth="133.0" promptText="Evenement" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+                        <ComboBox fx:id="pani" layoutX="522.0" layoutY="14.0" prefHeight="31.0" prefWidth="112.0" promptText="Panier" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
+                     </children>
+                  </AnchorPane>
+      <AnchorPane layoutX="60.0" layoutY="89.0" prefHeight="390.0" prefWidth="765.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <TableView fx:id="tab_ev_liste" layoutX="59.0" layoutY="172.0" prefHeight="248.0" prefWidth="715.0">
-              <columns>
-                <TableColumn fx:id="titre_list" prefWidth="84.0" text="Titre" />
-                <TableColumn fx:id="desc_list" prefWidth="95.0" text="Description" />
+            <TableView fx:id="tab_ev_liste" layoutX="24.0" layoutY="122.0" prefHeight="198.0" prefWidth="717.0">
+               <columns>
+                  <TableColumn fx:id="titre_list" prefWidth="84.0" text="Titre" />
+                  <TableColumn fx:id="desc_list" prefWidth="95.0" text="Description" />
                   <TableColumn fx:id="nom_soc_list" prefWidth="152.79991149902344" text="Nom de la Societe" />
                   <TableColumn fx:id="lieu_list" prefWidth="134.40008544921875" text="Lieu" />
                   <TableColumn fx:id="date_deb_list" prefWidth="130.4000244140625" text="Date Debut" />
                   <TableColumn fx:id="date_fin_list" prefWidth="119.199951171875" text="Date Fin" />
-              </columns>
+               </columns>
             </TableView>
-            <Button fx:id="btn_parti_list" layoutX="474.0" layoutY="433.0" mnemonicParsing="false" onAction="#ParticipeEV" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: #5965F3;" text="Participer" textFill="WHITE" />
-            <Button fx:id="aff_ev_list" layoutX="68.0" layoutY="432.0" mnemonicParsing="false" onAction="#ListEV" style="-fx-background-color: #5965F3;" text="Afficher" textFill="WHITE" />
+            <Button fx:id="btn_parti_list" layoutX="47.0" layoutY="331.0" mnemonicParsing="false" onAction="#ParticipeEV" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: #5965F3;" text="Participer" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="aff_ev_list" layoutX="620.0" layoutY="331.0" mnemonicParsing="false" onAction="#ListEV" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #5965F3;" text="Afficher" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
             <TextField fx:id="idevl" layoutX="68.0" layoutY="97.0" prefHeight="25.0" prefWidth="112.0" visible="false" />
-            <Button fx:id="supp_parti_list" layoutX="620.0" layoutY="433.0" mnemonicParsing="false" onAction="#AnnulerP" style="-fx-background-color: #5965F3;" text="Annuler Participation" textFill="WHITE" />
-            <Button fx:id="btn_consulte" layoutX="212.0" layoutY="433.0" mnemonicParsing="false" onAction="#ConsulterP" style="-fx-background-color: #5965F3;" text="Consulter Mes Participations" textFill="WHITE" />
-            <TextField fx:id="recherche_text_par" layoutX="56.0" layoutY="126.0" prefHeight="25.0" prefWidth="112.0" />
-            <DatePicker fx:id="date_deb" layoutX="240.0" layoutY="102.0" />
-            <DatePicker fx:id="datefin" layoutX="240.0" layoutY="139.0" />
-            <Button fx:id="filtre" layoutX="531.0" layoutY="119.0" mnemonicParsing="false" onAction="#filterEvents" style="-fx-background-color: #5965F3;" text="Filtrer" textFill="WHITE" />
-            <Label layoutX="59.0" layoutY="106.0" text="Recherche par Nom" textFill="#5965f3" />
-            <Label layoutX="429.0" layoutY="106.0" text="Date Debut" textFill="#5965f3" />
-            <Label layoutX="437.0" layoutY="143.0" text="Date Fin" textFill="#5965f3" />
-           <AnchorPane layoutX="27.0" layoutY="14.0" prefHeight="56.0" prefWidth="671.0" style="-fx-background-color: #B2CABF;">
-                           <children>
-                              <Button fx:id="prof1" layoutX="518.0" layoutY="13.0" mnemonicParsing="false" onAction="#Profile" prefHeight="31.0" prefWidth="106.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#fcf8f8">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </Button>
-                              <ComboBox fx:id="liste_for" layoutX="312.0" layoutY="13.0" prefHeight="31.0" prefWidth="124.0" promptText="Formation" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
-                              <ComboBox fx:id="liste_off" layoutX="43.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Offre" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
-                              <ComboBox fx:id="liste_ev" layoutX="166.0" layoutY="13.0" prefHeight="25.0" prefWidth="133.0" promptText="Evenement" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
-                              <ComboBox fx:id="pani" layoutX="642.0" layoutY="13.0" prefHeight="31.0" prefWidth="112.0" promptText="Panier" style="-fx-background-color: #5965F3;" styleClass="comboBox" stylesheets="@../guiEvent/design.css" />
-                           </children>
-                        </AnchorPane>
+            <Button fx:id="supp_parti_list" layoutX="165.0" layoutY="331.0" mnemonicParsing="false" onAction="#AnnulerP" style="-fx-background-color: #5965F3;" text="Annuler Participation" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_consulte" layoutX="372.0" layoutY="331.0" mnemonicParsing="false" onAction="#ConsulterP" style="-fx-background-color: #5965F3;" text="Consulter Mes Participations" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <TextField fx:id="recherche_text_par" layoutX="37.0" layoutY="46.0" prefHeight="25.0" prefWidth="174.0" />
+            <DatePicker fx:id="date_deb" layoutX="429.0" layoutY="23.0" />
+            <DatePicker fx:id="datefin" layoutX="429.0" layoutY="69.0" />
+            <Button fx:id="filtre" layoutX="633.0" layoutY="43.0" mnemonicParsing="false" onAction="#filterEvents" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #5965F3;" text="Filtrer" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Label layoutX="47.0" layoutY="13.0" text="Recherche par Nom" textFill="#5965f3">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="332.0" layoutY="25.0" text="Date Debut" textFill="#5965f3">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="342.0" layoutY="71.0" text="Date Fin" textFill="#5965f3">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
