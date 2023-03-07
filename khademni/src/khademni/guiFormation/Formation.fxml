@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiFormation.FormationController">
    <children>
       <ImageView fitHeight="500.0" fitWidth="889.0" layoutX="-89.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-89.0" AnchorPane.rightAnchor="0.111083984375" AnchorPane.topAnchor="0.0">
@@ -62,7 +61,7 @@
                   <Font name="System Bold Italic" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="AfficherC" layoutX="504.0" layoutY="262.0" mnemonicParsing="false" onAction="#afficherCours" prefHeight="39.0" prefWidth="149.0" style="-fx-background-color: #5965F3;" text="Afficher cours" textFill="WHITE">
+            <Button fx:id="AfficherC" layoutX="504.0" layoutY="262.0" mnemonicParsing="false" onAction="#afficherCours" prefHeight="39.0" prefWidth="149.0" style="-fx-background-color: #5965F3;" text="Afficher cours" textFill="WHITE" visible="false">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font>

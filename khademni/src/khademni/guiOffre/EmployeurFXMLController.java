@@ -172,7 +172,7 @@ liste_off.setOnAction(event -> {
 
 
   OffreService os =new OffreService(); 
-        FilteredList<Offre> filter = new FilteredList<>(os.afficherOffre(), e -> true);
+        FilteredList<Offre> filter = new FilteredList<>(os.afficherOffreById(), e -> true);
 
         tfRecherche.textProperty().addListener((Observable, oldValue, newValue) -> {
 

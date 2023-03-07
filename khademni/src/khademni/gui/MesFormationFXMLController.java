@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -21,8 +22,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import khademni.entity.Formation;
 import khademni.entity.Ligne_commande;
 import khademni.entity.Panier;
+import khademni.guiFormation.AfficherCoursFXMLController;
 import khademni.services.Ligne_CommandeService;
 
 /**
@@ -56,6 +59,8 @@ public class MesFormationFXMLController implements Initializable {
             private ComboBox<String> pani;
     @FXML
             private Button prof;
+    @FXML
+    private Button btncours;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -178,6 +183,26 @@ pani.setOnAction(event -> {
    
    
    
-}
+}    @FXML
+    public void afficherCours(){
+        Ligne_commande f = tableviewUser.getSelectionModel().getSelectedItem();
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/khademni/guiFormation/AfficherCoursFXML.fxml"));
+            Parent root = loader.load();
+            
+            AfficherCoursFXMLController controleur = loader.getController();
+            
+            controleur.setTextFields(f);
+            
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) btncours.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+      
+        } catch (IOException e) {
+            System.out.println(e.getCause().getMessage());
+        }
+    }
     
 }

@@ -54,7 +54,7 @@
       </AnchorPane>
       <AnchorPane layoutX="48.0" layoutY="41.0" prefHeight="56.0" prefWidth="779.0" style="-fx-background-color: #B2CABF;">
          <children>
-            <Button fx:id="prof" layoutX="667.0" layoutY="13.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #5965F3;" text="Profile" textFill="#2f2828">
+            <Button fx:id="prof" layoutX="667.0" layoutY="13.0" mnemonicParsing="false" onAction="#Profile" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #5965F3;" text="Historique" textFill="#2f2828">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

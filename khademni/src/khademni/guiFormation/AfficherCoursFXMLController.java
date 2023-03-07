@@ -24,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import khademni.entity.Cours;
 import khademni.entity.Formation;
+import khademni.entity.Ligne_commande;
 import khademni.gui.Navbar_Navigation;
 import khademni.gui.PanierFXMLController;
 import khademni.services.CoursService;
@@ -76,8 +77,13 @@ public class AfficherCoursFXMLController implements Initializable {
 
     if (selectedPage.equals("Liste formation")) {
         // navigate to Page 1
-    } else if (selectedPage.equals("Mes formations")) {
-        // navigate to Page 2
+         Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiFormation/formationC.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     } 
 });
 
@@ -142,10 +148,25 @@ pani.setOnAction(event -> {
     }    
     
     
-    public void setTextFields(Formation f){
-        
+    public void setTextFields(Ligne_commande f){
+        System.out.println("aaa"+f.getId_formation());
         id_f.setText(String.valueOf(f.getId_formation()));
         Cours c=cs.getCoursByFormationId(f.getId_formation());
+        System.out.println("c::"+c);
+        formaion.setText(f.getTitre());  
+        String d=c.getDescription();
+       decription.setText(d);
+       cours.setText(c.getTitre());
+       path.setText(c.getFile());
+       
+    }
+    
+      
+    public void setTextFields2(Formation f){
+        System.out.println("aaa"+f.getId_formation());
+        id_f.setText(String.valueOf(f.getId_formation()));
+        Cours c=cs.getCoursByFormationId(f.getId_formation());
+        System.out.println("c::"+c);
         formaion.setText(f.getTitre());  
         String d=c.getDescription();
        decription.setText(d);

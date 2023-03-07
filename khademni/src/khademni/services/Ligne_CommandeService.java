@@ -195,13 +195,14 @@ public class Ligne_CommandeService implements ILigne_commande {
         try {
            Utilisateur utilisateur = new Utilisateur();
            System.out.println("current user id anaaas::"+utilisateur.Current_User.getId_user());
-            String sql = "select ligne_commande.id_ligne_commande,panier.id_panier, titre,prix from ligne_commande,panier where ligne_commande.id_panier=panier.id_panier and status="+1+" and panier.id_user="+utilisateur.Current_User.getId_user();
+            String sql = "select ligne_commande.id_ligne_commande,ligne_commande.id_formation,panier.id_panier, titre,prix from ligne_commande,panier where ligne_commande.id_panier=panier.id_panier and status="+1+" and panier.id_user="+utilisateur.Current_User.getId_user();
             java.sql.Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
 
                 Ligne_commande u = new Ligne_commande(
                       s.getInt("id_ligne_commande"),
+                        s.getInt("id_formation"),
                         s.getInt("id_panier"),
                 s.getInt("prix"),
                         s.getString("titre")

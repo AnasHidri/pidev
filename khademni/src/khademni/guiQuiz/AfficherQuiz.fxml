@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="khademni.guiQuiz.AfficherQuizController">
+   <children>
+      <TableView fx:id="table" layoutX="214.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="nom" prefWidth="199.0" text="Nom" />
+        </columns>
+      </TableView>
+      <Label layoutX="274.0" layoutY="42.0" text="Quiz">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Button layoutX="100.0" layoutY="340.0" mnemonicParsing="false" onAction="#Ajouter" text="Ajouter" />
+      <Button layoutX="262.0" layoutY="340.0" mnemonicParsing="false" onAction="#Supprimer" text="Supprimer" />
+      <Button layoutX="414.0" layoutY="340.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
+      <Button layoutX="469.0" layoutY="62.0" mnemonicParsing="false" onAction="#details" text="Detail" />
+   </children>
+</AnchorPane>

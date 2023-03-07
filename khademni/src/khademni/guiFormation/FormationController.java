@@ -175,7 +175,7 @@ public class FormationController implements Initializable {
             
             AfficherCoursFXMLController controleur = loader.getController();
             
-            controleur.setTextFields(f);
+            controleur.setTextFields2(f);
             
             Scene scene = new Scene(root);
             Stage stage = (Stage) btnModifier.getScene().getWindow();

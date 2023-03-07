@@ -71,7 +71,7 @@ public class HistoriqueFXMLController implements Initializable {
             liste_for.getItems().addAll("Liste formation");
             liste_ev.getItems().addAll("Liste evenement");
             liste_off.getItems().addAll("Liste offre");
-            pani.getItems().addAll("Liste user", "Liste activation");
+            pani.getItems().addAll("Liste user", "Liste activation","Quiz");
           
             
             
@@ -131,6 +131,14 @@ pani.setOnAction(event -> {
     } else if (selectedPage.equals("Liste activation")) {
         Navbar_Navigation SC = new Navbar_Navigation();
        String ch= "/khademni/guiUser/ActivationFormateurFXML.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } else if (selectedPage.equals("Quiz")) {
+        Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiQuiz/AfficherQuiz.fxml";
         try {
             SC.naviger((ActionEvent) event, ch);
         } catch (IOException ex) {

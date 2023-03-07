@@ -153,7 +153,7 @@ public class ProfileSettingsFXMLController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-           liste_for1.getItems().addAll("Liste formation");
+           liste_for1.getItems().addAll("Liste formation","Quiz");
             liste_ev1.getItems().addAll("Liste evenement","Mes participations");
             liste_off1.getItems().addAll("Liste offre","Mes candidatures");
             pani1.getItems().addAll("Mon panier","Mes formations");
@@ -167,6 +167,14 @@ liste_for1.setOnAction(event -> {
         // navigate to Page 1
          Navbar_Navigation SC = new Navbar_Navigation();
        String ch= "/khademni/guiFormation/formationC.fxml";
+        try {
+            SC.naviger((ActionEvent) event, ch);
+        } catch (IOException ex) {
+            Logger.getLogger(PanierFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } else if (selectedPage.equals("Quiz")) {
+        Navbar_Navigation SC = new Navbar_Navigation();
+       String ch= "/khademni/guiQuiz/ShowQuiz.fxml";
         try {
             SC.naviger((ActionEvent) event, ch);
         } catch (IOException ex) {

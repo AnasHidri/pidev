@@ -25,7 +25,7 @@ public class Ligne_commande {
         this.status = status;
     }
 
-    public Ligne_commande(int id_ligne_commande, int id_panier, int id_formation, int prix, String titre, int status) {
+    public Ligne_commande(int id_ligne_commande, int id_formation, int id_panier, int prix, String titre, int status) {
         this.id_ligne_commande = id_ligne_commande;
         this.id_panier = id_panier;
         this.id_formation = id_formation;
@@ -105,7 +105,7 @@ public class Ligne_commande {
         this.titre = titre;
     }
 
-    public Ligne_commande(int id_ligne_commande, int id_panier, int id_formation, int prix, String titre) {
+    public Ligne_commande(int id_ligne_commande, int id_formation, int id_panier,  int prix, String titre) {
         this.id_ligne_commande = id_ligne_commande;
         this.id_panier = id_panier;
         this.id_formation = id_formation;
