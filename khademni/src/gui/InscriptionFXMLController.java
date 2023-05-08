@@ -418,8 +418,19 @@ showPasswordToggle.setOnAction(event -> {
             }
             else{
                 if(ValidationEmail(mail)){
-                Employeur emp = new Employeur(nom, prenom, login, password, role, mail, domaine, nom_soc);
-                us.ajouterEmployeur(emp);
+               // Employeur emp = new Employeur(nom, prenom, login, password, role, mail, domaine, nom_soc);
+
+               Employeur emp=new Employeur();
+               emp.setNom(nom);
+               emp.setPrenom(prenom);
+               emp.setLogin(login);
+               emp.setPassword(password);
+               emp.setRole(role);
+               emp.setMail(mail);
+               emp.setDomaine(domaine);
+               emp.setNom_societe(nom_soc);
+
+               us.ajouterEmployeur(emp);
                     System.out.println("emp ajouté");
                 
                     
@@ -444,6 +455,8 @@ showPasswordToggle.setOnAction(event -> {
                 
                 login_form.setVisible(true);
                 signup_form_employeur.setVisible(false);
+                side.setVisible(false);
+                role_form.setVisible(false);
                     }
                 }
 
@@ -504,7 +517,18 @@ showPasswordToggle.setOnAction(event -> {
             }
             else{
                 if(ValidationEmail(mail)){
-                Formateur f = new Formateur(nom, prenom, login, password, role, mail, domaine,certif);
+             //   Formateur f = new Formateur(nom, prenom, login, password, role, mail, domaine,certif);
+                
+               Formateur f=new Formateur();
+               f.setNom(nom);
+               f.setPrenom(prenom);
+               f.setLogin(login);
+               f.setPassword(password);
+               f.setRole(role);
+               f.setMail(mail);
+               f.setDomaine(domaine);
+               f.setCertif(certif);
+                
                 us.ajouterFormateur(f);
                 
                 
@@ -531,6 +555,8 @@ showPasswordToggle.setOnAction(event -> {
                 
                 login_form.setVisible(true);
                 signup_form_formateur.setVisible(false);
+                side.setVisible(false);
+                role_form.setVisible(false);
                     }
                 }
             } catch (Exception e) {
@@ -591,7 +617,19 @@ showPasswordToggle.setOnAction(event -> {
             }
             else{
                 if(ValidationEmail(mail)){
-                Client c = new Client(nom, prenom, login, password, role, mail, domaine,solde,cv);
+                //Client c = new Client(nom, prenom, login, password, role, mail,domaine,solde,cv);
+                
+               Client c=new Client();
+               c.setNom(nom);
+               c.setPrenom(prenom);
+               c.setLogin(login);
+               c.setPassword(password);
+               c.setRole(role);
+               c.setMail(mail);
+               c.setDomaine(domaine);
+               c.setSolde(solde);
+               c.setCv(cv);
+               
                 us.ajouterClient(c);
                 
                 SendMail(c.getMail(), "Inscription", "Bonjour, vous étes bien inscrit sur notre application Khadamni.\n Votre login : "+c.getLogin()+"\n votre mot de passe : "+c.getPassword());
@@ -615,6 +653,8 @@ showPasswordToggle.setOnAction(event -> {
                 
                 login_form.setVisible(true);
                 signup_form_client.setVisible(false);
+                side.setVisible(false);
+                role_form.setVisible(false);
                     }
                 }
             } catch (Exception e) {
@@ -702,8 +742,7 @@ showPasswordToggle.setOnAction(event -> {
         {
                 
                      try{
-     
-        
+
         makeFadeOut("UsersListFxml.fxml");
 
 
@@ -711,8 +750,9 @@ showPasswordToggle.setOnAction(event -> {
             System.out.println(e.getCause().getMessage());
         }                   
         }else {
-            Utilisateur u = us.findUserByLogin(login_signin.getText(),password_signin.getText());
-                if(u!=null){
+            //Utilisateur u = us.findUserByLogin(login_signin.getText(),password_signin.getText());
+            Utilisateur u = us.findUserByLogin(login_signin.getText());
+                if((u!=null) && u.checkPassword(password_signin.getText()) ){
                     if("Employeur".equals(u.getRole())){
                        
                         Employeur emp = (Employeur) u;
@@ -773,7 +813,7 @@ showPasswordToggle.setOnAction(event -> {
                    Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Travel Me :: Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Wrong Email/Password !!");
+                alert.setContentText("Mauvais identifiant/mot de passe !!");
                 alert.showAndWait();  
                 }
           

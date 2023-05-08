@@ -30,6 +30,9 @@ public class Employeur extends Utilisateur{
         this.nom_societe = nom_societe;
     }
 
+    public Employeur() {
+    }
+
     @Override
     public String toString() {
         return super.toString()+"Employeur{" + "nom_societe=" + nom_societe + '}';

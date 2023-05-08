@@ -238,6 +238,7 @@ public class UtilisateurService implements IUtilisateurService {
 }
       
             
+            /*
            public Utilisateur findUserByLogin(String login, String mdp) {
     Utilisateur u = null;
 
@@ -280,7 +281,51 @@ public class UtilisateurService implements IUtilisateurService {
     }
     return u;
 }   
-           
+*/           
+
+    public Utilisateur findUserByLogin(String login) {
+    Utilisateur u = null;
+
+    try {
+        String sql = "select * from user where login=?";
+        PreparedStatement ste=myconn.prepareStatement(sql);
+        ste.setString(1,login);
+        ResultSet s = ste.executeQuery();
+        if (s.next()) {
+            String role = s.getString("role");
+            System.out.println(role + " ok");
+            if (role.equals("Employeur")) {
+                u = new Employeur(s.getInt(1),
+                        s.getString("nom"), s.getString("prenom"),
+                        s.getString("login"), s.getString("password"),
+                        s.getString("role"), s.getString("mail"),
+                        s.getString("domaine"), s.getString("nom_societe"),
+                        s.getString("etat"),s.getString("image"));
+            } else if (role.equals("Formateur")) {
+                u = new Formateur(s.getInt(1),
+                        s.getString("nom"), s.getString("prenom"),
+                        s.getString("login"), s.getString("password"),
+                        s.getString("role"), s.getString("mail"),
+                        s.getString("domaine"), s.getString("certif"),
+                        s.getString("etat"),s.getString("image"));
+            } else if (role.equals("Client")) {
+//public Client(int id, String nom, String prenom, String login, String password, String role,
+//String mail, String domaine,float solde, String cv, String etat, String image) {
+                u = new Client(s.getInt(1),
+                        s.getString("nom"), s.getString("prenom"),
+                        s.getString("login"), s.getString("password"),
+                        s.getString("role"), s.getString("mail"),
+                        s.getString("domaine"), s.getFloat("solde"),
+                        s.getString("cv"),s.getString("etat"),s.getString("image"));
+            }
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+    return u;
+} 
+                       
+
            public void changeUserState(int userId, String newState) {
     try {
         String sql = "UPDATE user SET etat=? WHERE id_user=?";
@@ -294,6 +339,7 @@ public class UtilisateurService implements IUtilisateurService {
     }
     
 }
+
            
       public boolean userExist(String login ) throws SQLException {
         String query = "SELECT * FROM user WHERE login = ?";
@@ -317,5 +363,7 @@ public int countUsers() {
     }
     return count;
 }
+
+
       
 }

@@ -4,6 +4,8 @@
  */
 package khademni.entity;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 
 
 /**
@@ -96,11 +98,24 @@ public Utilisateur(int id, String nom, String prenom, String domaine,String mail
     public String getPassword() {
         return password;
     }
-
+/*
     public void setPassword(String password) {
         this.password = password;
     }
+*/
 
+
+    public void setPassword(String password) {
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        this.password = hashedPassword;
+        
+    }
+
+    public boolean checkPassword(String password) {
+        return BCrypt.checkpw(password, this.password);
+    }
+
+    
     public String getNom() {
         return nom;
     }

@@ -31,6 +31,12 @@ public class Khademni {
         
         System.out.println("us.countUsers();"+us.countUsers());
         
+        String test = "1234";
+                System.out.println(test);
+
+        String test2=test.replace("12", "89");
+        System.out.println(test2);
+        
        //us.ajouterEmployeur(e2);
        //us.ajouterClient(c1);
 

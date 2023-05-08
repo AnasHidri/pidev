@@ -48,6 +48,9 @@ private String cv ;
     public String toString() {
         return super.toString()+"Client{" + "solde=" + solde + ", cv=" + cv + '}';
     }
-    
 
+    public Client() {
+    }
+    
+    
 }

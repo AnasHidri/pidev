@@ -19,7 +19,7 @@ public class MailService {
 
     //String username = "securesally@gmail.com";
     String username = "khademni.serviceClient@gmail.com";
-    String password = "iptppxmbutpkhtee";
+    String password = "tkperhhesxpwvhfl";
 
     // Set mail properties
     Properties props = new Properties();

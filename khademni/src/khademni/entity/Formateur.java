@@ -32,6 +32,9 @@ public class Formateur extends Utilisateur{
     public void setCertif(String certif) {
         this.certif = certif;
     }
+
+    public Formateur() {
+    }
     
    
 }

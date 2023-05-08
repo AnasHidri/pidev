@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import javafx.animation.FadeTransition;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
@@ -81,30 +82,48 @@ public class UsersListFXMLController implements Initializable {
     } 
     
     @FXML
-private void filterByRole(ActionEvent event) {
+    private void filterByRole(ActionEvent event) {
     String selectedRole = (String) rolechoice.getSelectionModel().getSelectedItem();
 
     FilteredList<Utilisateur> filteredData = tableviewUser.getItems().filtered(user -> true);
 
     Predicate<Utilisateur> rolePredicate = user -> user.getRole().equals(selectedRole);
 
-    filteredData.setPredicate(rolePredicate);
+    Predicate<Utilisateur> etatPredicate;
+    if (selectedRole.equals("Formateur")) {
+        etatPredicate = user -> user.getEtat().equals("actif");
+    } else {
+        etatPredicate = user -> true;
+    }
+
+    filteredData.setPredicate(rolePredicate.and(etatPredicate));
     
-         tableviewUser.setItems(filteredData);
-        System.out.println("okkkk");
+    tableviewUser.setItems(filteredData);
 }
+
 
     
     @FXML
-     public void showUsers(){
-       
-         ObservableList<Utilisateur> list = us.afficherUtilisateurs() ;
-         nomUser.setCellValueFactory(new PropertyValueFactory<>("nom"));
-         prenomUser.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-         roleUser.setCellValueFactory(new PropertyValueFactory<>("login"));
-         emailUser.setCellValueFactory(new PropertyValueFactory<>("mail"));        
-         tableviewUser.setItems(list); 
-     }
+public void showUsers() {
+    ObservableList<Utilisateur> list = us.afficherUtilisateurs();
+
+    ObservableList<Utilisateur> filteredList = FXCollections.observableArrayList();
+
+    for (Utilisateur user : list) {
+        if (user.getRole().equals("Formateur") && user.getEtat().equals("actif")) {
+            filteredList.add(user);
+        } else if (!user.getRole().equals("Formateur")) {
+            filteredList.add(user);
+        }
+    }
+
+    nomUser.setCellValueFactory(new PropertyValueFactory<>("nom"));
+    prenomUser.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+    roleUser.setCellValueFactory(new PropertyValueFactory<>("login"));
+    emailUser.setCellValueFactory(new PropertyValueFactory<>("mail"));
+
+    tableviewUser.setItems(filteredList);
+}
      
      @FXML
     private void ModifierUser(ActionEvent event) throws IOException {
@@ -151,8 +170,20 @@ private void filterByRole(ActionEvent event) {
     
     
     private void searchRec() {
-    ObservableList<Utilisateur> list = us.afficherUtilisateurs();
-    FilteredList<Utilisateur> filteredData = new FilteredList<>(list, p -> true);
+ObservableList<Utilisateur> list = us.afficherUtilisateurs();
+
+    ObservableList<Utilisateur> filteredList = FXCollections.observableArrayList();
+
+    for (Utilisateur user : list) {
+        if (user.getRole().equals("Formateur") && user.getEtat().equals("actif")) {
+            filteredList.add(user);
+        } else if (!user.getRole().equals("Formateur")) {
+            filteredList.add(user);
+        }
+    }    
+    
+    
+    FilteredList<Utilisateur> filteredData = new FilteredList<>(filteredList, p -> true);
 
     // Set the items of your TableView to the filtered data
     tableviewUser.setItems(filteredData);
@@ -175,7 +206,7 @@ private void filterByRole(ActionEvent event) {
                 return true; // Match on the prenom column
             } else if (user.getMail().toLowerCase().contains(lowerCaseFilter)) {
                 return true; // Match on the email column
-            } else if (user.getRole().toLowerCase().contains(lowerCaseFilter)) {
+            } else if (user.getLogin().toLowerCase().contains(lowerCaseFilter)) {
                 return true; // Match on the role column
             } else {
                 return false; // No match
